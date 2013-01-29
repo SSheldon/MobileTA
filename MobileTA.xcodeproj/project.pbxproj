@@ -1,0 +1,501 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
+		13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
+		13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */; };
+		13345E6216B7736100DD4FF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6016B7736100DD4FF2 /* InfoPlist.strings */; };
+		13345E6416B7736100DD4FF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E6316B7736100DD4FF2 /* main.m */; };
+		13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E6716B7736100DD4FF2 /* TAAppDelegate.m */; };
+		13345E6A16B7736100DD4FF2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6916B7736100DD4FF2 /* Default.png */; };
+		13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6B16B7736100DD4FF2 /* Default@2x.png */; };
+		13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */; };
+		13345E7116B7736100DD4FF2 /* TAFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E7016B7736100DD4FF2 /* TAFirstViewController.m */; };
+		13345E7316B7736100DD4FF2 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7216B7736100DD4FF2 /* first.png */; };
+		13345E7516B7736100DD4FF2 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7416B7736100DD4FF2 /* first@2x.png */; };
+		13345E7816B7736100DD4FF2 /* TASecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E7716B7736100DD4FF2 /* TASecondViewController.m */; };
+		13345E7A16B7736100DD4FF2 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7916B7736100DD4FF2 /* second.png */; };
+		13345E7C16B7736100DD4FF2 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7B16B7736100DD4FF2 /* second@2x.png */; };
+		13345E7F16B7736100DD4FF2 /* TAFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7D16B7736100DD4FF2 /* TAFirstViewController.xib */; };
+		13345E8216B7736100DD4FF2 /* TASecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13345E8016B7736100DD4FF2 /* TASecondViewController.xib */; };
+		13345E8A16B7736100DD4FF2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E8916B7736100DD4FF2 /* SenTestingKit.framework */; };
+		13345E8B16B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
+		13345E8C16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
+		13345E9416B7736100DD4FF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13345E9216B7736100DD4FF2 /* InfoPlist.strings */; };
+		13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E9616B7736100DD4FF2 /* MobileTATests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		13345E8D16B7736100DD4FF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 13345E4A16B7736100DD4FF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13345E5216B7736100DD4FF2;
+			remoteInfo = MobileTA;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		13345E5916B7736100DD4FF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		13345E5F16B7736100DD4FF2 /* MobileTA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileTA-Info.plist"; sourceTree = "<group>"; };
+		13345E6116B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		13345E6316B7736100DD4FF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		13345E6516B7736100DD4FF2 /* MobileTA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileTA-Prefix.pch"; sourceTree = "<group>"; };
+		13345E6616B7736100DD4FF2 /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
+		13345E6716B7736100DD4FF2 /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
+		13345E6916B7736100DD4FF2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		13345E6B16B7736100DD4FF2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		13345E6F16B7736100DD4FF2 /* TAFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAFirstViewController.h; sourceTree = "<group>"; };
+		13345E7016B7736100DD4FF2 /* TAFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAFirstViewController.m; sourceTree = "<group>"; };
+		13345E7216B7736100DD4FF2 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		13345E7416B7736100DD4FF2 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		13345E7616B7736100DD4FF2 /* TASecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TASecondViewController.h; sourceTree = "<group>"; };
+		13345E7716B7736100DD4FF2 /* TASecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TASecondViewController.m; sourceTree = "<group>"; };
+		13345E7916B7736100DD4FF2 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		13345E7B16B7736100DD4FF2 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		13345E7E16B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TAFirstViewController.xib; sourceTree = "<group>"; };
+		13345E8116B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TASecondViewController.xib; sourceTree = "<group>"; };
+		13345E8816B7736100DD4FF2 /* MobileTATests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTATests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		13345E8916B7736100DD4FF2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		13345E9116B7736100DD4FF2 /* MobileTATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileTATests-Info.plist"; sourceTree = "<group>"; };
+		13345E9316B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		13345E9516B7736100DD4FF2 /* MobileTATests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileTATests.h; sourceTree = "<group>"; };
+		13345E9616B7736100DD4FF2 /* MobileTATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileTATests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		13345E5016B7736100DD4FF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */,
+				13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */,
+				13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13345E8416B7736100DD4FF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13345E8A16B7736100DD4FF2 /* SenTestingKit.framework in Frameworks */,
+				13345E8B16B7736100DD4FF2 /* UIKit.framework in Frameworks */,
+				13345E8C16B7736100DD4FF2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		13345E4816B7736100DD4FF2 = {
+			isa = PBXGroup;
+			children = (
+				13345E5D16B7736100DD4FF2 /* MobileTA */,
+				13345E8F16B7736100DD4FF2 /* MobileTATests */,
+				13345E5616B7736100DD4FF2 /* Frameworks */,
+				13345E5416B7736100DD4FF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		13345E5416B7736100DD4FF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13345E5316B7736100DD4FF2 /* MobileTA.app */,
+				13345E8816B7736100DD4FF2 /* MobileTATests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		13345E5616B7736100DD4FF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13345E5716B7736100DD4FF2 /* UIKit.framework */,
+				13345E5916B7736100DD4FF2 /* Foundation.framework */,
+				13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */,
+				13345E8916B7736100DD4FF2 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		13345E5D16B7736100DD4FF2 /* MobileTA */ = {
+			isa = PBXGroup;
+			children = (
+				13345E6616B7736100DD4FF2 /* TAAppDelegate.h */,
+				13345E6716B7736100DD4FF2 /* TAAppDelegate.m */,
+				13345E6F16B7736100DD4FF2 /* TAFirstViewController.h */,
+				13345E7016B7736100DD4FF2 /* TAFirstViewController.m */,
+				13345E7216B7736100DD4FF2 /* first.png */,
+				13345E7416B7736100DD4FF2 /* first@2x.png */,
+				13345E7616B7736100DD4FF2 /* TASecondViewController.h */,
+				13345E7716B7736100DD4FF2 /* TASecondViewController.m */,
+				13345E7916B7736100DD4FF2 /* second.png */,
+				13345E7B16B7736100DD4FF2 /* second@2x.png */,
+				13345E7D16B7736100DD4FF2 /* TAFirstViewController.xib */,
+				13345E8016B7736100DD4FF2 /* TASecondViewController.xib */,
+				13345E5E16B7736100DD4FF2 /* Supporting Files */,
+			);
+			path = MobileTA;
+			sourceTree = "<group>";
+		};
+		13345E5E16B7736100DD4FF2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				13345E5F16B7736100DD4FF2 /* MobileTA-Info.plist */,
+				13345E6016B7736100DD4FF2 /* InfoPlist.strings */,
+				13345E6316B7736100DD4FF2 /* main.m */,
+				13345E6516B7736100DD4FF2 /* MobileTA-Prefix.pch */,
+				13345E6916B7736100DD4FF2 /* Default.png */,
+				13345E6B16B7736100DD4FF2 /* Default@2x.png */,
+				13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13345E8F16B7736100DD4FF2 /* MobileTATests */ = {
+			isa = PBXGroup;
+			children = (
+				13345E9516B7736100DD4FF2 /* MobileTATests.h */,
+				13345E9616B7736100DD4FF2 /* MobileTATests.m */,
+				13345E9016B7736100DD4FF2 /* Supporting Files */,
+			);
+			path = MobileTATests;
+			sourceTree = "<group>";
+		};
+		13345E9016B7736100DD4FF2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				13345E9116B7736100DD4FF2 /* MobileTATests-Info.plist */,
+				13345E9216B7736100DD4FF2 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		13345E5216B7736100DD4FF2 /* MobileTA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13345E9A16B7736100DD4FF2 /* Build configuration list for PBXNativeTarget "MobileTA" */;
+			buildPhases = (
+				13345E4F16B7736100DD4FF2 /* Sources */,
+				13345E5016B7736100DD4FF2 /* Frameworks */,
+				13345E5116B7736100DD4FF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileTA;
+			productName = MobileTA;
+			productReference = 13345E5316B7736100DD4FF2 /* MobileTA.app */;
+			productType = "com.apple.product-type.application";
+		};
+		13345E8716B7736100DD4FF2 /* MobileTATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13345E9D16B7736100DD4FF2 /* Build configuration list for PBXNativeTarget "MobileTATests" */;
+			buildPhases = (
+				13345E8316B7736100DD4FF2 /* Sources */,
+				13345E8416B7736100DD4FF2 /* Frameworks */,
+				13345E8516B7736100DD4FF2 /* Resources */,
+				13345E8616B7736100DD4FF2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				13345E8E16B7736100DD4FF2 /* PBXTargetDependency */,
+			);
+			name = MobileTATests;
+			productName = MobileTATests;
+			productReference = 13345E8816B7736100DD4FF2 /* MobileTATests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		13345E4A16B7736100DD4FF2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TA;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Steven Sheldon";
+			};
+			buildConfigurationList = 13345E4D16B7736100DD4FF2 /* Build configuration list for PBXProject "MobileTA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 13345E4816B7736100DD4FF2;
+			productRefGroup = 13345E5416B7736100DD4FF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13345E5216B7736100DD4FF2 /* MobileTA */,
+				13345E8716B7736100DD4FF2 /* MobileTATests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		13345E5116B7736100DD4FF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13345E6216B7736100DD4FF2 /* InfoPlist.strings in Resources */,
+				13345E6A16B7736100DD4FF2 /* Default.png in Resources */,
+				13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */,
+				13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */,
+				13345E7316B7736100DD4FF2 /* first.png in Resources */,
+				13345E7516B7736100DD4FF2 /* first@2x.png in Resources */,
+				13345E7A16B7736100DD4FF2 /* second.png in Resources */,
+				13345E7C16B7736100DD4FF2 /* second@2x.png in Resources */,
+				13345E7F16B7736100DD4FF2 /* TAFirstViewController.xib in Resources */,
+				13345E8216B7736100DD4FF2 /* TASecondViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13345E8516B7736100DD4FF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13345E9416B7736100DD4FF2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		13345E8616B7736100DD4FF2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		13345E4F16B7736100DD4FF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13345E6416B7736100DD4FF2 /* main.m in Sources */,
+				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
+				13345E7116B7736100DD4FF2 /* TAFirstViewController.m in Sources */,
+				13345E7816B7736100DD4FF2 /* TASecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13345E8316B7736100DD4FF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		13345E8E16B7736100DD4FF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13345E5216B7736100DD4FF2 /* MobileTA */;
+			targetProxy = 13345E8D16B7736100DD4FF2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		13345E6016B7736100DD4FF2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13345E6116B7736100DD4FF2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		13345E7D16B7736100DD4FF2 /* TAFirstViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13345E7E16B7736100DD4FF2 /* en */,
+			);
+			name = TAFirstViewController.xib;
+			sourceTree = "<group>";
+		};
+		13345E8016B7736100DD4FF2 /* TASecondViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13345E8116B7736100DD4FF2 /* en */,
+			);
+			name = TASecondViewController.xib;
+			sourceTree = "<group>";
+		};
+		13345E9216B7736100DD4FF2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13345E9316B7736100DD4FF2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		13345E9816B7736100DD4FF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		13345E9916B7736100DD4FF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		13345E9B16B7736100DD4FF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileTA/MobileTA-Prefix.pch";
+				INFOPLIST_FILE = "MobileTA/MobileTA-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		13345E9C16B7736100DD4FF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileTA/MobileTA-Prefix.pch";
+				INFOPLIST_FILE = "MobileTA/MobileTA-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		13345E9E16B7736100DD4FF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MobileTA.app/MobileTA";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileTA/MobileTA-Prefix.pch";
+				INFOPLIST_FILE = "MobileTATests/MobileTATests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		13345E9F16B7736100DD4FF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MobileTA.app/MobileTA";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileTA/MobileTA-Prefix.pch";
+				INFOPLIST_FILE = "MobileTATests/MobileTATests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		13345E4D16B7736100DD4FF2 /* Build configuration list for PBXProject "MobileTA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13345E9816B7736100DD4FF2 /* Debug */,
+				13345E9916B7736100DD4FF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13345E9A16B7736100DD4FF2 /* Build configuration list for PBXNativeTarget "MobileTA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13345E9B16B7736100DD4FF2 /* Debug */,
+				13345E9C16B7736100DD4FF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		13345E9D16B7736100DD4FF2 /* Build configuration list for PBXNativeTarget "MobileTATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13345E9E16B7736100DD4FF2 /* Debug */,
+				13345E9F16B7736100DD4FF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 13345E4A16B7736100DD4FF2 /* Project object */;
+}
