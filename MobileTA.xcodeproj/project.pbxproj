@@ -10,6 +10,7 @@
 		1322E27716BA197E00C890B4 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1322E27616BA197E00C890B4 /* TAStudentsViewController.m */; };
 		1322E28016BA250900C890B4 /* roster_tab_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1322E27E16BA250900C890B4 /* roster_tab_icon.png */; };
 		1322E28116BA250900C890B4 /* roster_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1322E27F16BA250900C890B4 /* roster_tab_icon@2x.png */; };
+		1322E28F16BA3B2000C890B4 /* TAStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1322E28E16BA3B2000C890B4 /* TAStudent.m */; };
 		13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
 		13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
 		13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */; };
@@ -49,6 +50,8 @@
 		1322E27616BA197E00C890B4 /* TAStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentsViewController.m; path = Classes/TAStudentsViewController.m; sourceTree = "<group>"; };
 		1322E27E16BA250900C890B4 /* roster_tab_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roster_tab_icon.png; path = Images/Tabs/roster_tab_icon.png; sourceTree = "<group>"; };
 		1322E27F16BA250900C890B4 /* roster_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roster_tab_icon@2x.png"; path = "Images/Tabs/roster_tab_icon@2x.png"; sourceTree = "<group>"; };
+		1322E28D16BA3B2000C890B4 /* TAStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAStudent.h; path = Classes/TAStudent.h; sourceTree = "<group>"; };
+		1322E28E16BA3B2000C890B4 /* TAStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudent.m; path = Classes/TAStudent.m; sourceTree = "<group>"; };
 		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		13345E5916B7736100DD4FF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -109,6 +112,8 @@
 			children = (
 				1322E27516BA197E00C890B4 /* TAStudentsViewController.h */,
 				1322E27616BA197E00C890B4 /* TAStudentsViewController.m */,
+				1322E28D16BA3B2000C890B4 /* TAStudent.h */,
+				1322E28E16BA3B2000C890B4 /* TAStudent.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				13345E7116B7736100DD4FF2 /* TAFirstViewController.m in Sources */,
 				13345E7816B7736100DD4FF2 /* TASecondViewController.m in Sources */,
 				1322E27716BA197E00C890B4 /* TAStudentsViewController.m in Sources */,
+				1322E28F16BA3B2000C890B4 /* TAStudent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
