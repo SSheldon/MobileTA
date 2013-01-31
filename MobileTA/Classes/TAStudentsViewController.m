@@ -13,7 +13,8 @@
 - (id)initWithStyle:(UITableViewStyle)style {
   self = [super initWithStyle:style];
   if (self) {
-    // Custom initialization
+    self.title = NSLocalizedString(@"Roster", nil);
+    self.tabBarItem.image = [UIImage imageNamed:@"roster_tab_icon"];
   }
   return self;
 }

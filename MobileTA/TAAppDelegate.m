@@ -9,18 +9,20 @@
 #import "TAAppDelegate.h"
 
 #import "TAFirstViewController.h"
-
 #import "TASecondViewController.h"
+#import "TAStudentsViewController.h"
 
 @implementation TAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
-  UIViewController *viewController1 = [[TAFirstViewController alloc] initWithNibName:@"TAFirstViewController" bundle:nil];
-  UIViewController *viewController2 = [[TASecondViewController alloc] initWithNibName:@"TASecondViewController" bundle:nil];
   self.tabBarController = [[UITabBarController alloc] init];
-  self.tabBarController.viewControllers = @[viewController1, viewController2];
+  self.tabBarController.viewControllers = @[
+    [[TAFirstViewController alloc] initWithNibName:@"TAFirstViewController" bundle:nil],
+    [[TASecondViewController alloc] initWithNibName:@"TASecondViewController" bundle:nil],
+    [[TAStudentsViewController alloc] initWithStyle:UITableViewStylePlain]
+  ];
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
   return YES;
