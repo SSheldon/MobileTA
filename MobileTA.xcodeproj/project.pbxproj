@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1322E27716BA197E00C890B4 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1322E27616BA197E00C890B4 /* TAStudentsViewController.m */; };
 		13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
 		13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
 		13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1322E27516BA197E00C890B4 /* TAStudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAStudentsViewController.h; path = Classes/TAStudentsViewController.h; sourceTree = "<group>"; };
+		1322E27616BA197E00C890B4 /* TAStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentsViewController.m; path = Classes/TAStudentsViewController.m; sourceTree = "<group>"; };
 		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		13345E5916B7736100DD4FF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1322E27816BA1C2B00C890B4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1322E27516BA197E00C890B4 /* TAStudentsViewController.h */,
+				1322E27616BA197E00C890B4 /* TAStudentsViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		13345E4816B7736100DD4FF2 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +142,7 @@
 		13345E5D16B7736100DD4FF2 /* MobileTA */ = {
 			isa = PBXGroup;
 			children = (
+				1322E27816BA1C2B00C890B4 /* Classes */,
 				13345E6616B7736100DD4FF2 /* TAAppDelegate.h */,
 				13345E6716B7736100DD4FF2 /* TAAppDelegate.m */,
 				13345E6F16B7736100DD4FF2 /* TAFirstViewController.h */,
@@ -300,6 +313,7 @@
 				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
 				13345E7116B7736100DD4FF2 /* TAFirstViewController.m in Sources */,
 				13345E7816B7736100DD4FF2 /* TASecondViewController.m in Sources */,
+				1322E27716BA197E00C890B4 /* TAStudentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +500,7 @@
 				13345E9C16B7736100DD4FF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		13345E9D16B7736100DD4FF2 /* Build configuration list for PBXNativeTarget "MobileTATests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +509,7 @@
 				13345E9F16B7736100DD4FF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
