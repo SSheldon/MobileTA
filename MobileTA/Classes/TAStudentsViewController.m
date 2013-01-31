@@ -8,6 +8,8 @@
 
 #import "TAStudentsViewController.h"
 
+#import "TAStudent.h"
+
 @implementation TAStudentsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -15,6 +17,10 @@
   if (self) {
     self.title = NSLocalizedString(@"Roster", nil);
     self.tabBarItem.image = [UIImage imageNamed:@"roster_tab_icon"];
+    self.students = @[
+      [[TAStudent alloc] initWithFirstName:@"Steven" lastName:@"Sheldon"],
+      [[TAStudent alloc] initWithFirstName:@"Alex" lastName:@"Hendrix"]
+    ];
   }
   return self;
 }
@@ -34,25 +40,30 @@
   // Dispose of any resources that can be recreated.
 }
 
+- (void)setStudents:(NSArray *)students {
+  _students = students;
+  [self.tableView reloadData];
+}
+
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-  // Return the number of sections.
-  return 0;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-  // Return the number of rows in the section.
-  return 0;
+  return self.students.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"Cell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  static NSString *studentCellId = @"StudentCell";
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:studentCellId];
+  if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
+  }
 
-  // Configure the cell...
+  TAStudent *student = [self.students objectAtIndex:indexPath.row];
+  cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
 
   return cell;
 }
