@@ -20,14 +20,6 @@
 		13345E6A16B7736100DD4FF2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6916B7736100DD4FF2 /* Default.png */; };
 		13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6B16B7736100DD4FF2 /* Default@2x.png */; };
 		13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */; };
-		13345E7116B7736100DD4FF2 /* TAFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E7016B7736100DD4FF2 /* TAFirstViewController.m */; };
-		13345E7316B7736100DD4FF2 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7216B7736100DD4FF2 /* first.png */; };
-		13345E7516B7736100DD4FF2 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7416B7736100DD4FF2 /* first@2x.png */; };
-		13345E7816B7736100DD4FF2 /* TASecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E7716B7736100DD4FF2 /* TASecondViewController.m */; };
-		13345E7A16B7736100DD4FF2 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7916B7736100DD4FF2 /* second.png */; };
-		13345E7C16B7736100DD4FF2 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7B16B7736100DD4FF2 /* second@2x.png */; };
-		13345E7F16B7736100DD4FF2 /* TAFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13345E7D16B7736100DD4FF2 /* TAFirstViewController.xib */; };
-		13345E8216B7736100DD4FF2 /* TASecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13345E8016B7736100DD4FF2 /* TASecondViewController.xib */; };
 		13345E8A16B7736100DD4FF2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E8916B7736100DD4FF2 /* SenTestingKit.framework */; };
 		13345E8B16B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
 		13345E8C16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
@@ -65,16 +57,6 @@
 		13345E6916B7736100DD4FF2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		13345E6B16B7736100DD4FF2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		13345E6F16B7736100DD4FF2 /* TAFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAFirstViewController.h; sourceTree = "<group>"; };
-		13345E7016B7736100DD4FF2 /* TAFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAFirstViewController.m; sourceTree = "<group>"; };
-		13345E7216B7736100DD4FF2 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		13345E7416B7736100DD4FF2 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		13345E7616B7736100DD4FF2 /* TASecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TASecondViewController.h; sourceTree = "<group>"; };
-		13345E7716B7736100DD4FF2 /* TASecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TASecondViewController.m; sourceTree = "<group>"; };
-		13345E7916B7736100DD4FF2 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		13345E7B16B7736100DD4FF2 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		13345E7E16B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TAFirstViewController.xib; sourceTree = "<group>"; };
-		13345E8116B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TASecondViewController.xib; sourceTree = "<group>"; };
 		13345E8816B7736100DD4FF2 /* MobileTATests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTATests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E8916B7736100DD4FF2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		13345E9116B7736100DD4FF2 /* MobileTATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileTATests-Info.plist"; sourceTree = "<group>"; };
@@ -172,16 +154,6 @@
 				1322E27C16BA24E500C890B4 /* Images */,
 				13345E6616B7736100DD4FF2 /* TAAppDelegate.h */,
 				13345E6716B7736100DD4FF2 /* TAAppDelegate.m */,
-				13345E6F16B7736100DD4FF2 /* TAFirstViewController.h */,
-				13345E7016B7736100DD4FF2 /* TAFirstViewController.m */,
-				13345E7216B7736100DD4FF2 /* first.png */,
-				13345E7416B7736100DD4FF2 /* first@2x.png */,
-				13345E7616B7736100DD4FF2 /* TASecondViewController.h */,
-				13345E7716B7736100DD4FF2 /* TASecondViewController.m */,
-				13345E7916B7736100DD4FF2 /* second.png */,
-				13345E7B16B7736100DD4FF2 /* second@2x.png */,
-				13345E7D16B7736100DD4FF2 /* TAFirstViewController.xib */,
-				13345E8016B7736100DD4FF2 /* TASecondViewController.xib */,
 				13345E5E16B7736100DD4FF2 /* Supporting Files */,
 			);
 			path = MobileTA;
@@ -296,12 +268,6 @@
 				13345E6A16B7736100DD4FF2 /* Default.png in Resources */,
 				13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */,
 				13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */,
-				13345E7316B7736100DD4FF2 /* first.png in Resources */,
-				13345E7516B7736100DD4FF2 /* first@2x.png in Resources */,
-				13345E7A16B7736100DD4FF2 /* second.png in Resources */,
-				13345E7C16B7736100DD4FF2 /* second@2x.png in Resources */,
-				13345E7F16B7736100DD4FF2 /* TAFirstViewController.xib in Resources */,
-				13345E8216B7736100DD4FF2 /* TASecondViewController.xib in Resources */,
 				1322E28016BA250900C890B4 /* roster_tab_icon.png in Resources */,
 				1322E28116BA250900C890B4 /* roster_tab_icon@2x.png in Resources */,
 			);
@@ -340,8 +306,6 @@
 			files = (
 				13345E6416B7736100DD4FF2 /* main.m in Sources */,
 				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
-				13345E7116B7736100DD4FF2 /* TAFirstViewController.m in Sources */,
-				13345E7816B7736100DD4FF2 /* TASecondViewController.m in Sources */,
 				1322E27716BA197E00C890B4 /* TAStudentsViewController.m in Sources */,
 				1322E28F16BA3B2000C890B4 /* TAStudent.m in Sources */,
 			);
@@ -372,22 +336,6 @@
 				13345E6116B7736100DD4FF2 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		13345E7D16B7736100DD4FF2 /* TAFirstViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13345E7E16B7736100DD4FF2 /* en */,
-			);
-			name = TAFirstViewController.xib;
-			sourceTree = "<group>";
-		};
-		13345E8016B7736100DD4FF2 /* TASecondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13345E8116B7736100DD4FF2 /* en */,
-			);
-			name = TASecondViewController.xib;
 			sourceTree = "<group>";
 		};
 		13345E9216B7736100DD4FF2 /* InfoPlist.strings */ = {

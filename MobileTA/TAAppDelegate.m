@@ -8,8 +8,6 @@
 
 #import "TAAppDelegate.h"
 
-#import "TAFirstViewController.h"
-#import "TASecondViewController.h"
 #import "TAStudentsViewController.h"
 
 @implementation TAAppDelegate
@@ -19,8 +17,6 @@
   // Override point for customization after application launch.
   self.tabBarController = [[UITabBarController alloc] init];
   self.tabBarController.viewControllers = @[
-    [[TAFirstViewController alloc] initWithNibName:@"TAFirstViewController" bundle:nil],
-    [[TASecondViewController alloc] initWithNibName:@"TASecondViewController" bundle:nil],
     [[TAStudentsViewController alloc] initWithStyle:UITableViewStylePlain]
   ];
   self.window.rootViewController = self.tabBarController;
