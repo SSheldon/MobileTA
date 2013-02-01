@@ -8,6 +8,8 @@
 
 #import "TAStudentsViewController.h"
 
+#import "Student.h"
+
 @implementation TAStudentsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -15,12 +17,24 @@
   if (self) {
     self.title = NSLocalizedString(@"Roster", nil);
     self.tabBarItem.image = [UIImage imageNamed:@"roster_tab_icon"];
-//    self.students = @[
-//      [[TAStudent alloc] initWithFirstName:@"Steven" lastName:@"Sheldon"],
-//      [[TAStudent alloc] initWithFirstName:@"Alex" lastName:@"Hendrix"]
-//    ];
   }
   return self;
+}
+
+- (void)loadView {
+  [super loadView];
+
+  NSArray *students = [Student fetchStudentsInContext:self.managedObjectContext];
+  if (!students.count) {
+    // Insert some students in the the context
+    students = @[
+      [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext],
+      [Student studentWithFirstName:@"Alex" lastName:@"Hendrix" context:self.managedObjectContext]
+    ];
+    // TODO(ssheldon): Handle errors
+    [self.managedObjectContext save:nil];
+  }
+  self.students = students;
 }
 
 - (void)viewDidLoad {
@@ -59,6 +73,9 @@
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
   }
+
+  Student *student = [self.students objectAtIndex:indexPath.row];
+  cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.first, student.last];
 
   return cell;
 }
