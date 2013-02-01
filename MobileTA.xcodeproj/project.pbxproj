@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1322E27716BA197E00C890B4 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1322E27616BA197E00C890B4 /* TAStudentsViewController.m */; };
 		1322E28016BA250900C890B4 /* roster_tab_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1322E27E16BA250900C890B4 /* roster_tab_icon.png */; };
 		1322E28116BA250900C890B4 /* roster_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1322E27F16BA250900C890B4 /* roster_tab_icon@2x.png */; };
-		1322E28F16BA3B2000C890B4 /* TAStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1322E28E16BA3B2000C890B4 /* TAStudent.m */; };
 		13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
 		13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
 		13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */; };
@@ -25,6 +23,14 @@
 		13345E8C16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
 		13345E9416B7736100DD4FF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13345E9216B7736100DD4FF2 /* InfoPlist.strings */; };
 		13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E9616B7736100DD4FF2 /* MobileTATests.m */; };
+		E6ECA87216BB4D1900F103D3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6ECA87016BB4CFF00F103D3 /* CoreData.framework */; };
+		E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */; };
+		E6ECA87D16BB566A00F103D3 /* TAStudentsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */; };
+		E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
+		E6ECA87F16BB569A00F103D3 /* TAStudentsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */; };
+		E6ECA88016BB569A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
+		E6ECA88316BB56BF00F103D3 /* Student.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88116BB56BF00F103D3 /* Student.h */; };
+		E6ECA88416BB56BF00F103D3 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88216BB56BF00F103D3 /* Student.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,12 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1322E27516BA197E00C890B4 /* TAStudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAStudentsViewController.h; path = Classes/TAStudentsViewController.h; sourceTree = "<group>"; };
-		1322E27616BA197E00C890B4 /* TAStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentsViewController.m; path = Classes/TAStudentsViewController.m; sourceTree = "<group>"; };
 		1322E27E16BA250900C890B4 /* roster_tab_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roster_tab_icon.png; path = Images/Tabs/roster_tab_icon.png; sourceTree = "<group>"; };
 		1322E27F16BA250900C890B4 /* roster_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roster_tab_icon@2x.png"; path = "Images/Tabs/roster_tab_icon@2x.png"; sourceTree = "<group>"; };
-		1322E28D16BA3B2000C890B4 /* TAStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAStudent.h; path = Classes/TAStudent.h; sourceTree = "<group>"; };
-		1322E28E16BA3B2000C890B4 /* TAStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudent.m; path = Classes/TAStudent.m; sourceTree = "<group>"; };
 		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		13345E5916B7736100DD4FF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,6 +65,12 @@
 		13345E9316B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		13345E9516B7736100DD4FF2 /* MobileTATests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileTATests.h; sourceTree = "<group>"; };
 		13345E9616B7736100DD4FF2 /* MobileTATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileTATests.m; sourceTree = "<group>"; };
+		E6ECA87016BB4CFF00F103D3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E6ECA87516BB4DC000F103D3 /* MobileTA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobileTA.xcdatamodel; sourceTree = "<group>"; };
+		E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = TAStudentsViewController.h; sourceTree = "<group>"; };
+		E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentsViewController.m; sourceTree = "<group>"; };
+		E6ECA88116BB56BF00F103D3 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = Student.h; sourceTree = "<group>"; };
+		E6ECA88216BB56BF00F103D3 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6ECA87216BB4D1900F103D3 /* CoreData.framework in Frameworks */,
 				13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */,
 				13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */,
 				13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */,
@@ -92,10 +101,9 @@
 		1322E27816BA1C2B00C890B4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1322E27516BA197E00C890B4 /* TAStudentsViewController.h */,
-				1322E27616BA197E00C890B4 /* TAStudentsViewController.m */,
-				1322E28D16BA3B2000C890B4 /* TAStudent.h */,
-				1322E28E16BA3B2000C890B4 /* TAStudent.m */,
+				E6ECA87A16BB563800F103D3 /* Views */,
+				E6ECA87916BB562600F103D3 /* Controllers */,
+				E6ECA87816BB55F400F103D3 /* Models */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -139,6 +147,7 @@
 		13345E5616B7736100DD4FF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E6ECA87016BB4CFF00F103D3 /* CoreData.framework */,
 				13345E5716B7736100DD4FF2 /* UIKit.framework */,
 				13345E5916B7736100DD4FF2 /* Foundation.framework */,
 				13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */,
@@ -169,6 +178,7 @@
 				13345E6916B7736100DD4FF2 /* Default.png */,
 				13345E6B16B7736100DD4FF2 /* Default@2x.png */,
 				13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */,
+				E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -190,6 +200,34 @@
 				13345E9216B7736100DD4FF2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6ECA87816BB55F400F103D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E6ECA88116BB56BF00F103D3 /* Student.h */,
+				E6ECA88216BB56BF00F103D3 /* Student.m */,
+			);
+			name = Models;
+			path = Classes/Models;
+			sourceTree = "<group>";
+		};
+		E6ECA87916BB562600F103D3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */,
+				E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */,
+			);
+			name = Controllers;
+			path = Classes/Controllers;
+			sourceTree = "<group>";
+		};
+		E6ECA87A16BB563800F103D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			path = Classes/Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,8 +344,11 @@
 			files = (
 				13345E6416B7736100DD4FF2 /* main.m in Sources */,
 				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
-				1322E27716BA197E00C890B4 /* TAStudentsViewController.m in Sources */,
-				1322E28F16BA3B2000C890B4 /* TAStudent.m in Sources */,
+				E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */,
+				E6ECA87D16BB566A00F103D3 /* TAStudentsViewController.h in Sources */,
+				E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */,
+				E6ECA88316BB56BF00F103D3 /* Student.h in Sources */,
+				E6ECA88416BB56BF00F103D3 /* Student.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +356,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6ECA87F16BB569A00F103D3 /* TAStudentsViewController.h in Sources */,
+				E6ECA88016BB569A00F103D3 /* TAStudentsViewController.m in Sources */,
 				13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +533,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E6ECA87516BB4DC000F103D3 /* MobileTA.xcdatamodel */,
+			);
+			currentVersion = E6ECA87516BB4DC000F103D3 /* MobileTA.xcdatamodel */;
+			path = MobileTA.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 13345E4A16B7736100DD4FF2 /* Project object */;
 }
