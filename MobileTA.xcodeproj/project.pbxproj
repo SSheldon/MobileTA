@@ -31,6 +31,8 @@
 		E6ECA88016BB569A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
 		E6ECA88316BB56BF00F103D3 /* Student.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88116BB56BF00F103D3 /* Student.h */; };
 		E6ECA88416BB56BF00F103D3 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88216BB56BF00F103D3 /* Student.m */; };
+		E6ECA88B16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */; };
+		E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentsViewController.m; sourceTree = "<group>"; };
 		E6ECA88116BB56BF00F103D3 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = Student.h; sourceTree = "<group>"; };
 		E6ECA88216BB56BF00F103D3 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = "UIViewController+CoreDataAdditions.h"; sourceTree = "<group>"; };
+		E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CoreDataAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +221,8 @@
 			children = (
 				E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */,
 				E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */,
+				E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */,
+				E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -349,6 +355,8 @@
 				E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */,
 				E6ECA88316BB56BF00F103D3 /* Student.h in Sources */,
 				E6ECA88416BB56BF00F103D3 /* Student.m in Sources */,
+				E6ECA88B16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h in Sources */,
+				E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
