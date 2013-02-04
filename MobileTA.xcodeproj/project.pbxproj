@@ -25,13 +25,10 @@
 		13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E9616B7736100DD4FF2 /* MobileTATests.m */; };
 		E6ECA87216BB4D1900F103D3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6ECA87016BB4CFF00F103D3 /* CoreData.framework */; };
 		E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */; };
-		E6ECA87D16BB566A00F103D3 /* TAStudentsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */; };
 		E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
 		E6ECA87F16BB569A00F103D3 /* TAStudentsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */; };
 		E6ECA88016BB569A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
-		E6ECA88316BB56BF00F103D3 /* Student.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88116BB56BF00F103D3 /* Student.h */; };
 		E6ECA88416BB56BF00F103D3 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88216BB56BF00F103D3 /* Student.m */; };
-		E6ECA88B16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */; };
 		E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */; };
 /* End PBXBuildFile section */
 
@@ -351,11 +348,8 @@
 				13345E6416B7736100DD4FF2 /* main.m in Sources */,
 				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
 				E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */,
-				E6ECA87D16BB566A00F103D3 /* TAStudentsViewController.h in Sources */,
 				E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */,
-				E6ECA88316BB56BF00F103D3 /* Student.h in Sources */,
 				E6ECA88416BB56BF00F103D3 /* Student.m in Sources */,
-				E6ECA88B16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h in Sources */,
 				E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
