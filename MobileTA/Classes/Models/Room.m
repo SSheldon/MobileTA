@@ -7,11 +7,14 @@
 //
 
 #import "Room.h"
+#import "Seat.h"
+#import "Section.h"
 
 
 @implementation Room
 
 @dynamic name;
 @dynamic seats;
+@dynamic sections;
 
 @end
