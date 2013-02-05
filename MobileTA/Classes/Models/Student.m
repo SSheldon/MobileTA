@@ -7,21 +7,23 @@
 //
 
 #import "Student.h"
+#import "Section.h"
 #import "StudentAttendance.h"
 #import "parseCSV.h"
 
 @implementation Student
 
-@dynamic first;
-@dynamic last;
-@dynamic studentAttendance;
+@dynamic firstName;
+@dynamic lastName;
+@dynamic section;
+@dynamic attendances;
 
 + (Student *)studentWithFirstName:(NSString *)firstName lastName:(NSString *)lastName context:(NSManagedObjectContext *)context {
   Student *student = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:context];
-  
-  student.first = firstName;
-  student.last = lastName;
-  
+
+  student.firstName = firstName;
+  student.lastName = lastName;
+
   return student;
 }
 

@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class StudentAttendance;
+@class Section, StudentAttendance;
 
 @interface Student : NSManagedObject
 
-@property (nonatomic, retain) NSString * first;
-@property (nonatomic, retain) NSString * last;
-@property (nonatomic, retain) StudentAttendance *studentAttendance;
+@property (nonatomic, retain) NSString * firstName;
+@property (nonatomic, retain) NSString * lastName;
+@property (nonatomic, retain) Section *section;
+@property (nonatomic, retain) NSSet *attendances;
 
 /*!
  * Create a Student.
@@ -35,5 +36,14 @@
 
 + (NSArray *)studentsFromCSV:(NSArray *)csvContent context:(NSManagedObjectContext *)context;
 + (NSMutableArray *)parseMyCSVFile;
+
+@end
+
+@interface Student (CoreDataGeneratedAccessors)
+
+- (void)addAttendancesObject:(StudentAttendance *)value;
+- (void)removeAttendancesObject:(StudentAttendance *)value;
+- (void)addAttendances:(NSSet *)values;
+- (void)removeAttendances:(NSSet *)values;
 
 @end
