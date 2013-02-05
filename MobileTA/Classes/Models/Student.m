@@ -28,8 +28,11 @@
 + (NSArray *)fetchStudentsInContext:(NSManagedObjectContext *)context {
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
   fetch.entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:context];
-  NSMutableArray *csvContent = [self parseMyCSVFile];
   // TODO(ssheldon): Handle errors
+  return [context executeFetchRequest:fetch error:nil];
+}
+
++ (NSArray *)studentsFromCSV:(NSArray *)csvContent context:(NSManagedObjectContext *)context {
   NSMutableArray *students = [NSMutableArray array];
   for (int i = 0; i < [csvContent count]; i++) {
     NSMutableArray *row = [csvContent objectAtIndex:i];
@@ -38,7 +41,6 @@
   }
   
   return students;
-  //return [context executeFetchRequest:fetch error:nil];
 }
 
 + (NSMutableArray *)parseMyCSVFile{
