@@ -8,7 +8,7 @@
 
 #import "Student.h"
 #import "StudentAttendance.h"
-
+#import "parseCSV.h"
 
 @implementation Student
 
@@ -28,8 +28,29 @@
 + (NSArray *)fetchStudentsInContext:(NSManagedObjectContext *)context {
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
   fetch.entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:context];
+  NSMutableArray *csvContent = [self parseMyCSVFile];
   // TODO(ssheldon): Handle errors
-  return [context executeFetchRequest:fetch error:nil];
+  NSMutableArray *students = [NSMutableArray array];
+  for (int i = 0; i < [csvContent count]; i++) {
+    NSMutableArray *row = [csvContent objectAtIndex:i];
+    Student *student = [Student studentWithFirstName:[row objectAtIndex:1] lastName:[row objectAtIndex:0] context:context];
+    [students addObject: student];
+  }
+  
+  return students;
+  //return [context executeFetchRequest:fetch error:nil];
+}
+
++ (NSMutableArray *)parseMyCSVFile{
+  CSVParser *parser = [CSVParser new];
+  //get the path to the file in your xcode project's resource path
+  NSString *csvFilePath = [[NSBundle mainBundle] pathForResource:@"roster" ofType:@"csv"];
+  [parser openFile:csvFilePath];
+    
+  NSMutableArray *csvContent = [parser parseFile];
+  [parser closeFile];
+  
+  return csvContent;
 }
 
 @end

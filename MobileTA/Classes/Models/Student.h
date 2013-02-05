@@ -33,4 +33,6 @@
  */
 + (NSArray *)fetchStudentsInContext:(NSManagedObjectContext *)context;
 
++ (NSMutableArray *)parseMyCSVFile;
+
 @end
