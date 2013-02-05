@@ -7,6 +7,8 @@
 //
 
 #import "AttendanceRecord.h"
+#import "Section.h"
+#import "StudentAttendance.h"
 
 
 @implementation AttendanceRecord

@@ -9,17 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Section, StudentAttendance;
 
 @interface AttendanceRecord : NSManagedObject
 
-@property (nonatomic, retain) NSManagedObject *section;
+@property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) NSSet *studentAttendances;
 @end
 
 @interface AttendanceRecord (CoreDataGeneratedAccessors)
 
-- (void)addStudentAttendancesObject:(NSManagedObject *)value;
-- (void)removeStudentAttendancesObject:(NSManagedObject *)value;
+- (void)addStudentAttendancesObject:(StudentAttendance *)value;
+- (void)removeStudentAttendancesObject:(StudentAttendance *)value;
 - (void)addStudentAttendances:(NSSet *)values;
 - (void)removeStudentAttendances:(NSSet *)values;
 
