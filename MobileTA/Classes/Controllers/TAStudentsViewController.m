@@ -75,7 +75,7 @@
   }
 
   Student *student = [self.students objectAtIndex:indexPath.row];
-  cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.first, student.last];
+  cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
 
   return cell;
 }

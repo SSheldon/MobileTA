@@ -31,6 +31,8 @@
 		E66DB7F916C9ADC700B4AF30 /* JTTableViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7ED16C9ADC700B4AF30 /* JTTableViewDatasource.m */; };
 		E66DB7FA16C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7F116C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m */; };
 		E66DB7FB16C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7F316C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m */; };
+		402DAA0416C07F3900D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
+		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
 		E6E9EFD316C059CD001D122E /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
 		E6E9EFD916C059EB001D122E /* StudentAttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD816C059EB001D122E /* StudentAttendance.m */; };
@@ -94,6 +96,8 @@
 		E66DB7F116C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+JTRevealSidebarV2.m"; sourceTree = "<group>"; };
 		E66DB7F216C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JTRevealSidebarV2.h"; sourceTree = "<group>"; };
 		E66DB7F316C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JTRevealSidebarV2.m"; sourceTree = "<group>"; };
+		402DAA0216C07F3800D43854 /* parseCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseCSV.h; sourceTree = "<group>"; };
+		402DAA0316C07F3900D43854 /* parseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseCSV.m; sourceTree = "<group>"; };
 		E6E9EFCB16C059A7001D122E /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
 		E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceRecord.m; sourceTree = "<group>"; };
 		E6E9EFD116C059CD001D122E /* Seat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seat.h; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 				E6EC1E5316C05EB3007E8FCF /* Section.m */,
 				E6EC1E5516C05EDB007E8FCF /* Room.h */,
 				E6EC1E5616C05EDB007E8FCF /* Room.m */,
+				402DAA0216C07F3800D43854 /* parseCSV.h */,
+				402DAA0316C07F3900D43854 /* parseCSV.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -439,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402DAA0516C0808100D43854 /* parseCSV.m in Sources */,
 				13345E6416B7736100DD4FF2 /* main.m in Sources */,
 				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
 				E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */,
@@ -467,6 +474,7 @@
 			files = (
 				E6ECA88016BB569A00F103D3 /* TAStudentsViewController.m in Sources */,
 				13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */,
+				402DAA0416C07F3900D43854 /* parseCSV.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
