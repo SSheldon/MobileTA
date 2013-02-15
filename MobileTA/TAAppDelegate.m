@@ -15,11 +15,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
-  self.tabBarController = [[UITabBarController alloc] init];
-  self.tabBarController.viewControllers = @[
-    [[TAStudentsViewController alloc] initWithStyle:UITableViewStylePlain]
-  ];
-  self.window.rootViewController = self.tabBarController;
+  TAStudentsViewController *listViewController = [[TAStudentsViewController alloc] initWithStyle:UITableViewStylePlain];
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listViewController];
+  self.window.rootViewController = navController;
   [self.window makeKeyAndVisible];
   return YES;
 }

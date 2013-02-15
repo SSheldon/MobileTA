@@ -89,6 +89,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   // Navigation logic may go here. Create and push another view controller.
+  Student *selected = [[self students] objectAtIndex:indexPath.row];
+  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:selected];
+  [[self navigationController] pushViewController:editViewController animated:YES];
 }
 
 @end

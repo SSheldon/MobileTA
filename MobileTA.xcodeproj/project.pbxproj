@@ -36,6 +36,7 @@
 		E66DB7F916C9ADC700B4AF30 /* JTTableViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7ED16C9ADC700B4AF30 /* JTTableViewDatasource.m */; };
 		E66DB7FA16C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7F116C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m */; };
 		E66DB7FB16C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7F316C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m */; };
+		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
 		E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
 		E6E9EFD316C059CD001D122E /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
 		E6E9EFD916C059EB001D122E /* StudentAttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD816C059EB001D122E /* StudentAttendance.m */; };
@@ -125,6 +126,8 @@
 		E66DB7F116C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+JTRevealSidebarV2.m"; sourceTree = "<group>"; };
 		E66DB7F216C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JTRevealSidebarV2.h"; sourceTree = "<group>"; };
 		E66DB7F316C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JTRevealSidebarV2.m"; sourceTree = "<group>"; };
+		E6804DF616CDCD3F000E2007 /* TAStudentEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentEditViewController.h; sourceTree = "<group>"; };
+		E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentEditViewController.m; sourceTree = "<group>"; };
 		E6E9EFCB16C059A7001D122E /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
 		E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceRecord.m; sourceTree = "<group>"; };
 		E6E9EFD116C059CD001D122E /* Seat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seat.h; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 				E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */,
 				E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */,
 				E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */,
+				E6804DF616CDCD3F000E2007 /* TAStudentEditViewController.h */,
+				E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -531,6 +536,7 @@
 				E66DB7F916C9ADC700B4AF30 /* JTTableViewDatasource.m in Sources */,
 				E66DB7FA16C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m in Sources */,
 				E66DB7FB16C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m in Sources */,
+				E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

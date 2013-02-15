@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TAStudentEditViewController.h"
 
 @interface TAStudentsViewController : UITableViewController
 
