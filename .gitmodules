@@ -1,0 +1,3 @@
+[submodule "MobileTA/Libraries/QuickDialog"]
+	path = MobileTA/Libraries/QuickDialog
+	url = git://github.com/escoz/QuickDialog.git
