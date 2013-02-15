@@ -23,6 +23,11 @@
 		13345E8C16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
 		13345E9416B7736100DD4FF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13345E9216B7736100DD4FF2 /* InfoPlist.strings */; };
 		13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E9616B7736100DD4FF2 /* MobileTATests.m */; };
+		135116E216CDC24000D7376E /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116DF16CDC11E00D7376E /* libQuickDialog.a */; };
+		135116E416CDC36400D7376E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E316CDC36400D7376E /* CoreLocation.framework */; };
+		135116E616CDC38A00D7376E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E516CDC38A00D7376E /* MapKit.framework */; };
+		402DAA0416C07F3900D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
+		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		E66DB7F416C9ADC700B4AF30 /* JTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7E216C9ADC700B4AF30 /* JTNavigationBar.m */; };
 		E66DB7F516C9ADC700B4AF30 /* JTNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7E416C9ADC700B4AF30 /* JTNavigationView.m */; };
 		E66DB7F616C9ADC700B4AF30 /* JTRevealSidebarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7E716C9ADC700B4AF30 /* JTRevealSidebarView.m */; };
@@ -31,8 +36,6 @@
 		E66DB7F916C9ADC700B4AF30 /* JTTableViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7ED16C9ADC700B4AF30 /* JTTableViewDatasource.m */; };
 		E66DB7FA16C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7F116C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m */; };
 		E66DB7FB16C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DB7F316C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m */; };
-		402DAA0416C07F3900D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
-		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
 		E6E9EFD316C059CD001D122E /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
 		E6E9EFD916C059EB001D122E /* StudentAttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD816C059EB001D122E /* StudentAttendance.m */; };
@@ -53,6 +56,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 13345E5216B7736100DD4FF2;
 			remoteInfo = MobileTA;
+		};
+		135116DC16CDC11E00D7376E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
+			remoteInfo = QuickDialogExample;
+		};
+		135116DE16CDC11E00D7376E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C542393145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+		135116E016CDC22700D7376E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C542392145ADEBD0026A152;
+			remoteInfo = QuickDialog;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -78,6 +102,11 @@
 		13345E9316B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		13345E9516B7736100DD4FF2 /* MobileTATests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileTATests.h; sourceTree = "<group>"; };
 		13345E9616B7736100DD4FF2 /* MobileTATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileTATests.m; sourceTree = "<group>"; };
+		135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
+		135116E316CDC36400D7376E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		135116E516CDC38A00D7376E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		402DAA0216C07F3800D43854 /* parseCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseCSV.h; sourceTree = "<group>"; };
+		402DAA0316C07F3900D43854 /* parseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseCSV.m; sourceTree = "<group>"; };
 		E66DB7E116C9ADC700B4AF30 /* JTNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTNavigationBar.h; sourceTree = "<group>"; };
 		E66DB7E216C9ADC700B4AF30 /* JTNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTNavigationBar.m; sourceTree = "<group>"; };
 		E66DB7E316C9ADC700B4AF30 /* JTNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTNavigationView.h; sourceTree = "<group>"; };
@@ -96,8 +125,6 @@
 		E66DB7F116C9ADC700B4AF30 /* UINavigationItem+JTRevealSidebarV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+JTRevealSidebarV2.m"; sourceTree = "<group>"; };
 		E66DB7F216C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JTRevealSidebarV2.h"; sourceTree = "<group>"; };
 		E66DB7F316C9ADC700B4AF30 /* UIViewController+JTRevealSidebarV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JTRevealSidebarV2.m"; sourceTree = "<group>"; };
-		402DAA0216C07F3800D43854 /* parseCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseCSV.h; sourceTree = "<group>"; };
-		402DAA0316C07F3900D43854 /* parseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseCSV.m; sourceTree = "<group>"; };
 		E6E9EFCB16C059A7001D122E /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
 		E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceRecord.m; sourceTree = "<group>"; };
 		E6E9EFD116C059CD001D122E /* Seat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seat.h; sourceTree = "<group>"; };
@@ -123,6 +150,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				135116E216CDC24000D7376E /* libQuickDialog.a in Frameworks */,
+				135116E616CDC38A00D7376E /* MapKit.framework in Frameworks */,
+				135116E416CDC36400D7376E /* CoreLocation.framework in Frameworks */,
 				E6ECA87216BB4D1900F103D3 /* CoreData.framework in Frameworks */,
 				13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */,
 				13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */,
@@ -192,6 +222,8 @@
 		13345E5616B7736100DD4FF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				135116E516CDC38A00D7376E /* MapKit.framework */,
+				135116E316CDC36400D7376E /* CoreLocation.framework */,
 				E6ECA87016BB4CFF00F103D3 /* CoreData.framework */,
 				13345E5716B7736100DD4FF2 /* UIKit.framework */,
 				13345E5916B7736100DD4FF2 /* Foundation.framework */,
@@ -248,11 +280,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		135116D816CDC11E00D7376E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				135116DD16CDC11E00D7376E /* QuickDialogExample.app */,
+				135116DF16CDC11E00D7376E /* libQuickDialog.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E66DB7DF16C9ADB800B4AF30 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				E66DB7E016C9ADC700B4AF30 /* JTRevealSidebar */,
 				E66DB7EE16C9ADC700B4AF30 /* JTRevealSidebarV2 */,
+				135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -347,6 +389,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				135116E116CDC22700D7376E /* PBXTargetDependency */,
 			);
 			name = MobileTA;
 			productName = MobileTA;
@@ -392,6 +435,12 @@
 			mainGroup = 13345E4816B7736100DD4FF2;
 			productRefGroup = 13345E5416B7736100DD4FF2 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 135116D816CDC11E00D7376E /* Products */;
+					ProjectRef = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13345E5216B7736100DD4FF2 /* MobileTA */,
@@ -399,6 +448,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		135116DD16CDC11E00D7376E /* QuickDialogExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QuickDialogExample.app;
+			remoteRef = 135116DC16CDC11E00D7376E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		135116DF16CDC11E00D7376E /* libQuickDialog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickDialog.a;
+			remoteRef = 135116DE16CDC11E00D7376E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		13345E5116B7736100DD4FF2 /* Resources */ = {
@@ -486,6 +552,11 @@
 			target = 13345E5216B7736100DD4FF2 /* MobileTA */;
 			targetProxy = 13345E8D16B7736100DD4FF2 /* PBXContainerItemProxy */;
 		};
+		135116E116CDC22700D7376E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = QuickDialog;
+			targetProxy = 135116E016CDC22700D7376E /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -563,11 +634,17 @@
 		13345E9B16B7736100DD4FF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileTA/MobileTA-Prefix.pch";
 				INFOPLIST_FILE = "MobileTA/MobileTA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/MobileTA/Libraries/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -575,11 +652,17 @@
 		13345E9C16B7736100DD4FF2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileTA/MobileTA-Prefix.pch";
 				INFOPLIST_FILE = "MobileTA/MobileTA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/MobileTA/Libraries/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
