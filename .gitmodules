@@ -1,3 +1,6 @@
 [submodule "MobileTA/Libraries/QuickDialog"]
 	path = MobileTA/Libraries/QuickDialog
 	url = git://github.com/escoz/QuickDialog.git
+[submodule "MobileTA/Libraries/JTRevealSidebar"]
+	path = MobileTA/Libraries/JTRevealSidebar
+	url = git://github.com/mystcolor/JTRevealSidebarDemo.git
