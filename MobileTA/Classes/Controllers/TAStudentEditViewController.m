@@ -49,7 +49,20 @@
 }
 
 - (void)save:(QButtonElement *)saveButton {
-  NSLog(@"Save!");
+  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+  [self.root fetchValueIntoObject:dict];
+  [[self student] setFirstName:[dict objectForKey:@"firstName"]];
+  [[self student] setLastName:[dict objectForKey:@"lastName"]];
+  // TODO(srice): Handle Errors
+  [[self managedObjectContext] save:nil];
+  // Save a reference to this now since [self navigationController] will
+  // be set to nil after popViewController. After we pop, we need to refresh
+  // the table view data
+  UINavigationController *currentNavigation = [self navigationController];
+  [currentNavigation popViewControllerAnimated:YES];
+  // After we pop the view controller, we tell the list view to refresh
+  UITableView *listTableView = [(UITableViewController *)[currentNavigation topViewController] tableView];
+  [listTableView reloadRowsAtIndexPaths:[listTableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)viewDidLoad
