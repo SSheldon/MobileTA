@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TAStudentEditViewController.h"
 
-@interface TAStudentsViewController : UITableViewController
+@interface TAStudentsViewController : UITableViewController <TAStudentEditDelegate>
 
 - (void)setStudents:(NSArray *)students;
 

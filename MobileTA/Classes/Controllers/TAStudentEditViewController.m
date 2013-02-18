@@ -11,6 +11,7 @@
 @implementation TAStudentEditViewController
 
 @synthesize student=_student;
+@synthesize delegate=_delegate;
 
 + (QRootElement *)formForStudent:(Student *)student {
   QRootElement *root = [[QRootElement alloc] init];
@@ -49,20 +50,21 @@
 }
 
 - (void)save:(QButtonElement *)saveButton {
+  // Make a copy of the old student data and put it in a dictionary
+  NSArray *keys = [[[[self student] entity] attributesByName] allKeys];
+  NSDictionary *oldStudentData = [[self student] dictionaryWithValuesForKeys:keys];
+  // Set the student data to the new values
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
   [self.root fetchValueIntoObject:dict];
   [[self student] setFirstName:[dict objectForKey:@"firstName"]];
   [[self student] setLastName:[dict objectForKey:@"lastName"]];
+  // Save it and go back to the previous view controller
   // TODO(srice): Handle Errors
   [[self managedObjectContext] save:nil];
-  // Save a reference to this now since [self navigationController] will
-  // be set to nil after popViewController. After we pop, we need to refresh
-  // the table view data
-  UINavigationController *currentNavigation = [self navigationController];
-  [currentNavigation popViewControllerAnimated:YES];
-  // After we pop the view controller, we tell the list view to refresh
-  UITableView *listTableView = [(UITableViewController *)[currentNavigation topViewController] tableView];
-  [listTableView reloadRowsAtIndexPaths:[listTableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
+  [[self navigationController] popViewControllerAnimated:YES];
+  if([[self delegate] respondsToSelector:@selector(viewController:savedStudent:withPreviousData:)]) {
+    [[self delegate] viewController:self savedStudent:[self student] withPreviousData:oldStudentData];
+  }
 }
 
 - (void)viewDidLoad

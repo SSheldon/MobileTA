@@ -130,7 +130,15 @@
   // Navigation logic may go here. Create and push another view controller.
   Student *selected = [self studentAtIndexPath:indexPath];
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:selected];
+  [editViewController setDelegate:self];
   [[self navigationController] pushViewController:editViewController animated:YES];
+}
+
+#pragma mark TAStudentEditDelegate
+
+- (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  // Isn't really what we want, but is a decent implementation for now
+  [[self tableView] reloadRowsAtIndexPaths:[[self tableView] indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)testFunc {

@@ -10,13 +10,23 @@
 #import <QuickDialog/QuickDialog.h>
 #import "Student.h"
 
+@class TAStudentEditViewController;
+
+@protocol TAStudentEditDelegate <NSObject>
+
+@optional
+- (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData;
+
+@end
+
 @interface TAStudentEditViewController : QuickDialogController {
 
 }
 
-+(QRootElement *)formForStudent:(Student *)student;
--(id)initWithStudent:(Student *)student;
++ (QRootElement *)formForStudent:(Student *)student;
+- (id)initWithStudent:(Student *)student;
 
 @property(nonatomic,strong)Student *student;
+@property(nonatomic,weak)id<TAStudentEditDelegate> delegate;
 
 @end
