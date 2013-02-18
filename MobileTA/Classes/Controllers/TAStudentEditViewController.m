@@ -12,8 +12,9 @@
 
 @synthesize student=_student;
 
-+(QRootElement *)formForStudent:(Student *)student {
++ (QRootElement *)formForStudent:(Student *)student {
   QRootElement *root = [[QRootElement alloc] init];
+  [root setGrouped:YES];
   // The only difference between adding a student and editing a student
   // We can tell if this is a new object (aka one that hasn't been saved
   // to Core Data yet) by checking if the managedObjectContext has been set.
@@ -31,15 +32,24 @@
   [root addSection:mainSection];
   [mainSection addElement:firstName];
   [mainSection addElement:lastName];
+  QSection *controlSection = [[QSection alloc] initWithTitle:@""];
+  QButtonElement *saveButton = [[QButtonElement alloc] initWithTitle:@"Save"];
+  [saveButton setControllerAction:@"save:"];
+  [root addSection:controlSection];
+  [controlSection addElement:saveButton];
   return root;
 }
 
--(id)initWithStudent:(Student *)student {
+- (id)initWithStudent:(Student *)student {
   if([self initWithRoot:[TAStudentEditViewController formForStudent:student]]) {
     // Final initialization
     [self setStudent:student];
   }
   return self;
+}
+
+- (void)save:(QButtonElement *)saveButton {
+  NSLog(@"Save!");
 }
 
 - (void)viewDidLoad
