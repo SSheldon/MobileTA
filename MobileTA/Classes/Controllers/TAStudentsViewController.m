@@ -17,6 +17,11 @@
   if (self) {
     self.title = NSLocalizedString(@"Roster", nil);
     self.tabBarItem.image = [UIImage imageNamed:@"roster_tab_icon"];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                               target:self
+                                                                               action:@selector(testFunc)];
+    self.navigationItem.rightBarButtonItem  = addButton;
+
   }
   return self;
 }
@@ -92,6 +97,10 @@
   Student *selected = [[self students] objectAtIndex:indexPath.row];
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:selected];
   [[self navigationController] pushViewController:editViewController animated:YES];
+}
+
+- (void)testFunc {
+  NSLog(@"Hi");
 }
 
 @end
