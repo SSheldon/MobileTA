@@ -8,14 +8,14 @@
 
 #import "TAAppDelegate.h"
 
-#import "TAStudentsViewController.h"
+#import "TAWelcomeViewController.h"
 
 @implementation TAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
-  TAStudentsViewController *listViewController = [[TAStudentsViewController alloc] initWithStyle:UITableViewStylePlain];
+  TAWelcomeViewController *listViewController = [[TAWelcomeViewController alloc] initWithNibName:nil bundle:nil];
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listViewController];
   self.window.rootViewController = navController;
   [self.window makeKeyAndVisible];
