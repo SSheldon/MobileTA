@@ -10,7 +10,10 @@
 
 #import "Student.h"
 
-@implementation TAStudentsViewController
+@implementation TAStudentsViewController {
+  NSMutableDictionary *_students;
+  NSMutableArray *_studentNameLetters;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style {
   self = [super initWithStyle:style];
@@ -58,8 +61,35 @@
 }
 
 - (void)setStudents:(NSArray *)students {
-  _students = students;
+  _students = [[NSMutableDictionary alloc] init];
+  for (Student *student in students) {
+    // Get the letter the student's name starts with
+    NSString *letter;
+    if (student.lastName.length) {
+      letter = [student.lastName substringToIndex:1];
+    } else {
+      letter = @"";
+    }
+    // Add this student to the correct array
+    NSMutableArray *studentsForLetter = [_students objectForKey:letter];
+    if (studentsForLetter) {
+      [studentsForLetter addObject:student];
+    }
+    else {
+      studentsForLetter = [NSMutableArray arrayWithObject:student];
+      [_students setObject:studentsForLetter forKey:letter];
+    }
+  }
+  // TODO(ssheldon): Sort the students in each array of the dict
+
+  _studentNameLetters = [NSMutableArray arrayWithArray:_students.allKeys];
+  [_studentNameLetters sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+
   [self.tableView reloadData];
+}
+
+- (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
+  return [[_students objectForKey:[_studentNameLetters objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -70,11 +100,15 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+  return _students.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return self.students.count;
+  return [[_students objectForKey:[_studentNameLetters objectAtIndex:section]] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+  return [_studentNameLetters objectAtIndex:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,7 +118,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
   }
 
-  Student *student = [self.students objectAtIndex:indexPath.row];
+  Student *student = [self studentAtIndexPath:indexPath];
   cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
 
   return cell;
@@ -94,7 +128,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   // Navigation logic may go here. Create and push another view controller.
-  Student *selected = [[self students] objectAtIndex:indexPath.row];
+  Student *selected = [self studentAtIndexPath:indexPath];
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:selected];
   [[self navigationController] pushViewController:editViewController animated:YES];
 }

@@ -11,6 +11,6 @@
 
 @interface TAStudentsViewController : UITableViewController
 
-@property (copy, nonatomic) NSArray *students;
+- (void)setStudents:(NSArray *)students;
 
 @end
