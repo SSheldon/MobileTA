@@ -66,12 +66,13 @@
 }
 
 - (void)reloadStudents {
+  // Build a mapping from first letters to students
   _studentsByLetter = [[NSMutableDictionary alloc] init];
   for (Student *student in self.students) {
     // Get the letter the student's name starts with
     NSString *letter;
     if (student.lastName.length) {
-      letter = [student.lastName substringToIndex:1];
+      letter = [[student.lastName substringToIndex:1] uppercaseString];
     } else {
       letter = @"";
     }
@@ -85,10 +86,19 @@
       [_studentsByLetter setObject:studentsForLetter forKey:letter];
     }
   }
-  // TODO(ssheldon): Sort the students in each array of the dict
 
+  // Sort the students in each array of the dict
+  NSArray *sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES selector:@selector(caseInsensitiveCompare:)],
+    [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(caseInsensitiveCompare:)],
+  ];
+  for (NSMutableArray *studentsForLetter in _studentsByLetter.objectEnumerator) {
+    [studentsForLetter sortUsingDescriptors:sortDescriptors];
+  }
+
+  // Store the keys in a sorted array
   _studentNameLetters = [NSMutableArray arrayWithArray:_studentsByLetter.allKeys];
-  [_studentNameLetters sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+  [_studentNameLetters sortUsingSelector:@selector(caseInsensitiveCompare:)];
 
   [self.tableView reloadData];
 }
