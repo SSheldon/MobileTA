@@ -11,7 +11,7 @@
 #import "Student.h"
 
 @implementation TAStudentsViewController {
-  NSMutableDictionary *_students;
+  NSMutableDictionary *_studentsByLetter;
   NSMutableArray *_studentNameLetters;
 }
 
@@ -61,8 +61,13 @@
 }
 
 - (void)setStudents:(NSArray *)students {
-  _students = [[NSMutableDictionary alloc] init];
-  for (Student *student in students) {
+  _students = students;
+  [self reloadStudents];
+}
+
+- (void)reloadStudents {
+  _studentsByLetter = [[NSMutableDictionary alloc] init];
+  for (Student *student in self.students) {
     // Get the letter the student's name starts with
     NSString *letter;
     if (student.lastName.length) {
@@ -71,25 +76,33 @@
       letter = @"";
     }
     // Add this student to the correct array
-    NSMutableArray *studentsForLetter = [_students objectForKey:letter];
+    NSMutableArray *studentsForLetter = [_studentsByLetter objectForKey:letter];
     if (studentsForLetter) {
       [studentsForLetter addObject:student];
     }
     else {
       studentsForLetter = [NSMutableArray arrayWithObject:student];
-      [_students setObject:studentsForLetter forKey:letter];
+      [_studentsByLetter setObject:studentsForLetter forKey:letter];
     }
   }
   // TODO(ssheldon): Sort the students in each array of the dict
 
-  _studentNameLetters = [NSMutableArray arrayWithArray:_students.allKeys];
+  _studentNameLetters = [NSMutableArray arrayWithArray:_studentsByLetter.allKeys];
   [_studentNameLetters sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 
   [self.tableView reloadData];
 }
 
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
-  return [[_students objectForKey:[_studentNameLetters objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+  NSString *letter = [_studentNameLetters objectAtIndex:indexPath.section];
+  return [[_studentsByLetter objectForKey:letter] objectAtIndex:indexPath.row];
+}
+
+- (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  if (student.lastName != [oldData objectForKey:@"lastName"] ||
+      student.firstName != [oldData objectForKey:@"firstName"]) {
+    [self reloadStudents];
+  }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -100,11 +113,11 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return _students.count;
+  return _studentsByLetter.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [[_students objectForKey:[_studentNameLetters objectAtIndex:section]] count];
+  return [[_studentsByLetter objectForKey:[_studentNameLetters objectAtIndex:section]] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -137,8 +150,7 @@
 #pragma mark TAStudentEditDelegate
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
-  // Isn't really what we want, but is a decent implementation for now
-  [[self tableView] reloadRowsAtIndexPaths:[[self tableView] indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
+  [self updateStudent:student withPreviousData:oldData];
 }
 
 - (void)testFunc {

@@ -11,6 +11,6 @@
 
 @interface TAStudentsViewController : UITableViewController <TAStudentEditDelegate>
 
-- (void)setStudents:(NSArray *)students;
+@property (copy, nonatomic) NSArray *students;
 
 @end
