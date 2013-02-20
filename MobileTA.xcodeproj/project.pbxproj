@@ -28,8 +28,8 @@
 		135116E616CDC38A00D7376E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E516CDC38A00D7376E /* MapKit.framework */; };
 		13A30EAE16CEEF5D00AE03E5 /* libJTRevealSidebar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30E9F16CEEF4B00AE03E5 /* libJTRevealSidebar.a */; };
 		13A30EAF16CEEF5D00AE03E5 /* libJTRevealSidebarV2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30EA116CEEF4B00AE03E5 /* libJTRevealSidebarV2.a */; };
-		40223A1416D2D35600700214 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 40223A1316D2D35600700214 /* logo.png */; };
-		40223A1B16D2D75300700214 /* blackboard.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 40223A1A16D2D75300700214 /* blackboard.jpeg */; };
+		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
+		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
 		402DAA0416C07F3900D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
@@ -160,8 +160,8 @@
 		135116E316CDC36400D7376E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		135116E516CDC38A00D7376E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JTRevealSidebarDemo.xcodeproj; path = Libraries/JTRevealSidebar/JTRevealSidebarDemo.xcodeproj; sourceTree = "<group>"; };
-		40223A1316D2D35600700214 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		40223A1A16D2D75300700214 /* blackboard.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blackboard.jpeg; sourceTree = "<group>"; };
+		13BA038C16D4B8AD0004C698 /* blackboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackboard.jpg; path = Images/blackboard.jpg; sourceTree = "<group>"; };
+		13BA038D16D4B8AD0004C698 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
 		402DAA0216C07F3800D43854 /* parseCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseCSV.h; sourceTree = "<group>"; };
 		402DAA0316C07F3900D43854 /* parseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseCSV.m; sourceTree = "<group>"; };
 		4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWelcomeViewController.h; sourceTree = "<group>"; };
@@ -231,9 +231,9 @@
 		1322E27C16BA24E500C890B4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				40223A1A16D2D75300700214 /* blackboard.jpeg */,
-				40223A1316D2D35600700214 /* logo.png */,
 				1322E27D16BA24F800C890B4 /* Tabs */,
+				13BA038C16D4B8AD0004C698 /* blackboard.jpg */,
+				13BA038D16D4B8AD0004C698 /* logo.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -554,8 +554,8 @@
 				13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */,
 				1322E28016BA250900C890B4 /* roster_tab_icon.png in Resources */,
 				1322E28116BA250900C890B4 /* roster_tab_icon@2x.png in Resources */,
-				40223A1416D2D35600700214 /* logo.png in Resources */,
-				40223A1B16D2D75300700214 /* blackboard.jpeg in Resources */,
+				13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */,
+				13BA038F16D4B8AD0004C698 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
