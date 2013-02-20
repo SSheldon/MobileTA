@@ -18,7 +18,6 @@
   self = [super initWithStyle:style];
   if (self) {
     self.title = NSLocalizedString(@"Roster", nil);
-    self.tabBarItem.image = [UIImage imageNamed:@"roster_tab_icon"];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(testFunc)];

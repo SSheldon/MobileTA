@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1322E28016BA250900C890B4 /* roster_tab_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1322E27E16BA250900C890B4 /* roster_tab_icon.png */; };
-		1322E28116BA250900C890B4 /* roster_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1322E27F16BA250900C890B4 /* roster_tab_icon@2x.png */; };
 		13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
 		13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
 		13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */; };
@@ -135,8 +133,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1322E27E16BA250900C890B4 /* roster_tab_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roster_tab_icon.png; path = Images/Tabs/roster_tab_icon.png; sourceTree = "<group>"; };
-		1322E27F16BA250900C890B4 /* roster_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roster_tab_icon@2x.png"; path = "Images/Tabs/roster_tab_icon@2x.png"; sourceTree = "<group>"; };
 		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		13345E5916B7736100DD4FF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -231,20 +227,10 @@
 		1322E27C16BA24E500C890B4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				1322E27D16BA24F800C890B4 /* Tabs */,
 				13BA038C16D4B8AD0004C698 /* blackboard.jpg */,
 				13BA038D16D4B8AD0004C698 /* logo.png */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		1322E27D16BA24F800C890B4 /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-				1322E27E16BA250900C890B4 /* roster_tab_icon.png */,
-				1322E27F16BA250900C890B4 /* roster_tab_icon@2x.png */,
-			);
-			name = Tabs;
 			sourceTree = "<group>";
 		};
 		13345E4816B7736100DD4FF2 = {
@@ -552,8 +538,6 @@
 				13345E6A16B7736100DD4FF2 /* Default.png in Resources */,
 				13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */,
 				13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */,
-				1322E28016BA250900C890B4 /* roster_tab_icon.png in Resources */,
-				1322E28116BA250900C890B4 /* roster_tab_icon@2x.png in Resources */,
 				13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */,
 				13BA038F16D4B8AD0004C698 /* logo.png in Resources */,
 			);
