@@ -16,11 +16,6 @@
 		13345E6A16B7736100DD4FF2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6916B7736100DD4FF2 /* Default.png */; };
 		13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6B16B7736100DD4FF2 /* Default@2x.png */; };
 		13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */; };
-		13345E8A16B7736100DD4FF2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E8916B7736100DD4FF2 /* SenTestingKit.framework */; };
-		13345E8B16B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
-		13345E8C16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
-		13345E9416B7736100DD4FF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13345E9216B7736100DD4FF2 /* InfoPlist.strings */; };
-		13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E9616B7736100DD4FF2 /* MobileTATests.m */; };
 		135116E216CDC24000D7376E /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116DF16CDC11E00D7376E /* libQuickDialog.a */; };
 		135116E416CDC36400D7376E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E316CDC36400D7376E /* CoreLocation.framework */; };
 		135116E616CDC38A00D7376E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E516CDC38A00D7376E /* MapKit.framework */; };
@@ -28,7 +23,6 @@
 		13A30EAF16CEEF5D00AE03E5 /* libJTRevealSidebarV2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30EA116CEEF4B00AE03E5 /* libJTRevealSidebarV2.a */; };
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
-		402DAA0416C07F3900D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
@@ -41,18 +35,10 @@
 		E6ECA87216BB4D1900F103D3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6ECA87016BB4CFF00F103D3 /* CoreData.framework */; };
 		E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */; };
 		E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
-		E6ECA88016BB569A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
 		E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		13345E8D16B7736100DD4FF2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13345E4A16B7736100DD4FF2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13345E5216B7736100DD4FF2;
-			remoteInfo = MobileTA;
-		};
 		135116DC16CDC11E00D7376E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
@@ -146,12 +132,6 @@
 		13345E6916B7736100DD4FF2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		13345E6B16B7736100DD4FF2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		13345E8816B7736100DD4FF2 /* MobileTATests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTATests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		13345E8916B7736100DD4FF2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		13345E9116B7736100DD4FF2 /* MobileTATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileTATests-Info.plist"; sourceTree = "<group>"; };
-		13345E9316B7736100DD4FF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		13345E9516B7736100DD4FF2 /* MobileTATests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileTATests.h; sourceTree = "<group>"; };
-		13345E9616B7736100DD4FF2 /* MobileTATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileTATests.m; sourceTree = "<group>"; };
 		135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		135116E316CDC36400D7376E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		135116E516CDC38A00D7376E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -201,16 +181,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		13345E8416B7736100DD4FF2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				13345E8A16B7736100DD4FF2 /* SenTestingKit.framework in Frameworks */,
-				13345E8B16B7736100DD4FF2 /* UIKit.framework in Frameworks */,
-				13345E8C16B7736100DD4FF2 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -237,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				13345E5D16B7736100DD4FF2 /* MobileTA */,
-				13345E8F16B7736100DD4FF2 /* MobileTATests */,
 				13345E5616B7736100DD4FF2 /* Frameworks */,
 				13345E5416B7736100DD4FF2 /* Products */,
 			);
@@ -247,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				13345E5316B7736100DD4FF2 /* MobileTA.app */,
-				13345E8816B7736100DD4FF2 /* MobileTATests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -261,7 +229,6 @@
 				13345E5716B7736100DD4FF2 /* UIKit.framework */,
 				13345E5916B7736100DD4FF2 /* Foundation.framework */,
 				13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */,
-				13345E8916B7736100DD4FF2 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -290,25 +257,6 @@
 				13345E6B16B7736100DD4FF2 /* Default@2x.png */,
 				13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */,
 				E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		13345E8F16B7736100DD4FF2 /* MobileTATests */ = {
-			isa = PBXGroup;
-			children = (
-				13345E9516B7736100DD4FF2 /* MobileTATests.h */,
-				13345E9616B7736100DD4FF2 /* MobileTATests.m */,
-				13345E9016B7736100DD4FF2 /* Supporting Files */,
-			);
-			path = MobileTATests;
-			sourceTree = "<group>";
-		};
-		13345E9016B7736100DD4FF2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				13345E9116B7736100DD4FF2 /* MobileTATests-Info.plist */,
-				13345E9216B7736100DD4FF2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -413,25 +361,6 @@
 			productReference = 13345E5316B7736100DD4FF2 /* MobileTA.app */;
 			productType = "com.apple.product-type.application";
 		};
-		13345E8716B7736100DD4FF2 /* MobileTATests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 13345E9D16B7736100DD4FF2 /* Build configuration list for PBXNativeTarget "MobileTATests" */;
-			buildPhases = (
-				13345E8316B7736100DD4FF2 /* Sources */,
-				13345E8416B7736100DD4FF2 /* Frameworks */,
-				13345E8516B7736100DD4FF2 /* Resources */,
-				13345E8616B7736100DD4FF2 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				13345E8E16B7736100DD4FF2 /* PBXTargetDependency */,
-			);
-			name = MobileTATests;
-			productName = MobileTATests;
-			productReference = 13345E8816B7736100DD4FF2 /* MobileTATests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -465,7 +394,6 @@
 			projectRoot = "";
 			targets = (
 				13345E5216B7736100DD4FF2 /* MobileTA */,
-				13345E8716B7736100DD4FF2 /* MobileTATests */,
 			);
 		};
 /* End PBXProject section */
@@ -543,31 +471,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		13345E8516B7736100DD4FF2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				13345E9416B7736100DD4FF2 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		13345E8616B7736100DD4FF2 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		13345E4F16B7736100DD4FF2 /* Sources */ = {
@@ -591,24 +495,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		13345E8316B7736100DD4FF2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E6ECA88016BB569A00F103D3 /* TAStudentsViewController.m in Sources */,
-				13345E9716B7736100DD4FF2 /* MobileTATests.m in Sources */,
-				402DAA0416C07F3900D43854 /* parseCSV.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		13345E8E16B7736100DD4FF2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13345E5216B7736100DD4FF2 /* MobileTA */;
-			targetProxy = 13345E8D16B7736100DD4FF2 /* PBXContainerItemProxy */;
-		};
 		135116E116CDC22700D7376E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = QuickDialog;
@@ -631,14 +520,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				13345E6116B7736100DD4FF2 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		13345E9216B7736100DD4FF2 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13345E9316B7736100DD4FF2 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -734,40 +615,6 @@
 			};
 			name = Release;
 		};
-		13345E9E16B7736100DD4FF2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MobileTA.app/MobileTA";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MobileTA/MobileTA-Prefix.pch";
-				INFOPLIST_FILE = "MobileTATests/MobileTATests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		13345E9F16B7736100DD4FF2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MobileTA.app/MobileTA";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MobileTA/MobileTA-Prefix.pch";
-				INFOPLIST_FILE = "MobileTATests/MobileTATests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -785,15 +632,6 @@
 			buildConfigurations = (
 				13345E9B16B7736100DD4FF2 /* Debug */,
 				13345E9C16B7736100DD4FF2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		13345E9D16B7736100DD4FF2 /* Build configuration list for PBXNativeTarget "MobileTATests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				13345E9E16B7736100DD4FF2 /* Debug */,
-				13345E9F16B7736100DD4FF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
