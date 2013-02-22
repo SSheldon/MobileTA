@@ -417,6 +417,7 @@
 				135F11F216D7124F009C310A /* Sources */,
 				135F11F316D7124F009C310A /* Frameworks */,
 				135F11F416D7124F009C310A /* Resources */,
+				135F121B16D71D2E009C310A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -547,6 +548,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		135F121B16D71D2E009C310A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $PROJECT_DIR/Scripts/PrepareUITests.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		13345E4F16B7736100DD4FF2 /* Sources */ = {
