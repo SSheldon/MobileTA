@@ -14,8 +14,7 @@
 @synthesize exportButton = _exportButton;
 @synthesize rosterButton = _rosterButton;
 
--(id)init
-{
+-(id)init {
   self = [super initWithNibName:nil bundle:nil];
   if (self) {
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"blackboard.jpeg"]];
@@ -47,25 +46,21 @@
   return self;
 }
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   return [self init];
 }
 
--(void)viewDidLoad
-{
+-(void)viewDidLoad {
   [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
--(void)didReceiveMemoryWarning
-{
+-(void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
 
--(IBAction)buttonPressed:(id)sender
-{
+-(IBAction)buttonPressed:(id)sender {
   // UIButton *button = (UIButton *)sender;
   
   TAStudentsViewController *listViewController = [[TAStudentsViewController alloc] initWithStyle:UITableViewStylePlain];
