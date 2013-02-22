@@ -59,7 +59,7 @@
 }
 
 - (void)setStudents:(NSArray *)students {
-  _students = students;
+  _students = [students copy];
   [self reloadStudents];
 }
 
@@ -108,6 +108,16 @@
   }
 }
 
+- (void)editStudent:(Student *)student {
+  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:student];
+  editViewController.delegate = self;
+  [self.navigationController pushViewController:editViewController animated:YES];
+}
+
+- (void)addNewStudent {
+  [self editStudent:nil];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
   // Support all orientations
   return YES;
@@ -152,20 +162,10 @@
   return cell;
 }
 
-- (void)addNewStudent {
-  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:nil];
-  [editViewController setDelegate:self];
-  [[self navigationController] pushViewController:editViewController animated:YES];
-}
-
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  // Navigation logic may go here. Create and push another view controller.
-  Student *selected = [self studentAtIndexPath:indexPath];
-  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:selected];
-  [editViewController setDelegate:self];
-  [[self navigationController] pushViewController:editViewController animated:YES];
+  [self editStudent:[self studentAtIndexPath:indexPath]];
 }
 
 #pragma mark TAStudentEditDelegate
