@@ -11,15 +11,13 @@
 #import "Student.h"
 
 @implementation TAStudentsViewController {
-  NSMutableDictionary *_students;
-  NSMutableArray *_studentNameLetters;
+  NSMutableArray *_tableSections;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
   self = [super initWithStyle:style];
   if (self) {
     self.title = NSLocalizedString(@"Roster", nil);
-    self.tabBarItem.image = [UIImage imageNamed:@"roster_tab_icon"];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(addNewStudent)];
@@ -61,35 +59,48 @@
 }
 
 - (void)setStudents:(NSArray *)students {
-  _students = [[NSMutableDictionary alloc] init];
-  for (Student *student in students) {
-    // Get the letter the student's name starts with
-    NSString *letter;
-    if (student.lastName.length) {
-      letter = [student.lastName substringToIndex:1];
-    } else {
-      letter = @"";
-    }
-    // Add this student to the correct array
-    NSMutableArray *studentsForLetter = [_students objectForKey:letter];
-    if (studentsForLetter) {
-      [studentsForLetter addObject:student];
-    }
-    else {
-      studentsForLetter = [NSMutableArray arrayWithObject:student];
-      [_students setObject:studentsForLetter forKey:letter];
-    }
-  }
-  // TODO(ssheldon): Sort the students in each array of the dict
+  _students = students;
+  [self reloadStudents];
+}
 
-  _studentNameLetters = [NSMutableArray arrayWithArray:_students.allKeys];
-  [_studentNameLetters sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+- (void)reloadStudents {
+  _tableSections = [[NSMutableArray alloc] init];
+  UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
+
+  // Add an empty student array for each section
+  for (NSInteger i = 0; i < collation.sectionTitles.count; i++) {
+    [_tableSections addObject:[NSMutableArray array]];
+  }
+
+  // Add students to the array in the section determined by their last name
+  for (Student *student in self.students) {
+    NSInteger sectionNumber = [collation sectionForObject:student collationStringSelector:@selector(lastName)];
+    [[_tableSections objectAtIndex:sectionNumber] addObject:student];
+  }
+
+  // Sort student array within each section
+  NSArray *sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+    [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+  ];
+  for (NSMutableArray *students in _tableSections) {
+    // Sort using descriptors so that we can break ties with first name, which isn't possible with
+    // UILocalizedIndexedCollation's sortedArrayFromArray:collationStringSelector:
+    [students sortUsingDescriptors:sortDescriptors];
+  }
 
   [self.tableView reloadData];
 }
 
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
-  return [[_students objectForKey:[_studentNameLetters objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+  return [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+}
+
+- (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  if (student.lastName != [oldData objectForKey:@"lastName"] ||
+      student.firstName != [oldData objectForKey:@"firstName"]) {
+    [self reloadStudents];
+  }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -100,15 +111,27 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return _students.count;
+  return _tableSections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [[_students objectForKey:[_studentNameLetters objectAtIndex:section]] count];
+  return [[_tableSections objectAtIndex:section] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  return [_studentNameLetters objectAtIndex:section];
+  // Ensure this header isn't shown if we have no rows in the section
+  if (![[_tableSections objectAtIndex:section] count]) {
+    return nil;
+  }
+  return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+  return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+  return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,7 +158,15 @@
   // Navigation logic may go here. Create and push another view controller.
   Student *selected = [self studentAtIndexPath:indexPath];
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:selected];
+  [editViewController setDelegate:self];
   [[self navigationController] pushViewController:editViewController animated:YES];
 }
+
+#pragma mark TAStudentEditDelegate
+
+- (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  [self updateStudent:student withPreviousData:oldData];
+}
+
 
 @end
