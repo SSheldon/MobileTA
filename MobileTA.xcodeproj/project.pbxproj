@@ -41,6 +41,7 @@
 		135F124416D74139009C310A /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFDB16C05BAE001D122E /* Student.m */; };
 		135F124616D7413E009C310A /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC1E5616C05EDB007E8FCF /* Room.m */; };
 		135F124716D74151009C310A /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC1E5316C05EB3007E8FCF /* Section.m */; };
+		135F124A16D74286009C310A /* TAWelcomeViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F124916D74286009C310A /* TAWelcomeViewTest.m */; };
 		13A30EAE16CEEF5D00AE03E5 /* libJTRevealSidebar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30E9F16CEEF4B00AE03E5 /* libJTRevealSidebar.a */; };
 		13A30EAF16CEEF5D00AE03E5 /* libJTRevealSidebarV2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30EA116CEEF4B00AE03E5 /* libJTRevealSidebarV2.a */; };
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
@@ -171,6 +172,7 @@
 		135F120216D7124F009C310A /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		135F121416D712DB009C310A /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = MobileTA/Libraries/GHUnitIOS.framework; sourceTree = "<group>"; };
 		135F121616D7137C009C310A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		135F124916D74286009C310A /* TAWelcomeViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAWelcomeViewTest.m; path = Views/TAWelcomeViewTest.m; sourceTree = "<group>"; };
 		13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JTRevealSidebarDemo.xcodeproj; path = Libraries/JTRevealSidebar/JTRevealSidebarDemo.xcodeproj; sourceTree = "<group>"; };
 		13BA038C16D4B8AD0004C698 /* blackboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackboard.jpg; path = Images/blackboard.jpg; sourceTree = "<group>"; };
 		13BA038D16D4B8AD0004C698 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		135F11FA16D7124F009C310A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				135F124816D74275009C310A /* Views */,
 				135F11FB16D7124F009C310A /* Supporting Files */,
 			);
 			path = Tests;
@@ -343,6 +346,14 @@
 				135F120216D7124F009C310A /* Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		135F124816D74275009C310A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				135F124916D74286009C310A /* TAWelcomeViewTest.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		13A30E9616CEEF4B00AE03E5 /* Products */ = {
@@ -630,6 +641,7 @@
 				135F124416D74139009C310A /* Student.m in Sources */,
 				135F124616D7413E009C310A /* Room.m in Sources */,
 				135F124716D74151009C310A /* Section.m in Sources */,
+				135F124A16D74286009C310A /* TAWelcomeViewTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
