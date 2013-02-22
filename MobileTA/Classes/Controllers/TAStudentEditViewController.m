@@ -18,12 +18,14 @@
   // The only difference between adding a student and editing a student
   // We can tell if this is a new object (aka one that hasn't been saved
   // to Core Data yet) by checking if the managedObjectContext has been set.
-  if([student managedObjectContext]) {
+
+  if(student) {
     root.title = @"Edit Student";
   }
   else {
     root.title = @"Add Student";
   }
+  
   QSection *mainSection = [[QSection alloc] initWithTitle:@""];
   QEntryElement *firstName = [[QEntryElement alloc] initWithTitle:@"First Name" Value:[student firstName] Placeholder:@""];
   [firstName setKey:@"firstName"];
@@ -51,8 +53,15 @@
 - (void)save:(QButtonElement *)saveButton {
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
   [self.root fetchValueIntoObject:dict];
-  [[self student] setFirstName:[dict objectForKey:@"firstName"]];
-  [[self student] setLastName:[dict objectForKey:@"lastName"]];
+  
+  if (![self student]) {
+    [Student studentWithFirstName:[dict objectForKey:@"firstName"] lastName:[dict objectForKey:@"lastName"] context:self.managedObjectContext];
+  }
+  else {
+    [[self student] setFirstName:[dict objectForKey:@"firstName"]];
+    [[self student] setLastName:[dict objectForKey:@"lastName"]];
+  }
+  
   // TODO(srice): Handle Errors
   [[self managedObjectContext] save:nil];
   // Save a reference to this now since [self navigationController] will
@@ -76,5 +85,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

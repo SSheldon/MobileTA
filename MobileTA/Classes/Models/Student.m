@@ -27,6 +27,7 @@
   return student;
 }
 
+
 + (NSArray *)fetchStudentsInContext:(NSManagedObjectContext *)context {
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
   fetch.entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:context];

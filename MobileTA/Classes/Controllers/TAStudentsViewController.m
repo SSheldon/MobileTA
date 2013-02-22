@@ -22,7 +22,7 @@
     self.tabBarItem.image = [UIImage imageNamed:@"roster_tab_icon"];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
-                                                                               action:@selector(testFunc)];
+                                                                               action:@selector(addNewStudent)];
     self.navigationItem.rightBarButtonItem  = addButton;
 
   }
@@ -124,6 +124,11 @@
   return cell;
 }
 
+- (void)addNewStudent {
+  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:nil];
+  [[self navigationController] pushViewController:editViewController animated:YES];
+}
+
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -131,10 +136,6 @@
   Student *selected = [self studentAtIndexPath:indexPath];
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:selected];
   [[self navigationController] pushViewController:editViewController animated:YES];
-}
-
-- (void)testFunc {
-  NSLog(@"Hi");
 }
 
 @end
