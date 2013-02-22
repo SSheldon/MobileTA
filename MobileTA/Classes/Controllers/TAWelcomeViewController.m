@@ -17,7 +17,7 @@
 -(id)init {
   self = [super initWithNibName:nil bundle:nil];
   if (self) {
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"blackboard.jpeg"]];
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"blackboard.jpg"]];
     self.view.backgroundColor = background;
 
     UIImage* image = [UIImage imageNamed:@"logo.png"];
