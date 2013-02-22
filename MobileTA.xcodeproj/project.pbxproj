@@ -26,6 +26,21 @@
 		135F120116D7124F009C310A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F120016D7124F009C310A /* main.m */; };
 		135F121516D712DB009C310A /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F121416D712DB009C310A /* GHUnitIOS.framework */; };
 		135F121716D7137C009C310A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F121616D7137C009C310A /* QuartzCore.framework */; };
+		135F122616D7212B009C310A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E516CDC38A00D7376E /* MapKit.framework */; };
+		135F122716D72131009C310A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E316CDC36400D7376E /* CoreLocation.framework */; };
+		135F122E16D72BB0009C310A /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
+		135F122F16D72BC0009C310A /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
+		135F123016D72C12009C310A /* UIViewController+CoreDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */; };
+		135F123116D72C18009C310A /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
+		135F123216D72D07009C310A /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
+		135F123416D72D0D009C310A /* StudentAttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD816C059EB001D122E /* StudentAttendance.m */; };
+		135F123916D72D56009C310A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6ECA87016BB4CFF00F103D3 /* CoreData.framework */; };
+		135F124116D740F5009C310A /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116DF16CDC11E00D7376E /* libQuickDialog.a */; };
+		135F124216D74104009C310A /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
+		135F124316D74131009C310A /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
+		135F124416D74139009C310A /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFDB16C05BAE001D122E /* Student.m */; };
+		135F124616D7413E009C310A /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC1E5616C05EDB007E8FCF /* Room.m */; };
+		135F124716D74151009C310A /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC1E5316C05EB3007E8FCF /* Section.m */; };
 		13A30EAE16CEEF5D00AE03E5 /* libJTRevealSidebar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30E9F16CEEF4B00AE03E5 /* libJTRevealSidebar.a */; };
 		13A30EAF16CEEF5D00AE03E5 /* libJTRevealSidebarV2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30EA116CEEF4B00AE03E5 /* libJTRevealSidebarV2.a */; };
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
@@ -61,6 +76,13 @@
 			remoteInfo = QuickDialog;
 		};
 		135116E016CDC22700D7376E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C542392145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+		135F122316D72111009C310A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
 			proxyType = 1;
@@ -199,8 +221,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				135F124116D740F5009C310A /* libQuickDialog.a in Frameworks */,
+				135F122716D72131009C310A /* CoreLocation.framework in Frameworks */,
+				135F122616D7212B009C310A /* MapKit.framework in Frameworks */,
 				135F121516D712DB009C310A /* GHUnitIOS.framework in Frameworks */,
 				135F121716D7137C009C310A /* QuartzCore.framework in Frameworks */,
+				135F123916D72D56009C310A /* CoreData.framework in Frameworks */,
 				135F11F716D7124F009C310A /* UIKit.framework in Frameworks */,
 				135F11F816D7124F009C310A /* Foundation.framework in Frameworks */,
 				135F11F916D7124F009C310A /* CoreGraphics.framework in Frameworks */,
@@ -422,6 +448,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				135F122416D72111009C310A /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -592,6 +619,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				135F120116D7124F009C310A /* main.m in Sources */,
+				135F122E16D72BB0009C310A /* TAWelcomeViewController.m in Sources */,
+				135F122F16D72BC0009C310A /* TAStudentsViewController.m in Sources */,
+				135F123016D72C12009C310A /* UIViewController+CoreDataAdditions.m in Sources */,
+				135F123116D72C18009C310A /* TAStudentEditViewController.m in Sources */,
+				135F123216D72D07009C310A /* AttendanceRecord.m in Sources */,
+				135F123416D72D0D009C310A /* StudentAttendance.m in Sources */,
+				135F124216D74104009C310A /* parseCSV.m in Sources */,
+				135F124316D74131009C310A /* Seat.m in Sources */,
+				135F124416D74139009C310A /* Student.m in Sources */,
+				135F124616D7413E009C310A /* Room.m in Sources */,
+				135F124716D74151009C310A /* Section.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +640,11 @@
 			isa = PBXTargetDependency;
 			name = QuickDialog;
 			targetProxy = 135116E016CDC22700D7376E /* PBXContainerItemProxy */;
+		};
+		135F122416D72111009C310A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = QuickDialog;
+			targetProxy = 135F122316D72111009C310A /* PBXContainerItemProxy */;
 		};
 		13A30EAB16CEEF5600AE03E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -726,6 +769,7 @@
 		135F120C16D7124F009C310A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -743,6 +787,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/MobileTA/Libraries/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -750,6 +795,7 @@
 		135F120D16D7124F009C310A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -767,6 +813,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/MobileTA/Libraries/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
