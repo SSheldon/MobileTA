@@ -99,6 +99,11 @@
 - (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
   if (student.lastName != [oldData objectForKey:@"lastName"] ||
       student.firstName != [oldData objectForKey:@"firstName"]) {
+    if (!oldData) {
+      NSMutableArray *new_students = [NSMutableArray arrayWithArray:self.students];
+      [new_students addObject:student];
+      self.students = new_students;
+    }
     [self reloadStudents];
   }
 }
@@ -149,6 +154,7 @@
 
 - (void)addNewStudent {
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:nil];
+  [editViewController setDelegate:self];
   [[self navigationController] pushViewController:editViewController animated:YES];
 }
 

@@ -60,7 +60,7 @@
   [self.root fetchValueIntoObject:dict];
   
   if (![self student]) {
-    [Student studentWithFirstName:[dict objectForKey:@"firstName"] lastName:[dict objectForKey:@"lastName"] context:self.managedObjectContext];
+    self.student = [Student studentWithFirstName:[dict objectForKey:@"firstName"] lastName:[dict objectForKey:@"lastName"] context:self.managedObjectContext];
   }
   else {
     [[self student] setFirstName:[dict objectForKey:@"firstName"]];
@@ -70,7 +70,9 @@
   // TODO(srice): Handle Errors
   [[self managedObjectContext] save:nil];
   [[self navigationController] popViewControllerAnimated:YES];
+
   if([[self delegate] respondsToSelector:@selector(viewController:savedStudent:withPreviousData:)]) {
+
     [[self delegate] viewController:self savedStudent:[self student] withPreviousData:oldStudentData];
   }
 }
