@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1316C2FB16D9E38900D282B1 /* TAStudentEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */; };
 		13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
 		13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
 		13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */; };
@@ -149,6 +150,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentEditViewTest.m; path = Views/TAStudentEditViewTest.m; sourceTree = "<group>"; };
 		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		13345E5916B7736100DD4FF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -352,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				135F124916D74286009C310A /* TAWelcomeViewTest.m */,
+				1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				135F124616D7413E009C310A /* Room.m in Sources */,
 				135F124716D74151009C310A /* Section.m in Sources */,
 				135F124A16D74286009C310A /* TAWelcomeViewTest.m in Sources */,
+				1316C2FB16D9E38900D282B1 /* TAStudentEditViewTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
