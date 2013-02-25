@@ -53,6 +53,8 @@
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
 		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
+		9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
+		9F4070C716DC06F800CDC59F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
 		E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
 		E6E9EFD316C059CD001D122E /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
@@ -605,6 +607,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				135F11FF16D7124F009C310A /* InfoPlist.strings in Resources */,
+				9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */,
+				9F4070C716DC06F800CDC59F /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
