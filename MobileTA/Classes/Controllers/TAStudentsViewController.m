@@ -27,22 +27,6 @@
   return self;
 }
 
-- (void)loadView {
-  [super loadView];
-
-  NSArray *students = [Student fetchStudentsInContext:self.managedObjectContext];
-  if (!students.count) {
-    // Insert some students in the the context
-    students = @[
-      [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext],
-      [Student studentWithFirstName:@"Alex" lastName:@"Hendrix" context:self.managedObjectContext]
-    ];
-    // TODO(ssheldon): Handle errors
-    [self.managedObjectContext save:nil];
-  }
-  self.students = students;
-}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -51,6 +35,25 @@
 
   // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  // Load students if they haven't been set
+  if (!self.students.count) {
+    NSArray *students = [Student fetchStudentsInContext:self.managedObjectContext];
+    if (!students.count) {
+      // Insert some students in the the context
+      students = @[
+        [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext],
+        [Student studentWithFirstName:@"Alex" lastName:@"Hendrix" context:self.managedObjectContext]
+      ];
+      // TODO(ssheldon): Handle errors
+      [self.managedObjectContext save:nil];
+    }
+    self.students = students;
+  }
+
+  [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,7 +92,9 @@
     [students sortUsingDescriptors:sortDescriptors];
   }
 
-  [self.tableView reloadData];
+  if ([self isViewLoaded]) {
+    [self.tableView reloadData];
+  }
 }
 
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
