@@ -16,20 +16,8 @@
 
 @implementation StudentTest
 
-+ (NSManagedObjectContext *)managedObjectContextForModelsInBundle:(NSBundle *)bundle {
-  NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:bundle]];
-  NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-  NSPersistentStore *store = [coordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:nil];
-  if (!store) {
-    return nil;
-  }
-  NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init];
-  context.persistentStoreCoordinator = coordinator;
-  return context;
-}
-
 - (void)setUp {
-  self.managedObjectContext = [StudentTest managedObjectContextForModelsInBundle:[NSBundle mainBundle]];
+  self.managedObjectContext = [TATestUtils managedObjectContextForModelsInBundle:[NSBundle mainBundle]];
   if (!self.managedObjectContext) {
     GHFail(@"Could not create in-memory store.");
   }
