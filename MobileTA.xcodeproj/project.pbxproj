@@ -53,6 +53,7 @@
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
 		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
+		E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
 		E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
 		E6E9EFD316C059CD001D122E /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
@@ -190,6 +191,8 @@
 		402DAA0316C07F3900D43854 /* parseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseCSV.m; sourceTree = "<group>"; };
 		4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWelcomeViewController.h; sourceTree = "<group>"; };
 		4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAWelcomeViewController.m; sourceTree = "<group>"; };
+		E63B8EB816DC2812007F3FE9 /* TASectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionsViewController.h; sourceTree = "<group>"; };
+		E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionsViewController.m; sourceTree = "<group>"; };
 		E6804DF616CDCD3F000E2007 /* TAStudentEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentEditViewController.h; sourceTree = "<group>"; };
 		E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentEditViewController.m; sourceTree = "<group>"; };
 		E6E9EFCB16C059A7001D122E /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
@@ -434,6 +437,8 @@
 				E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */,
 				4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */,
 				4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */,
+				E63B8EB816DC2812007F3FE9 /* TASectionsViewController.h */,
+				E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -645,6 +650,7 @@
 				E6EC1E5416C05EB3007E8FCF /* Section.m in Sources */,
 				E6EC1E5716C05EDB007E8FCF /* Room.m in Sources */,
 				E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */,
+				E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,23 @@
   NSMutableArray *_tableSections;
 }
 
+-(id)initWithSection:(Section *)section {
+  NSArray *studentArray = [[section students] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:NO]]];
+  self = [self initWithStudents:studentArray];
+  if (self) {
+    self.section = section;
+  }
+  return self;
+}
+
+-(id)initWithStudents:(NSArray *)students {
+  self = [self initWithStyle:UITableViewStylePlain];
+  if (self) {
+    self.students = students;
+  }
+  return self;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style {
   self = [super initWithStyle:style];
   if (self) {
@@ -39,19 +56,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   // Load students if they haven't been set
-  if (!self.students.count) {
-    NSArray *students = [Student fetchStudentsInContext:self.managedObjectContext];
-    if (!students.count) {
-      // Insert some students in the the context
-      students = @[
-        [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext],
-        [Student studentWithFirstName:@"Alex" lastName:@"Hendrix" context:self.managedObjectContext]
-      ];
-      // TODO(ssheldon): Handle errors
-      [self.managedObjectContext save:nil];
-    }
-    self.students = students;
-  }
+//  if (!self.students.count) {
+//    NSArray *students = [Student fetchStudentsInContext:self.managedObjectContext];
+//    if (!students.count) {
+//      // Insert some students in the the context
+//      students = @[
+//        [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext],
+//        [Student studentWithFirstName:@"Alex" lastName:@"Hendrix" context:self.managedObjectContext]
+//      ];
+//      // TODO(ssheldon): Handle errors
+//      [self.managedObjectContext save:nil];
+//    }
+//    self.students = students;
+//  }
 
   [super viewWillAppear:animated];
 }
@@ -109,6 +126,7 @@
       [new_students addObject:student];
       self.students = new_students;
     }
+    [student setSection:[self section]];
     [self reloadStudents];
   }
 }
@@ -176,6 +194,10 @@
 #pragma mark TAStudentEditDelegate
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  // Make sure that the section for the student is the correct section
+  // TODO(srice): Figure out a better place to put this. It doesn't feel right in the Student List View Controller
+  [student setSection:[self section]];
+  [[self managedObjectContext] save:nil];
   [self updateStudent:student withPreviousData:oldData];
 }
 

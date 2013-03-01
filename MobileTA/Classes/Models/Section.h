@@ -13,6 +13,9 @@
 
 @interface Section : NSManagedObject
 
++ (Student *)sectionWithName:(NSString *)name context:(NSManagedObjectContext *)context;
++ (NSArray *)fetchSectionsInContext:(NSManagedObjectContext *)context;
+
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *attendanceRecords;
 @property (nonatomic, retain) Room *room;

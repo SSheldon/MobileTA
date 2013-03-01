@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import "TAStudentsViewController.h"
 #import <UIKit/UIKit.h>
+#import "TAStudentsViewController.h"
+#import "TASectionsViewController.h"
 
 @interface TAWelcomeViewController : UIViewController {
 }

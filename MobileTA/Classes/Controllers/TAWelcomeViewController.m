@@ -61,10 +61,8 @@
 }
 
 -(IBAction)buttonPressed:(id)sender {
-  // UIButton *button = (UIButton *)sender;
-  
-  TAStudentsViewController *listViewController = [[TAStudentsViewController alloc] initWithStyle:UITableViewStylePlain];
-  [[self navigationController] pushViewController:listViewController animated:YES];
+  TASectionsViewController *sectionsViewController = [[TASectionsViewController alloc] initWithStyle:UITableViewStylePlain];
+  [[self navigationController] pushViewController:sectionsViewController animated:YES];
 }
 
 @end

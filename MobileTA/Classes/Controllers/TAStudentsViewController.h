@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Section.h"
 #import "TAStudentEditViewController.h"
 
 @interface TAStudentsViewController : UITableViewController <TAStudentEditDelegate>
 
-@property (copy, nonatomic) NSArray *students;
+-(id)initWithSection:(Section *)section;
+-(id)initWithStudents:(NSArray *)students;
+
+@property (nonatomic, nonatomic) Section *section;
+@property (nonatomic, copy) NSArray *students;
 
 @end
