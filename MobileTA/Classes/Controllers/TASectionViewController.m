@@ -38,6 +38,7 @@
 - (void)setSection:(Section *)section {
   _section = section;
   self.students = [section.students allObjects];
+  self.title = section.name;
 }
 
 - (void)selectStudent:(Student *)student {
