@@ -17,6 +17,8 @@
 		13345E6A16B7736100DD4FF2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6916B7736100DD4FF2 /* Default.png */; };
 		13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6B16B7736100DD4FF2 /* Default@2x.png */; };
 		13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */; };
+		133AE68716E54F97008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
+		133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
 		135116E216CDC24000D7376E /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116DF16CDC11E00D7376E /* libQuickDialog.a */; };
 		135116E416CDC36400D7376E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E316CDC36400D7376E /* CoreLocation.framework */; };
 		135116E616CDC38A00D7376E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E516CDC38A00D7376E /* MapKit.framework */; };
@@ -172,6 +174,8 @@
 		13345E6916B7736100DD4FF2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		13345E6B16B7736100DD4FF2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		133AE68516E54F97008385C2 /* TASectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionViewController.h; sourceTree = "<group>"; };
+		133AE68616E54F97008385C2 /* TASectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionViewController.m; sourceTree = "<group>"; };
 		135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		135116E316CDC36400D7376E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		135116E516CDC38A00D7376E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -442,6 +446,8 @@
 				4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */,
 				E63B8EB816DC2812007F3FE9 /* TASectionsViewController.h */,
 				E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */,
+				133AE68516E54F97008385C2 /* TASectionViewController.h */,
+				133AE68616E54F97008385C2 /* TASectionViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -656,6 +662,7 @@
 				E6EC1E5716C05EDB007E8FCF /* Room.m in Sources */,
 				E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */,
 				E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */,
+				133AE68716E54F97008385C2 /* TASectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +689,7 @@
 				13A44DE116DB2E0A0084D827 /* MobileTA.xcdatamodeld in Sources */,
 				13A44DE416DB33650084D827 /* TATestUtils.m in Sources */,
 				13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */,
+				133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

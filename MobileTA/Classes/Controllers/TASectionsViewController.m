@@ -8,6 +8,9 @@
 
 #import "TASectionsViewController.h"
 
+#import "Section.h"
+#import "TASectionViewController.h"
+
 @interface TASectionsViewController ()
 
 @end
@@ -114,7 +117,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //  [self editSection:[self sectionAtIndexPath:indexPath]];
-  TAStudentsViewController *listViewController = [[TAStudentsViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
+  TASectionViewController *listViewController = [[TASectionViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
   [[self navigationController] pushViewController:listViewController animated:YES];
   
 }
