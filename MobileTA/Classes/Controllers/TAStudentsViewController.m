@@ -14,68 +14,12 @@
   NSMutableArray *_tableSections;
 }
 
--(id)initWithSection:(Section *)section {
-  NSArray *studentArray = [[section students] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:NO]]];
-  self = [self initWithStudents:studentArray];
-  if (self) {
-    self.section = section;
-  }
-  return self;
-}
-
 -(id)initWithStudents:(NSArray *)students {
   self = [self initWithStyle:UITableViewStylePlain];
   if (self) {
     self.students = students;
   }
   return self;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style {
-  self = [super initWithStyle:style];
-  if (self) {
-    self.title = NSLocalizedString(@"Roster", nil);
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                               target:self
-                                                                               action:@selector(addNewStudent)];
-    self.navigationItem.rightBarButtonItem  = addButton;
-
-  }
-  return self;
-}
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-  // Uncomment the following line to preserve selection between presentations.
-  // self.clearsSelectionOnViewWillAppear = NO;
-
-  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  // Load students if they haven't been set
-//  if (!self.students.count) {
-//    NSArray *students = [Student fetchStudentsInContext:self.managedObjectContext];
-//    if (!students.count) {
-//      // Insert some students in the the context
-//      students = @[
-//        [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext],
-//        [Student studentWithFirstName:@"Alex" lastName:@"Hendrix" context:self.managedObjectContext]
-//      ];
-//      // TODO(ssheldon): Handle errors
-//      [self.managedObjectContext save:nil];
-//    }
-//    self.students = students;
-//  }
-
-  [super viewWillAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 - (void)setStudents:(NSArray *)students {
@@ -118,28 +62,7 @@
   return [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 }
 
-- (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
-  if (student.lastName != [oldData objectForKey:@"lastName"] ||
-      student.firstName != [oldData objectForKey:@"firstName"]) {
-    if (!oldData) {
-      NSMutableArray *new_students = [NSMutableArray arrayWithArray:self.students];
-      [new_students addObject:student];
-      self.students = new_students;
-    }
-    [student setSection:[self section]];
-    [self reloadStudents];
-  }
-}
-
-- (void)editStudent:(Student *)student {
-  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:student];
-  editViewController.delegate = self;
-  [self.navigationController pushViewController:editViewController animated:YES];
-}
-
-- (void)addNewStudent {
-  [self editStudent:nil];
-}
+- (void)selectStudent:(Student *)student { }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
   // Support all orientations
@@ -188,18 +111,7 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [self editStudent:[self studentAtIndexPath:indexPath]];
+  [self selectStudent:[self studentAtIndexPath:indexPath]];
 }
-
-#pragma mark TAStudentEditDelegate
-
-- (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
-  // Make sure that the section for the student is the correct section
-  // TODO(srice): Figure out a better place to put this. It doesn't feel right in the Student List View Controller
-  [student setSection:[self section]];
-  [[self managedObjectContext] save:nil];
-  [self updateStudent:student withPreviousData:oldData];
-}
-
 
 @end

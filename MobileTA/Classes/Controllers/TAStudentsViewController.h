@@ -10,12 +10,14 @@
 #import "Section.h"
 #import "TAStudentEditViewController.h"
 
-@interface TAStudentsViewController : UITableViewController <TAStudentEditDelegate>
+@interface TAStudentsViewController : UITableViewController
 
--(id)initWithSection:(Section *)section;
 -(id)initWithStudents:(NSArray *)students;
 
-@property (nonatomic, nonatomic) Section *section;
 @property (nonatomic, copy) NSArray *students;
+
+- (Student *)studentAtIndexPath:(NSIndexPath *)indexPath;
+- (void)selectStudent:(Student *)student;
+- (void)reloadStudents;
 
 @end

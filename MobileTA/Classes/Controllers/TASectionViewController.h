@@ -8,6 +8,12 @@
 
 #import "TAStudentsViewController.h"
 
-@interface TASectionViewController : TAStudentsViewController
+#import "TAStudentEditViewController.h"
+
+@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate>
+
+- (id)initWithSection:(Section *)section;
+
+@property (strong, nonatomic) Section *section;
 
 @end

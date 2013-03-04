@@ -10,4 +10,71 @@
 
 @implementation TASectionViewController
 
+- (id)init {
+  self = [self initWithStyle:UITableViewStylePlain];
+  return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if (self) {
+      self.title = NSLocalizedString(@"Roster", nil);
+      self.navigationItem.rightBarButtonItem =
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                      target:self
+                                                      action:@selector(addNewStudent)];
+    }
+    return self;
+}
+
+- (id)initWithSection:(Section *)section {
+  self = [super init];
+  if (self) {
+    self.section = section;
+  }
+  return self;
+}
+
+- (void)setSection:(Section *)section {
+  _section = section;
+  self.students = [section.students allObjects];
+}
+
+- (void)selectStudent:(Student *)student {
+  [self editStudent:student];
+}
+
+- (void)editStudent:(Student *)student {
+  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:student];
+  editViewController.delegate = self;
+  [self.navigationController pushViewController:editViewController animated:YES];
+}
+
+- (void)addNewStudent {
+  [self editStudent:nil];
+}
+
+- (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  if (student.lastName != [oldData objectForKey:@"lastName"] ||
+      student.firstName != [oldData objectForKey:@"firstName"]) {
+    if (!oldData) {
+      // Make sure that the section for the student is the correct section
+      student.section = self.section;
+      [[self managedObjectContext] save:nil];
+      // Add the student
+      NSMutableArray *new_students = [NSMutableArray arrayWithArray:self.students];
+      [new_students addObject:student];
+      self.students = new_students;
+    } else {
+      [self reloadStudents];
+    }
+  }
+}
+
+#pragma mark TAStudentEditDelegate
+
+- (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  [self updateStudent:student withPreviousData:oldData];
+}
+
 @end
