@@ -8,6 +8,8 @@
 
 #import "TAWelcomeViewController.h"
 
+#import "TASectionsViewController.h"
+
 @implementation TAWelcomeViewController
 
 @synthesize importButton = _importButton;
