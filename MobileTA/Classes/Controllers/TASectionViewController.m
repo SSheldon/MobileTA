@@ -19,10 +19,16 @@
     self = [super initWithStyle:style];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
-      self.navigationItem.rightBarButtonItem =
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                      target:self
-                                                      action:@selector(addNewStudent)];
+      self.navigationItem.rightBarButtonItem = self.editButtonItem;
+      self.tableView.allowsSelectionDuringEditing = YES;
+//     self.navigationItem.rightBarButtonItem =
+//          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+//                                                        target:self
+//                                                        action:@selector(setEditing:animated:)];
+//      self.navigationItem.rightBarButtonItem =
+//        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                                                      target:self
+//                                                      action:@selector(addNewStudent)];
     }
     return self;
 }
@@ -42,17 +48,22 @@
 }
 
 - (void)selectStudent:(Student *)student {
-  [self editStudent:student];
+  if(self.tableView.editing) {
+    [self editStudent:student];
+  }
+  else {
+    [self showDetailsForStudent:student];
+  }
+}
+
+- (void)addNewStudent {
+  [self editStudent:nil];
 }
 
 - (void)editStudent:(Student *)student {
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:student];
   editViewController.delegate = self;
   [self.navigationController pushViewController:editViewController animated:YES];
-}
-
-- (void)addNewStudent {
-  [self editStudent:nil];
 }
 
 - (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {

@@ -96,22 +96,66 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  Student *student = [self studentAtIndexPath:indexPath];
+  if([indexPath row] == indexOfDetailedStudent + 1) {
+    return [self createDetailCellForStudent:student];
+  }
+  
+  return [self createDisplayCellForStudent:student];
+}
+
+- (UITableViewCell *)createDisplayCellForStudent:(Student *)student {
   static NSString *studentCellId = @"StudentCell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:studentCellId];
+  UITableViewCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentCellId];
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
   }
-
-  Student *student = [self studentAtIndexPath:indexPath];
   cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
-
+  
   return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Return NO if you do not want the specified item to be editable.
+  return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if(editingStyle == UITableViewCellEditingStyleDelete) {
+    // Remove the student at that index from the database
+    Student *student = [self studentAtIndexPath:indexPath];
+    [[self managedObjectContext] deleteObject:student];
+    // TODO(ssheldon)
+    // jk TODO(srice): Handle Errors
+    [[self managedObjectContext] save:nil];
+    // Remove student from the Students array
+    NSMutableArray *mutableStudents = [[self students] mutableCopy];
+    [mutableStudents removeObject:student];
+    [self setStudents:[NSArray arrayWithArray:mutableStudents]];
+    [self reloadStudents];
+  }
 }
 
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [self selectStudent:[self studentAtIndexPath:indexPath]];
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark Student Details Methods
+
+- (UITableViewCell *)createDetailCellForStudent:(Student *)student {
+  // For now, just make the same cell again
+  return [self createDisplayCellForStudent:student];
+}
+
+- (void)showDetailsForStudent:(Student *)student {
+  
+}
+
+- (void)hideStudentDetails {
+    
 }
 
 @end

@@ -10,7 +10,9 @@
 #import "Section.h"
 #import "TAStudentEditViewController.h"
 
-@interface TAStudentsViewController : UITableViewController
+@interface TAStudentsViewController : UITableViewController {
+  NSIndexPath *detailedStudentIndex;
+}
 
 -(id)initWithStudents:(NSArray *)students;
 
@@ -19,5 +21,8 @@
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath;
 - (void)selectStudent:(Student *)student;
 - (void)reloadStudents;
+// Student Details Methods
+- (void)showDetailsForStudent:(Student *)student;
+- (void)hideStudentDetails;
 
 @end
