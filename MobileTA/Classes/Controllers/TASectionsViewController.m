@@ -68,6 +68,9 @@
 
 - (void)setSections:(NSArray *)sections {
   _sections = [sections copy];
+  if ([self isViewLoaded]) {
+    [self.tableView reloadData];
+  }
 }
 
 - (Section *)sectionAtIndexPath:(NSIndexPath *)indexPath {

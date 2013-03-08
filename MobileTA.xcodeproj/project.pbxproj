@@ -19,6 +19,9 @@
 		13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */; };
 		133AE68716E54F97008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
 		133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
+		134A855016E98AEB0078E521 /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
+		134A855816E98D610078E521 /* TASectionsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 134A855716E98D610078E521 /* TASectionsViewTest.m */; };
+		134A856416E994510078E521 /* TASectionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */; };
 		135116E216CDC24000D7376E /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116DF16CDC11E00D7376E /* libQuickDialog.a */; };
 		135116E416CDC36400D7376E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E316CDC36400D7376E /* CoreLocation.framework */; };
 		135116E616CDC38A00D7376E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E516CDC38A00D7376E /* MapKit.framework */; };
@@ -180,6 +183,7 @@
 		13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		133AE68516E54F97008385C2 /* TASectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionViewController.h; sourceTree = "<group>"; };
 		133AE68616E54F97008385C2 /* TASectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionViewController.m; sourceTree = "<group>"; };
+		134A855716E98D610078E521 /* TASectionsViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASectionsViewTest.m; path = Views/TASectionsViewTest.m; sourceTree = "<group>"; };
 		135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		135116E316CDC36400D7376E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		135116E516CDC38A00D7376E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -387,6 +391,7 @@
 				135F124916D74286009C310A /* TAWelcomeViewTest.m */,
 				1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */,
 				13A44DE616DB35870084D827 /* TAStudentsViewTest.m */,
+				134A855716E98D610078E521 /* TASectionsViewTest.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -459,9 +464,9 @@
 				E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */,
 				E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */,
 				E6804DF616CDCD3F000E2007 /* TAStudentEditViewController.h */,
+				E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */,
 				9FBF84EF16E7F973000077D5 /* TASectionEditViewController.h */,
 				9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */,
-				E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */,
 				4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */,
 				4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */,
 				E63B8EB816DC2812007F3FE9 /* TASectionsViewController.h */,
@@ -716,6 +721,9 @@
 				13A44DE416DB33650084D827 /* TATestUtils.m in Sources */,
 				13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */,
 				133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */,
+				134A855016E98AEB0078E521 /* TAStudentDetailCell.m in Sources */,
+				134A855816E98D610078E521 /* TASectionsViewTest.m in Sources */,
+				134A856416E994510078E521 /* TASectionEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
