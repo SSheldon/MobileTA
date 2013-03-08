@@ -19,16 +19,13 @@
     self = [super initWithStyle:style];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
-      self.navigationItem.rightBarButtonItem = self.editButtonItem;
+      self.navigationItem.rightBarButtonItems = @[
+        self.editButtonItem,
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                      target:self
+                                                      action:@selector(addNewStudent)]
+      ];
       self.tableView.allowsSelectionDuringEditing = YES;
-//     self.navigationItem.rightBarButtonItem =
-//          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-//                                                        target:self
-//                                                        action:@selector(setEditing:animated:)];
-//      self.navigationItem.rightBarButtonItem =
-//        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-//                                                      target:self
-//                                                      action:@selector(addNewStudent)];
     }
     return self;
 }
