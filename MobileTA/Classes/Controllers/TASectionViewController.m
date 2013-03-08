@@ -19,16 +19,13 @@
     self = [super initWithStyle:style];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
-      self.navigationItem.rightBarButtonItem = self.editButtonItem;
+      self.navigationItem.rightBarButtonItems = @[
+        self.editButtonItem,
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                      target:self
+                                                      action:@selector(addNewStudent)]
+      ];
       self.tableView.allowsSelectionDuringEditing = YES;
-//     self.navigationItem.rightBarButtonItem =
-//          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-//                                                        target:self
-//                                                        action:@selector(setEditing:animated:)];
-//      self.navigationItem.rightBarButtonItem =
-//        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-//                                                      target:self
-//                                                      action:@selector(addNewStudent)];
     }
     return self;
 }
@@ -39,6 +36,20 @@
     self.section = section;
   }
   return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+#if DEBUG
+  // If this section is empty, populate it from the sample roster.
+  if (!self.section.students.count) {
+    NSArray *sampleStudents = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
+    [self.section addStudents:[NSSet setWithArray:sampleStudents]];
+    [self.managedObjectContext save:nil];
+    self.students = sampleStudents;
+  }
+#endif
 }
 
 - (void)setSection:(Section *)section {
