@@ -25,10 +25,17 @@
   self = [super initWithStyle:style];
   if (self) {
     self.title = NSLocalizedString(@"Classes", nil);
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                               target:self
-                                                                               action:@selector(addNewSection)];
-    self.navigationItem.rightBarButtonItem  = addButton;
+    self.navigationItem.rightBarButtonItems = @[
+                                                self.editButtonItem,
+                                                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                              target:self
+                                                                                              action:@selector(addNewSection)]
+                                                ];
+    self.tableView.allowsSelectionDuringEditing = YES;
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                                                                               target:self
+//                                                                               action:@selector(addNewSection)];
+//    self.navigationItem.rightBarButtonItem  = addButton;
     
   }
   return self;
@@ -113,13 +120,37 @@
   return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Return NO if you do not want the specified item to be editable.
+  return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if(editingStyle == UITableViewCellEditingStyleDelete) {
+    // Remove the student at that index from the database
+    Section *section = [self sectionAtIndexPath:indexPath];
+    [[self managedObjectContext] deleteObject:section];
+    // TODO(ssheldon)
+    // jk TODO(srice): Handle Errors
+    [[self managedObjectContext] save:nil];
+    // Remove student from the Students array
+    NSMutableArray *mutableSections = [[self sections] mutableCopy];
+    [mutableSections removeObject:section];
+    [self setSections:[NSArray arrayWithArray:mutableSections]];
+    [[self tableView] reloadData];
+  }
+}
+
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//  [self editSection:[self sectionAtIndexPath:indexPath]];
-  TASectionViewController *listViewController = [[TASectionViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
-  [[self navigationController] pushViewController:listViewController animated:YES];
-  
+  if(self.tableView.editing) {
+    [self editSection:[self sectionAtIndexPath:indexPath]];
+  }
+  else {
+    TASectionViewController *listViewController = [[TASectionViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
+    [[self navigationController] pushViewController:listViewController animated:YES];
+  }
 }
 
 @end
