@@ -53,6 +53,7 @@
 		13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DE616DB35870084D827 /* TAStudentsViewTest.m */; };
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
+		13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
 		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
 		9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
@@ -194,6 +195,7 @@
 		13A44DE616DB35870084D827 /* TAStudentsViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentsViewTest.m; path = Views/TAStudentsViewTest.m; sourceTree = "<group>"; };
 		13BA038C16D4B8AD0004C698 /* blackboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackboard.jpg; path = Images/blackboard.jpg; sourceTree = "<group>"; };
 		13BA038D16D4B8AD0004C698 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
+		13FFBD5D16E96FEB001BB929 /* roster.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = roster.csv; path = Mocks/roster.csv; sourceTree = "<group>"; };
 		402DAA0216C07F3800D43854 /* parseCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseCSV.h; sourceTree = "<group>"; };
 		402DAA0316C07F3900D43854 /* parseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseCSV.m; sourceTree = "<group>"; };
 		4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWelcomeViewController.h; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				1322E27816BA1C2B00C890B4 /* Classes */,
 				E66DB7DF16C9ADB800B4AF30 /* Libraries */,
 				1322E27C16BA24E500C890B4 /* Images */,
+				13FFBD5716E96FD7001BB929 /* Mocks */,
 				13345E6616B7736100DD4FF2 /* TAAppDelegate.h */,
 				13345E6716B7736100DD4FF2 /* TAAppDelegate.m */,
 				13345E5E16B7736100DD4FF2 /* Supporting Files */,
@@ -400,6 +403,14 @@
 				13A44DDF16DB244E0084D827 /* StudentTest.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		13FFBD5716E96FD7001BB929 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				13FFBD5D16E96FEB001BB929 /* roster.csv */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 		E66DB7DF16C9ADB800B4AF30 /* Libraries */ = {
@@ -611,6 +622,7 @@
 				13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */,
 				13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */,
 				13BA038F16D4B8AD0004C698 /* logo.png in Resources */,
+				13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

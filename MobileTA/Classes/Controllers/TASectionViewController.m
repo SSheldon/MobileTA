@@ -38,6 +38,20 @@
   return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+#if DEBUG
+  // If this section is empty, populate it from the sample roster.
+  if (!self.section.students.count) {
+    NSArray *sampleStudents = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
+    [self.section addStudents:[NSSet setWithArray:sampleStudents]];
+    [self.managedObjectContext save:nil];
+    self.students = sampleStudents;
+  }
+#endif
+}
+
 - (void)setSection:(Section *)section {
   _section = section;
   self.students = [section.students allObjects];
