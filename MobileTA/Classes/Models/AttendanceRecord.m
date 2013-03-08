@@ -13,6 +13,8 @@
 
 @implementation AttendanceRecord
 
+@dynamic date;
+@dynamic name;
 @dynamic section;
 @dynamic studentAttendances;
 

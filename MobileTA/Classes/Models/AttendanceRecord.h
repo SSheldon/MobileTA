@@ -13,6 +13,8 @@
 
 @interface AttendanceRecord : NSManagedObject
 
+@property (nonatomic, retain) NSDate *date;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) NSSet *studentAttendances;
 @end

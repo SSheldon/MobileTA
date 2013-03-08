@@ -7,8 +7,8 @@
 //
 
 #import "TAStudentsViewController.h"
-
 #import "TAStudentEditViewController.h"
+#import "TAStudentDetailCell.h"
 
 @interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate>
 

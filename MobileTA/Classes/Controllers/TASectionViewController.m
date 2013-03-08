@@ -19,10 +19,13 @@
     self = [super initWithStyle:style];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
-      self.navigationItem.rightBarButtonItem =
+      self.navigationItem.rightBarButtonItems = @[
+        self.editButtonItem,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                       target:self
-                                                      action:@selector(addNewStudent)];
+                                                      action:@selector(addNewStudent)]
+      ];
+      self.tableView.allowsSelectionDuringEditing = YES;
     }
     return self;
 }
@@ -35,6 +38,20 @@
   return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+#if DEBUG
+  // If this section is empty, populate it from the sample roster.
+  if (!self.section.students.count) {
+    NSArray *sampleStudents = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
+    [self.section addStudents:[NSSet setWithArray:sampleStudents]];
+    [self.managedObjectContext save:nil];
+    self.students = sampleStudents;
+  }
+#endif
+}
+
 - (void)setSection:(Section *)section {
   _section = section;
   self.students = [section.students allObjects];
@@ -42,17 +59,22 @@
 }
 
 - (void)selectStudent:(Student *)student {
-  [self editStudent:student];
+  if(self.tableView.editing) {
+    [self editStudent:student];
+  }
+  else {
+    [self showDetailsForStudent:student];
+  }
+}
+
+- (void)addNewStudent {
+  [self editStudent:nil];
 }
 
 - (void)editStudent:(Student *)student {
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:student];
   editViewController.delegate = self;
   [self.navigationController pushViewController:editViewController animated:YES];
-}
-
-- (void)addNewStudent {
-  [self editStudent:nil];
 }
 
 - (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
@@ -70,6 +92,18 @@
       [self reloadStudents];
     }
   }
+}
+
+- (UITableViewCell *)createDetailCellForStudent:(Student *)student {
+  static NSString *studentDetailCellId = @"StudentDetailCell";
+  TAStudentDetailCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDetailCellId];
+  if (!cell) {
+    cell = [[TAStudentDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDetailCellId];
+  }
+  [cell setController:self];
+//  cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
+  
+  return cell;
 }
 
 #pragma mark TAStudentEditDelegate

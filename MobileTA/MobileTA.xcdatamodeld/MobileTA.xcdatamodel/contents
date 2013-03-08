@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C3012" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AttendanceRecord" representedClassName="AttendanceRecord" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="section" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="attendanceRecords" inverseEntity="Section" syncable="YES"/>
-        <relationship name="studentAttendances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StudentAttendance" inverseName="attendanceRecord" inverseEntity="StudentAttendance" syncable="YES"/>
+        <relationship name="studentAttendances" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StudentAttendance" inverseName="attendanceRecord" inverseEntity="StudentAttendance" syncable="YES"/>
     </entity>
     <entity name="Room" representedClassName="Room" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,14 +19,14 @@
     </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="attendanceRecords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AttendanceRecord" inverseName="section" inverseEntity="AttendanceRecord" syncable="YES"/>
+        <relationship name="attendanceRecords" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AttendanceRecord" inverseName="section" inverseEntity="AttendanceRecord" syncable="YES"/>
         <relationship name="room" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="sections" inverseEntity="Room" syncable="YES"/>
-        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="section" inverseEntity="Student" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Student" inverseName="section" inverseEntity="Student" syncable="YES"/>
     </entity>
     <entity name="Student" representedClassName="Student" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="attendances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StudentAttendance" inverseName="student" inverseEntity="StudentAttendance" syncable="YES"/>
+        <relationship name="attendances" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StudentAttendance" inverseName="student" inverseEntity="StudentAttendance" syncable="YES"/>
         <relationship name="section" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="students" inverseEntity="Section" syncable="YES"/>
     </entity>
     <entity name="StudentAttendance" representedClassName="StudentAttendance" syncable="YES">
@@ -34,10 +36,10 @@
         <relationship name="student" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="attendances" inverseEntity="Student" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AttendanceRecord" positionX="70" positionY="33" width="128" height="75"/>
+        <element name="AttendanceRecord" positionX="70" positionY="33" width="128" height="103"/>
         <element name="Room" positionX="-117" positionY="27" width="128" height="90"/>
         <element name="Seat" positionX="-135" positionY="165" width="128" height="105"/>
-        <element name="Section" positionX="72" positionY="-117" width="128" height="105"/>
+        <element name="Section" positionX="72" positionY="-117" width="128" height="103"/>
         <element name="Student" positionX="261" positionY="18" width="128" height="103"/>
         <element name="StudentAttendance" positionX="162" positionY="243" width="128" height="105"/>
     </elements>

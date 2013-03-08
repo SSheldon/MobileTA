@@ -59,7 +59,26 @@
 }
 
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
-  return [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+  // If there are no student details or if the student details are in a different section,
+  // we just proceed normally
+  if (detailedStudentIndex == nil || [indexPath section] != [detailedStudentIndex section]) {
+    return [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+  }
+  // Otherwise, we need to adjust for the fact that the detail cell is there. To do that,
+  // we just check whether the index is above the detailed student index.
+  NSInteger adjustedIndex = [indexPath row];
+  if ([detailedStudentIndex row] < [indexPath row]) {
+    adjustedIndex--;
+  }
+  return [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:adjustedIndex];
+}
+
+- (NSIndexPath *)indexPathOfStudent:(Student *)student {
+  if ([[self students] indexOfObject:student] == -1) {
+    return nil;
+  }
+  NSInteger studentSection = [[UILocalizedIndexedCollation currentCollation] sectionForObject:student collationStringSelector:@selector(lastName)];
+  return [NSIndexPath indexPathForRow:[[_tableSections objectAtIndex:studentSection] indexOfObject:student] inSection:studentSection];
 }
 
 - (void)selectStudent:(Student *)student { }
@@ -76,7 +95,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [[_tableSections objectAtIndex:section] count];
+  NSInteger adjustment = 0;
+  if (detailedStudentIndex != nil && [detailedStudentIndex section] == section) {
+    adjustment++;
+  }
+  return [[_tableSections objectAtIndex:section] count] + adjustment;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -96,22 +119,89 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  Student *student = [self studentAtIndexPath:indexPath];
+  if([indexPath isEqual:[self indexPathOfDetailCell]]) {
+    return [self createDetailCellForStudent:student];
+  }
+  
+  return [self createDisplayCellForStudent:student];
+}
+
+- (UITableViewCell *)createDisplayCellForStudent:(Student *)student {
   static NSString *studentCellId = @"StudentCell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:studentCellId];
+  UITableViewCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentCellId];
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
   }
-
-  Student *student = [self studentAtIndexPath:indexPath];
   cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
-
+  
   return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Return NO if you do not want the specified item to be editable.
+  return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if(editingStyle == UITableViewCellEditingStyleDelete) {
+    // Remove the student at that index from the database
+    Student *student = [self studentAtIndexPath:indexPath];
+    [[self managedObjectContext] deleteObject:student];
+    // TODO(ssheldon)
+    // jk TODO(srice): Handle Errors
+    [[self managedObjectContext] save:nil];
+    // Remove student from the Students array
+    NSMutableArray *mutableStudents = [[self students] mutableCopy];
+    [mutableStudents removeObject:student];
+    [self setStudents:[NSArray arrayWithArray:mutableStudents]];
+    [self reloadStudents];
+  }
 }
 
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [self selectStudent:[self studentAtIndexPath:indexPath]];
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark Student Details Methods
+
+- (NSIndexPath *)indexPathOfDetailCell {
+  // The detail cell should be the cell below the detailed student
+  if (!detailedStudentIndex) {
+    return nil;
+  }
+  return [NSIndexPath indexPathForRow:[detailedStudentIndex row]+1 inSection:[detailedStudentIndex section]];
+}
+
+- (UITableViewCell *)createDetailCellForStudent:(Student *)student {
+  // By default, we have no idea what they want to show in the detail cell, but
+  // it needs to return SOMETHING, so just make another display cell for the
+  // the same student
+  return [self createDisplayCellForStudent:student];
+}
+
+- (void)showDetailsForStudent:(Student *)student {
+  NSIndexPath *oldIndex = detailedStudentIndex;
+  [self hideStudentDetails];
+  NSIndexPath *newIndex = [self indexPathOfStudent:student];
+  if (![oldIndex isEqual:newIndex]) {
+    detailedStudentIndex = newIndex;
+    NSIndexPath *detailCellIndexPath = [self indexPathOfDetailCell];
+    [[self tableView] insertRowsAtIndexPaths:@[detailCellIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
+  }
+}
+
+- (void)hideStudentDetails {
+  // If the detail view isn't on,
+  if (!detailedStudentIndex) {
+    return;
+  }
+  NSIndexPath *cache = [self indexPathOfDetailCell];
+  detailedStudentIndex = nil;
+  [[self tableView] deleteRowsAtIndexPaths:@[cache] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 @end
