@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) Section *section;
-@property (nonatomic, retain) NSSet *attendances;
+@property (nonatomic, retain) NSMutableSet *attendances;
 
 /*!
  * Create a Student.
@@ -43,7 +43,7 @@
 
 - (void)addAttendancesObject:(StudentAttendance *)value;
 - (void)removeAttendancesObject:(StudentAttendance *)value;
-- (void)addAttendances:(NSSet *)values;
-- (void)removeAttendances:(NSSet *)values;
+- (void)addAttendances:(NSMutableSet *)values;
+- (void)removeAttendances:(NSMutableSet *)values;
 
 @end
