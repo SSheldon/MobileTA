@@ -40,4 +40,12 @@
   GHAssertEqualStrings(savedStudent.lastName, @"Sheldon", nil);
 }
 
+- (void)testStudentsFromCSV {
+  NSArray *students = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
+  GHAssertEquals(students.count, 50U, nil);
+  Student *firstStudent = [students objectAtIndex:0];
+  GHAssertEqualStrings(firstStudent.firstName, @"Essie", nil);
+  GHAssertEqualStrings(firstStudent.lastName, @"Vaill", nil);
+}
+
 @end

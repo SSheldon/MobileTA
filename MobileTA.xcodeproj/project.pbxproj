@@ -54,6 +54,7 @@
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
 		13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
+		13FFBD6316E975C4001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
 		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
 		9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
@@ -633,6 +634,7 @@
 				135F11FF16D7124F009C310A /* InfoPlist.strings in Resources */,
 				9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */,
 				9F4070C716DC06F800CDC59F /* logo.png in Resources */,
+				13FFBD6316E975C4001BB929 /* roster.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
