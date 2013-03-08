@@ -11,6 +11,12 @@
 
 @class AttendanceRecord, Student;
 
+typedef NS_ENUM(NSInteger, StudentAttendanceStatus) {
+  StudentAttendanceStatusAbsent,
+  StudentAttendanceStatusTardy,
+  StudentAttendanceStatusPresent
+};
+
 @interface StudentAttendance : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * participation;
