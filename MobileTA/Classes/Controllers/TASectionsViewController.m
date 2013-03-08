@@ -8,9 +8,6 @@
 
 #import "TASectionsViewController.h"
 
-#import "Section.h"
-#import "TASectionViewController.h"
-
 @interface TASectionsViewController ()
 
 @end
@@ -79,9 +76,9 @@
 
 - (void)editSection:(Section *)section {
   //  Do nothing right now. In the end the code will most likely look like this though (similar to edit student code)
-  //  TASectionEditViewController *editViewController = [[TASectionEditViewController alloc] initWithSection:section];
-  //  editViewController.delegate = self;
-  //  [self.navigationController pushViewController:editViewController animated:YES];
+  TASectionEditViewController *editViewController = [[TASectionEditViewController alloc] initWithSection:section];
+  editViewController.delegate = self;
+  [self.navigationController pushViewController:editViewController animated:YES];
 }
 
 - (void)addNewSection {
@@ -151,6 +148,20 @@
     TASectionViewController *listViewController = [[TASectionViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
     [[self navigationController] pushViewController:listViewController animated:YES];
   }
+}
+
+- (void)updateSection:(Section *)section withPreviousData:(NSDictionary *)oldData {
+  if (section.name != [oldData objectForKey:@"name"]) {
+    
+  }
+}
+
+
+#pragma mark TASectionEditDelegate
+
+- (void)viewController:(TASectionEditViewController *)viewController savedSection:(Section *)section withPreviousData:(NSDictionary *)oldData
+{
+  [self updateSection:section withPreviousData:oldData];
 }
 
 @end

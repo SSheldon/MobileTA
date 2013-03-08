@@ -20,7 +20,6 @@
 @end
 
 @interface TAStudentEditViewController : QuickDialogController {
-
 }
 
 + (QRootElement *)formForStudent:(Student *)student;
