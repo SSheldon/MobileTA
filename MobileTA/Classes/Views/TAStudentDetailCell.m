@@ -8,6 +8,14 @@
 
 #import "TAStudentDetailCell.h"
 
+// 10px between elements
+#define HORIZONTAL_SPACING 10
+// We want much less space verticaly, as we are already constrained
+#define VERTICAL_SPACING 4
+// Padding on the right hand side to make sure that the button doesn't get
+// covered by the index
+#define RIGHT_PADDING 20
+
 @implementation TAStudentDetailCell
 
 @synthesize controller=_controller;
@@ -39,27 +47,23 @@
 - (void)layoutSubviews {
   CGFloat width = self.bounds.size.width;
   CGFloat height = self.bounds.size.height;
-  // 10px between elements
-  CGFloat horizontalSpacing = 10;
-  // We want much less space verticaly, as we are already constrained
-  CGFloat verticalSpacing = 2;
   NSArray *views = @[absent,tardy,plusParticipation,minusParticipation];
   // There are 2 spaces on either side of the cell, and n-1 spaces between cells
   NSInteger numHorizontalSpaces = 2 + ([views count]-1);
   // The width of the buttons is the width of the page, minus all of the area
-  // taken up by spacing, evenly distributed between the 4 buttons
-  CGFloat buttonWidth = (width - (horizontalSpacing * numHorizontalSpaces)) / 4;
+  // taken up by spacing, evenly distributed between the buttons
+  CGFloat buttonWidth = (width - RIGHT_PADDING - (HORIZONTAL_SPACING * numHorizontalSpaces)) / [views count];
   // The height of the buttons is just the height of the cell, minus the spacing
   // on either side
-  CGFloat buttonHeight = (height - (verticalSpacing * 2));
+  CGFloat buttonHeight = (height - (VERTICAL_SPACING * 2));
   // We start with x as the length of the horizontal spacing
-  CGFloat x = horizontalSpacing;
+  CGFloat x = HORIZONTAL_SPACING;
   // Always stays here
-  CGFloat y = verticalSpacing;
+  CGFloat y = VERTICAL_SPACING;
   for (NSUInteger i = 0; i < [views count]; i++) {
     UIView *current = [views objectAtIndex:i];
     [current setFrame:CGRectMake(x,y,buttonWidth,buttonHeight)];
-    x = x + buttonWidth + horizontalSpacing;
+    x = x + buttonWidth + HORIZONTAL_SPACING;
     [current setNeedsDisplay];
   }
 }
