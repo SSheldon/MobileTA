@@ -83,6 +83,18 @@
   }
 }
 
+- (UITableViewCell *)createDetailCellForStudent:(Student *)student {
+  static NSString *studentDetailCellId = @"StudentDetailCell";
+  TAStudentDetailCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDetailCellId];
+  if (!cell) {
+    cell = [[TAStudentDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDetailCellId];
+  }
+  [cell setController:self];
+//  cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
+  
+  return cell;
+}
+
 #pragma mark TAStudentEditDelegate
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {

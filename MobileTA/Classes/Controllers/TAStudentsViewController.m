@@ -66,7 +66,7 @@
   }
   // Otherwise, we need to adjust for the fact that the detail cell is there. To do that,
   // we just check whether the index is above the detailed student index.
-  NSInteger adjustedIndex = [detailedStudentIndex row];
+  NSInteger adjustedIndex = [indexPath row];
   if ([detailedStudentIndex row] < [indexPath row]) {
     adjustedIndex--;
   }
@@ -74,9 +74,11 @@
 }
 
 - (NSIndexPath *)indexPathOfStudent:(Student *)student {
-  // TODO: Implement
-//  NSInteger studentSection = [[UILocalizedIndexedCollation currentCollation] sectionForObject:student collationStringSelector:@selector(lastName)];
-  return [NSIndexPath indexPathForRow:0 inSection:0];
+  if ([[self students] indexOfObject:student] == -1) {
+    return nil;
+  }
+  NSInteger studentSection = [[UILocalizedIndexedCollation currentCollation] sectionForObject:student collationStringSelector:@selector(lastName)];
+  return [NSIndexPath indexPathForRow:[[_tableSections objectAtIndex:studentSection] indexOfObject:student] inSection:studentSection];
 }
 
 - (void)selectStudent:(Student *)student { }
@@ -93,7 +95,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [[_tableSections objectAtIndex:section] count];
+  NSInteger adjustment = 0;
+  if (detailedStudentIndex != nil && [detailedStudentIndex section] == section) {
+    adjustment++;
+  }
+  return [[_tableSections objectAtIndex:section] count] + adjustment;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -168,18 +174,31 @@
 }
 
 - (UITableViewCell *)createDetailCellForStudent:(Student *)student {
-  // For now, just make the same cell again
+  // By default, we have no idea what they want to show in the detail cell, but
+  // it needs to return SOMETHING, so just make another display cell for the
+  // the same student
   return [self createDisplayCellForStudent:student];
 }
 
 - (void)showDetailsForStudent:(Student *)student {
-  detailedStudentIndex = [self indexPathOfStudent:student];
-  NSIndexPath *detailCellIndexPath = [self indexPathOfDetailCell];
-  [[self tableView] insertRowsAtIndexPaths:@[detailCellIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
+  NSIndexPath *oldIndex = detailedStudentIndex;
+  [self hideStudentDetails];
+  NSIndexPath *newIndex = [self indexPathOfStudent:student];
+  if (![oldIndex isEqual:newIndex]) {
+    detailedStudentIndex = newIndex;
+    NSIndexPath *detailCellIndexPath = [self indexPathOfDetailCell];
+    [[self tableView] insertRowsAtIndexPaths:@[detailCellIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
+  }
 }
 
 - (void)hideStudentDetails {
-  
+  // If the detail view isn't on,
+  if (!detailedStudentIndex) {
+    return;
+  }
+  NSIndexPath *cache = [self indexPathOfDetailCell];
+  detailedStudentIndex = nil;
+  [[self tableView] deleteRowsAtIndexPaths:@[cache] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 @end
