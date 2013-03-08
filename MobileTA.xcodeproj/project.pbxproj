@@ -57,6 +57,7 @@
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
 		9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		9F4070C716DC06F800CDC59F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
+		9FBF84F116E7F973000077D5 /* TASectionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */; };
 		9FC025B216E0471F00C1CBA6 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
 		E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
@@ -198,6 +199,8 @@
 		402DAA0316C07F3900D43854 /* parseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseCSV.m; sourceTree = "<group>"; };
 		4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWelcomeViewController.h; sourceTree = "<group>"; };
 		4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAWelcomeViewController.m; sourceTree = "<group>"; };
+		9FBF84EF16E7F973000077D5 /* TASectionEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionEditViewController.h; sourceTree = "<group>"; };
+		9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionEditViewController.m; sourceTree = "<group>"; };
 		E63B8EB816DC2812007F3FE9 /* TASectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionsViewController.h; sourceTree = "<group>"; };
 		E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionsViewController.m; sourceTree = "<group>"; };
 		E6804DF616CDCD3F000E2007 /* TAStudentEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentEditViewController.h; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 				E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */,
 				E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */,
 				E6804DF616CDCD3F000E2007 /* TAStudentEditViewController.h */,
+				9FBF84EF16E7F973000077D5 /* TASectionEditViewController.h */,
+				9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */,
 				E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */,
 				4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */,
 				4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */,
@@ -663,6 +668,7 @@
 				E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */,
 				E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */,
 				133AE68716E54F97008385C2 /* TASectionViewController.m in Sources */,
+				9FBF84F116E7F973000077D5 /* TASectionEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
