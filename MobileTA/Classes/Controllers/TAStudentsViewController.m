@@ -170,6 +170,9 @@
 
 - (NSIndexPath *)indexPathOfDetailCell {
   // The detail cell should be the cell below the detailed student
+  if (!detailedStudentIndex) {
+    return nil;
+  }
   return [NSIndexPath indexPathForRow:[detailedStudentIndex row]+1 inSection:[detailedStudentIndex section]];
 }
 
