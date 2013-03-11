@@ -22,7 +22,7 @@
 - (void)selectStudent:(Student *)student;
 - (void)reloadStudents;
 // Student Details Methods
-- (StudentAttendance *)initStudentRecord:(Student *)student;
+- (StudentAttendance *)createStudentRecord:(Student *)student;
 - (void)showDetailsForStudent:(Student *)student;
 - (void)hideStudentDetails;
 - (void)plusParticipation:(StudentAttendance *)attendance;

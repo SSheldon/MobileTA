@@ -23,7 +23,6 @@
 
   student.firstName = firstName;
   student.lastName = lastName;
-  student.attendances = [[NSSet alloc] init];
 
   return student;
 }
