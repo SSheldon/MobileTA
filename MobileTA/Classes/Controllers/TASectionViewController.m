@@ -150,10 +150,18 @@
 
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
   NSLog(@"Absent");
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusAbsent];
+  [self.managedObjectContext save:nil];
 }
 
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
   NSLog(@"Tardy");
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusTardy];
+  [self.managedObjectContext save:nil];
 }
 
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
