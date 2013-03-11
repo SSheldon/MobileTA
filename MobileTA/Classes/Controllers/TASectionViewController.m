@@ -149,7 +149,6 @@
 #pragma mark TAStudentDetailCellDelegate
 
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
-  NSLog(@"Absent");
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
   attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusAbsent];
@@ -157,7 +156,6 @@
 }
 
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
-  NSLog(@"Tardy");
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
   attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusTardy];
@@ -165,17 +163,17 @@
 }
 
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
-  NSLog(@"+1 Participation");
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  [self plusParticipation:attendance];
+  attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] + 1)];
+  [self.managedObjectContext save:nil];
 }
 
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
-  NSLog(@"-1 Participation");
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  [self minusParticipation:attendance];
+  attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] - 1)];
+  [self.managedObjectContext save:nil];
 }
 
 @end

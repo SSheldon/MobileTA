@@ -205,18 +205,4 @@
   [[self tableView] deleteRowsAtIndexPaths:@[cache] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
-- (void)plusParticipation:(StudentAttendance *)attendance {
-  if (attendance == nil) {
-    NSLog(@"Attendance object is nil");
-  } else {
-  attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] + 1)];
-  NSLog(@"Participation is %d", [attendance.participation intValue]);
-  }
-}
-
-- (void)minusParticipation:(StudentAttendance *)attendance {
-  attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] - 1)];
-  NSLog(@"Participation is %d", [attendance.participation intValue]);
-}
-
 @end

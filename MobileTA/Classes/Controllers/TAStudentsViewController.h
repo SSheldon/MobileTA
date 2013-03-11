@@ -24,7 +24,5 @@
 // Student Details Methods
 - (void)showDetailsForStudent:(Student *)student;
 - (void)hideStudentDetails;
-- (void)plusParticipation:(StudentAttendance *)attendance;
-- (void)minusParticipation:(StudentAttendance *)attendance;
 
 @end
