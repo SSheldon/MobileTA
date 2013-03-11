@@ -8,6 +8,9 @@
 
 #import "TASectionViewController.h"
 
+#import "AttendanceRecord.h"
+#import "StudentAttendance.h"
+
 @implementation TASectionViewController
 
 - (id)init {
@@ -19,7 +22,12 @@
     self = [super initWithStyle:style];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
+      UIBarButtonItem *newAttendanceRecordItem = [[UIBarButtonItem alloc] initWithTitle:@"Test"
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(addNewAttendanceRecord)];
       self.navigationItem.rightBarButtonItems = @[
+        newAttendanceRecordItem,
         self.editButtonItem,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                       target:self
@@ -67,6 +75,26 @@
   self.title = section.name;
 }
 
+- (AttendanceRecord *)attendanceRecord {
+  if (!_attendanceRecord && self.section) {
+    _attendanceRecord = [AttendanceRecord attendanceRecordForSection:self.section context:self.managedObjectContext];
+  }
+  return _attendanceRecord;
+}
+
+- (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
+  for (StudentAttendance *attendance in self.attendanceRecord.studentAttendances) {
+    if ([student isEqual:attendance.student]) {
+      return attendance;
+    }
+  }
+
+  StudentAttendance *attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
+  attendance.attendanceRecord = self.attendanceRecord;
+  attendance.student = student;
+  return attendance;
+}
+
 - (void)selectStudent:(Student *)student {
   if(self.tableView.editing) {
     [self editStudent:student];
@@ -103,6 +131,12 @@
   }
 }
 
+- (void)addNewAttendanceRecord {
+  TAAttendanceRecordEditViewController *editViewController = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:nil];
+  [editViewController setDelegate:self];
+  [self presentModalViewController:editViewController animated:YES];
+}
+
 - (UITableViewCell *)createDetailCellForStudent:(Student *)student {
   static NSString *studentDetailCellId = @"StudentDetailCell";
   TAStudentDetailCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDetailCellId];
@@ -119,6 +153,36 @@
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
   [self updateStudent:student withPreviousData:oldData];
+}
+
+#pragma mark TAStudentDetailCellDelegate
+
+- (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusAbsent];
+  [self.managedObjectContext save:nil];
+}
+
+- (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusTardy];
+  [self.managedObjectContext save:nil];
+}
+
+- (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] + 1)];
+  [self.managedObjectContext save:nil];
+}
+
+- (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] - 1)];
+  [self.managedObjectContext save:nil];
 }
 
 @end

@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, StudentAttendanceStatus) {
 @property (nonatomic, retain) AttendanceRecord *attendanceRecord;
 @property (nonatomic, retain) Student *student;
 
-+ (StudentAttendance *)studentAttendanceWithStatus:(NSNumber *)status participation:(NSNumber *)participation context:(NSManagedObjectContext *)context;
++ (StudentAttendance *)studentAttendanceWithStatus:(StudentAttendanceStatus)status participation:(NSInteger)participation context:(NSManagedObjectContext *)context;
 + (StudentAttendance *)studentAttendanceWithContext:(NSManagedObjectContext *)context;
 
 @end

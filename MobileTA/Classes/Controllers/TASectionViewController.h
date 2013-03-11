@@ -10,11 +10,21 @@
 #import "TAStudentEditViewController.h"
 #import "TAStudentDetailCell.h"
 #import "TAAttendanceHistoryViewController.h"
+#import "TAAttendanceRecordEditViewController.h"
 
-@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate>
+@class TAStudentDetailCell;
+
+@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate,TAAttendanceRecordEditDelegate>
 
 - (id)initWithSection:(Section *)section;
 
 @property (strong, nonatomic) Section *section;
+@property (strong, nonatomic) AttendanceRecord *attendanceRecord;
+
+// TODO(ssheldon): Extract these to a delegate
+- (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell;
+- (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell;
+- (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell;
+- (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell;
 
 @end

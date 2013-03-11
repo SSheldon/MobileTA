@@ -79,7 +79,6 @@
 }
 
 - (void)editSection:(Section *)section {
-  //  Do nothing right now. In the end the code will most likely look like this though (similar to edit student code)
   TASectionEditViewController *editViewController = [[TASectionEditViewController alloc] initWithSection:section];
   editViewController.delegate = self;
   [self.navigationController pushViewController:editViewController animated:YES];
@@ -155,9 +154,15 @@
 }
 
 - (void)updateSection:(Section *)section withPreviousData:(NSDictionary *)oldData {
-  if (section.name != [oldData objectForKey:@"name"]) {
-    
+  // If we are editing, then the EditViewController will have done all the work
+  // for us (saved the changes to the edited section). If it is a new section,
+  // then we need to add it to our sections array
+  if(!oldData) {
+    NSMutableArray *tempSections = [NSMutableArray arrayWithArray:[self sections]];
+    [tempSections addObject:section];
+    [self setSections:[NSArray arrayWithArray:tempSections]];
   }
+  [[self tableView] reloadData];
 }
 
 

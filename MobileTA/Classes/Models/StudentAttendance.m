@@ -18,16 +18,17 @@
 @dynamic attendanceRecord;
 @dynamic student;
 
-+ (StudentAttendance *)studentAttendanceWithStatus:(NSNumber *)status participation:(NSNumber *)participation context:(NSManagedObjectContext *)context {
++ (StudentAttendance *)studentAttendanceWithStatus:(StudentAttendanceStatus)status participation:(NSInteger)participation context:(NSManagedObjectContext *)context {
   StudentAttendance *attendance = [NSEntityDescription insertNewObjectForEntityForName:@"StudentAttendance" inManagedObjectContext:context];
   
-  attendance.status = status;
-  attendance.participation = participation;
+  attendance.status = [NSNumber numberWithInt:status];
+  attendance.participation = [NSNumber numberWithInt:participation];
+
   return attendance;
 }
 
 + (StudentAttendance *)studentAttendanceWithContext:(NSManagedObjectContext *)context {
-  return [self studentAttendanceWithStatus:0 participation:0 context:context];
+  return [self studentAttendanceWithStatus:StudentAttendanceStatusAbsent participation:0 context:context];
 }
 
 @end

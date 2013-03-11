@@ -205,20 +205,4 @@
   [[self tableView] deleteRowsAtIndexPaths:@[cache] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
-- (StudentAttendance *)createStudentRecord:(Student *)student {
-  StudentAttendance *attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
-  [student addAttendancesObject:attendance];
-  return attendance;
-}
-
-- (void)plusParticipation:(StudentAttendance *)attendance {
-  attendance.participation = [NSNumber numberWithInt:[attendance.participation intValue] + 1];
-}
-
-- (void)minusParticipation:(StudentAttendance *)attendance {
-  attendance.participation = [NSNumber numberWithInt:[attendance.participation intValue] - 1];
-}
-
-
-
 @end

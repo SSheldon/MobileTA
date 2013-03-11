@@ -69,19 +69,19 @@
 }
 
 - (void)plusParticipation {
-  NSLog(@"+1 Participation");
+  [self.controller studentDetailCellDidAddParticipation:self];
 }
 
 - (void)minusParticipation {
-  NSLog(@"-1 Participation");
+  [self.controller studentDetailCellDidSubtractParticipation:self];
 }
 
 - (void)markAbsent {
-  NSLog(@"Absent");
+  [self.controller studentDetailCellDidMarkAbsent:self];
 }
 
 - (void)markTardy {
-  NSLog(@"Tardy");
+  [self.controller studentDetailCellDidMarkTardy:self];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
