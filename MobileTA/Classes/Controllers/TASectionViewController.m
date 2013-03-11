@@ -135,4 +135,22 @@
   [self updateStudent:student withPreviousData:oldData];
 }
 
+#pragma mark TAStudentDetailCellDelegate
+
+- (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
+  NSLog(@"Absent");
+}
+
+- (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
+  NSLog(@"Tardy");
+}
+
+- (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
+  NSLog(@"+1 Participation");
+}
+
+- (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
+  NSLog(@"-1 Participation");
+}
+
 @end
