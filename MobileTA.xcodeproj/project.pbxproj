@@ -68,7 +68,6 @@
 		E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
 		E653A91616E96FD30062C7CB /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
-		E6BCE00F16EE78E100C7B904 /* TAAttendanceRecordEditViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00D16EE78E100C7B904 /* TAAttendanceRecordEditViewController.h */; };
 		E6BCE01016EE78E100C7B904 /* TAAttendanceRecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */; };
 		E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
 		E6E9EFD316C059CD001D122E /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
@@ -706,7 +705,6 @@
 				E653A91616E96FD30062C7CB /* TAStudentDetailCell.m in Sources */,
 				9FBF84F116E7F973000077D5 /* TASectionEditViewController.m in Sources */,
 				9FE67B5E16EE756500F98DCE /* TAAttendanceHistoryViewController.m in Sources */,
-				E6BCE00F16EE78E100C7B904 /* TAAttendanceRecordEditViewController.h in Sources */,
 				E6BCE01016EE78E100C7B904 /* TAAttendanceRecordEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
