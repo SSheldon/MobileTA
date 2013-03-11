@@ -23,11 +23,20 @@
         self.editButtonItem,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                       target:self
-                                                      action:@selector(addNewStudent)]
+                                                      action:@selector(addNewStudent)],
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+                                                      target:self
+                                                      action:@selector(viewAttendanceHistory)]
       ];
       self.tableView.allowsSelectionDuringEditing = YES;
     }
     return self;
+}
+
+- (void)viewAttendanceHistory {
+  TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section];
+
+  [[self navigationController] pushViewController:listViewController animated:YES];
 }
 
 - (id)initWithSection:(Section *)section {

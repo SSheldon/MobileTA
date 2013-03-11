@@ -13,6 +13,10 @@
 
 @interface AttendanceRecord : NSManagedObject
 
++ (NSArray *)fetchAttendanceRecordsInContext:(NSManagedObjectContext *)context;
++ (AttendanceRecord *)attendanceRecordWithName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context;
+
+
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) Section *section;
