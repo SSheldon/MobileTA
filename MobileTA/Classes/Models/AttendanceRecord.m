@@ -27,4 +27,12 @@
   return attendanceRecord;
 }
 
++ (AttendanceRecord *)attendanceRecordForSection:(Section *)section context:(NSManagedObjectContext *)context {
+  AttendanceRecord *record = [NSEntityDescription insertNewObjectForEntityForName:@"AttendanceRecord" inManagedObjectContext:context];
+
+  record.section = section;
+
+  return record;
+}
+
 @end

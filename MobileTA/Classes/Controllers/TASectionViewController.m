@@ -8,6 +8,9 @@
 
 #import "TASectionViewController.h"
 
+#import "AttendanceRecord.h"
+#import "StudentAttendance.h"
+
 @implementation TASectionViewController
 
 - (id)init {
@@ -61,6 +64,26 @@
   _section = section;
   self.students = [section.students allObjects];
   self.title = section.name;
+}
+
+- (AttendanceRecord *)attendanceRecord {
+  if (!_attendanceRecord && self.section) {
+    _attendanceRecord = [AttendanceRecord attendanceRecordForSection:self.section context:self.managedObjectContext];
+  }
+  return _attendanceRecord;
+}
+
+- (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
+  for (StudentAttendance *attendance in self.attendanceRecord.studentAttendances) {
+    if ([student isEqual:attendance.student]) {
+      return attendance;
+    }
+  }
+
+  StudentAttendance *attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
+  attendance.attendanceRecord = self.attendanceRecord;
+  attendance.student = student;
+  return attendance;
 }
 
 - (void)selectStudent:(Student *)student {
@@ -121,6 +144,30 @@
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
   [self updateStudent:student withPreviousData:oldData];
+}
+
+#pragma mark TAStudentDetailCellDelegate
+
+- (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
+  NSLog(@"Absent");
+}
+
+- (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
+  NSLog(@"Tardy");
+}
+
+- (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
+  NSLog(@"+1 Participation");
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  [self plusParticipation:attendance];
+}
+
+- (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
+  NSLog(@"-1 Participation");
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  [self minusParticipation:attendance];
 }
 
 @end
