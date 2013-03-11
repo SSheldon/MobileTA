@@ -15,5 +15,6 @@
 - (id)initWithSection:(Section *)section;
 
 @property (strong, nonatomic) Section *section;
+@property (strong, nonatomic) AttendanceRecord *attendanceRecord;
 
 @end
