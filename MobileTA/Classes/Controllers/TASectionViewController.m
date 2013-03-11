@@ -147,10 +147,16 @@
 
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
   NSLog(@"+1 Participation");
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  [self plusParticipation:attendance];
 }
 
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
   NSLog(@"-1 Participation");
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  [self minusParticipation:attendance];
 }
 
 @end

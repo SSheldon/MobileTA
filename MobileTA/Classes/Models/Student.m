@@ -24,6 +24,10 @@
   student.firstName = firstName;
   student.lastName = lastName;
 
+  StudentAttendance *attendance = [StudentAttendance studentAttendanceWithContext:context];
+  NSMutableSet *attendances = [NSMutableSet setWithObject:attendance];
+  [student addAttendances:attendances];
+
   return student;
 }
 
