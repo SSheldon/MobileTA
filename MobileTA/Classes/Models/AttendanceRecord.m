@@ -18,4 +18,13 @@
 @dynamic section;
 @dynamic studentAttendances;
 
++ (AttendanceRecord *)attendanceRecordForName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context {
+  AttendanceRecord *attendanceRecord = [NSEntityDescription insertNewObjectForEntityForName:@"AttendanceRecord" inManagedObjectContext:context];
+  
+  attendanceRecord.name = name;
+  attendanceRecord.date = date;
+  
+  return attendanceRecord;
+}
+
 @end

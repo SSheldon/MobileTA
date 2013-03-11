@@ -19,7 +19,12 @@
     self = [super initWithStyle:style];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
+      UIBarButtonItem *newAttendanceRecordItem = [[UIBarButtonItem alloc] initWithTitle:@"Test"
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(addNewAttendanceRecord)];
       self.navigationItem.rightBarButtonItems = @[
+        newAttendanceRecordItem,
         self.editButtonItem,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                       target:self
@@ -92,6 +97,12 @@
       [self reloadStudents];
     }
   }
+}
+
+- (void)addNewAttendanceRecord {
+  TAAttendanceRecordEditViewController *editViewController = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:nil];
+  [editViewController setDelegate:self];
+  [self presentModalViewController:editViewController animated:YES];
 }
 
 - (UITableViewCell *)createDetailCellForStudent:(Student *)student {

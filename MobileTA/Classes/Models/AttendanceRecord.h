@@ -21,6 +21,8 @@
 
 @interface AttendanceRecord (CoreDataGeneratedAccessors)
 
++ (AttendanceRecord *)attendanceRecordForName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context;
+
 - (void)addStudentAttendancesObject:(StudentAttendance *)value;
 - (void)removeStudentAttendancesObject:(StudentAttendance *)value;
 - (void)addStudentAttendances:(NSSet *)values;

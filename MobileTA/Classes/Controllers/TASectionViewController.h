@@ -9,8 +9,9 @@
 #import "TAStudentsViewController.h"
 #import "TAStudentEditViewController.h"
 #import "TAStudentDetailCell.h"
+#import "TAAttendanceRecordEditViewController.h"
 
-@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate>
+@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate,TAAttendanceRecordEditDelegate>
 
 - (id)initWithSection:(Section *)section;
 
