@@ -8,6 +8,9 @@
 
 #import "TASectionViewController.h"
 
+#import "AttendanceRecord.h"
+#import "StudentAttendance.h"
+
 @implementation TASectionViewController
 
 - (id)init {
@@ -56,6 +59,26 @@
   _section = section;
   self.students = [section.students allObjects];
   self.title = section.name;
+}
+
+- (AttendanceRecord *)attendanceRecord {
+  if (!_attendanceRecord && self.section) {
+    _attendanceRecord = [AttendanceRecord attendanceRecordForSection:self.section context:self.managedObjectContext];
+  }
+  return _attendanceRecord;
+}
+
+- (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
+  for (StudentAttendance *attendance in self.attendanceRecord.studentAttendances) {
+    if ([student isEqual:attendance.student]) {
+      return attendance;
+    }
+  }
+
+  StudentAttendance *attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
+  attendance.attendanceRecord = self.attendanceRecord;
+  attendance.student = student;
+  return attendance;
 }
 
 - (void)selectStudent:(Student *)student {
