@@ -9,11 +9,8 @@
 #import "TAStudentsViewController.h"
 #import "TAStudentEditViewController.h"
 #import "TAStudentDetailCell.h"
-<<<<<<< HEAD
-#import "TAAttendanceHistoryViewController.h"
-=======
 #import "TAStudentDisplayCell.h"
->>>>>>> Finished adding absent/ tardy bar
+#import "TAAttendanceHistoryViewController.h"
 #import "TAAttendanceRecordEditViewController.h"
 
 @class TAStudentDetailCell;
