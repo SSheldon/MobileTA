@@ -10,6 +10,7 @@
 		130741C016EEC8A300465D86 /* TAAttendanceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE67B5D16EE756500F98DCE /* TAAttendanceHistoryViewController.m */; };
 		130741C616EEC8A600465D86 /* TAAttendanceRecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */; };
 		130741C916EEC98C00465D86 /* TAAttendanceHistoryViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */; };
+		130741D416EED32E00465D86 /* TASectionEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741D316EED32E00465D86 /* TASectionEditViewTest.m */; };
 		1316C2FB16D9E38900D282B1 /* TAStudentEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */; };
 		13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
 		13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
@@ -173,6 +174,7 @@
 
 /* Begin PBXFileReference section */
 		130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAAttendanceHistoryViewTest.m; path = Views/TAAttendanceHistoryViewTest.m; sourceTree = "<group>"; };
+		130741D316EED32E00465D86 /* TASectionEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionEditViewTest.m; sourceTree = "<group>"; };
 		1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentEditViewTest.m; path = Views/TAStudentEditViewTest.m; sourceTree = "<group>"; };
 		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -403,6 +405,7 @@
 				13A44DE616DB35870084D827 /* TAStudentsViewTest.m */,
 				134A855716E98D610078E521 /* TASectionsViewTest.m */,
 				130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */,
+				130741D316EED32E00465D86 /* TASectionEditViewTest.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				130741C016EEC8A300465D86 /* TAAttendanceHistoryViewController.m in Sources */,
 				130741C616EEC8A600465D86 /* TAAttendanceRecordEditViewController.m in Sources */,
 				130741C916EEC98C00465D86 /* TAAttendanceHistoryViewTest.m in Sources */,
+				130741D416EED32E00465D86 /* TASectionEditViewTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
