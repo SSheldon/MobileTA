@@ -179,8 +179,8 @@
   }
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    [displayCell setStatus:[attendance.status integerValue]];
+    // TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    // call setStatus here
   }
   [self.managedObjectContext save:nil];
 }
@@ -196,8 +196,8 @@
   }
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    [displayCell setStatus:[attendance.status integerValue]];
+    // TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    // call setStatus here
   }
   [self.managedObjectContext save:nil];
 }
@@ -211,8 +211,8 @@
   attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] + 1)];
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    [displayCell setParticipation:[attendance.participation integerValue]];
+    // TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    // call setParticipation here
   }
   [self.managedObjectContext save:nil];
 }
@@ -226,8 +226,8 @@
   attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] - 1)];
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    [displayCell setParticipation:[attendance.participation integerValue]];
+    // TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    // call setParticipation here
   }
   [self.managedObjectContext save:nil];
 }
