@@ -29,6 +29,8 @@
     _participationLabel = [[UILabel alloc] initWithFrame:CGRectMake(b.size.width*2+70,0,20,b.size.height)];
     [_participationLabel setTextAlignment:NSTextAlignmentCenter];
     [_participationLabel setTextColor:[UIColor whiteColor]];
+    [_participationLabel setBackgroundColor:[UIColor orangeColor]];
+    [_participationLabel setHidden:YES];
     [self addSubview:_participationLabel];
 
   }
@@ -51,12 +53,11 @@
 
 - (void)setParticipation: (NSInteger)participation {
   if (participation != 0) {
-    [_participationLabel setBackgroundColor:[UIColor orangeColor]];
+    [_participationLabel setHidden:NO];
     [_participationLabel setText:[NSString stringWithFormat:@"%d", participation]];
   }
   else {
-    [_participationLabel setBackgroundColor:[UIColor clearColor]];
-    [_participationLabel setText:@""];
+    [_participationLabel setHidden:YES];
   }
 }
 
