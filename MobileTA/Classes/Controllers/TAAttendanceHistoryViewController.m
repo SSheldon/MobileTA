@@ -40,8 +40,8 @@
   return self;
 }
 
-- (void)setSections:(NSArray *)attendanceRecords {
-  _records = [attendanceRecords copy];
+- (void)setRecords:(NSArray *)records {
+  _records = [records copy];
   if ([self isViewLoaded]) {
     [self.tableView reloadData];
   }

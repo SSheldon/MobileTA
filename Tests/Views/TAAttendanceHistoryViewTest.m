@@ -30,6 +30,7 @@
 
 - (void)test {
   TAAttendanceHistoryViewController *controller = [[TAAttendanceHistoryViewController alloc] init];
+  [controller view];
   controller.records = @[
     [AttendanceRecord attendanceRecordForName:@"Discussion Section"
                                          date:[NSDate dateWithTimeIntervalSince1970:1331467200]
@@ -38,7 +39,6 @@
                                          date:[NSDate dateWithTimeIntervalSince1970:1331294400]
                                       context:self.managedObjectContext]
   ];
-  [controller.view layoutSubviews];
   GHVerifyView(controller.view);
 }
 
