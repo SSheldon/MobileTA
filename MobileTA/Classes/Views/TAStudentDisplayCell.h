@@ -17,8 +17,10 @@
 }
 
 @property(nonatomic,strong)UIView *statusView;
+@property(nonatomic,strong)UILabel *participationLabel;
 @property (nonatomic,weak)TASectionViewController *controller;
 
 - (void)setStatus: (NSInteger)status;
+- (void)setParticipation: (NSInteger)participation;
 
 @end
