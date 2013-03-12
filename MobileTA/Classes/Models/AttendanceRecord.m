@@ -57,7 +57,11 @@
 - (NSString *) description {
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   [dateFormatter setDateFormat:@"MM-dd-yyyy"];
-  return [dateFormatter stringFromDate:[NSDate date]];
+  NSString *description = [dateFormatter stringFromDate:self.date];
+  if (self.name.length) {
+    description = [description stringByAppendingFormat:@" %@", self.name];
+  }
+  return description;
 }
 
 @end
