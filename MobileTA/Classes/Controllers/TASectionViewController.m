@@ -26,15 +26,17 @@
                                                                                   style:UIBarButtonItemStylePlain
                                                                                  target:self
                                                                                  action:@selector(addNewAttendanceRecord)];
+      UIBarButtonItem *attendanceHistoryItem = [[UIBarButtonItem alloc] initWithTitle:@"History"
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(viewAttendanceHistory)];
       self.navigationItem.rightBarButtonItems = @[
+        attendanceHistoryItem,
         newAttendanceRecordItem,
         self.editButtonItem,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                       target:self
-                                                      action:@selector(addNewStudent)],
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-                                                      target:self
-                                                      action:@selector(viewAttendanceHistory)]
+                                                      action:@selector(addNewStudent)]
       ];
       self.tableView.allowsSelectionDuringEditing = YES;
     }

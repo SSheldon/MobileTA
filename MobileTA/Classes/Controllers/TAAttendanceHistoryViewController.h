@@ -15,5 +15,5 @@
 - (id)initWithSection:(Section *) section;
 
 @property (copy, nonatomic) NSArray *records;
-@property (copy, nonatomic) Section *section;
+@property (retain, nonatomic) Section *section;
 @end
