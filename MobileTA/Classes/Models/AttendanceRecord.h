@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Section, StudentAttendance;
+@class Section, Student, StudentAttendance;
 
 @interface AttendanceRecord : NSManagedObject
 
@@ -30,6 +30,8 @@
 + (AttendanceRecord *)attendanceRecordForSection:(Section *)section context:(NSManagedObjectContext *)context;
 
 + (AttendanceRecord *)attendanceRecordForName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context;
+
+- (StudentAttendance *)studentAttendanceForStudent:(Student *)student;
 
 @end
 

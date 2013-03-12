@@ -7,7 +7,9 @@
 //
 
 #import "AttendanceRecord.h"
+
 #import "Section.h"
+#import "Student.h"
 #import "StudentAttendance.h"
 
 
@@ -40,6 +42,16 @@
   record.section = section;
 
   return record;
+}
+
+- (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
+  for (StudentAttendance *attendance in self.studentAttendances) {
+    if ([student isEqual:attendance.student]) {
+      return attendance;
+    }
+  }
+
+  return nil;
 }
 
 - (NSString *) description {

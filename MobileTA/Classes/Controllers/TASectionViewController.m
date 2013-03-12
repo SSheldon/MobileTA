@@ -85,15 +85,13 @@
 }
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
-  for (StudentAttendance *attendance in self.attendanceRecord.studentAttendances) {
-    if ([student isEqual:attendance.student]) {
-      return attendance;
-    }
+  StudentAttendance *attendance = [self.attendanceRecord studentAttendanceForStudent:student];
+  if (!attendance) {
+    attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
+    attendance.attendanceRecord = self.attendanceRecord;
+    attendance.student = student;
+    [self.managedObjectContext save:nil];
   }
-
-  StudentAttendance *attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
-  attendance.attendanceRecord = self.attendanceRecord;
-  attendance.student = student;
   return attendance;
 }
 
