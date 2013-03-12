@@ -9,10 +9,15 @@
 #import "TAStudentsViewController.h"
 #import "TAStudentEditViewController.h"
 #import "TAStudentDetailCell.h"
+<<<<<<< HEAD
 #import "TAAttendanceHistoryViewController.h"
+=======
+#import "TAStudentDisplayCell.h"
+>>>>>>> Finished adding absent/ tardy bar
 #import "TAAttendanceRecordEditViewController.h"
 
 @class TAStudentDetailCell;
+@class TAStudentDisplayCell;
 
 @interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate,TAAttendanceRecordEditDelegate>
 
@@ -20,6 +25,8 @@
 
 @property (strong, nonatomic) Section *section;
 @property (strong, nonatomic) AttendanceRecord *attendanceRecord;
+
+- (UITableViewCell *)createDisplayCellForStudent:(Student *)student;
 
 // TODO(ssheldon): Extract these to a delegate
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell;

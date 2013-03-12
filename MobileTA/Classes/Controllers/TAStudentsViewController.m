@@ -135,7 +135,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
   }
   cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
-  
+  cell.backgroundColor = [UIColor greenColor];
   return cell;
 }
 

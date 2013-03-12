@@ -28,7 +28,7 @@
 }
 
 + (StudentAttendance *)studentAttendanceWithContext:(NSManagedObjectContext *)context {
-  return [self studentAttendanceWithStatus:StudentAttendanceStatusAbsent participation:0 context:context];
+  return [self studentAttendanceWithStatus:StudentAttendanceStatusPresent participation:0 context:context];
 }
 
 @end

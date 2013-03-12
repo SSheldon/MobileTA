@@ -137,6 +137,17 @@
   [self presentModalViewController:editViewController animated:YES];
 }
 
+- (UITableViewCell *)createDisplayCellForStudent:(Student *)student {
+  static NSString *studentDisplayCellId = @"StudentDisplayCell";
+  TAStudentDisplayCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDisplayCellId];
+  if (!cell) {
+    cell = [[TAStudentDisplayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDisplayCellId];
+  }
+  [cell setController:self];
+  cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
+  return cell;
+}
+
 - (UITableViewCell *)createDetailCellForStudent:(Student *)student {
   static NSString *studentDetailCellId = @"StudentDetailCell";
   TAStudentDetailCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDetailCellId];
@@ -160,14 +171,38 @@
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusAbsent];
+  if (attendance.status == [NSNumber numberWithInt:StudentAttendanceStatusAbsent]) {
+    attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusPresent];
+  }
+  else {
+    attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusAbsent];
+  }
+  UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
+  if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
+    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    [displayCell setStatus:[attendance.status integerValue]];
+  } else {
+    NSLog(@"Not DisplayCell class");
+  }
+  NSLog(@"MarkAbsent with status %d", [attendance.status intValue]);
   [self.managedObjectContext save:nil];
 }
 
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusTardy];
+  if (attendance.status == [NSNumber numberWithInt:StudentAttendanceStatusTardy]) {
+    attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusPresent];
+  }
+  else {
+    attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusTardy];
+  }
+  UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
+  if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
+    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    [displayCell setStatus:[attendance.status integerValue]];
+  }
+  NSLog(@"MarkTardy with status %d", [attendance.status intValue]);
   [self.managedObjectContext save:nil];
 }
 
@@ -175,6 +210,7 @@
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
   attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] + 1)];
+  NSLog(@"AddParticipation with score %d", [attendance.participation intValue]);
   [self.managedObjectContext save:nil];
 }
 
@@ -182,6 +218,7 @@
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
   attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] - 1)];
+  NSLog(@"SubtractParticipation with score %d", [attendance.participation intValue]);
   [self.managedObjectContext save:nil];
 }
 
