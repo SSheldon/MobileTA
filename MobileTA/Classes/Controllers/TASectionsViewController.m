@@ -150,6 +150,8 @@
   else {
     TASectionViewController *listViewController = [[TASectionViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
     [[self navigationController] pushViewController:listViewController animated:YES];
+//    TASeatingChartViewController *seatingChart = [[TASeatingChartViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
+//    [[self navigationController] pushViewController:seatingChart animated:YES];
   }
 }
 

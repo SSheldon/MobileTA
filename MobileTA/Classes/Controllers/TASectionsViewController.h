@@ -9,6 +9,7 @@
 #import "Section.h"
 #import "TASectionViewController.h"
 #import "TASectionEditViewController.h"
+#import "TASeatingChartViewController.h"
 
 @interface TASectionsViewController : UITableViewController <TASectionEditDelegate>
 
