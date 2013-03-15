@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Section, StudentAttendance;
+@class Seat, Section, StudentAttendance;
 
 @interface Student : NSManagedObject
 
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) NSSet *attendances;
+@property (nonatomic, retain) Seat *seat;
 
 /*!
  * Create a Student.

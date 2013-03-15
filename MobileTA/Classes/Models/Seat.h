@@ -9,13 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Room;
+@class Room, Student;
 
 @interface Seat : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * rotation;
-@property (nonatomic, retain) NSNumber * x;
-@property (nonatomic, retain) NSNumber * y;
+@property (nonatomic, retain) NSNumber *x;
+@property (nonatomic, retain) NSNumber *y;
 @property (nonatomic, retain) Room *room;
+@property (nonatomic, retain) NSSet *students;
+@end
+
+@interface Seat (CoreDataGeneratedAccessors)
+
+- (void)addStudentsObject:(Student *)value;
+- (void)removeStudentsObject:(Student *)value;
+- (void)addStudents:(NSSet *)values;
+- (void)removeStudents:(NSSet *)values;
 
 @end

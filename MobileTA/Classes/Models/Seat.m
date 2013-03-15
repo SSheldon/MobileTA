@@ -8,13 +8,14 @@
 
 #import "Seat.h"
 #import "Room.h"
+#import "Student.h"
 
 
 @implementation Seat
 
-@dynamic rotation;
 @dynamic x;
 @dynamic y;
 @dynamic room;
+@dynamic students;
 
 @end
