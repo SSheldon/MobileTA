@@ -19,6 +19,8 @@
 - (id)initWithSection:(Section *)section {
   self = [self initWithNibName:nil bundle:nil];
   if (self) {
+    // Add the edit button to the bar
+    [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
     NSArray *seats = [[[section students] valueForKey:@"seat"] allObjects];
     for(NSUInteger i = 0 ; i < [seats count] ; i++) {
       Seat *seat = [seats objectAtIndex:i];
@@ -44,6 +46,11 @@
       [[self view] addSubview:_seatingChart];
     }
     return self;
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+  [super setEditing:editing animated:animated];
+  [_seatingChart setEditing:editing];
 }
 
 - (void)viewDidLoad

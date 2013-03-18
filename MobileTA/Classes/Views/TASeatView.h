@@ -11,4 +11,6 @@
 
 @interface TASeatView : UIView
 
+@property(nonatomic,strong)Seat *seat;
+
 @end
