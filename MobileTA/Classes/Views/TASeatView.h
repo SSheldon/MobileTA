@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Seat.h"
 #import "TAGridConstants.h"
 
 @interface TASeatView : UIView

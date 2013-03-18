@@ -19,6 +19,6 @@
 #define SEAT_WIDTH_UNITS 4
 #define SEAT_HEIGHT_UNITS 4
 
-#define u2p(units) units * UNIT_PIXEL_RATIO
+#define u2p(units) (units) * UNIT_PIXEL_RATIO
 
 #endif

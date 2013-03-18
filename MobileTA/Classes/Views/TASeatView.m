@@ -11,6 +11,8 @@
 
 @implementation TASeatView
 
+@synthesize seat=_seat;
+
 + (UIImage *)backgroundImage {
   static UIImage *__shared = nil;
   return (__shared) ? __shared : (__shared = [UIImage imageNamed:@"seat.png"]);

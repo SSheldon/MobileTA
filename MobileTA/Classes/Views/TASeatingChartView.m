@@ -101,6 +101,11 @@
   // is on a grid line.
   CGPoint extraGridTranslation = CGPointMake(fmodf(translation.x,UNIT_PIXEL_RATIO), fmodf(translation.y,UNIT_PIXEL_RATIO));
   CGPoint newLocation = CGPointMake(currentLocation.x + translation.x - extraGridTranslation.x, currentLocation.y + translation.y - extraGridTranslation.y);
+  // Check that the new location is within the bounds of the Seating Chart
+  newLocation.x = MAX(newLocation.x,0);
+  newLocation.x = MIN(newLocation.x,u2p(ROOM_WIDTH_UNITS - SEAT_WIDTH_UNITS));
+  newLocation.y = MAX(newLocation.y,0);
+  newLocation.y = MIN(newLocation.y,u2p(ROOM_HEIGHT_UNITS - SEAT_HEIGHT_UNITS));
   // Move the seatView to the new location
   [seatView setFrame:CGRectMake(newLocation.x, newLocation.y, [seatView bounds].size.width, [seatView bounds].size.height)];
   [gestureRecognizer setTranslation:extraGridTranslation inView:self];
