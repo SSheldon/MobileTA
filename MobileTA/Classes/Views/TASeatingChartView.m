@@ -20,6 +20,18 @@
 @synthesize delegate=_delegate;
 @synthesize editing=_editing;
 
++ (CGSize)roomPixelSize {
+  return CGSizeMake(u2p(ROOM_WIDTH_UNITS),u2p(ROOM_HEIGHT_UNITS));
+}
+
+- (id)initWithDefaultFrame {
+  self = [self initWithFrame:CGRectMake(0, 0, u2p(ROOM_WIDTH_UNITS), u2p(ROOM_HEIGHT_UNITS))];
+  if (self) {
+    
+  }
+  return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

@@ -11,7 +11,9 @@
 #import "Section.h"
 #import "TASeatingChartView.h"
 
-@interface TASeatingChartViewController : UIViewController
+@interface TASeatingChartViewController : UIViewController {
+  UIScrollView *_scrollView;
+}
 
 - (id)initWithSection:(Section *)section;
 

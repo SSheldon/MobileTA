@@ -49,9 +49,13 @@ UIBarButtonItem * addButtonItem;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+      // Make a scroll view
+      _scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
+      [_scrollView setContentSize:[TASeatingChartView roomPixelSize]];
       // Make a seating chart that fills the entire view
-      _seatingChart = [[TASeatingChartView alloc] initWithFrame:[[self view] bounds]];
-      [[self view] addSubview:_seatingChart];
+      _seatingChart = [[TASeatingChartView alloc] initWithDefaultFrame];
+      [[self view] addSubview:_scrollView];
+      [_scrollView addSubview:_seatingChart];
     }
     return self;
 }
