@@ -11,7 +11,9 @@
 #import "AttendanceRecord.h"
 #import "StudentAttendance.h"
 
-@implementation TASectionViewController
+@implementation TASectionViewController {
+  AttendanceRecord *_attendanceRecord;
+}
 
 - (id)init {
   self = [self initWithStyle:UITableViewStylePlain];
@@ -45,8 +47,13 @@
 
 - (void)viewAttendanceHistory {
   TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section];
+  listViewController.delegate = self;
 
-  [[self navigationController] pushViewController:listViewController animated:YES];
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listViewController];
+  navController.modalPresentationStyle = UIModalPresentationFormSheet;
+  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
+  [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (id)initWithSection:(Section *)section {
@@ -80,8 +87,16 @@
 - (AttendanceRecord *)attendanceRecord {
   if (!_attendanceRecord && self.section) {
     _attendanceRecord = [AttendanceRecord attendanceRecordForSection:self.section context:self.managedObjectContext];
+    _attendanceRecord.date = [NSDate date];
   }
   return _attendanceRecord;
+}
+
+- (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord {
+  _attendanceRecord = attendanceRecord;
+  if ([self isViewLoaded]) {
+    [self.tableView reloadData];
+  }
 }
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
@@ -145,6 +160,11 @@
   }
   [cell setController:self];
   cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
+  if (_attendanceRecord) {
+    StudentAttendance *attendance = [_attendanceRecord studentAttendanceForStudent:student];
+    [cell setStatus:attendance.statusValue];
+    [cell setParticipation:attendance.participationValue];
+  }
   return cell;
 }
 
@@ -166,6 +186,13 @@
   [self updateStudent:student withPreviousData:oldData];
 }
 
+#pragma mark TAAttendanceHistoryDelegate
+
+- (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller didSelectAttendanceRecord:(AttendanceRecord *)record {
+  self.attendanceRecord = record;
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark TAStudentDetailCellDelegate
 
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
@@ -179,8 +206,8 @@
   }
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    // TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    // call setStatus here
+    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    [displayCell setStatus:[attendance.status integerValue]];
   }
   [self.managedObjectContext save:nil];
 }
@@ -196,8 +223,8 @@
   }
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    // TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    // call setStatus here
+    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    [displayCell setStatus:[attendance.status integerValue]];
   }
   [self.managedObjectContext save:nil];
 }
@@ -211,8 +238,8 @@
   attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] + 1)];
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    // TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    // call setParticipation here
+    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    [displayCell setParticipation:[attendance.participation integerValue]];
   }
   [self.managedObjectContext save:nil];
 }
@@ -226,8 +253,8 @@
   attendance.participation = [NSNumber numberWithInt:([attendance.participation intValue] - 1)];
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    // TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    // call setParticipation here
+    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
+    [displayCell setParticipation:[attendance.participation integerValue]];
   }
   [self.managedObjectContext save:nil];
 }

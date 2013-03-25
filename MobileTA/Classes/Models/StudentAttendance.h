@@ -12,17 +12,20 @@
 @class AttendanceRecord, Student;
 
 typedef NS_ENUM(NSInteger, StudentAttendanceStatus) {
+  StudentAttendanceStatusPresent,
   StudentAttendanceStatusAbsent,
-  StudentAttendanceStatusTardy,
-  StudentAttendanceStatusPresent
+  StudentAttendanceStatusTardy
 };
 
 @interface StudentAttendance : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * participation;     // 0 to 2, from low participation to high participation
-@property (nonatomic, retain) NSNumber * status;            // 0 for absent; 1 for tardy; 2 for present
+@property (nonatomic, retain) NSNumber *participation;
+@property (nonatomic, retain) NSNumber *status;
 @property (nonatomic, retain) AttendanceRecord *attendanceRecord;
 @property (nonatomic, retain) Student *student;
+
+@property (nonatomic, assign) NSInteger participationValue;
+@property (nonatomic, assign) StudentAttendanceStatus statusValue;
 
 + (StudentAttendance *)studentAttendanceWithStatus:(StudentAttendanceStatus)status participation:(NSInteger)participation context:(NSManagedObjectContext *)context;
 + (StudentAttendance *)studentAttendanceWithContext:(NSManagedObjectContext *)context;

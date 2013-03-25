@@ -25,6 +25,10 @@
   NSMutableArray *_seatViews;
 }
 
++ (CGSize)roomPixelSize;
+
+- (id)initWithDefaultFrame;
+
 - (void)addSeat:(Seat *)seat;
 
 @property(nonatomic,getter = isEditing)BOOL editing;
