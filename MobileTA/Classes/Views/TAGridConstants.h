@@ -20,5 +20,6 @@
 #define SEAT_HEIGHT_UNITS 4
 
 #define u2p(units) (units) * UNIT_PIXEL_RATIO
+#define p2u(pixels) (pixels) / UNIT_PIXEL_RATIO
 
 #endif
