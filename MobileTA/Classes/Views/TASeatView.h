@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "Seat.h"
 #import "TAGridConstants.h"
 
@@ -15,6 +16,11 @@
 - (id)initWithSeat:(Seat *)seat;
 
 - (void)moveToGridLocation:(CGPoint)unitPoint;
+
+// YEAH! PARTY
+- (void)dance;
+// Cops showed up. Party is over.
+- (void)stopDancing;
 
 @property(nonatomic,strong)Seat *seat;
 @property(nonatomic,getter = isInvalidLocation)BOOL invalidLocation;

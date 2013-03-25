@@ -8,6 +8,10 @@
 
 #import "TASeatView.h"
 
+#define degreesToRadians(x) (M_PI * (x) / 180.0)
+#define kDanceAnimationRotateDeg 6.0
+#define kDanceAnimationTranslateX 1.0
+#define kDanceAnimationTranslateY 2.0
 
 @interface TASeatView (PrivateMethods)
 
@@ -60,6 +64,30 @@
 {
   // Drawing code
   [[TASeatView backgroundImage] drawInRect:[self bounds]];
+}
+
+- (void)dance {
+  // Determine whether to start from the left or the right
+  int i = rand() % 2;
+  // This code was taken (almost) straight from the openspringboard project.
+  // https://github.com/fieldforceapp/openspringboard/blob/master/openspringboard/Classes/OpenSpringBoard.m
+  CGAffineTransform leftWobble = CGAffineTransformMakeRotation(degreesToRadians( kDanceAnimationRotateDeg * (i ? +1 : -1 ) ));
+  CGAffineTransform rightWobble = CGAffineTransformMakeRotation(degreesToRadians( kDanceAnimationRotateDeg * (i ? -1 : +1 ) ));
+  CGAffineTransform moveTransform = CGAffineTransformTranslate(rightWobble, -kDanceAnimationTranslateX, -kDanceAnimationTranslateY);
+  CGAffineTransform conCatTransform = CGAffineTransformConcat(rightWobble, moveTransform);
+  
+  self.transform = leftWobble;  // starting point
+  
+  [UIView animateWithDuration:0.1
+                        delay:0
+                      options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
+                   animations:^{ self.transform = conCatTransform; }
+                   completion:nil];
+}
+
+- (void)stopDancing {
+  [self.layer removeAllAnimations];
+  self.transform = CGAffineTransformIdentity;
 }
 
 #pragma mark Private Methods

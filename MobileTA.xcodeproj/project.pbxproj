@@ -79,6 +79,7 @@
 		E6064D1F16F244A300BCF71B /* TASeatingChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1D16F244A300BCF71B /* TASeatingChartViewController.m */; };
 		E6064D2216F2AA7F00BCF71B /* TASeatView.h in Sources */ = {isa = PBXBuildFile; fileRef = E6064D2016F2AA7F00BCF71B /* TASeatView.h */; };
 		E6064D2316F2AA7F00BCF71B /* TASeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D2116F2AA7F00BCF71B /* TASeatView.m */; };
+		E6298DBF17010F5700862316 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F121616D7137C009C310A /* QuartzCore.framework */; };
 		E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
 		E653A91616E96FD30062C7CB /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
@@ -275,6 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6298DBF17010F5700862316 /* QuartzCore.framework in Frameworks */,
 				13A30EAE16CEEF5D00AE03E5 /* libJTRevealSidebar.a in Frameworks */,
 				13A30EAF16CEEF5D00AE03E5 /* libJTRevealSidebarV2.a in Frameworks */,
 				135116E216CDC24000D7376E /* libQuickDialog.a in Frameworks */,
