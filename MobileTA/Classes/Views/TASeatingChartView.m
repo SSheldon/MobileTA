@@ -106,9 +106,16 @@
   newLocation.x = MIN(newLocation.x,u2p(ROOM_WIDTH_UNITS - SEAT_WIDTH_UNITS));
   newLocation.y = MAX(newLocation.y,0);
   newLocation.y = MIN(newLocation.y,u2p(ROOM_HEIGHT_UNITS - SEAT_HEIGHT_UNITS));
-  // Move the seatView to the new location
-  [seatView setFrame:CGRectMake(newLocation.x, newLocation.y, [seatView bounds].size.width, [seatView bounds].size.height)];
-  [gestureRecognizer setTranslation:extraGridTranslation inView:self];
+  // Move the seatView to the new location if possible
+  if ([self canMoveSeat:seatView toPoint:newLocation]) {
+    [seatView setFrame:CGRectMake(newLocation.x, newLocation.y, [seatView bounds].size.width, [seatView bounds].size.height)];
+    [gestureRecognizer setTranslation:extraGridTranslation inView:self];
+  }
+}
+
+- (BOOL)canMoveSeat:(TASeatView *)seat toPoint:(CGPoint)point {
+  // TODO(srice): Implement
+  return YES;
 }
 
 - (void)startEditingAnimation {
