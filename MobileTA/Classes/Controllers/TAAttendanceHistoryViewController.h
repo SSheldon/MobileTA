@@ -10,10 +10,20 @@
 #import "AttendanceRecord.h"
 #import "Section.h"
 
+@class TAAttendanceHistoryViewController;
+
+@protocol TAAttendanceHistoryDelegate <NSObject>
+@optional
+- (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller
+              didSelectAttendanceRecord:(AttendanceRecord *)record;
+@end
+
 @interface TAAttendanceHistoryViewController : UITableViewController
 
 - (id)initWithSection:(Section *) section;
 
 @property (copy, nonatomic) NSArray *records;
 @property (retain, nonatomic) Section *section;
+@property (weak, nonatomic) id<TAAttendanceHistoryDelegate> delegate;
+
 @end
