@@ -27,6 +27,10 @@
   self = [super initWithStyle:style];
   if (self) {
     self.title = NSLocalizedString(@"Attendance History", nil);
+    self.navigationItem.leftBarButtonItem =
+      [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                    target:self
+                                                    action:@selector(cancel)];
   }
   return self;
 }
@@ -49,6 +53,12 @@
 
 - (AttendanceRecord *)attendanceRecordAtIndexPath:(NSIndexPath *)indexPath {
   return [[self records] objectAtIndex:[indexPath row]];
+}
+
+- (void)cancel {
+  if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewControllerDidCancel:)]) {
+    [self.delegate attendanceHistoryViewControllerDidCancel:self];
+  }
 }
 
 #pragma mark - Table view data source
