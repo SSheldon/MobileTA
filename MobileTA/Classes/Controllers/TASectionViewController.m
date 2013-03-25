@@ -159,6 +159,11 @@
   }
   [cell setController:self];
   cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
+  if (_attendanceRecord) {
+    StudentAttendance *attendance = [_attendanceRecord studentAttendanceForStudent:student];
+    [cell setStatus:attendance.statusValue];
+    [cell setParticipation:attendance.participationValue];
+  }
   return cell;
 }
 
