@@ -14,10 +14,14 @@
 
 @implementation TASeatingChartViewController
 
+UIBarButtonItem * addButtonItem;
 @synthesize seatingChart=_seatingChart;
 
 - (id)initWithSection:(Section *)section {
   self = [self initWithNibName:nil bundle:nil];
+  addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                            target:self
+                                                            action:@selector(addSeat)];
   if (self) {
     // Add the edit button to the bar
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
@@ -28,10 +32,7 @@
     }
     if (![seats count]) {
       // JUST FOR SHITS AND GIGGLES
-      Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
-      seat.x = [NSNumber numberWithInt:4];
-      seat.y = [NSNumber numberWithInt:4];
-      [_seatingChart addSeat:seat];
+      [self addSeat];
     }
   }
   return self;
@@ -50,7 +51,21 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
   [super setEditing:editing animated:animated];
+  if (editing) {
+    self.navigationItem.rightBarButtonItems = @[self.editButtonItem, addButtonItem];
+  }
+  else {
+    self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
+  }
   [_seatingChart setEditing:editing];
+}
+
+- (void)addSeat
+{
+  Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
+  seat.x = [NSNumber numberWithInt:4];
+  seat.y = [NSNumber numberWithInt:4];
+  [_seatingChart addSeat:seat];
 }
 
 - (void)viewDidLoad
