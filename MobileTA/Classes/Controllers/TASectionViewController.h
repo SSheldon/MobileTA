@@ -16,7 +16,7 @@
 @class TAStudentDetailCell;
 @class TAStudentDisplayCell;
 
-@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate,TAAttendanceRecordEditDelegate>
+@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate, TAAttendanceHistoryDelegate, TAAttendanceRecordEditDelegate>
 
 - (id)initWithSection:(Section *)section;
 

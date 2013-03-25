@@ -11,7 +11,9 @@
 #import "AttendanceRecord.h"
 #import "StudentAttendance.h"
 
-@implementation TASectionViewController
+@implementation TASectionViewController {
+  AttendanceRecord *_attendanceRecord;
+}
 
 - (id)init {
   self = [self initWithStyle:UITableViewStylePlain];
@@ -45,8 +47,13 @@
 
 - (void)viewAttendanceHistory {
   TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section];
+  listViewController.delegate = self;
 
-  [[self navigationController] pushViewController:listViewController animated:YES];
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listViewController];
+  navController.modalPresentationStyle = UIModalPresentationFormSheet;
+  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
+  [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (id)initWithSection:(Section *)section {
@@ -82,6 +89,13 @@
     _attendanceRecord = [AttendanceRecord attendanceRecordForSection:self.section context:self.managedObjectContext];
   }
   return _attendanceRecord;
+}
+
+- (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord {
+  _attendanceRecord = attendanceRecord;
+  if ([self isViewLoaded]) {
+    [self.tableView reloadData];
+  }
 }
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
@@ -164,6 +178,13 @@
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
   [self updateStudent:student withPreviousData:oldData];
+}
+
+#pragma mark TAAttendanceHistoryDelegate
+
+- (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller didSelectAttendanceRecord:(AttendanceRecord *)record {
+  self.attendanceRecord = record;
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark TAStudentDetailCellDelegate
