@@ -32,7 +32,7 @@
 
 - (void)addSeat:(Seat *)seat {
   // Make a seat view at 0,0.
-  TASeatView *seatView = [[TASeatView alloc] initWithFrame:CGRectMake(u2p([seat.x intValue]), u2p([seat.y intValue]), 0, 0)];
+  TASeatView *seatView = [[TASeatView alloc] initWithSeat:seat];
   [_seatViews addObject:seatView];
   // Add gesture recognizers
   UIGestureRecognizer *move = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
@@ -106,15 +106,41 @@
   newLocation.x = MIN(newLocation.x,u2p(ROOM_WIDTH_UNITS - SEAT_WIDTH_UNITS));
   newLocation.y = MAX(newLocation.y,0);
   newLocation.y = MIN(newLocation.y,u2p(ROOM_HEIGHT_UNITS - SEAT_HEIGHT_UNITS));
-  // Move the seatView to the new location if possible
-  if ([self canMoveSeat:seatView toPoint:newLocation]) {
-    [seatView setFrame:CGRectMake(newLocation.x, newLocation.y, [seatView bounds].size.width, [seatView bounds].size.height)];
-    [gestureRecognizer setTranslation:extraGridTranslation inView:self];
+  // Move the seatView to the new location
+  CGPoint unitLocation = CGPointMake(p2u(newLocation.x), p2u(newLocation.y));
+  [seatView moveToGridLocation:unitLocation];
+//  [seatView setFrame:CGRectMake(newLocation.x, newLocation.y, [seatView bounds].size.width, [seatView bounds].size.height)];
+  [gestureRecognizer setTranslation:extraGridTranslation inView:self];
+  [seatView setInvalidLocation:![self canMoveSeat:seatView toPoint:newLocation]];
+  if ([gestureRecognizer state] == UIGestureRecognizerStateEnded) {
+    // If they try to drop it in an invalid location, put the seat back to where
+    // it was. Otherwise, move the seat to the correct location and notify the
+    // controller
+    if ([seatView isInvalidLocation]) {
+      [seatView moveToGridLocation:[seatView.seat location]];
+      // The old location was definitely valid. Otherwise how would they have been there.
+      [seatView setInvalidLocation:NO];
+    }
+    else {
+      [[seatView seat] setLocation:unitLocation];
+    }
   }
 }
 
 - (BOOL)canMoveSeat:(TASeatView *)seat toPoint:(CGPoint)point {
-  // TODO(srice): Implement
+  CGRect newFrame = CGRectMake(point.x, point.y, u2p(SEAT_WIDTH_UNITS), u2p(SEAT_HEIGHT_UNITS));
+  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
+    TASeatView *current = [_seatViews objectAtIndex:i];
+    // Clearly the seat intersects with itself, so ignore that
+    if (current == seat) {
+      continue;
+    }
+    else {
+      if (CGRectIntersectsRect(newFrame,[current frame])) {
+        return NO;
+      }
+    }
+  }
   return YES;
 }
 

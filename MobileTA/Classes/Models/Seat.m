@@ -18,4 +18,13 @@
 @dynamic room;
 @dynamic students;
 
+- (CGPoint)location {
+  return CGPointMake([[self x] intValue], [[self y] intValue]);
+}
+
+- (void)setLocation:(CGPoint)location {
+  [self setX:[NSNumber numberWithInt:location.x]];
+  [self setY:[NSNumber numberWithInt:location.y]];
+}
+
 @end

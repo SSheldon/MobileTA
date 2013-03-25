@@ -12,6 +12,11 @@
 
 @interface TASeatView : UIView
 
+- (id)initWithSeat:(Seat *)seat;
+
+- (void)moveToGridLocation:(CGPoint)unitPoint;
+
 @property(nonatomic,strong)Seat *seat;
+@property(nonatomic,getter = isInvalidLocation)BOOL invalidLocation;
 
 @end

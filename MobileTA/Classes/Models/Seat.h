@@ -26,4 +26,7 @@
 - (void)addStudents:(NSSet *)values;
 - (void)removeStudents:(NSSet *)values;
 
+- (CGPoint)location;
+- (void)setLocation:(CGPoint)location;
+
 @end
