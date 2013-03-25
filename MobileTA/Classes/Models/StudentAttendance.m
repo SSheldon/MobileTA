@@ -20,15 +20,31 @@
 
 + (StudentAttendance *)studentAttendanceWithStatus:(StudentAttendanceStatus)status participation:(NSInteger)participation context:(NSManagedObjectContext *)context {
   StudentAttendance *attendance = [NSEntityDescription insertNewObjectForEntityForName:@"StudentAttendance" inManagedObjectContext:context];
-  
-  attendance.status = [NSNumber numberWithInt:status];
-  attendance.participation = [NSNumber numberWithInt:participation];
+
+  attendance.statusValue = status;
+  attendance.participationValue = participation;
 
   return attendance;
 }
 
 + (StudentAttendance *)studentAttendanceWithContext:(NSManagedObjectContext *)context {
   return [self studentAttendanceWithStatus:StudentAttendanceStatusPresent participation:0 context:context];
+}
+
+- (StudentAttendanceStatus)statusValue {
+  return (StudentAttendanceStatus)self.status.integerValue;
+}
+
+- (void)setStatusValue:(StudentAttendanceStatus)statusValue {
+  self.status = [NSNumber numberWithInteger:statusValue];
+}
+
+- (NSInteger)participationValue {
+  return self.participation.integerValue;
+}
+
+- (void)setParticipationValue:(NSInteger)participationValue {
+  self.participation = [NSNumber numberWithInteger:participationValue];
 }
 
 @end
