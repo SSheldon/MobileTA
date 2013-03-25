@@ -193,6 +193,10 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)attendanceHistoryViewControllerDidCancel:(TAAttendanceHistoryViewController *)controller {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark TAStudentDetailCellDelegate
 
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
