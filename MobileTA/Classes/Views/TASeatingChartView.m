@@ -27,6 +27,8 @@
       // Initialization code
       _seatViews = [NSMutableArray arrayWithCapacity:30];
     }
+    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [self addGestureRecognizer:tap];
     return self;
 }
 
@@ -36,6 +38,7 @@
   [_seatViews addObject:seatView];
   // Add gesture recognizers
   UIGestureRecognizer *move = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+
   [seatView addGestureRecognizer:move];
   [self addSubview:seatView];
 }
@@ -87,7 +90,7 @@
 
 #pragma mark Private Methods
 
-- (void)didTap {
+- (void)tap:(UIPanGestureRecognizer *)gestureRecognizer {
   NSLog(@"Tap!");
 }
 
