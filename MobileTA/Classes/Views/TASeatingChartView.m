@@ -120,6 +120,10 @@
 
 - (void)pan:(UIPanGestureRecognizer *)gestureRecognizer {
   TASeatView *seatView = (TASeatView *)[gestureRecognizer view];
+  // When we start moving a seat, it should stop dancing.
+  if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+    [seatView stopDancing];
+  }
   CGPoint translation = [gestureRecognizer translationInView:self];
   CGPoint currentLocation = [seatView frame].origin;
   // This is what implements snapping to grid. extraGridTranslation is the CGPoint
@@ -153,6 +157,8 @@
     else {
       [[seatView seat] setLocation:unitLocation];
     }
+    // When we are done with a seat, it should dance
+    [seatView dance];
   }
 }
 
@@ -174,11 +180,15 @@
 }
 
 - (void)startEditingAnimation {
-  NSLog(@"Starting Edit Animation");
+  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
+    [[_seatViews objectAtIndex:i] dance];
+  }
 }
 
 - (void)stopEditingAnimation {
-  NSLog(@"Stopping Edit Animation");
+  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
+    [[_seatViews objectAtIndex:i] stopDancing];
+  }
 }
 
 @end

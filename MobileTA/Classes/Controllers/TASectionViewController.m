@@ -10,6 +10,7 @@
 
 #import "AttendanceRecord.h"
 #import "StudentAttendance.h"
+#import "TASeatingChartViewController.h"
 
 @implementation TASectionViewController {
   AttendanceRecord *_attendanceRecord;
@@ -24,36 +25,24 @@
     self = [super initWithStyle:style];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
-      UIBarButtonItem *newAttendanceRecordItem = [[UIBarButtonItem alloc] initWithTitle:@"Test"
-                                                                                  style:UIBarButtonItemStylePlain
-                                                                                 target:self
-                                                                                 action:@selector(addNewAttendanceRecord)];
       UIBarButtonItem *attendanceHistoryItem = [[UIBarButtonItem alloc] initWithTitle:@"History"
                                                                                   style:UIBarButtonItemStylePlain
                                                                                  target:self
                                                                                  action:@selector(viewAttendanceHistory)];
       self.navigationItem.rightBarButtonItems = @[
-        attendanceHistoryItem,
-        newAttendanceRecordItem,
         self.editButtonItem,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                       target:self
-                                                      action:@selector(addNewStudent)]
+                                                      action:@selector(addNewStudent)],
+        attendanceHistoryItem,
+        [[UIBarButtonItem alloc] initWithTitle:@"Test"
+                                         style:UIBarButtonItemStylePlain
+                                        target:self
+                                        action:@selector(viewSeatingChart)]
       ];
       self.tableView.allowsSelectionDuringEditing = YES;
     }
     return self;
-}
-
-- (void)viewAttendanceHistory {
-  TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section];
-  listViewController.delegate = self;
-
-  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listViewController];
-  navController.modalPresentationStyle = UIModalPresentationFormSheet;
-  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-
-  [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (id)initWithSection:(Section *)section {
@@ -146,6 +135,22 @@
   }
 }
 
+- (void)viewSeatingChart {
+  TASeatingChartViewController *seatingChart = [[TASeatingChartViewController alloc] initWithSection:self.section];
+  [[self navigationController] pushViewController:seatingChart animated:YES];
+}
+
+- (void)viewAttendanceHistory {
+  TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section];
+  listViewController.delegate = self;
+
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listViewController];
+  navController.modalPresentationStyle = UIModalPresentationFormSheet;
+  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
+  [self presentViewController:navController animated:YES completion:nil];
+}
+
 - (void)addNewAttendanceRecord {
   TAAttendanceRecordEditViewController *editViewController = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:nil];
   [editViewController setDelegate:self];
@@ -190,6 +195,10 @@
 
 - (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller didSelectAttendanceRecord:(AttendanceRecord *)record {
   self.attendanceRecord = record;
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)attendanceHistoryViewControllerDidCancel:(TAAttendanceHistoryViewController *)controller {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
