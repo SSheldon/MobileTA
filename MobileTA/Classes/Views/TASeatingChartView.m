@@ -106,15 +106,11 @@
   NSLog(@"Tap!");
   NSManagedObjectContext *managedObjectContext = [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
   CGPoint tapLocation = [gestureRecognizer locationInView:self];
-  CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS / 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS / 4),UNIT_PIXEL_RATIO));
-  int unitX = tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/6) - extraGridTranslation.x;
-  int unitY = tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y;
+  CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO));
+  CGPoint newSeatLocation = CGPointMake(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.x,tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y);
   Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:managedObjectContext];
-  seat.x = [NSNumber numberWithInt:p2u(unitX)];
-  seat.y = [NSNumber numberWithInt:p2u(unitY)];
-  NSLog(@"%d", unitX);
-  NSLog(@"%d", unitY);
-  NSLog(@"%d", SEAT_HEIGHT_UNITS);
+  seat.x = [NSNumber numberWithInt:p2u(newSeatLocation.x)];
+  seat.y = [NSNumber numberWithInt:p2u(newSeatLocation.y)];
   [self addSeat: seat];
 }
 
