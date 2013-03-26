@@ -48,6 +48,7 @@
   [_seatViews addObject:seatView];
   // Add gesture recognizers
   UIGestureRecognizer *move = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+  [move setDelegate:self];
   [seatView addGestureRecognizer:move];
   [self addSubview:seatView];
 }
@@ -172,6 +173,16 @@
   for (NSUInteger i = 0; i < [_seatViews count]; i++) {
     [[_seatViews objectAtIndex:i] stopDancing];
   }
+}
+
+# pragma mark UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+  if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+    return [self isEditing];
+  }
+  // By default, we want to listen to the UIGestureRecognizer
+  return YES;
 }
 
 @end

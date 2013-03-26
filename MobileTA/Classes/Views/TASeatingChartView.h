@@ -21,7 +21,7 @@
 
 @end
 
-@interface TASeatingChartView : UIView {
+@interface TASeatingChartView : UIView <UIGestureRecognizerDelegate> {
   NSMutableArray *_seatViews;
 }
 
