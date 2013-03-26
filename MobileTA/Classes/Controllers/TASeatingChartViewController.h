@@ -13,6 +13,7 @@
 
 @interface TASeatingChartViewController : UIViewController {
   UIScrollView *_scrollView;
+  UIBarButtonItem * addButtonItem;
 }
 
 - (id)initWithSection:(Section *)section;

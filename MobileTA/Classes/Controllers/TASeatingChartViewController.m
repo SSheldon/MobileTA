@@ -14,7 +14,6 @@
 
 @implementation TASeatingChartViewController
 
-UIBarButtonItem * addButtonItem;
 @synthesize seatingChart=_seatingChart;
 
 - (id)initWithSection:(Section *)section {

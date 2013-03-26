@@ -102,8 +102,20 @@
 
 #pragma mark Private Methods
 
-- (void)tap:(UIPanGestureRecognizer *)gestureRecognizer {
+- (void)tap:(UITapGestureRecognizer *)gestureRecognizer {
   NSLog(@"Tap!");
+  NSManagedObjectContext *managedObjectContext = [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+  CGPoint tapLocation = [gestureRecognizer locationInView:self];
+  CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS / 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS / 4),UNIT_PIXEL_RATIO));
+  int unitX = tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/6) - extraGridTranslation.x;
+  int unitY = tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y;
+  Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:managedObjectContext];
+  seat.x = [NSNumber numberWithInt:p2u(unitX)];
+  seat.y = [NSNumber numberWithInt:p2u(unitY)];
+  NSLog(@"%d", unitX);
+  NSLog(@"%d", unitY);
+  NSLog(@"%d", SEAT_HEIGHT_UNITS);
+  [self addSeat: seat];
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gestureRecognizer {
@@ -114,6 +126,8 @@
   // representing any extra translation after the closest grid line. By subtracting
   // this value from currentLocation + translation, we can make sure newLocation
   // is on a grid line.
+  NSLog(@"%@", NSStringFromCGPoint(currentLocation));
+
   CGPoint extraGridTranslation = CGPointMake(fmodf(translation.x,UNIT_PIXEL_RATIO), fmodf(translation.y,UNIT_PIXEL_RATIO));
   CGPoint newLocation = CGPointMake(currentLocation.x + translation.x - extraGridTranslation.x, currentLocation.y + translation.y - extraGridTranslation.y);
   // Check that the new location is within the bounds of the Seating Chart
