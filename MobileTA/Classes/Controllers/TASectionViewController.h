@@ -11,12 +11,11 @@
 #import "TAStudentDetailCell.h"
 #import "TAStudentDisplayCell.h"
 #import "TAAttendanceHistoryViewController.h"
-#import "TAAttendanceRecordEditViewController.h"
 
 @class TAStudentDetailCell;
 @class TAStudentDisplayCell;
 
-@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate, TAAttendanceHistoryDelegate, TAAttendanceRecordEditDelegate>
+@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate, TAAttendanceHistoryDelegate>
 
 - (id)initWithSection:(Section *)section;
 

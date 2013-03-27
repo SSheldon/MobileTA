@@ -151,12 +151,6 @@
   [self presentViewController:navController animated:YES completion:nil];
 }
 
-- (void)addNewAttendanceRecord {
-  TAAttendanceRecordEditViewController *editViewController = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:nil];
-  [editViewController setDelegate:self];
-  [self presentModalViewController:editViewController animated:YES];
-}
-
 - (UITableViewCell *)createDisplayCellForStudent:(Student *)student {
   static NSString *studentDisplayCellId = @"StudentDisplayCell";
   TAStudentDisplayCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDisplayCellId];

@@ -8,6 +8,8 @@
 
 #import "TAAttendanceHistoryViewController.h"
 
+#import "TAAttendanceRecordEditViewController.h"
+
 @interface TAAttendanceHistoryViewController ()
 
 @end
@@ -31,6 +33,10 @@
       [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                     target:self
                                                     action:@selector(cancel)];
+    self.navigationItem.rightBarButtonItem =
+      [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                    target:self
+                                                    action:@selector(addNewAttendanceRecord)];
   }
   return self;
 }
@@ -59,6 +65,11 @@
   if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewControllerDidCancel:)]) {
     [self.delegate attendanceHistoryViewControllerDidCancel:self];
   }
+}
+
+- (void)addNewAttendanceRecord {
+  TAAttendanceRecordEditViewController *controller = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:nil];
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - Table view data source
