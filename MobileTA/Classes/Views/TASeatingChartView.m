@@ -103,15 +103,16 @@
 #pragma mark Private Methods
 
 - (void)tap:(UITapGestureRecognizer *)gestureRecognizer {
-  NSLog(@"Tap!");
-  NSManagedObjectContext *managedObjectContext = [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-  CGPoint tapLocation = [gestureRecognizer locationInView:self];
-  CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO));
-  CGPoint newSeatLocation = CGPointMake(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.x,tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y);
-  Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:managedObjectContext];
-  seat.x = [NSNumber numberWithInt:p2u(newSeatLocation.x)];
-  seat.y = [NSNumber numberWithInt:p2u(newSeatLocation.y)];
-  [self addSeat: seat];
+  if (_editing) {
+    NSManagedObjectContext *managedObjectContext = [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    CGPoint tapLocation = [gestureRecognizer locationInView:self];
+    CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO));
+    CGPoint newSeatLocation = CGPointMake(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.x,tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y);
+    Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:managedObjectContext];
+    seat.x = [NSNumber numberWithInt:p2u(newSeatLocation.x)];
+    seat.y = [NSNumber numberWithInt:p2u(newSeatLocation.y)];
+    [self addSeat: seat];
+  }
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gestureRecognizer {
