@@ -54,6 +54,10 @@
   [move setDelegate:self];
   [seatView addGestureRecognizer:move];
   [self addSubview:seatView];
+  // If we add a seat while we are editing, make it dance
+  if(_editing) {
+    [seatView dance];
+  }
 }
 
 - (void)setEditing:(BOOL)editing {
@@ -104,16 +108,14 @@
 #pragma mark Private Methods
 
 - (void)tap:(UITapGestureRecognizer *)gestureRecognizer {
-  if (_editing) {
-    NSManagedObjectContext *managedObjectContext = [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    CGPoint tapLocation = [gestureRecognizer locationInView:self];
-    CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO));
-    CGPoint newSeatLocation = CGPointMake(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.x,tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y);
-    Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:managedObjectContext];
-    seat.x = [NSNumber numberWithInt:p2u(newSeatLocation.x)];
-    seat.y = [NSNumber numberWithInt:p2u(newSeatLocation.y)];
-    [self addSeat: seat];
-  }
+  NSManagedObjectContext *managedObjectContext = [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+  CGPoint tapLocation = [gestureRecognizer locationInView:self];
+  CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO));
+  CGPoint newSeatLocation = CGPointMake(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.x,tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y);
+  Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:managedObjectContext];
+  seat.x = [NSNumber numberWithInt:p2u(newSeatLocation.x)];
+  seat.y = [NSNumber numberWithInt:p2u(newSeatLocation.y)];
+  [self addSeat: seat];
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gestureRecognizer {
@@ -128,8 +130,6 @@
   // representing any extra translation after the closest grid line. By subtracting
   // this value from currentLocation + translation, we can make sure newLocation
   // is on a grid line.
-  NSLog(@"%@", NSStringFromCGPoint(currentLocation));
-
   CGPoint extraGridTranslation = CGPointMake(fmodf(translation.x,UNIT_PIXEL_RATIO), fmodf(translation.y,UNIT_PIXEL_RATIO));
   CGPoint newLocation = CGPointMake(currentLocation.x + translation.x - extraGridTranslation.x, currentLocation.y + translation.y - extraGridTranslation.y);
   // Check that the new location is within the bounds of the Seating Chart
@@ -192,7 +192,8 @@
 # pragma mark UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-  if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+  if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] ||
+      [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
     return [self isEditing];
   }
   // By default, we want to listen to the UIGestureRecognizer
