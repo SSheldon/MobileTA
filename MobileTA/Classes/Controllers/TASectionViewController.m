@@ -11,6 +11,7 @@
 #import "AttendanceRecord.h"
 #import "StudentAttendance.h"
 #import "TASeatingChartViewController.h"
+#import "TANavigationController.h"
 
 @implementation TASectionViewController {
   AttendanceRecord *_attendanceRecord;
@@ -144,17 +145,12 @@
   TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section];
   listViewController.delegate = self;
 
-  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listViewController];
+  TANavigationController *navController = [[TANavigationController alloc] initWithRootViewController:listViewController];
+  navController.disablesAutomaticKeyboardDismissal = NO;
   navController.modalPresentationStyle = UIModalPresentationFormSheet;
   navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 
   [self presentViewController:navController animated:YES completion:nil];
-}
-
-- (void)addNewAttendanceRecord {
-  TAAttendanceRecordEditViewController *editViewController = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:nil];
-  [editViewController setDelegate:self];
-  [self presentModalViewController:editViewController animated:YES];
 }
 
 - (UITableViewCell *)createDisplayCellForStudent:(Student *)student {

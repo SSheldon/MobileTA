@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "AttendanceRecord.h"
-#import "Section.h"
+#import "TAAttendanceRecordEditViewController.h"
+
+@class AttendanceRecord, Section;
 
 @class TAAttendanceHistoryViewController;
 
@@ -19,7 +19,7 @@
 - (void)attendanceHistoryViewControllerDidCancel:(TAAttendanceHistoryViewController *)controller;
 @end
 
-@interface TAAttendanceHistoryViewController : UITableViewController
+@interface TAAttendanceHistoryViewController : UITableViewController <TAAttendanceRecordEditDelegate>
 
 - (id)initWithSection:(Section *) section;
 

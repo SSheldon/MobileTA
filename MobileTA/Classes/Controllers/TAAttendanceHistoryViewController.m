@@ -8,6 +8,10 @@
 
 #import "TAAttendanceHistoryViewController.h"
 
+#import "AttendanceRecord.h"
+#import "Section.h"
+#import "TAAttendanceRecordEditViewController.h"
+
 @interface TAAttendanceHistoryViewController ()
 
 @end
@@ -31,6 +35,10 @@
       [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                     target:self
                                                     action:@selector(cancel)];
+    self.navigationItem.rightBarButtonItem =
+      [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                    target:self
+                                                    action:@selector(addNewAttendanceRecord)];
   }
   return self;
 }
@@ -59,6 +67,12 @@
   if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewControllerDidCancel:)]) {
     [self.delegate attendanceHistoryViewControllerDidCancel:self];
   }
+}
+
+- (void)addNewAttendanceRecord {
+  TAAttendanceRecordEditViewController *controller = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:nil];
+  controller.delegate = self;
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -93,6 +107,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
     [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:[self attendanceRecordAtIndexPath:indexPath]];
+  }
+}
+
+#pragma mark TAAttendanceRecordEditDelegate
+
+- (void)viewController:(TAAttendanceRecordEditViewController *)controller savedAttendanceRecord:(AttendanceRecord *)record withPreviousData:(NSDictionary *)oldData {
+  if (!oldData) {
+    record.section = self.section;
+    [self.managedObjectContext save:nil];
+
+    NSMutableArray *newRecords = [NSMutableArray arrayWithArray:self.records];
+    [newRecords addObject:record];
+    self.records = newRecords;
   }
 }
 
