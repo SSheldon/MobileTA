@@ -8,6 +8,19 @@
 
 #import "TASeatingChartView.h"
 
+BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
+  if (CGRectIntersectsRect(rect1, rect2)) {
+    CGRect intersection = CGRectIntersection(rect1, rect2);
+    if (intersection.size.width < u2p(1) || intersection.size.height < u2p(1)) {
+      return NO;
+    }
+    else {
+      return YES;
+    }
+  }
+  return NO;
+}
+
 @interface TASeatingChartView (PrivateMethods)
 
 - (void)startEditingAnimation;
@@ -169,7 +182,7 @@
       continue;
     }
     else {
-      if (CGRectIntersectsRect(newFrame,[current frame])) {
+      if (TARectIntersectsRect(newFrame,[current frame])) {
         return NO;
       }
     }
