@@ -15,7 +15,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
       return NO;
     }
     else {
-      NSLog(@"%@ - %@",NSStringFromCGRect(rect1),NSStringFromCGRect(rect2));
       return YES;
     }
   }
@@ -202,7 +201,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
       continue;
     }
     else {
-      NSLog(@"In check");
       if (TARectIntersectsRect(newFrame,[current frame])) {
         return NO;
       }
