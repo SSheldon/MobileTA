@@ -86,8 +86,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
     [_seatViews removeObject:seatView];
   }];
   [_seatViews removeObject:seatView];
-  // TODO(srice): Remove the seat object associated with the seatView from the
-  // database
 }
 
 - (void)setEditing:(BOOL)editing {
