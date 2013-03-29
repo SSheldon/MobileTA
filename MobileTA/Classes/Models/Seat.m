@@ -19,12 +19,12 @@
 @dynamic students;
 
 - (CGPoint)location {
-  return CGPointMake([[self x] intValue], [[self y] intValue]);
+  return CGPointMake(self.x, self.y);
 }
 
 - (void)setLocation:(CGPoint)location {
-  [self setX:[NSNumber numberWithInt:location.x]];
-  [self setY:[NSNumber numberWithInt:location.y]];
+  self.x = location.x;
+  self.y = location.y;
 }
 
 @end

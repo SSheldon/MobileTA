@@ -13,8 +13,8 @@
 
 @interface Seat : NSManagedObject
 
-@property (nonatomic, retain) NSNumber *x;
-@property (nonatomic, retain) NSNumber *y;
+@property (nonatomic) int16_t x;
+@property (nonatomic) int16_t y;
 @property (nonatomic, retain) Room *room;
 @property (nonatomic, retain) NSSet *students;
 @end

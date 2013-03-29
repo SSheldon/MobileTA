@@ -140,8 +140,8 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO));
   CGPoint newSeatLocation = CGPointMake(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.x,tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y);
   Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:managedObjectContext];
-  seat.x = [NSNumber numberWithInt:p2u(newSeatLocation.x)];
-  seat.y = [NSNumber numberWithInt:p2u(newSeatLocation.y)];
+  seat.x = p2u(newSeatLocation.x);
+  seat.y = p2u(newSeatLocation.y);
   [self addSeat: seat];
 }
 

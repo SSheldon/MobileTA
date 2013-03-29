@@ -32,12 +32,12 @@
     if (![seats count]) {
       // JUST FOR SHITS AND GIGGLES
       Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
-      seat.x = [NSNumber numberWithInt:4];
-      seat.y = [NSNumber numberWithInt:4];
+      seat.x = 4;
+      seat.y = 4;
       [_seatingChart addSeat:seat];
       Seat *secondSeat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
-      secondSeat.x = [NSNumber numberWithInt:8];
-      secondSeat.y = [NSNumber numberWithInt:10];
+      secondSeat.x = 8;
+      secondSeat.y = 10;
       [_seatingChart addSeat:secondSeat];
     }
   }
@@ -78,8 +78,8 @@
 - (void)addSeat
 {
   Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
-  seat.x = [NSNumber numberWithInt:4];
-  seat.y = [NSNumber numberWithInt:4];
+  seat.x = 4;
+  seat.y = 4;
   [_seatingChart addSeat:seat];
 }
 
