@@ -53,6 +53,8 @@
       [_scrollView setContentSize:[TASeatingChartView roomPixelSize]];
       // The highest they can zoom is double the size
       [_scrollView setMaximumZoomScale:2.0];
+      // The lowest they can zoom is 1/4 the size
+      [_scrollView setMinimumZoomScale:0.4];
       [_scrollView setDelegate:self];
       // Make a seating chart that fills the entire view
       _seatingChart = [[TASeatingChartView alloc] initWithDefaultFrame];
