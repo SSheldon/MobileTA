@@ -85,7 +85,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
     [seatView removeFromSuperview];
     [_seatViews removeObject:seatView];
   }];
-  [_seatViews removeObject:seatView];
 }
 
 - (void)setEditing:(BOOL)editing {
