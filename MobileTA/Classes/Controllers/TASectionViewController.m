@@ -204,10 +204,10 @@
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
   if (attendance.status == StudentAttendanceStatusAbsent) {
-    attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusPresent];
+    attendance.status = StudentAttendanceStatusPresent;
   }
   else {
-    attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusAbsent];
+    attendance.status = StudentAttendanceStatusAbsent;
   }
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
@@ -221,10 +221,10 @@
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
   if (attendance.status == StudentAttendanceStatusTardy) {
-    attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusPresent];
+    attendance.status = StudentAttendanceStatusPresent;
   }
   else {
-    attendance.status = [NSNumber numberWithInt:StudentAttendanceStatusTardy];
+    attendance.status = StudentAttendanceStatusTardy;
   }
   UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
   if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
