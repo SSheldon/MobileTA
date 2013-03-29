@@ -64,4 +64,14 @@
   return description;
 }
 
+- (NSString *) getDescriptionShort {
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"MM-dd"];
+  NSString *description = [dateFormatter stringFromDate:self.date];
+  if (self.name.length) {
+    description = [description stringByAppendingFormat:@" %@", self.name];
+  }
+  return description;
+}
+
 @end

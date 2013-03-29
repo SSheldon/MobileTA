@@ -87,6 +87,7 @@
   if ([self isViewLoaded]) {
     [self.tableView reloadData];
   }
+  self.title = [NSString stringWithFormat:@"%@  (%@)", _section.name, [_attendanceRecord getDescriptionShort]];
 }
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student {

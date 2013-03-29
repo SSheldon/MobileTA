@@ -41,5 +41,6 @@
 - (void)removeStudentAttendancesObject:(StudentAttendance *)value;
 - (void)addStudentAttendances:(NSSet *)values;
 - (void)removeStudentAttendances:(NSSet *)values;
+- (NSString *) getDescriptionShort;
 
 @end
