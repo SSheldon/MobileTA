@@ -15,6 +15,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
       return NO;
     }
     else {
+      NSLog(@"%@ - %@",NSStringFromCGRect(rect1),NSStringFromCGRect(rect2));
       return YES;
     }
   }
@@ -61,6 +62,11 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 - (void)addSeat:(Seat *)seat {
   // Make a seat view at 0,0.
   TASeatView *seatView = [[TASeatView alloc] initWithSeat:seat];
+  if (![self canMoveSeat:seatView toPoint:[seatView frame].origin]) {
+    [self addSubview:seatView];
+    [self removeSeatView:seatView];
+    return;
+  }
   [_seatViews addObject:seatView];
   // Add gesture recognizers
   UIGestureRecognizer *move = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
@@ -196,6 +202,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
       continue;
     }
     else {
+      NSLog(@"In check");
       if (TARectIntersectsRect(newFrame,[current frame])) {
         return NO;
       }
