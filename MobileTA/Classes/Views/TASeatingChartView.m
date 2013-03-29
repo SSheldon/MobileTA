@@ -47,14 +47,15 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-      // Initialization code
-      _seatViews = [NSMutableArray arrayWithCapacity:30];
-    }
-    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
-    [self addGestureRecognizer:tap];
-    return self;
+  self = [super initWithFrame:frame];
+  if (self) {
+    // Initialization code
+    _seatViews = [NSMutableArray arrayWithCapacity:30];
+  }
+  UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+  [tap setDelegate:self];
+  [self addGestureRecognizer:tap];
+  return self;
 }
 
 - (void)addSeat:(Seat *)seat {
@@ -63,7 +64,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   [_seatViews addObject:seatView];
   // Add gesture recognizers
   UIGestureRecognizer *move = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-
   [move setDelegate:self];
   [seatView addGestureRecognizer:move];
   [self addSubview:seatView];
@@ -71,6 +71,23 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   if(_editing) {
     [seatView dance];
   }
+}
+
+- (void)removeSeatView:(TASeatView *)seatView {
+  // If the seatView is dancing, stop it
+  if (_editing) {
+    [seatView stopDancing];
+  }
+  [UIView animateWithDuration:.5 animations:^{
+    [seatView setAlpha:0.0];
+    [seatView setTransform:CGAffineTransformMakeScale(1.5, 1.5)];
+  } completion:^(BOOL finished){
+    [seatView removeFromSuperview];
+    [_seatViews removeObject:seatView];
+  }];
+  [_seatViews removeObject:seatView];
+  // TODO(srice): Remove the seat object associated with the seatView from the
+  // database
 }
 
 - (void)setEditing:(BOOL)editing {
@@ -200,6 +217,16 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   for (NSUInteger i = 0; i < [_seatViews count]; i++) {
     [[_seatViews objectAtIndex:i] stopDancing];
   }
+}
+
+- (TASeatView *)seatViewForSeat:(Seat *)seat {
+  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
+    TASeatView *current = [_seatViews objectAtIndex:i];
+    if ([current seat] == seat) {
+      return current;
+    }
+  }
+  return nil;
 }
 
 # pragma mark UIGestureRecognizerDelegate
