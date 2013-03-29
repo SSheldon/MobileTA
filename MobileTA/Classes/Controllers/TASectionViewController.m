@@ -122,6 +122,7 @@
 
 - (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
   if (student.lastName != [oldData objectForKey:@"lastName"] ||
+      student.nickname != [oldData objectForKey:@"nickname"] ||
       student.firstName != [oldData objectForKey:@"firstName"]) {
     if (!oldData) {
       // Make sure that the section for the student is the correct section

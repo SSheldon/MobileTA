@@ -44,14 +44,10 @@
   }
 
   // Sort student array within each section
-  NSArray *sortDescriptors = @[
-    [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
-    [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
-  ];
-  for (NSMutableArray *students in _tableSections) {
-    // Sort using descriptors so that we can break ties with first name, which isn't possible with
-    // UILocalizedIndexedCollation's sortedArrayFromArray:collationStringSelector:
-    [students sortUsingDescriptors:sortDescriptors];
+  for (NSInteger i = 0; i < collation.sectionTitles.count; i++) {
+    NSArray *students = [_tableSections objectAtIndex:i];
+    NSArray *sorted = [collation sortedArrayFromArray:students collationStringSelector:@selector(fullDisplayName)];
+    [_tableSections replaceObjectAtIndex:i withObject:sorted];
   }
 
   if ([self isViewLoaded]) {

@@ -30,10 +30,13 @@
   QSection *mainSection = [[QSection alloc] initWithTitle:@""];
   QEntryElement *firstName = [[QEntryElement alloc] initWithTitle:@"First Name" Value:[student firstName] Placeholder:@""];
   [firstName setKey:@"firstName"];
+  QEntryElement *nickname = [[QEntryElement alloc] initWithTitle:@"Nickname" Value:student.nickname Placeholder:@""];
+  nickname.key = @"nickname";
   QEntryElement *lastName = [[QEntryElement alloc] initWithTitle:@"Last Name" Value:[student lastName] Placeholder:@""];
   [lastName setKey:@"lastName"];
   [root addSection:mainSection];
   [mainSection addElement:firstName];
+  [mainSection addElement:nickname];
   [mainSection addElement:lastName];
   QSection *controlSection = [[QSection alloc] initWithTitle:@""];
   QButtonElement *saveButton = [[QButtonElement alloc] initWithTitle:@"Save"];
@@ -65,6 +68,7 @@
     [[self student] setFirstName:[dict objectForKey:@"firstName"]];
     [[self student] setLastName:[dict objectForKey:@"lastName"]];
   }
+  self.student.nickname = [dict objectForKey:@"nickname"];
   
   // TODO(srice): Handle Errors
   [[self managedObjectContext] save:nil];
