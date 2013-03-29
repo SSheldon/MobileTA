@@ -19,14 +19,13 @@
   if (self) {
     // Initialization code
     self.backgroundColor = [UIColor clearColor];
-    CGRect b = [self bounds];
     // Makes a view with an origin at the top left corner of the view, with a width of 6px, and whose height
     // is the height of the cell
-    _statusView = [[UIView alloc] initWithFrame:CGRectMake(0,0,6,b.size.height)];
+    _statusView = [[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)];
     [_statusView setBackgroundColor:[UIColor clearColor]];
     [self addSubview:_statusView];
     
-    _participationLabel = [[UILabel alloc] initWithFrame:CGRectMake(b.size.width*2+70,0,20,b.size.height)];
+    _participationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
     [_participationLabel setTextAlignment:NSTextAlignmentCenter];
     [_participationLabel setTextColor:[UIColor whiteColor]];
     [_participationLabel setBackgroundColor:[UIColor orangeColor]];
@@ -35,6 +34,17 @@
 
   }
   return self;
+}
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  
+  CGFloat width = self.bounds.size.width;
+  CGFloat height = self.bounds.size.height;
+  [_statusView setFrame:CGRectMake(0,0,6,height)];
+  [_statusView setNeedsDisplay];
+  [_participationLabel setFrame:CGRectMake(width-60,0,20,height)];
+  [_participationLabel setNeedsDisplay];
 }
 
 - (void)setStatus: (NSInteger)status {

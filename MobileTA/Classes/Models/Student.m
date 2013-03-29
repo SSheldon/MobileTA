@@ -16,6 +16,7 @@
 
 @dynamic firstName;
 @dynamic lastName;
+@dynamic nickname;
 @dynamic section;
 @dynamic attendances;
 @dynamic seat;

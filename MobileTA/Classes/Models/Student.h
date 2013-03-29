@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * lastName;
+@property (nonatomic, retain) NSString *nickname;
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) NSSet *attendances;
 @property (nonatomic, retain) Seat *seat;
