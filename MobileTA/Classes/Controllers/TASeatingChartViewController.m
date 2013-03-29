@@ -51,6 +51,9 @@
       // Make a scroll view
       _scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
       [_scrollView setContentSize:[TASeatingChartView roomPixelSize]];
+      // The highest they can zoom is double the size
+      [_scrollView setMaximumZoomScale:2.0];
+      [_scrollView setDelegate:self];
       // Make a seating chart that fills the entire view
       _seatingChart = [[TASeatingChartView alloc] initWithDefaultFrame];
       [[self view] addSubview:_scrollView];
@@ -88,6 +91,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark UIScrollViewDelegate
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+  return _seatingChart;
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
+  
 }
 
 @end
