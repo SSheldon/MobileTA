@@ -61,4 +61,25 @@
   return csvContent;
 }
 
+- (NSString *)fullDisplayName {
+  NSString *display = nil;
+  // Start with the student's nickname or first name
+  if (self.nickname.length) {
+    display = self.nickname;
+  } else if (self.firstName.length) {
+    display = self.firstName;
+  }
+
+  // Add the student's last name
+  if (self.lastName.length) {
+    if (display.length) {
+      display = [display stringByAppendingFormat:@" %@", self.lastName];
+    } else {
+      display = self.lastName;
+    }
+  }
+
+  return display;
+}
+
 @end

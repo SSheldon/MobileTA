@@ -39,6 +39,8 @@
 + (NSArray *)studentsFromCSV:(NSArray *)csvContent context:(NSManagedObjectContext *)context;
 + (NSMutableArray *)parseMyCSVFile;
 
+- (NSString *)fullDisplayName;
+
 @end
 
 @interface Student (CoreDataGeneratedAccessors)
