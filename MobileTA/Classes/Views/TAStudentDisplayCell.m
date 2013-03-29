@@ -21,11 +21,11 @@
     self.backgroundColor = [UIColor clearColor];
     // Makes a view with an origin at the top left corner of the view, with a width of 6px, and whose height
     // is the height of the cell
-    _statusView = [[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)];
+    _statusView = [[UIView alloc] initWithFrame:CGRectZero];
     [_statusView setBackgroundColor:[UIColor clearColor]];
     [self addSubview:_statusView];
     
-    _participationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
+    _participationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_participationLabel setTextAlignment:NSTextAlignmentCenter];
     [_participationLabel setTextColor:[UIColor whiteColor]];
     [_participationLabel setBackgroundColor:[UIColor orangeColor]];
