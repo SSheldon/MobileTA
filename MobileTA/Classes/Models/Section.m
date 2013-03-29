@@ -15,6 +15,7 @@
 @implementation Section
 
 @dynamic name;
+@dynamic course;
 @dynamic attendanceRecords;
 @dynamic room;
 @dynamic students;

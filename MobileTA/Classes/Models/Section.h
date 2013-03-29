@@ -17,6 +17,7 @@
 + (NSArray *)fetchSectionsInContext:(NSManagedObjectContext *)context;
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString *course;
 @property (nonatomic, retain) NSSet *attendanceRecords;
 @property (nonatomic, retain) Room *room;
 @property (nonatomic, retain) NSSet *students;
