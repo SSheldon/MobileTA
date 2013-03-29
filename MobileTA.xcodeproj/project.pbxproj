@@ -74,11 +74,8 @@
 		9FBF84F116E7F973000077D5 /* TASectionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */; };
 		9FC025B216E0471F00C1CBA6 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
 		9FE67B5E16EE756500F98DCE /* TAAttendanceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE67B5D16EE756500F98DCE /* TAAttendanceHistoryViewController.m */; };
-		E6064D1516F2445D00BCF71B /* TASeatingChartView.h in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1316F2445D00BCF71B /* TASeatingChartView.h */; };
 		E6064D1616F2445D00BCF71B /* TASeatingChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1416F2445D00BCF71B /* TASeatingChartView.m */; };
-		E6064D1E16F244A300BCF71B /* TASeatingChartViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1C16F244A300BCF71B /* TASeatingChartViewController.h */; };
 		E6064D1F16F244A300BCF71B /* TASeatingChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1D16F244A300BCF71B /* TASeatingChartViewController.m */; };
-		E6064D2216F2AA7F00BCF71B /* TASeatView.h in Sources */ = {isa = PBXBuildFile; fileRef = E6064D2016F2AA7F00BCF71B /* TASeatView.h */; };
 		E6064D2316F2AA7F00BCF71B /* TASeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D2116F2AA7F00BCF71B /* TASeatView.m */; };
 		E6298DBF17010F5700862316 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F121616D7137C009C310A /* QuartzCore.framework */; };
 		E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
@@ -758,11 +755,8 @@
 				9FE67B5E16EE756500F98DCE /* TAAttendanceHistoryViewController.m in Sources */,
 				E6BCE01016EE78E100C7B904 /* TAAttendanceRecordEditViewController.m in Sources */,
 				408E549F16EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */,
-				E6064D1516F2445D00BCF71B /* TASeatingChartView.h in Sources */,
 				E6064D1616F2445D00BCF71B /* TASeatingChartView.m in Sources */,
-				E6064D1E16F244A300BCF71B /* TASeatingChartViewController.h in Sources */,
 				E6064D1F16F244A300BCF71B /* TASeatingChartViewController.m in Sources */,
-				E6064D2216F2AA7F00BCF71B /* TASeatView.h in Sources */,
 				E6064D2316F2AA7F00BCF71B /* TASeatView.m in Sources */,
 				135F59BB17029FB600734373 /* TANavigationController.m in Sources */,
 			);
