@@ -12,13 +12,7 @@
 #import "Seat.h"
 #import "Section.h"
 
-@interface TASeatingChartViewController ()
-
-@end
-
 @implementation TASeatingChartViewController
-
-@synthesize seatingChart=_seatingChart;
 
 - (id)initWithSection:(Section *)section {
   self = [self initWithNibName:nil bundle:nil];
@@ -46,8 +40,7 @@
   return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       // Make a scroll view
@@ -78,8 +71,7 @@
   [_seatingChart setEditing:editing];
 }
 
-- (void)addSeat
-{
+- (void)addSeat {
   Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
   Seat *lastSeat = [_seatingChart lastSeat];
   if (!lastSeat) {
@@ -95,18 +87,6 @@
     seat.y = lastSeat.y + 4;
   }
   [_seatingChart addSeat:seat];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark UIScrollViewDelegate
