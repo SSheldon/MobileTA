@@ -58,6 +58,7 @@
       [_scrollView setDelegate:self];
       // Make a seating chart that fills the entire view
       _seatingChart = [[TASeatingChartView alloc] initWithDefaultFrame];
+      [_seatingChart setDelegate:self];
       [[self view] addSubview:_scrollView];
       [_scrollView addSubview:_seatingChart];
     }
@@ -103,6 +104,12 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
   
+}
+
+#pragma mark TASeatingChartView
+
+- (void)didDeleteSeat:(Seat *)seat {
+  NSLog(@"Deleting seat");
 }
 
 @end

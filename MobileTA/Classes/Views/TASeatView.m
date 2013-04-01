@@ -21,7 +21,11 @@
 
 @implementation TASeatView
 
+@synthesize delegate=_delegate;
+
 @synthesize seat=_seat;
+@synthesize editing=_editing;
+@synthesize deleteButton=_deleteButton;
 @synthesize invalidLocation=_invalidLocation;
 
 + (UIImage *)backgroundImage {
@@ -29,10 +33,26 @@
   return (__shared) ? __shared : (__shared = [UIImage imageNamed:@"seat.png"]);
 }
 
++ (UIImage *)deleteButtonImage {
+  static UIImage *__shared = nil;
+  return (__shared) ? __shared : (__shared = [UIImage imageNamed:@"delete_button.png"]);
+}
+
 - (id)initWithSeat:(Seat *)seat {
   self = [self initWithFrame:[self frameForGridLocation:[seat location]]];
   if (self) {
     [self setSeat:seat];
+    _backgroundView = [[UIImageView alloc] initWithFrame:[self bounds]];
+    [_backgroundView setImage:[TASeatView backgroundImage]];
+    [self addSubview:_backgroundView];
+    _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_deleteButton setBackgroundImage:[TASeatView deleteButtonImage] forState:UIControlStateNormal];
+//    [_deleteButton setTitle:@"X" forState:UIControlStateNormal];
+    [_deleteButton setFrame:CGRectMake(0, 0, 48, 48)];
+    [_deleteButton setCenter:CGPointMake(5, 5)];
+    [_deleteButton addTarget:self action:@selector(didPressDelete) forControlEvents:UIControlEventTouchUpInside];
+    [_deleteButton setHidden:YES];
+    [self addSubview:_deleteButton];
   }
   return self;
 }
@@ -58,13 +78,17 @@
   }
 }
 
+- (void)didPressDelete {
+  [_delegate deleteSeatView:self];
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-  // Drawing code
-  [[TASeatView backgroundImage] drawInRect:[self bounds]];
-}
+//- (void)drawRect:(CGRect)rect
+//{
+//  // Drawing code
+//  [[TASeatView backgroundImage] drawInRect:[self bounds]];
+//}
 
 - (void)dance {
   // Determine whether to start from the left or the right
@@ -76,18 +100,33 @@
   CGAffineTransform moveTransform = CGAffineTransformTranslate(rightWobble, -kDanceAnimationTranslateX, -kDanceAnimationTranslateY);
   CGAffineTransform conCatTransform = CGAffineTransformConcat(rightWobble, moveTransform);
   
-  self.transform = leftWobble;  // starting point
+  _backgroundView.transform = leftWobble;  // starting point
   
   [UIView animateWithDuration:0.1
                         delay:0
                       options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
-                   animations:^{ self.transform = conCatTransform; }
+                   animations:^{ _backgroundView.transform = conCatTransform; }
                    completion:nil];
 }
 
 - (void)stopDancing {
-  [self.layer removeAllAnimations];
-  self.transform = CGAffineTransformIdentity;
+  [_backgroundView.layer removeAllAnimations];
+  _backgroundView.transform = CGAffineTransformIdentity;
+}
+
+- (void)setEditing:(BOOL)editing {
+  if (editing == _editing) {
+    return;
+  }
+  _editing = editing;
+  if (_editing) {
+    [self dance];
+    [_deleteButton setHidden:NO];
+  }
+  else {
+    [self stopDancing];
+    [_deleteButton setHidden:YES];
+  }
 }
 
 #pragma mark Private Methods

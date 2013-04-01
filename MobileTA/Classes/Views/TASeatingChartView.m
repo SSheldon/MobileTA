@@ -23,9 +23,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 
 @interface TASeatingChartView (PrivateMethods)
 
-- (void)startEditingAnimation;
-- (void)stopEditingAnimation;
-
 @end
 
 @implementation TASeatingChartView
@@ -73,9 +70,8 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   [seatView addGestureRecognizer:move];
   [self addSubview:seatView];
   // If we add a seat while we are editing, make it dance
-  if(_editing) {
-    [seatView dance];
-  }
+  [seatView setEditing:_editing];
+  [seatView setDelegate:self];
 }
 
 - (void)removeSeatView:(TASeatView *)seatView {
@@ -96,11 +92,8 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   // If we change state
   if (_editing != editing) {
     _editing = editing;
-    if (_editing) {
-      [self startEditingAnimation];
-    }
-    else {
-      [self stopEditingAnimation];
+    for (NSUInteger i = 0; i < [_seatViews count]; i++) {
+      [[_seatViews objectAtIndex:i] setEditing:_editing];
     }
   }
 }
@@ -172,7 +165,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   // Move the seatView to the new location
   CGPoint unitLocation = CGPointMake(p2u(newLocation.x), p2u(newLocation.y));
   [seatView moveToGridLocation:unitLocation];
-//  [seatView setFrame:CGRectMake(newLocation.x, newLocation.y, [seatView bounds].size.width, [seatView bounds].size.height)];
   [gestureRecognizer setTranslation:extraGridTranslation inView:self];
   [seatView setInvalidLocation:![self canMoveSeat:seatView toPoint:newLocation]];
   if ([gestureRecognizer state] == UIGestureRecognizerStateEnded) {
@@ -209,18 +201,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   return YES;
 }
 
-- (void)startEditingAnimation {
-  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
-    [[_seatViews objectAtIndex:i] dance];
-  }
-}
-
-- (void)stopEditingAnimation {
-  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
-    [[_seatViews objectAtIndex:i] stopDancing];
-  }
-}
-
 - (TASeatView *)seatViewForSeat:(Seat *)seat {
   for (NSUInteger i = 0; i < [_seatViews count]; i++) {
     TASeatView *current = [_seatViews objectAtIndex:i];
@@ -231,12 +211,50 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   return nil;
 }
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+  for (UIView *subview in self.subviews) {
+    // Check for the delete buttons first, as they are a special case
+    if ([self isEditing] && [subview isKindOfClass:[TASeatView class]]) {
+      TASeatView *seatView = (TASeatView *)subview;
+      CGPoint pointInSeatViewCoordinates = [seatView convertPoint:point fromView:self];
+      if (CGRectContainsPoint([[seatView deleteButton] frame], pointInSeatViewCoordinates)) {
+        return [seatView deleteButton];
+      }
+    }
+    if (CGRectContainsPoint(subview.frame, point)) {
+      return subview;
+    }
+  }
+  return [super hitTest:point withEvent:event];
+}
+
+# pragma mark TASeatViewDelegate
+
+- (void)deleteSeatView:(TASeatView *)seatView {
+  [self removeSeatView:seatView];
+  [_delegate didDeleteSeat:[seatView seat]];
+}
+
 # pragma mark UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-  if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] ||
-      [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+  if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
     return [self isEditing];
+  }
+  if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+    // Don't do a tap gesture unless the view is editing
+    if (![self isEditing]) {
+      return NO;
+    }
+    // We don't want the gesture recognizer to fire if the user is trying to
+    // press the delete button of a seat
+    for (NSUInteger i = 0; i < [_seatViews count]; i++) {
+      TASeatView *current = [_seatViews objectAtIndex:i];
+      if (CGRectContainsPoint([[current deleteButton] frame], [gestureRecognizer locationInView:current])) {
+        return NO;
+      }
+    }
+    return YES;
   }
   // By default, we want to listen to the UIGestureRecognizer
   return YES;

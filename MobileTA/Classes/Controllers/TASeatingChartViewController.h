@@ -11,7 +11,7 @@
 #import "Section.h"
 #import "TASeatingChartView.h"
 
-@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate> {
+@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate> {
   UIScrollView *_scrollView;
   UIBarButtonItem * addButtonItem;
 }
