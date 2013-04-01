@@ -81,7 +81,6 @@
 		E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
 		E653A91616E96FD30062C7CB /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
 		E654DB33170A37CE00584411 /* delete_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E654DB32170A37CE00584411 /* delete_button.png */; };
-		E654DB36170A3C8C00584411 /* UIView+FrameSettingAdditions.h in Sources */ = {isa = PBXBuildFile; fileRef = E654DB34170A3C8C00584411 /* UIView+FrameSettingAdditions.h */; };
 		E654DB37170A3C8C00584411 /* UIView+FrameSettingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E654DB35170A3C8C00584411 /* UIView+FrameSettingAdditions.m */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
 		E6BCE01016EE78E100C7B904 /* TAAttendanceRecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */; };
@@ -769,7 +768,6 @@
 				E6064D1F16F244A300BCF71B /* TASeatingChartViewController.m in Sources */,
 				E6064D2316F2AA7F00BCF71B /* TASeatView.m in Sources */,
 				135F59BB17029FB600734373 /* TANavigationController.m in Sources */,
-				E654DB36170A3C8C00584411 /* UIView+FrameSettingAdditions.h in Sources */,
 				E654DB37170A3C8C00584411 /* UIView+FrameSettingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
