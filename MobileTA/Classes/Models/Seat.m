@@ -19,6 +19,17 @@
 @dynamic room;
 @dynamic students;
 
++ (Seat *)seatWithContext:(NSManagedObjectContext *)context {
+  return [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:context];
+}
+
++ (Seat *)seatWithX:(int16_t)x y:(int16_t)y context:(NSManagedObjectContext *)context {
+  Seat *seat = [Seat seatWithContext:context];
+  seat.x = x;
+  seat.y = y;
+  return seat;
+}
+
 - (Student *)studentForSection:(Section *)section {
   for (Student *student in self.students) {
     if ([section isEqual:student.section]) {

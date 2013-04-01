@@ -16,6 +16,9 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *seats;
 @property (nonatomic, retain) NSSet *sections;
+
++ (Room *)roomWithContext:(NSManagedObjectContext *)context;
+
 @end
 
 @interface Room (CoreDataGeneratedAccessors)

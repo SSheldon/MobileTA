@@ -17,4 +17,8 @@
 @dynamic seats;
 @dynamic sections;
 
++ (Room *)roomWithContext:(NSManagedObjectContext *)context {
+  return [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:context];
+}
+
 @end
