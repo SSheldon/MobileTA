@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "Seat.h"
-#import "TAGridConstants.h"
+
+@class Seat;
 
 @class TASeatView;
 

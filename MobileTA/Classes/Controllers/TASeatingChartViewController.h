@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Seat.h"
-#import "Section.h"
 #import "TASeatingChartView.h"
+
+@class Section;
 
 @interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate> {
   UIScrollView *_scrollView;

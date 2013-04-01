@@ -8,6 +8,9 @@
 
 #import "TASeatingChartView.h"
 
+#import "Seat.h"
+#import "TAGridConstants.h"
+
 BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   if (CGRectIntersectsRect(rect1, rect2)) {
     CGRect intersection = CGRectIntersection(rect1, rect2);

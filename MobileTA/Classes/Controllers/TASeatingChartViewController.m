@@ -9,6 +9,8 @@
 #import "TASeatingChartViewController.h"
 
 #import "Room.h"
+#import "Seat.h"
+#import "Section.h"
 
 @interface TASeatingChartViewController ()
 

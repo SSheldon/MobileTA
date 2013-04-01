@@ -8,6 +8,9 @@
 
 #import "TASeatView.h"
 
+#import "Seat.h"
+#import "TAGridConstants.h"
+
 #define degreesToRadians(x) (M_PI * (x) / 180.0)
 #define kDanceAnimationRotateDeg 6.0
 #define kDanceAnimationTranslateX 1.0

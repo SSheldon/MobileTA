@@ -6,10 +6,7 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import "math.h"
 #import <UIKit/UIKit.h>
-#import "TAGridConstants.h"
-#import "Seat.h"
 #import "TASeatView.h"
 
 @class TASeatingChartView;
