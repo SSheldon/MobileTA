@@ -79,7 +79,9 @@
 }
 
 - (void)didPressDelete {
-  [_delegate deleteSeatView:self];
+  if ([_delegate respondsToSelector:@selector(deleteSeatView:)]) {
+    [_delegate deleteSeatView:self];
+  }
 }
 
 // Only override drawRect: if you perform custom drawing.

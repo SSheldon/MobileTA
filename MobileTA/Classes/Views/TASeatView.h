@@ -15,6 +15,7 @@
 
 @protocol TASeatViewDelegate <NSObject>
 
+@optional
 // Please kill me
 - (void)deleteSeatView:(TASeatView *)seatView;
 

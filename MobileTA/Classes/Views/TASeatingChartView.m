@@ -240,7 +240,9 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 
 - (void)deleteSeatView:(TASeatView *)seatView {
   [self removeSeatView:seatView];
-  [_delegate didDeleteSeat:[seatView seat]];
+  if ([_delegate respondsToSelector:@selector(didDeleteSeat:)]) {
+    [_delegate didDeleteSeat:[seatView seat]];
+  }
 }
 
 # pragma mark UIGestureRecognizerDelegate

@@ -16,6 +16,7 @@
 
 @protocol TASeatingChartViewDelegate <NSObject>
 
+@optional
 - (void)didSelectSeat:(Seat *)seat;
 - (void)didDeleteSeat:(Seat *)seat;
 
