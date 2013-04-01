@@ -18,6 +18,7 @@
 
 - (id)initWithSection:(Section *)section;
 
+@property (nonatomic, strong) Section *section;
 @property(nonatomic,readonly)TASeatingChartView *seatingChart;
 
 @end

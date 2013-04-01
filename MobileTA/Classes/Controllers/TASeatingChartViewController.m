@@ -22,6 +22,7 @@
   if (self) {
     // Add the edit button to the bar
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
+    self.section = section;
 #if DEBUG
     if (section && !section.room.seats.count) {
       if (!section.room) {
