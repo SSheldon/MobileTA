@@ -8,6 +8,8 @@
 
 #import "TASeatingChartViewController.h"
 
+#import "Room.h"
+
 @interface TASeatingChartViewController ()
 
 @end
@@ -24,21 +26,19 @@
   if (self) {
     // Add the edit button to the bar
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
-    NSArray *seats = [[[section students] valueForKey:@"seat"] allObjects];
-    for(NSUInteger i = 0 ; i < [seats count] ; i++) {
-      Seat *seat = [seats objectAtIndex:i];
-      [_seatingChart addSeat:seat];
-    }
-    if (![seats count]) {
+#if DEBUG
+    if (section && !section.room.seats.count) {
+      if (!section.room) {
+        section.room = [Room roomWithContext:self.managedObjectContext];
+      }
       // JUST FOR SHITS AND GIGGLES
-      Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
-      seat.x = 4;
-      seat.y = 4;
+      [section.room addSeatsObject:[Seat seatWithX:4 y:4 context:self.managedObjectContext]];
+      [section.room addSeatsObject:[Seat seatWithX:10 y:8 context:self.managedObjectContext]];
+      [self.managedObjectContext save:nil];
+    }
+#endif
+    for (Seat *seat in section.room.seats) {
       [_seatingChart addSeat:seat];
-      Seat *secondSeat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
-      secondSeat.x = 8;
-      secondSeat.y = 10;
-      [_seatingChart addSeat:secondSeat];
     }
   }
   return self;
