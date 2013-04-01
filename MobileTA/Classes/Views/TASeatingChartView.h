@@ -16,6 +16,7 @@
 @optional
 - (void)didSelectSeat:(Seat *)seat;
 - (void)didDeleteSeat:(Seat *)seat;
+- (void)didMoveSeat:(Seat *)seat toLocation:(CGPoint)location;
 
 @end
 

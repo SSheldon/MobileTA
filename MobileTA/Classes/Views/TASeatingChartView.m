@@ -188,7 +188,9 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
       [seatView setInvalidLocation:NO];
     }
     else {
-      [[seatView seat] setLocation:unitLocation];
+      if ([_delegate respondsToSelector:@selector(didMoveSeat:toLocation:)]) {
+        [_delegate didMoveSeat:seatView.seat toLocation:unitLocation];
+      }
     }
     // When we are done with a seat, it should dance
     [seatView dance];
