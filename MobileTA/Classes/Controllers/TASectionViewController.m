@@ -97,6 +97,7 @@
     attendance.attendanceRecord = self.attendanceRecord;
     attendance.student = student;
     [self.managedObjectContext save:nil];
+    self.title = [NSString stringWithFormat:@"%@  (%@ *new*)", _section.name, [_attendanceRecord getDescriptionShort]];
   }
   return attendance;
 }
