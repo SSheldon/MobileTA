@@ -41,7 +41,8 @@
   
   CGFloat width = self.bounds.size.width;
   CGFloat height = self.bounds.size.height;
-  [_statusView setFrame:CGRectMake(0,0,6,height)];
+  [[self textLabel] setX:15];
+  [_statusView setFrame:CGRectMake(0,0,10,height)];
   [_statusView setNeedsDisplay];
   [_participationLabel setFrame:CGRectMake(width-60,0,20,height)];
   [_participationLabel setNeedsDisplay];
