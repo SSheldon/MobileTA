@@ -74,6 +74,14 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   [seatView setDelegate:self];
 }
 
+- (id)lastSeat {
+  TASeatView *seatView = [_seatViews lastObject];
+  if (!seatView) {
+    return nil;
+  }
+  return seatView.seat;
+}
+
 - (void)removeSeatView:(TASeatView *)seatView {
   // If the seatView is dancing, stop it
   if (_editing) {

@@ -31,6 +31,8 @@
 
 - (void)addSeat:(Seat *)seat;
 
+- (id)lastSeat;
+
 @property(nonatomic,getter = isEditing)BOOL editing;
 @property(nonatomic,weak)id<TASeatingChartViewDelegate> delegate;
 

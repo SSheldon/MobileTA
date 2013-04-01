@@ -79,8 +79,19 @@
 - (void)addSeat
 {
   Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
-  seat.x = 4;
-  seat.y = 4;
+  Seat *lastSeat = [_seatingChart lastSeat];
+  if (!lastSeat) {
+    seat.x = 0;
+    seat.y = 0;
+  }
+  else if (lastSeat.x <= 16) {
+    seat.x = lastSeat.x + 4;
+    seat.y = lastSeat.y;
+  }
+  else {
+    seat.x = 0;
+    seat.y = lastSeat.y + 4;
+  }
   [_seatingChart addSeat:seat];
 }
 
