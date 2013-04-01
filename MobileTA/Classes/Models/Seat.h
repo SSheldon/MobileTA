@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Room, Student;
+@class Room, Section, Student;
 
 @interface Seat : NSManagedObject
 
@@ -17,6 +17,11 @@
 @property (nonatomic) int16_t y;
 @property (nonatomic, retain) Room *room;
 @property (nonatomic, retain) NSSet *students;
+
+- (Student *)studentForSection:(Section *)section;
+- (CGPoint)location;
+- (void)setLocation:(CGPoint)location;
+
 @end
 
 @interface Seat (CoreDataGeneratedAccessors)
@@ -25,8 +30,5 @@
 - (void)removeStudentsObject:(Student *)value;
 - (void)addStudents:(NSSet *)values;
 - (void)removeStudents:(NSSet *)values;
-
-- (CGPoint)location;
-- (void)setLocation:(CGPoint)location;
 
 @end
