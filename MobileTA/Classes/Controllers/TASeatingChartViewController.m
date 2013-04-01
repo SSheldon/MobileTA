@@ -73,7 +73,7 @@
 }
 
 - (void)addSeat {
-  Seat *seat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self managedObjectContext]];
+  Seat *seat = [Seat seatWithContext:self.managedObjectContext];
   Seat *lastSeat = [_seatingChart lastSeat];
   if (!lastSeat) {
     seat.x = 0;
@@ -87,6 +87,8 @@
     seat.x = 0;
     seat.y = lastSeat.y + 4;
   }
+  [self.section.room addSeatsObject:seat];
+  [self.managedObjectContext save:nil];
   [_seatingChart addSeat:seat];
 }
 
