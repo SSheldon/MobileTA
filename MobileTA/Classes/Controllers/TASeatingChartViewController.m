@@ -105,7 +105,13 @@
 #pragma mark TASeatingChartView
 
 - (void)didDeleteSeat:(Seat *)seat {
-  NSLog(@"Deleting seat");
+  [self.managedObjectContext deleteObject:seat];
+  [self.managedObjectContext save:nil];
+}
+
+- (void)didMoveSeat:(Seat *)seat toLocation:(CGPoint)location {
+  [seat setLocation:location];
+  [self.managedObjectContext save:nil];
 }
 
 @end
