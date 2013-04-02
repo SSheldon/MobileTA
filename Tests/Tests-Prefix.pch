@@ -12,5 +12,6 @@
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
   #import "UIViewController+CoreDataAdditions.h"
+  #import "UIView+FrameSettingAdditions.h"
   #import "TATestUtils.h"
 #endif

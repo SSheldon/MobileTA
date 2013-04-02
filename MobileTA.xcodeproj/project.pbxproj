@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13008FDF170A8D830045C05A /* UIView+FrameSettingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E654DB35170A3C8C00584411 /* UIView+FrameSettingAdditions.m */; };
+		13008FE5170A8E560045C05A /* TASeatingChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1D16F244A300BCF71B /* TASeatingChartViewController.m */; };
+		13008FE6170A8E5B0045C05A /* TANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F59BA17029FB600734373 /* TANavigationController.m */; };
+		13008FE7170A8E610045C05A /* TAAssignSeatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */; };
+		13008FE8170A8E8C0045C05A /* TASeatingChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1416F2445D00BCF71B /* TASeatingChartView.m */; };
+		13008FE9170A8E8E0045C05A /* TASeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D2116F2AA7F00BCF71B /* TASeatView.m */; };
 		130741C016EEC8A300465D86 /* TAAttendanceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE67B5D16EE756500F98DCE /* TAAttendanceHistoryViewController.m */; };
 		130741C616EEC8A600465D86 /* TAAttendanceRecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */; };
 		130741C916EEC98C00465D86 /* TAAttendanceHistoryViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */; };
@@ -812,6 +818,12 @@
 				130741D416EED32E00465D86 /* TASectionEditViewTest.m in Sources */,
 				130741DC16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m in Sources */,
 				130741DF16EED6C800465D86 /* TAStudentDetailCellTest.m in Sources */,
+				13008FDF170A8D830045C05A /* UIView+FrameSettingAdditions.m in Sources */,
+				13008FE5170A8E560045C05A /* TASeatingChartViewController.m in Sources */,
+				13008FE6170A8E5B0045C05A /* TANavigationController.m in Sources */,
+				13008FE7170A8E610045C05A /* TAAssignSeatsViewController.m in Sources */,
+				13008FE8170A8E8C0045C05A /* TASeatingChartView.m in Sources */,
+				13008FE9170A8E8E0045C05A /* TASeatView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
