@@ -129,6 +129,14 @@
   [self presentViewController:navController animated:YES completion:nil];
 }
 
+- (Seat *)seatForLocation:(CGPoint)location {
+  Seat *seat = [Seat seatWithContext:self.managedObjectContext];
+  [seat setLocation:location];
+  [self.section.room addSeatsObject:seat];
+  [self.managedObjectContext save:nil];
+  return seat;
+}
+
 #pragma mark TAAssignSeatsViewDelegate
 - (void)assignSeatsViewController:(TAAssignSeatsViewController*)controller didSelectStudent:(Student *)student forSeat:(Seat *)seat {
   // assign student to seat view

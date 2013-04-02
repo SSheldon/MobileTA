@@ -20,6 +20,7 @@
 - (void)didSelectSeat:(Seat *)seat;
 - (void)didDeleteSeat:(Seat *)seat;
 - (void)didMoveSeat:(Seat *)seat toLocation:(CGPoint)location;
+- (Seat *)seatForLocation:(CGPoint)location;
 //- (void)addParticipationAtSeat:(Seat *)seat;
 //- (void)removeParticipationAtSeat:(Seat *)seat;
 //- (void)markAbsentAtSeat:(Seat *)seat;
