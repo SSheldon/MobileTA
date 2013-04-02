@@ -40,6 +40,15 @@
   return nil;
 }
 
+- (void)setStudent:(Student *)student forSection:(Section *)section {
+  Student *oldStudent = [self studentForSection:section];
+  if (oldStudent) {
+    [self removeStudentsObject:oldStudent];
+  }
+
+  [self addStudentsObject:student];
+}
+
 - (CGPoint)location {
   return CGPointMake(self.x, self.y);
 }

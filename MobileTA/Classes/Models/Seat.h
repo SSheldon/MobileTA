@@ -22,6 +22,7 @@
 + (Seat *)seatWithX:(int16_t)x y:(int16_t)y context:(NSManagedObjectContext *)context;
 
 - (Student *)studentForSection:(Section *)section;
+- (void)setStudent:(Student *)student forSection:(Section *)section;
 - (CGPoint)location;
 - (void)setLocation:(CGPoint)location;
 

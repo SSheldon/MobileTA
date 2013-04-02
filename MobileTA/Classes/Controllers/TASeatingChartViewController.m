@@ -160,8 +160,8 @@
 #pragma mark TAAssignSeatsViewDelegate
 - (void)assignSeatsViewController:(TAAssignSeatsViewController*)controller didSelectStudent:(Student *)student forSeat:(Seat *)seat {
   // assign student to seat view
-  
-  [seat addStudentsObject:student];
+  [seat setStudent:student forSection:self.section];
+
   // TODO(ssheldon): Check for errors
   [[self managedObjectContext] save:nil]; // haha yolo
   [_seatingChart setStudent:student forSeat:seat];
