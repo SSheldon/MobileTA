@@ -7,6 +7,8 @@
 //
 
 #import "TASeatingChartView.h"
+#import "TAStudentsViewController.h"
+#import "TANavigationController.h"
 
 #import "Seat.h"
 #import "TAGridConstants.h"
@@ -45,6 +47,14 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   return self;
 }
 
+- (id)initWithSection:(Section*)section{
+  self = [self initWithDefaultFrame];
+  if (self) {
+    _section = section;
+  }
+  return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
   self = [super initWithFrame:frame];
@@ -70,7 +80,12 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   // Add gesture recognizers
   UIGestureRecognizer *move = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
   [move setDelegate:self];
+  
+  UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seatTap:)];
+  [tap setDelegate:self];
+  
   [seatView addGestureRecognizer:move];
+  [seatView addGestureRecognizer:tap];
   [self addSubview:seatView];
   // If we add a seat while we are editing, make it dance
   [seatView setEditing:_editing];
@@ -108,7 +123,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
     }
   }
 }
-
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -195,6 +209,11 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
     // When we are done with a seat, it should dance
     [seatView dance];
   }
+}
+
+- (void)seatTap:(UITapGestureRecognizer *)gestureRecognizer {
+  TASeatView *seatView = (TASeatView *)[gestureRecognizer view];
+  [self.delegate didSelectSeat:[seatView seat]];
 }
 
 - (BOOL)canMoveSeat:(TASeatView *)seat toPoint:(CGPoint)point {

@@ -7,6 +7,9 @@
 //
 
 #import "TASeatingChartViewController.h"
+#import "TANavigationController.h"
+#import "TAStudentsViewController.h"
+#import "TAAssignSeatsViewController.h"
 
 #import "Room.h"
 #import "Seat.h"
@@ -15,6 +18,7 @@
 @implementation TASeatingChartViewController
 
 - (id)initWithSection:(Section *)section {
+  _section = section;
   self = [self initWithNibName:nil bundle:nil];
   addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                             target:self
@@ -53,8 +57,9 @@
       [_scrollView setMinimumZoomScale:0.4];
       [_scrollView setDelegate:self];
       // Make a seating chart that fills the entire view
-      _seatingChart = [[TASeatingChartView alloc] initWithDefaultFrame];
+      _seatingChart = [[TASeatingChartView alloc] initWithSection:_section];
       [_seatingChart setDelegate:self];
+
       [[self view] addSubview:_scrollView];
       [_scrollView addSubview:_seatingChart];
     }
@@ -114,4 +119,25 @@
   [self.managedObjectContext save:nil];
 }
 
+- (void)didSelectSeat:(Seat *)seat {
+  TAAssignSeatsViewController *studentsViewController = [[TAAssignSeatsViewController alloc] initWithSection:_section seat:seat];
+  TANavigationController *navController = [[TANavigationController alloc] initWithRootViewController:studentsViewController];
+  [studentsViewController setDelegate:self];
+  navController.disablesAutomaticKeyboardDismissal = NO;
+  navController.modalPresentationStyle = UIModalPresentationFormSheet;
+  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  [self presentViewController:navController animated:YES completion:nil];
+}
+
+#pragma mark TAAssignSeatsViewDelegate
+- (void)assignSeatsViewController:(TAAssignSeatsViewController*)controller didSelectStudent:(Student *)student forSeat:(Seat *)seat {
+  // assign student to seat view
+  
+  [seat addStudentsObject:student];
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)assignSeatsViewControllerDidCancel:(TAAssignSeatsViewController *)controller {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

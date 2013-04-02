@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TAGridConstants.h"
+#import "Seat.h"
+#import "Section.h"
 #import "TASeatView.h"
 
 @class TASeatingChartView;
@@ -22,11 +25,13 @@
 
 @interface TASeatingChartView : UIView <UIGestureRecognizerDelegate, TASeatViewDelegate> {
   NSMutableArray *_seatViews;
+  Section *_section;
 }
 
 + (CGSize)roomPixelSize;
 
 - (id)initWithDefaultFrame;
+- (id)initWithSection:(Section *)section;
 
 - (void)addSeat:(Seat *)seat;
 

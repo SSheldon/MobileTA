@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "TASeatingChartView.h"
+#import "TAAssignSeatsViewController.h"
 
 @class Section;
 
-@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate> {
+@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate> {
   UIScrollView *_scrollView;
   UIBarButtonItem * addButtonItem;
+  Section *_section;
 }
 
 - (id)initWithSection:(Section *)section;
