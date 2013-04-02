@@ -141,7 +141,7 @@
 
 - (void)viewSeatingChart {
   TASeatingChartViewController *seatingChart = [[TASeatingChartViewController alloc] initWithSection:self.section];
-  [seatingChart setAttendanceRecord:[self attendanceRecord]];
+  [seatingChart setAttendanceRecord:_attendanceRecord];
   [[self navigationController] pushViewController:seatingChart animated:YES];
 }
 
