@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class Section;
+
 @interface TATestUtils : NSObject
 
 + (NSManagedObjectContext *)managedObjectContextForModelsInBundle:(NSBundle *)bundle;
+
++ (Section *)sampleSectionWithContext:(NSManagedObjectContext *)context;
 
 @end
