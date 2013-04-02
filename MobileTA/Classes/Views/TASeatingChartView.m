@@ -95,7 +95,13 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   // If we add a seat while we are editing, make it dance
   [seatView setEditing:_editing];
   [seatView setDelegate:self];
-  [seatView setStudent:[seat studentForSection:_section]];
+  // Set the info for the student in the seat
+  Student *student = [seat studentForSection:_section];
+  StudentAttendance *attendance = [self.attendanceRecord studentAttendanceForStudent:student];
+  if (attendance) {
+    [seatView setStudentAttendance:attendance];
+  }
+  [seatView setStudent:student];
 }
 
 - (void)setStudent:(Student *)student forSeat:(Seat *)seat {
