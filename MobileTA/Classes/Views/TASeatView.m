@@ -242,6 +242,7 @@
   }
   _attendanceBarColor = [_TASeatViewBackground colorForAttendanceStatus:status];
   _status = status;
+  [self setNeedsDisplay];
 }
 
 - (void)clearBar {
