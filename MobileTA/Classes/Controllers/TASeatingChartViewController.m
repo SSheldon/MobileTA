@@ -18,7 +18,6 @@
 @implementation TASeatingChartViewController
 
 - (id)initWithSection:(Section *)section {
-  _section = section;
   self = [self initWithNibName:nil bundle:nil];
   addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                             target:self
@@ -57,7 +56,7 @@
       [_scrollView setMinimumZoomScale:0.4];
       [_scrollView setDelegate:self];
       // Make a seating chart that fills the entire view
-      _seatingChart = [[TASeatingChartView alloc] initWithSection:_section];
+      _seatingChart = [[TASeatingChartView alloc] initWithSection:self.section];
       [_seatingChart setDelegate:self];
 
       [[self view] addSubview:_scrollView];
@@ -120,7 +119,7 @@
 }
 
 - (void)didSelectSeat:(Seat *)seat {
-  TAAssignSeatsViewController *studentsViewController = [[TAAssignSeatsViewController alloc] initWithSection:_section seat:seat];
+  TAAssignSeatsViewController *studentsViewController = [[TAAssignSeatsViewController alloc] initWithSection:self.section seat:seat];
   TANavigationController *navController = [[TANavigationController alloc] initWithRootViewController:studentsViewController];
   [studentsViewController setDelegate:self];
   navController.disablesAutomaticKeyboardDismissal = NO;

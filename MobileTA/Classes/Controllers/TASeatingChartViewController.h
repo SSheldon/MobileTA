@@ -15,7 +15,6 @@
 @interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate> {
   UIScrollView *_scrollView;
   UIBarButtonItem * addButtonItem;
-  Section *_section;
 }
 
 - (id)initWithSection:(Section *)section;
