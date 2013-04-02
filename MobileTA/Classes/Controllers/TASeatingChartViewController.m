@@ -26,17 +26,6 @@
     // Add the edit button to the bar
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
     self.section = section;
-#if DEBUG
-    if (section && !section.room.seats.count) {
-      if (!section.room) {
-        section.room = [Room roomWithContext:self.managedObjectContext];
-      }
-      // JUST FOR SHITS AND GIGGLES
-      [section.room addSeatsObject:[Seat seatWithX:4 y:4 context:self.managedObjectContext]];
-      [section.room addSeatsObject:[Seat seatWithX:10 y:8 context:self.managedObjectContext]];
-      [self.managedObjectContext save:nil];
-    }
-#endif
     for (Seat *seat in section.room.seats) {
       [_seatingChart addSeat:seat];
     }
@@ -63,6 +52,22 @@
       [_scrollView addSubview:_seatingChart];
     }
     return self;
+}
+
+- (void)setSection:(Section *)section {
+  _section = section;
+
+#if DEBUG
+  if (section && !section.room.seats.count) {
+    if (!section.room) {
+      section.room = [Room roomWithContext:self.managedObjectContext];
+    }
+    // JUST FOR SHITS AND GIGGLES
+    [section.room addSeatsObject:[Seat seatWithX:4 y:4 context:self.managedObjectContext]];
+    [section.room addSeatsObject:[Seat seatWithX:10 y:8 context:self.managedObjectContext]];
+    [self.managedObjectContext save:nil];
+  }
+#endif
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
