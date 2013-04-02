@@ -19,7 +19,6 @@
 @implementation TASeatingChartViewController
 
 - (id)initWithSection:(Section *)section {
-  _section = section;
   self = [self initWithNibName:nil bundle:nil];
   if (self) {
     // Add the edit button to the bar
@@ -27,43 +26,48 @@
                                                                   target:self
                                                                   action:@selector(addSeat)];
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
-#if DEBUG
-    if (section && !section.room.seats.count) {
-      if (!section.room) {
-        section.room = [Room roomWithContext:self.managedObjectContext];
-      }
-      // JUST FOR SHITS AND GIGGLES
-      [section.room addSeatsObject:[Seat seatWithX:4 y:4 context:self.managedObjectContext]];
-      [section.room addSeatsObject:[Seat seatWithX:10 y:8 context:self.managedObjectContext]];
-      [self.managedObjectContext save:nil];
-    }
-#endif
-    for (Seat *seat in section.room.seats) {
-      [_seatingChart addSeat:seat];
-    }
+    self.section = section;
   }
   return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-      // Make a scroll view
-      _scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
-      [_scrollView setContentSize:[TASeatingChartView roomPixelSize]];
-      // The highest they can zoom is double the size
-      [_scrollView setMaximumZoomScale:2.0];
-      // The lowest they can zoom is 1/4 the size
-      [_scrollView setMinimumZoomScale:0.4];
-      [_scrollView setDelegate:self];
-      // Make a seating chart that fills the entire view
-      _seatingChart = [[TASeatingChartView alloc] initWithSection:self.section];
-      [_seatingChart setDelegate:self];
+- (void)viewDidLoad {
+  [super viewDidLoad];
 
-      [[self view] addSubview:_scrollView];
-      [_scrollView addSubview:_seatingChart];
+  // Make a scroll view
+  _scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
+  [_scrollView setContentSize:[TASeatingChartView roomPixelSize]];
+  // The highest they can zoom is double the size
+  [_scrollView setMaximumZoomScale:2.0];
+  // The lowest they can zoom is 1/4 the size
+  [_scrollView setMinimumZoomScale:0.4];
+  [_scrollView setDelegate:self];
+
+  // Make a seating chart that fills the entire view
+  _seatingChart = [[TASeatingChartView alloc] initWithSection:self.section];
+  [_seatingChart setDelegate:self];
+  for (Seat *seat in self.section.room.seats) {
+    [_seatingChart addSeat:seat];
+  }
+
+  [_scrollView addSubview:_seatingChart];
+  [[self view] addSubview:_scrollView];
+}
+
+- (void)setSection:(Section *)section {
+  _section = section;
+
+#if DEBUG
+  if (section && !section.room.seats.count) {
+    if (!section.room) {
+      section.room = [Room roomWithContext:self.managedObjectContext];
     }
-    return self;
+    // JUST FOR SHITS AND GIGGLES
+    [section.room addSeatsObject:[Seat seatWithX:4 y:4 context:self.managedObjectContext]];
+    [section.room addSeatsObject:[Seat seatWithX:10 y:8 context:self.managedObjectContext]];
+    [self.managedObjectContext save:nil];
+  }
+#endif
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -98,6 +102,9 @@
 }
 
 - (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord {
+  // TODO(srice/ssheldon): After pulling Steven's changes, this hack is
+  // required. Fix it
+  [self view];
   // TODO(srice): Based on the fact that this function exists, I imagine we are
   // violating MVC pretty heavily. At some point, I should refactor this to
   // be more MVC friendly.
