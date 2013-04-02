@@ -36,6 +36,7 @@
 - (void)setAttendanceStatus:(StudentAttendanceStatus)status;
 - (void)setParticipationAmount:(int16_t)participation;
 
+@property(nonatomic,getter = isInvalidLocation)BOOL invalidLocation;
 @property(nonatomic,strong)UIImage *pattern;
 @property(nonatomic)CGFloat cornerRadius;
 
@@ -115,10 +116,8 @@
 }
 
 - (void)setInvalidLocation:(BOOL)invalidLocation {
-  if (invalidLocation != _invalidLocation) {
-    _invalidLocation = invalidLocation;
-    [self setBackgroundColor: _invalidLocation ? [UIColor redColor] : [UIColor clearColor]];
-  }
+  // Just pass this along
+  [_backgroundView setInvalidLocation:invalidLocation];
 }
 
 - (void)didPressDelete {
@@ -188,6 +187,7 @@
 
 @synthesize pattern=_pattern;
 @synthesize cornerRadius=_cornerRadius;
+@synthesize invalidLocation=_invalidLocation;
 
 + (UIColor *)colorForAttendanceStatus:(StudentAttendanceStatus)status {
   switch (status) {
@@ -245,6 +245,13 @@
   [self setNeedsDisplay];
 }
 
+- (void)setInvalidLocation:(BOOL)invalidLocation {
+  if (invalidLocation != _invalidLocation) {
+    _invalidLocation = invalidLocation;
+    [self setNeedsDisplay];
+  }
+}
+
 - (void)clearBar {
   _status = -1;
   _attendanceBarColor = [_TASeatViewBackground colorForAttendanceStatus:_status];
@@ -252,12 +259,24 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+  // Set the background of the view to be clear
+  [[UIColor clearColor] set];
+  [[UIBezierPath bezierPathWithRect:[self bounds]] fill];
+  // Add the seat texture
   [[UIColor colorWithPatternImage:_pattern] set];
   UIBezierPath *seat = [self seatPath];
   [seat fill];
-  UIBezierPath *bottomBar = [self bottomBarPath];
-  [_attendanceBarColor set];
-  [bottomBar fill];
+  // If the location is invalid, we should overlay a little red. Otherwise, we
+  // should draw the bottom bar
+  if (_invalidLocation) {
+    [[UIColor colorWithRed:1 green:0 blue:0 alpha:.5] set];
+    [seat fill];
+  }
+  else {
+    UIBezierPath *bottomBar = [self bottomBarPath];
+    [_attendanceBarColor set];
+    [bottomBar fill];
+  }
 }
 
 - (UIBezierPath *)seatPath {
