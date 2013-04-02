@@ -45,6 +45,7 @@
 
   // Make a seating chart that fills the entire view
   _seatingChart = [[TASeatingChartView alloc] initWithSection:self.section];
+  _seatingChart.attendanceRecord = self.attendanceRecord;
   [_seatingChart setDelegate:self];
   for (Seat *seat in self.section.room.seats) {
     [_seatingChart addSeat:seat];
@@ -102,9 +103,7 @@
 }
 
 - (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord {
-  // TODO(srice/ssheldon): After pulling Steven's changes, this hack is
-  // required. Fix it
-  [self view];
+  _attendanceRecord = attendanceRecord;
   // TODO(srice): Based on the fact that this function exists, I imagine we are
   // violating MVC pretty heavily. At some point, I should refactor this to
   // be more MVC friendly.

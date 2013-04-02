@@ -20,8 +20,7 @@
 
 - (id)initWithSection:(Section *)section;
 
-- (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord;
-
+@property (nonatomic, strong) AttendanceRecord *attendanceRecord;
 @property (nonatomic, strong) Section *section;
 @property(nonatomic,readonly)TASeatingChartView *seatingChart;
 
