@@ -116,6 +116,7 @@
 }
 
 - (void)setInvalidLocation:(BOOL)invalidLocation {
+  _invalidLocation = invalidLocation;
   // Just pass this along
   [_backgroundView setInvalidLocation:invalidLocation];
 }
