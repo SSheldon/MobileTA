@@ -13,6 +13,8 @@
 		13008FE7170A8E610045C05A /* TAAssignSeatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */; };
 		13008FE8170A8E8C0045C05A /* TASeatingChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1416F2445D00BCF71B /* TASeatingChartView.m */; };
 		13008FE9170A8E8E0045C05A /* TASeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D2116F2AA7F00BCF71B /* TASeatView.m */; };
+		13008FEE170A90EB0045C05A /* TASeatingChartViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13008FED170A90EB0045C05A /* TASeatingChartViewTest.m */; };
+		13008FF4170A973B0045C05A /* seat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E654DB41170A5C3200584411 /* seat.jpg */; };
 		130741C016EEC8A300465D86 /* TAAttendanceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE67B5D16EE756500F98DCE /* TAAttendanceHistoryViewController.m */; };
 		130741C616EEC8A600465D86 /* TAAttendanceRecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */; };
 		130741C916EEC98C00465D86 /* TAAttendanceHistoryViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */; };
@@ -192,6 +194,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13008FED170A90EB0045C05A /* TASeatingChartViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASeatingChartViewTest.m; path = Views/TASeatingChartViewTest.m; sourceTree = "<group>"; };
 		130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAAttendanceHistoryViewTest.m; path = Views/TAAttendanceHistoryViewTest.m; sourceTree = "<group>"; };
 		130741D316EED32E00465D86 /* TASectionEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionEditViewTest.m; sourceTree = "<group>"; };
 		130741DB16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAttendanceRecordEditViewTest.m; sourceTree = "<group>"; };
@@ -449,6 +452,7 @@
 				130741D316EED32E00465D86 /* TASectionEditViewTest.m */,
 				130741DB16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m */,
 				130741DE16EED6C800465D86 /* TAStudentDetailCellTest.m */,
+				13008FED170A90EB0045C05A /* TASeatingChartViewTest.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -728,6 +732,7 @@
 				9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */,
 				9F4070C716DC06F800CDC59F /* logo.png in Resources */,
 				13FFBD6316E975C4001BB929 /* roster.csv in Resources */,
+				13008FF4170A973B0045C05A /* seat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +829,7 @@
 				13008FE7170A8E610045C05A /* TAAssignSeatsViewController.m in Sources */,
 				13008FE8170A8E8C0045C05A /* TASeatingChartView.m in Sources */,
 				13008FE9170A8E8E0045C05A /* TASeatView.m in Sources */,
+				13008FEE170A90EB0045C05A /* TASeatingChartViewTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
