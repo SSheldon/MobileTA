@@ -40,6 +40,7 @@
 + (NSMutableArray *)parseMyCSVFile;
 
 - (NSString *)fullDisplayName;
+- (NSString *)shortenedDisplayName;
 
 @end
 

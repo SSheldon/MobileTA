@@ -12,11 +12,15 @@
 #import "Section.h"
 #import "TASeatView.h"
 
+@class AttendanceRecord;
+@class StudentAttendance;
+
 @class TASeatingChartView;
 
 @protocol TASeatingChartViewDelegate <NSObject>
 
 @optional
+- (void)didAddSeat:(Seat *)seat;
 - (void)didSelectSeat:(Seat *)seat;
 - (void)didDeleteSeat:(Seat *)seat;
 - (void)didMoveSeat:(Seat *)seat toLocation:(CGPoint)location;
@@ -39,10 +43,12 @@
 - (id)initWithSection:(Section *)section;
 
 - (void)addSeat:(Seat *)seat;
+- (void)setStudent:(Student *)student forSeat:(Seat *)seat;
 
 - (id)lastSeat;
 
 @property(nonatomic,getter = isEditing)BOOL editing;
+@property(nonatomic,strong)AttendanceRecord *attendanceRecord;
 @property(nonatomic,weak)id<TASeatingChartViewDelegate> delegate;
 
 @end

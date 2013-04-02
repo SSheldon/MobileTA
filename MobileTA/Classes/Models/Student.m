@@ -82,4 +82,22 @@
   return display;
 }
 
+- (NSString *)shortenedDisplayName {
+  NSString *firstDisplayName = nil;
+  if (self.nickname.length) {
+    firstDisplayName = self.nickname;
+  }
+  else {
+    firstDisplayName = self.firstName;
+  }
+  
+  if (!self.lastName.length) {
+    return firstDisplayName;
+  }
+  else {
+    unichar lastNameInitial = [self.lastName characterAtIndex:0];
+    return [NSString stringWithFormat:@"%@ %c.", firstDisplayName, lastNameInitial];
+  }
+}
+
 @end

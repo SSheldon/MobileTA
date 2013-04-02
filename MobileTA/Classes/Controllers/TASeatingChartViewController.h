@@ -11,6 +11,7 @@
 #import "TAAssignSeatsViewController.h"
 
 @class Section;
+@class AttendanceRecord;
 
 @interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate> {
   UIScrollView *_scrollView;
@@ -18,6 +19,8 @@
 }
 
 - (id)initWithSection:(Section *)section;
+
+- (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord;
 
 @property (nonatomic, strong) Section *section;
 @property(nonatomic,readonly)TASeatingChartView *seatingChart;

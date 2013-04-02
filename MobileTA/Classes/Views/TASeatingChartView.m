@@ -11,6 +11,9 @@
 #import "TANavigationController.h"
 
 #import "Seat.h"
+#import "AttendanceRecord.h"
+#import "StudentAttendance.h"
+
 #import "TAGridConstants.h"
 
 BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
@@ -27,6 +30,8 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 }
 
 @interface TASeatingChartView (PrivateMethods)
+
+- (TASeatView *)seatViewForSeat:(Seat *)seat;
 
 @end
 
@@ -90,6 +95,20 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   // If we add a seat while we are editing, make it dance
   [seatView setEditing:_editing];
   [seatView setDelegate:self];
+  [seatView setStudent:[seat studentForSection:_section]];
+}
+
+- (void)setStudent:(Student *)student forSeat:(Seat *)seat {
+  TASeatView *seatView = [self seatViewForSeat:seat];
+  StudentAttendance *studentAttendance = [[self attendanceRecord] studentAttendanceForStudent:student];
+  if (studentAttendance) {
+    // Set their full attendance information
+    [seatView setStudentAttendance:studentAttendance];
+  }
+  else {
+    // Otherwise, just show their name
+    [seatView setStudent:student];
+  }
 }
 
 - (id)lastSeat {
@@ -121,6 +140,18 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
     for (NSUInteger i = 0; i < [_seatViews count]; i++) {
       [[_seatViews objectAtIndex:i] setEditing:_editing];
     }
+  }
+}
+
+- (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord {
+  if (attendanceRecord == _attendanceRecord) {
+    return;
+  }
+  _attendanceRecord = attendanceRecord;
+  for (StudentAttendance *studentAttendance in [_attendanceRecord studentAttendances]) {
+    Seat *seat = [[studentAttendance student] seat];
+    TASeatView *seatView = [self seatViewForSeat:seat];
+    [seatView setStudentAttendance:studentAttendance];
   }
 }
 
@@ -172,6 +203,9 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
     [seat setLocation:unitLocation];
   }
   [self addSeat: seat];
+  if ([_delegate respondsToSelector:@selector(didAddSeat:)]) {
+    [_delegate didAddSeat:seat];
+  }
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gestureRecognizer {
@@ -242,7 +276,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 - (TASeatView *)seatViewForSeat:(Seat *)seat {
   for (NSUInteger i = 0; i < [_seatViews count]; i++) {
     TASeatView *current = [_seatViews objectAtIndex:i];
-    if ([current seat] == seat) {
+    if ([[current seat] isEqual:seat]) {
       return current;
     }
   }

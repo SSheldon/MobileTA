@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "StudentAttendance.h"
 
 @class Seat;
+@class Student;
+@class StudentAttendance;
 
 @class TASeatView;
 
@@ -27,6 +28,9 @@
 - (id)initWithSeat:(Seat *)seat;
 
 - (void)moveToGridLocation:(CGPoint)unitPoint;
+
+- (void)setStudent:(Student *)student;
+- (void)setStudentAttendance:(StudentAttendance *)studentAttendance;
 
 // YEAH! PARTY
 - (void)dance;

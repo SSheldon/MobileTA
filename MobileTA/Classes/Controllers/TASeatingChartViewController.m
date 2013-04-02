@@ -14,18 +14,19 @@
 #import "Room.h"
 #import "Seat.h"
 #import "Section.h"
+#import "AttendanceRecord.h"
 
 @implementation TASeatingChartViewController
 
 - (id)initWithSection:(Section *)section {
+  _section = section;
   self = [self initWithNibName:nil bundle:nil];
-  addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                            target:self
-                                                            action:@selector(addSeat)];
   if (self) {
     // Add the edit button to the bar
+    addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                  target:self
+                                                                  action:@selector(addSeat)];
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
-    self.section = section;
 #if DEBUG
     if (section && !section.room.seats.count) {
       if (!section.room) {
@@ -96,6 +97,13 @@
   [_seatingChart addSeat:seat];
 }
 
+- (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord {
+  // TODO(srice): Based on the fact that this function exists, I imagine we are
+  // violating MVC pretty heavily. At some point, I should refactor this to
+  // be more MVC friendly.
+  [_seatingChart setAttendanceRecord:attendanceRecord];
+}
+
 #pragma mark UIScrollViewDelegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
@@ -107,6 +115,12 @@
 }
 
 #pragma mark TASeatingChartView
+
+- (void)didAddSeat:(Seat *)seat {
+  [[[self section] room] addSeatsObject:seat];
+  [seat setRoom:self.section.room];
+  [self.managedObjectContext save:nil];
+}
 
 - (void)didDeleteSeat:(Seat *)seat {
   [self.managedObjectContext deleteObject:seat];
@@ -130,8 +144,8 @@
 
 - (Seat *)seatForLocation:(CGPoint)location {
   Seat *seat = [Seat seatWithContext:self.managedObjectContext];
-  [seat setLocation:location];
   [self.section.room addSeatsObject:seat];
+  [seat setLocation:location];
   [self.managedObjectContext save:nil];
   return seat;
 }
@@ -141,6 +155,9 @@
   // assign student to seat view
   
   [seat addStudentsObject:student];
+  // TODO(ssheldon): Check for errors
+  [[self managedObjectContext] save:nil]; // haha yolo
+  [_seatingChart setStudent:student forSeat:seat];
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 

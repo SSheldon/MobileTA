@@ -9,6 +9,9 @@
 #import "TASeatView.h"
 
 #import "Seat.h"
+#import "Student.h"
+#import "StudentAttendance.h"
+
 #import "TAGridConstants.h"
 
 #define degreesToRadians(x) (M_PI * (x) / 180.0)
@@ -75,10 +78,6 @@
     [self setSeat:seat];
     _backgroundView = [[_TASeatViewBackground alloc] initWithFrame:[self bounds]];
     [_backgroundView setCornerRadius:kCornerRadius];
-#if DEBUG
-    [_backgroundView setParticipationAmount:10];
-    [_backgroundView setStudentName:@"Fried R."];
-#endif
     [self addSubview:_backgroundView];
     _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_deleteButton setBackgroundImage:[TASeatView deleteButtonImage] forState:UIControlStateNormal];
@@ -99,6 +98,16 @@
     [self setBackgroundColor:[UIColor clearColor]];
   }
   return self;
+}
+
+- (void)setStudent:(Student *)student {
+  [_backgroundView setStudentName:[student shortenedDisplayName]];
+}
+
+- (void)setStudentAttendance:(StudentAttendance *)studentAttendance {
+  [self setStudent:[studentAttendance student]];
+  [_backgroundView setParticipationAmount:[studentAttendance participation]];
+  [_backgroundView setAttendanceStatus:[studentAttendance status]];
 }
 
 - (void)moveToGridLocation:(CGPoint)unitPoint {
