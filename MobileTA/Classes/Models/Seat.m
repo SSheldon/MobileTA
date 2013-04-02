@@ -30,7 +30,19 @@
   return seat;
 }
 
+- (NSUInteger)countOfStudentsInSection:(Section *)section {
+  NSUInteger count = 0;
+  for (Student *student in self.students) {
+    if ([section isEqual:student.section]) {
+      count++;
+    }
+  }
+  return count;
+}
+
 - (Student *)studentForSection:(Section *)section {
+  NSAssert([self countOfStudentsInSection:section] <= 1, @"Seats should only have one student for a section");
+
   for (Student *student in self.students) {
     if ([section isEqual:student.section]) {
       return student;
