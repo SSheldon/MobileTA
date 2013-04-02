@@ -8,12 +8,8 @@
 
 #import "TAAssignSeatsViewController.h"
 
-@interface TAAssignSeatsViewController ()
-
-@end
-
 @implementation TAAssignSeatsViewController
-@synthesize students=_students;
+
 - (id)init {
   self = [self initWithStyle:UITableViewStylePlain];
   return self;
@@ -31,16 +27,11 @@
   return self;
 }
 
-- (void)setStudents:(NSArray *)students {
-  _students = [students copy];
-}
-
 - (id)initWithSection:(Section *)section seat:(Seat *)seat {
     self = [self init];
     if (self) {
-      _students = [[section students] copy];
       self.seat = seat;
-      [self availableStudents];
+      self.students = [section.students allObjects];
     }
     return self;
 }
@@ -51,37 +42,22 @@
   }
 }
 
-- (void)availableStudents {
-  NSMutableArray *studentsCopy = [self.students mutableCopy];
-  for (Student *student in self.students) {
+- (void)setStudents:(NSArray *)students {
+  NSMutableArray *seatlessStudents = [NSMutableArray array];
+  for (Student *student in students) {
     // We don't want students that have already been assigned a seat to appear
-    if (student.seat) {
-      [studentsCopy removeObject:student];
+    if (!student.seat) {
+      [seatlessStudents addObject:student];
     }
   }
 
-  [self setStudents:studentsCopy];
-  [super reloadStudents];
+  [super setStudents:seatlessStudents];
 }
 
 - (void)cancel {
   if ([self.delegate respondsToSelector:@selector(assignSeatsViewControllerDidCancel:)]) {
     [self.delegate assignSeatsViewControllerDidCancel:self];
   }
-}
-
-#pragma mark UITableViewDelegate
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

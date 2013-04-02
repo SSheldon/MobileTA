@@ -15,7 +15,6 @@
   NSMutableArray *_tableSections;
 }
 
-@synthesize students=_students;
 -(id)initWithStudents:(NSArray *)students {
   self = [self initWithStyle:UITableViewStylePlain];
   if (self) {

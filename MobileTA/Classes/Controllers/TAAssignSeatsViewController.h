@@ -20,7 +20,6 @@
 -(id)initWithSection:(Section *)section seat:(Seat *)seat;
 
 @property(nonatomic,weak)id<TAAssignSeatsViewDelegate> delegate;
-@property (strong, nonatomic) Section *section;
 @property (strong, nonatomic) Seat* seat;
 
 @end
