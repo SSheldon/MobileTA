@@ -83,9 +83,9 @@
 		E653A91616E96FD30062C7CB /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
 		E654DB33170A37CE00584411 /* delete_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E654DB32170A37CE00584411 /* delete_button.png */; };
 		E654DB37170A3C8C00584411 /* UIView+FrameSettingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E654DB35170A3C8C00584411 /* UIView+FrameSettingAdditions.m */; };
+		E654DB42170A5C3200584411 /* seat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E654DB41170A5C3200584411 /* seat.jpg */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
 		E6BCE01016EE78E100C7B904 /* TAAttendanceRecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */; };
-		E6D3EF2116F7713A000AEF6E /* seat.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D3EF2016F7713A000AEF6E /* seat.png */; };
 		E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
 		E6E9EFD316C059CD001D122E /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
 		E6E9EFD916C059EB001D122E /* StudentAttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD816C059EB001D122E /* StudentAttendance.m */; };
@@ -254,11 +254,11 @@
 		E654DB32170A37CE00584411 /* delete_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete_button.png; path = Images/delete_button.png; sourceTree = "<group>"; };
 		E654DB34170A3C8C00584411 /* UIView+FrameSettingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = "UIView+FrameSettingAdditions.h"; sourceTree = "<group>"; };
 		E654DB35170A3C8C00584411 /* UIView+FrameSettingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FrameSettingAdditions.m"; sourceTree = "<group>"; };
+		E654DB41170A5C3200584411 /* seat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = seat.jpg; path = Images/seat.jpg; sourceTree = "<group>"; };
 		E6804DF616CDCD3F000E2007 /* TAStudentEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentEditViewController.h; sourceTree = "<group>"; };
 		E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentEditViewController.m; sourceTree = "<group>"; };
 		E6BCE00D16EE78E100C7B904 /* TAAttendanceRecordEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = TAAttendanceRecordEditViewController.h; sourceTree = "<group>"; };
 		E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAttendanceRecordEditViewController.m; sourceTree = "<group>"; };
-		E6D3EF2016F7713A000AEF6E /* seat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seat.png; path = Images/seat.png; sourceTree = "<group>"; };
 		E6E9EFCB16C059A7001D122E /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
 		E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceRecord.m; sourceTree = "<group>"; };
 		E6E9EFD116C059CD001D122E /* Seat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seat.h; sourceTree = "<group>"; };
@@ -329,8 +329,8 @@
 		1322E27C16BA24E500C890B4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E654DB41170A5C3200584411 /* seat.jpg */,
 				E654DB32170A37CE00584411 /* delete_button.png */,
-				E6D3EF2016F7713A000AEF6E /* seat.png */,
 				13BA038C16D4B8AD0004C698 /* blackboard.jpg */,
 				13BA038D16D4B8AD0004C698 /* logo.png */,
 			);
@@ -709,8 +709,8 @@
 				13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */,
 				13BA038F16D4B8AD0004C698 /* logo.png in Resources */,
 				13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */,
-				E6D3EF2116F7713A000AEF6E /* seat.png in Resources */,
 				E654DB33170A37CE00584411 /* delete_button.png in Resources */,
+				E654DB42170A5C3200584411 /* seat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

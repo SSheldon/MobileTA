@@ -10,6 +10,14 @@
 #import "AttendanceRecord.h"
 #import "Student.h"
 
+NSString *NSStringFromStudentParticipation(int16_t participation) {
+  // Special case, we don't want to display anything for 0 participation
+  if (participation == 0) {
+    return @"";
+  }
+  NSString *modifier = (participation < 0) ? @"-" : @"+";
+  return [NSString stringWithFormat:@"%@%i",modifier,participation];
+}
 
 @implementation StudentAttendance
 

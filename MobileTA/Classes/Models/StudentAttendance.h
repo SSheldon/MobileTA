@@ -9,6 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+/*/
+ *  Returns a string suitable for displaying to the user from a given participation
+ *
+ *  Examples (Input => Output):
+ *  -10 => @"-10"
+ *  0   => @""
+ *  10  => @"+10"
+/*/
+NSString *NSStringFromStudentParticipation(int16_t participation);
+
 @class AttendanceRecord, Student;
 
 typedef NS_ENUM(int16_t, StudentAttendanceStatus) {

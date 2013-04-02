@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "StudentAttendance.h"
 
 @class Seat;
 
@@ -21,9 +22,7 @@
 
 @end
 
-@interface TASeatView : UIView {
-  UIImageView *_backgroundView;
-}
+@interface TASeatView : UIView
 
 - (id)initWithSeat:(Seat *)seat;
 

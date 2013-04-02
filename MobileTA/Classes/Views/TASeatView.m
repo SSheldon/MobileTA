@@ -16,13 +16,41 @@
 #define kDanceAnimationTranslateX 1.0
 #define kDanceAnimationTranslateY 2.0
 
+#define kCornerRadius 20
+#define kBottomBarSize 40
+
+#pragma mark _TASeatViewBackground Interface
+
+@interface _TASeatViewBackground : UIView {
+  int16_t _participation;
+  UILabel *_nameLabel;
+  UILabel *_participationLabel;
+  UIColor *_attendanceBarColor;
+  StudentAttendanceStatus _status;
+}
+
+- (void)setStudentName:(NSString *)name;
+- (void)setAttendanceStatus:(StudentAttendanceStatus)status;
+- (void)setParticipationAmount:(int16_t)participation;
+
+@property(nonatomic,strong)UIImage *pattern;
+@property(nonatomic)CGFloat cornerRadius;
+
+@end
+
+#pragma mark Private Method Interface
+
 @interface TASeatView (PrivateMethods)
 
 - (CGRect)frameForGridLocation:(CGPoint)unitPoint;
 
 @end
 
-@implementation TASeatView
+#pragma mark Implementation
+
+@implementation TASeatView {
+  _TASeatViewBackground *_backgroundView;
+}
 
 @synthesize delegate=_delegate;
 
@@ -33,7 +61,7 @@
 
 + (UIImage *)backgroundImage {
   static UIImage *__shared = nil;
-  return (__shared) ? __shared : (__shared = [UIImage imageNamed:@"seat.png"]);
+  return (__shared) ? __shared : (__shared = [UIImage imageNamed:@"seat.jpg"]);
 }
 
 + (UIImage *)deleteButtonImage {
@@ -45,12 +73,15 @@
   self = [self initWithFrame:[self frameForGridLocation:[seat location]]];
   if (self) {
     [self setSeat:seat];
-    _backgroundView = [[UIImageView alloc] initWithFrame:[self bounds]];
-    [_backgroundView setImage:[TASeatView backgroundImage]];
+    _backgroundView = [[_TASeatViewBackground alloc] initWithFrame:[self bounds]];
+    [_backgroundView setCornerRadius:kCornerRadius];
+#if DEBUG
+    [_backgroundView setParticipationAmount:10];
+    [_backgroundView setStudentName:@"Fried R."];
+#endif
     [self addSubview:_backgroundView];
     _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_deleteButton setBackgroundImage:[TASeatView deleteButtonImage] forState:UIControlStateNormal];
-//    [_deleteButton setTitle:@"X" forState:UIControlStateNormal];
     [_deleteButton setFrame:CGRectMake(0, 0, 48, 48)];
     [_deleteButton setCenter:CGPointMake(5, 5)];
     [_deleteButton addTarget:self action:@selector(didPressDelete) forControlEvents:UIControlEventTouchUpInside];
@@ -140,5 +171,100 @@
   return CGRectMake(u2p(unitPoint.x), u2p(unitPoint.y), u2p(SEAT_WIDTH_UNITS), u2p(SEAT_HEIGHT_UNITS));
 }
 
+@end
+
+#pragma mark _TASeatViewBackground Implementation
+
+@implementation _TASeatViewBackground
+
+@synthesize pattern=_pattern;
+@synthesize cornerRadius=_cornerRadius;
+
++ (UIColor *)colorForAttendanceStatus:(StudentAttendanceStatus)status {
+  switch (status) {
+    case StudentAttendanceStatusAbsent:   return [UIColor redColor];
+    case StudentAttendanceStatusTardy:    return [UIColor yellowColor];
+    case StudentAttendanceStatusPresent:  return [UIColor greenColor];
+    default:                              return [UIColor clearColor];
+  }
+}
+
+- (id)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (self) {
+    // Default pattern should be the TASeatView background image
+    [self setPattern:[TASeatView backgroundImage]];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - kBottomBarSize)];
+    [_nameLabel setBackgroundColor:[UIColor clearColor]];
+    [_nameLabel setNumberOfLines:0];
+    [_nameLabel setTextAlignment:NSTextAlignmentCenter];
+    [_nameLabel setFont:[UIFont systemFontOfSize:25.0]];
+    [_nameLabel setTextColor:[UIColor whiteColor]];
+    [self addSubview:_nameLabel];
+    _participationLabel = [[UILabel alloc] initWithFrame:[self bottomBarRect]];
+    [_participationLabel setBackgroundColor:[UIColor clearColor]];
+    // This is the color Emelyn used in one of our recent projects, so I say
+    // fuck it let's steal her work.
+    [_participationLabel setTextColor:[UIColor colorWithRed:(52.0/225.0) green:(52.0/225.0) blue:(52.0/225.0) alpha:1.0]];
+    [_participationLabel setFont:[UIFont boldSystemFontOfSize:25.0]];
+    [_participationLabel setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:_participationLabel];
+  }
+  return self;
+}
+
+- (void)setStudentName:(NSString *)name {
+  [_nameLabel setText:name];
+}
+
+- (void)setParticipationAmount:(int16_t)participation {
+  if (_status != StudentAttendanceStatusTardy && _status != StudentAttendanceStatusPresent) {
+    [_participationLabel setText:NSStringFromStudentParticipation(participation)];
+  }
+  _participation = participation;
+}
+
+- (void)setAttendanceStatus:(StudentAttendanceStatus)status {
+  if (status != StudentAttendanceStatusTardy && status != StudentAttendanceStatusPresent) {
+    [_participationLabel setText:@""];
+  }
+  else {
+    [_participationLabel setText:NSStringFromStudentParticipation(_participation)];
+  }
+  _attendanceBarColor = [_TASeatViewBackground colorForAttendanceStatus:status];
+  _status = status;
+}
+
+- (void)clearBar {
+  _status = -1;
+  _attendanceBarColor = [_TASeatViewBackground colorForAttendanceStatus:_status];
+  [_participationLabel setText:@""];
+}
+
+- (void)drawRect:(CGRect)rect {
+  [[UIColor colorWithPatternImage:_pattern] set];
+  UIBezierPath *seat = [self seatPath];
+  [seat fill];
+  UIBezierPath *bottomBar = [self bottomBarPath];
+  [_attendanceBarColor set];
+  [bottomBar fill];
+}
+
+- (UIBezierPath *)seatPath {
+  return [UIBezierPath bezierPathWithRoundedRect:[self bounds] cornerRadius:_cornerRadius];
+}
+
+- (UIBezierPath *)bottomBarPath {
+  CGRect bottomBarRect = [self bottomBarRect];
+  CGSize roundedRectSize = CGSizeMake(_cornerRadius, _cornerRadius);
+  return [UIBezierPath bezierPathWithRoundedRect:bottomBarRect
+                               byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight
+                                     cornerRadii:roundedRectSize];
+}
+
+- (CGRect)bottomBarRect {
+  CGSize frameSize = self.bounds.size;
+  return CGRectMake(0, frameSize.height - kBottomBarSize, frameSize.width, kBottomBarSize);
+}
 
 @end
