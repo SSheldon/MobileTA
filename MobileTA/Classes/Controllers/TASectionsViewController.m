@@ -115,7 +115,7 @@
   }
   
   Section *section = [self sectionAtIndexPath:indexPath];
-  cell.textLabel.text = [NSString stringWithFormat:@"%@", section];
+  cell.textLabel.text = section.name;
   
   return cell;
 }

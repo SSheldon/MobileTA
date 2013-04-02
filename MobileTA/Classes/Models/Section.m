@@ -35,13 +35,4 @@
   return [context executeFetchRequest:fetch error:nil];
 }
 
-- (NSString *)description {
-  if(self.room) {
-    return [NSString stringWithFormat:@"%@ (%@)", self.name,self.room.name];
-  }
-  else {
-    return [NSString stringWithFormat:@"%@", self.name];
-  }
-}
-
 @end
