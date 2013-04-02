@@ -26,32 +26,31 @@
     // Add the edit button to the bar
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
     self.section = section;
-    for (Seat *seat in section.room.seats) {
-      [_seatingChart addSeat:seat];
-    }
   }
   return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-      // Make a scroll view
-      _scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
-      [_scrollView setContentSize:[TASeatingChartView roomPixelSize]];
-      // The highest they can zoom is double the size
-      [_scrollView setMaximumZoomScale:2.0];
-      // The lowest they can zoom is 1/4 the size
-      [_scrollView setMinimumZoomScale:0.4];
-      [_scrollView setDelegate:self];
-      // Make a seating chart that fills the entire view
-      _seatingChart = [[TASeatingChartView alloc] initWithSection:self.section];
-      [_seatingChart setDelegate:self];
+- (void)viewDidLoad {
+  [super viewDidLoad];
 
-      [[self view] addSubview:_scrollView];
-      [_scrollView addSubview:_seatingChart];
-    }
-    return self;
+  // Make a scroll view
+  _scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
+  [_scrollView setContentSize:[TASeatingChartView roomPixelSize]];
+  // The highest they can zoom is double the size
+  [_scrollView setMaximumZoomScale:2.0];
+  // The lowest they can zoom is 1/4 the size
+  [_scrollView setMinimumZoomScale:0.4];
+  [_scrollView setDelegate:self];
+
+  // Make a seating chart that fills the entire view
+  _seatingChart = [[TASeatingChartView alloc] initWithSection:self.section];
+  [_seatingChart setDelegate:self];
+  for (Seat *seat in self.section.room.seats) {
+    [_seatingChart addSeat:seat];
+  }
+
+  [_scrollView addSubview:_seatingChart];
+  [[self view] addSubview:_scrollView];
 }
 
 - (void)setSection:(Section *)section {
