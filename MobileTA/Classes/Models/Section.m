@@ -35,4 +35,26 @@
   return [context executeFetchRequest:fetch error:nil];
 }
 
+- (AttendanceRecord *)attendanceRecordNearestToDate:(NSDate *)date withinTimeInterval:(NSTimeInterval)seconds {
+  AttendanceRecord *nearest = nil;
+  NSTimeInterval minDiff;
+
+  for (AttendanceRecord *record in self.attendanceRecords) {
+    if (record.date) {
+      NSTimeInterval diff = [date timeIntervalSinceDate:record.date];
+      if (!nearest || ABS(diff) < ABS(minDiff)) {
+        nearest = record;
+        minDiff = diff;
+      }
+    }
+  }
+
+  // If an interval was supplied but the nearest is within it, return nil
+  if (seconds && nearest && ABS(minDiff) > ABS(seconds)) {
+    return nil;
+  }
+
+  return nearest;
+}
+
 @end

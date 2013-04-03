@@ -21,6 +21,18 @@
 @property (nonatomic, retain) NSSet *attendanceRecords;
 @property (nonatomic, retain) Room *room;
 @property (nonatomic, retain) NSSet *students;
+
+/*!
+ * Gets the AttendanceRecord of this Section that is
+ * nearest to a given date but within a given time interval.
+ *
+ * @param date the NSDate to find the record nearest to
+ * @param seconds if nonzero, the time interval, in seconds,
+ *                that the record should be within
+ * @return the AttendanceRecord of this Section
+ */
+- (AttendanceRecord *)attendanceRecordNearestToDate:(NSDate *)date withinTimeInterval:(NSTimeInterval)seconds;
+
 @end
 
 @interface Section (CoreDataGeneratedAccessors)
