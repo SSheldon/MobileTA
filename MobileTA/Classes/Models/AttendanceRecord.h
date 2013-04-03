@@ -26,6 +26,8 @@
  */
 + (AttendanceRecord *)attendanceRecordForSection:(Section *)section context:(NSManagedObjectContext *)context;
 
++ (AttendanceRecord *)attendanceRecordWithContext:(NSManagedObjectContext *)context;
++ (AttendanceRecord *)attendanceRecordWithDate:(NSDate *)date context:(NSManagedObjectContext *)context;
 + (AttendanceRecord *)attendanceRecordForName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context;
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student;

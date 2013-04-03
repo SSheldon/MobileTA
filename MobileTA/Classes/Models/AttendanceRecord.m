@@ -20,13 +20,19 @@
 @dynamic section;
 @dynamic studentAttendances;
 
-+ (AttendanceRecord *)attendanceRecordForName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context {
-  AttendanceRecord *attendanceRecord = [NSEntityDescription insertNewObjectForEntityForName:@"AttendanceRecord" inManagedObjectContext:context];
-  
-  attendanceRecord.name = name;
++ (AttendanceRecord *)attendanceRecordWithContext:(NSManagedObjectContext *)context {
+  return [AttendanceRecord attendanceRecordWithDate:[NSDate date] context:context];
+}
 
-  attendanceRecord.date = date;
-  
++ (AttendanceRecord *)attendanceRecordWithDate:(NSDate *)date context:(NSManagedObjectContext *)context {
+  AttendanceRecord *record = [NSEntityDescription insertNewObjectForEntityForName:@"AttendanceRecord" inManagedObjectContext:context];
+  record.date = date;
+  return record;
+}
+
++ (AttendanceRecord *)attendanceRecordForName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context {
+  AttendanceRecord *attendanceRecord = [AttendanceRecord attendanceRecordWithDate:date context:context];
+  attendanceRecord.name = name;
   return attendanceRecord;
 }
 
