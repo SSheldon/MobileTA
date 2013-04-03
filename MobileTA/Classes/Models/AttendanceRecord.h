@@ -18,14 +18,6 @@
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) NSSet *studentAttendances;
 
-/*!
- * Create an AttendanceRecord.
- * @param section the Section of this AttendanceRecord
- * @param context the NSManagedObjectContext to insert the AttendanceRecord into
- * @return the created AttendanceRecord
- */
-+ (AttendanceRecord *)attendanceRecordForSection:(Section *)section context:(NSManagedObjectContext *)context;
-
 + (AttendanceRecord *)attendanceRecordWithContext:(NSManagedObjectContext *)context;
 + (AttendanceRecord *)attendanceRecordWithDate:(NSDate *)date context:(NSManagedObjectContext *)context;
 + (AttendanceRecord *)attendanceRecordForName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context;

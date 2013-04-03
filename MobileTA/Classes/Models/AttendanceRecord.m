@@ -36,14 +36,6 @@
   return attendanceRecord;
 }
 
-+ (AttendanceRecord *)attendanceRecordForSection:(Section *)section context:(NSManagedObjectContext *)context {
-  AttendanceRecord *record = [NSEntityDescription insertNewObjectForEntityForName:@"AttendanceRecord" inManagedObjectContext:context];
-
-  record.section = section;
-
-  return record;
-}
-
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
   for (StudentAttendance *attendance in self.studentAttendances) {
     if ([student isEqual:attendance.student]) {

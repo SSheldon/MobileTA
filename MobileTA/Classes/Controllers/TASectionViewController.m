@@ -85,8 +85,8 @@
 
 - (AttendanceRecord *)attendanceRecord {
   if (!_attendanceRecord && self.section) {
-    _attendanceRecord = [AttendanceRecord attendanceRecordForSection:self.section context:self.managedObjectContext];
-    _attendanceRecord.date = [NSDate date];
+    _attendanceRecord = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
+    _attendanceRecord.section = self.section;
   }
   return _attendanceRecord;
 }
