@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AttendanceRecord" representedClassName="AttendanceRecord" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="section" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="attendanceRecords" inverseEntity="Section" syncable="YES"/>
+        <relationship name="section" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="attendanceRecords" inverseEntity="Section" syncable="YES"/>
         <relationship name="studentAttendances" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StudentAttendance" inverseName="attendanceRecord" inverseEntity="StudentAttendance" syncable="YES"/>
     </entity>
     <entity name="Room" representedClassName="Room" syncable="YES">
@@ -14,7 +14,7 @@
     <entity name="Seat" representedClassName="Seat" syncable="YES">
         <attribute name="x" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="y" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="room" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="seats" inverseEntity="Room" syncable="YES"/>
+        <relationship name="room" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="seats" inverseEntity="Room" syncable="YES"/>
         <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="seat" inverseEntity="Student" syncable="YES"/>
     </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
@@ -30,13 +30,13 @@
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="attendances" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StudentAttendance" inverseName="student" inverseEntity="StudentAttendance" syncable="YES"/>
         <relationship name="seat" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Seat" inverseName="students" inverseEntity="Seat" syncable="YES"/>
-        <relationship name="section" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="students" inverseEntity="Section" syncable="YES"/>
+        <relationship name="section" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="students" inverseEntity="Section" syncable="YES"/>
     </entity>
     <entity name="StudentAttendance" representedClassName="StudentAttendance" syncable="YES">
         <attribute name="participation" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="attendanceRecord" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AttendanceRecord" inverseName="studentAttendances" inverseEntity="AttendanceRecord" syncable="YES"/>
-        <relationship name="student" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="attendances" inverseEntity="Student" syncable="YES"/>
+        <relationship name="attendanceRecord" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AttendanceRecord" inverseName="studentAttendances" inverseEntity="AttendanceRecord" syncable="YES"/>
+        <relationship name="student" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="attendances" inverseEntity="Student" syncable="YES"/>
     </entity>
     <elements>
         <element name="AttendanceRecord" positionX="-126" positionY="27" width="128" height="103"/>
