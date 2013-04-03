@@ -61,7 +61,6 @@
     [[self section] setName:[dict objectForKey:@"name"]];
   }
   
-  [self saveManagedObjectContext];
   [[self navigationController] popViewControllerAnimated:YES];
   
   if([[self delegate] respondsToSelector:@selector(viewController:savedSection:withPreviousData:)]) {

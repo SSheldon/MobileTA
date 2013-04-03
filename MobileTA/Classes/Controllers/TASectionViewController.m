@@ -136,9 +136,6 @@
       student.nickname != [oldData objectForKey:@"nickname"] ||
       student.firstName != [oldData objectForKey:@"firstName"]) {
     if (!oldData) {
-      // Make sure that the section for the student is the correct section
-      student.section = self.section;
-      [self saveManagedObjectContext];
       // Add the student
       NSMutableArray *new_students = [NSMutableArray arrayWithArray:self.students];
       [new_students addObject:student];
@@ -198,6 +195,13 @@
 #pragma mark TAStudentEditDelegate
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  if (!oldData) {
+    // Make sure that the section for the student is the correct section
+    student.section = self.section;
+  }
+  // Save changes to the student
+  [self saveManagedObjectContext];
+  // Update the table based on these changes
   [self updateStudent:student withPreviousData:oldData];
 }
 

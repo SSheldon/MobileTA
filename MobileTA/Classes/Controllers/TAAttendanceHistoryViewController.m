@@ -120,8 +120,12 @@
 - (void)viewController:(TAAttendanceRecordEditViewController *)controller savedAttendanceRecord:(AttendanceRecord *)record withPreviousData:(NSDictionary *)oldData {
   if (!oldData) {
     record.section = self.section;
-    [self saveManagedObjectContext];
+  }
+  // Save changes to the record
+  [self saveManagedObjectContext];
 
+  if (!oldData) {
+    // Add the new record to the table
     NSMutableArray *newRecords = [NSMutableArray arrayWithArray:self.records];
     [newRecords addObject:record];
     self.records = newRecords;

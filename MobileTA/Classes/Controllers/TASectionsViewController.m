@@ -169,6 +169,7 @@
 
 - (void)viewController:(TASectionEditViewController *)viewController savedSection:(Section *)section withPreviousData:(NSDictionary *)oldData
 {
+  [self saveManagedObjectContext];
   [self updateSection:section withPreviousData:oldData];
 }
 

@@ -70,7 +70,6 @@
     [[self attendanceRecord] setDate:[dict objectForKey:@"date"]];
   }
   
-  [self saveManagedObjectContext];
   [self.navigationController popViewControllerAnimated:YES];
   
   if([[self delegate] respondsToSelector:@selector(viewController:savedAttendanceRecord:withPreviousData:)]) {
