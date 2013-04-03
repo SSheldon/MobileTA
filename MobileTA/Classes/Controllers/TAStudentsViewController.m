@@ -145,9 +145,7 @@
     // Remove the student at that index from the database
     Student *student = [self studentAtIndexPath:indexPath];
     [[self managedObjectContext] deleteObject:student];
-    // TODO(ssheldon)
-    // jk TODO(srice): Handle Errors
-    [[self managedObjectContext] save:nil];
+    [self saveManagedObjectContext];
     // Remove student from the Students array
     NSMutableArray *mutableStudents = [[self students] mutableCopy];
     [mutableStudents removeObject:student];

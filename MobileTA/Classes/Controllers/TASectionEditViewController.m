@@ -61,8 +61,7 @@
     [[self section] setName:[dict objectForKey:@"name"]];
   }
   
-  // TODO(srice): Handle Errors
-  [[self managedObjectContext] save:nil];
+  [self saveManagedObjectContext];
   [[self navigationController] popViewControllerAnimated:YES];
   
   if([[self delegate] respondsToSelector:@selector(viewController:savedSection:withPreviousData:)]) {

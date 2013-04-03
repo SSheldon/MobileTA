@@ -66,7 +66,7 @@
     // JUST FOR SHITS AND GIGGLES
     [section.room addSeatsObject:[Seat seatWithX:4 y:4 context:self.managedObjectContext]];
     [section.room addSeatsObject:[Seat seatWithX:10 y:8 context:self.managedObjectContext]];
-    [self.managedObjectContext save:nil];
+    [self saveManagedObjectContext];
   }
 #endif
 }
@@ -98,7 +98,7 @@
     seat.y = lastSeat.y + 4;
   }
   [self.section.room addSeatsObject:seat];
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
   [_seatingChart addSeat:seat];
 }
 
@@ -125,17 +125,17 @@
 - (void)didAddSeat:(Seat *)seat {
   [[[self section] room] addSeatsObject:seat];
   [seat setRoom:self.section.room];
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
 }
 
 - (void)didDeleteSeat:(Seat *)seat {
   [self.managedObjectContext deleteObject:seat];
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
 }
 
 - (void)didMoveSeat:(Seat *)seat toLocation:(CGPoint)location {
   [seat setLocation:location];
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
 }
 
 - (void)didSelectSeat:(Seat *)seat {
@@ -152,7 +152,7 @@
   Seat *seat = [Seat seatWithContext:self.managedObjectContext];
   [self.section.room addSeatsObject:seat];
   [seat setLocation:location];
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
   return seat;
 }
 
@@ -161,8 +161,7 @@
   // assign student to seat view
   [seat setStudent:student forSection:self.section];
 
-  // TODO(ssheldon): Check for errors
-  [[self managedObjectContext] save:nil]; // haha yolo
+  [self saveManagedObjectContext];
   [_seatingChart setStudent:student forSeat:seat];
   [self dismissViewControllerAnimated:YES completion:nil];
 }

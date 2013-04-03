@@ -62,7 +62,7 @@
   if (!self.section.students.count) {
     NSArray *sampleStudents = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
     [self.section addStudents:[NSSet setWithArray:sampleStudents]];
-    [self.managedObjectContext save:nil];
+    [self saveManagedObjectContext];
     self.students = sampleStudents;
   }
 #endif
@@ -105,7 +105,7 @@
     attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
     attendance.attendanceRecord = self.attendanceRecord;
     attendance.student = student;
-    [self.managedObjectContext save:nil];
+    [self saveManagedObjectContext];
     self.title = [NSString stringWithFormat:@"%@  (%@ *new*)", _section.name, [_attendanceRecord getDescriptionShort]];
   }
   return attendance;
@@ -137,7 +137,7 @@
     if (!oldData) {
       // Make sure that the section for the student is the correct section
       student.section = self.section;
-      [[self managedObjectContext] save:nil];
+      [self saveManagedObjectContext];
       // Add the student
       NSMutableArray *new_students = [NSMutableArray arrayWithArray:self.students];
       [new_students addObject:student];
@@ -227,7 +227,7 @@
     TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
     [displayCell setStatus:attendance.status];
   }
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
 }
 
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
@@ -244,7 +244,7 @@
     TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
     [displayCell setStatus:attendance.status];
   }
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
 }
 
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
@@ -259,7 +259,7 @@
     TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
     [displayCell setParticipation:attendance.participation];
   }
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
 }
 
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
@@ -274,7 +274,7 @@
     TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
     [displayCell setParticipation:attendance.participation];
   }
-  [self.managedObjectContext save:nil];
+  [self saveManagedObjectContext];
 }
 
 @end

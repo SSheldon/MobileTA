@@ -70,8 +70,7 @@
   }
   self.student.nickname = [dict objectForKey:@"nickname"];
   
-  // TODO(srice): Handle Errors
-  [[self managedObjectContext] save:nil];
+  [self saveManagedObjectContext];
   [[self navigationController] popViewControllerAnimated:YES];
 
   if([[self delegate] respondsToSelector:@selector(viewController:savedStudent:withPreviousData:)]) {

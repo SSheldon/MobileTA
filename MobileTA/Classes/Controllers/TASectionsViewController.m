@@ -53,8 +53,7 @@
       sections = @[
                    [Section sectionWithName:@"CS 428" context:[self managedObjectContext]],
                    ];
-      // TODO(srice): Handle errors
-      [self.managedObjectContext save:nil];
+      [self saveManagedObjectContext];
     }
     self.sections = sections;
   }
@@ -130,9 +129,7 @@
     // Remove the student at that index from the database
     Section *section = [self sectionAtIndexPath:indexPath];
     [[self managedObjectContext] deleteObject:section];
-    // TODO(ssheldon)
-    // jk TODO(srice): Handle Errors
-    [[self managedObjectContext] save:nil];
+    [self saveManagedObjectContext];
     // Remove student from the Students array
     NSMutableArray *mutableSections = [[self sections] mutableCopy];
     [mutableSections removeObject:section];

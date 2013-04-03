@@ -70,8 +70,7 @@
     [[self attendanceRecord] setDate:[dict objectForKey:@"date"]];
   }
   
-  // TODO(srice): Handle Errors
-  [[self managedObjectContext] save:nil];
+  [self saveManagedObjectContext];
   [self.navigationController popViewControllerAnimated:YES];
   
   if([[self delegate] respondsToSelector:@selector(viewController:savedAttendanceRecord:withPreviousData:)]) {
