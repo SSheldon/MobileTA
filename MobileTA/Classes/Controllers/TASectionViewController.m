@@ -87,6 +87,7 @@
   if (!_attendanceRecord && self.section) {
     _attendanceRecord = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
     _attendanceRecord.section = self.section;
+    [self saveManagedObjectContext];
   }
   return _attendanceRecord;
 }
