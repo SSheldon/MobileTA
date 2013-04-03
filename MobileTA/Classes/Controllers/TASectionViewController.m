@@ -66,6 +66,15 @@
     self.students = sampleStudents;
   }
 #endif
+
+  if (!_attendanceRecord && self.section) {
+    // Find the record nearest now within 40 minutes
+    AttendanceRecord *record = [self.section attendanceRecordNearestToDate:[NSDate date]
+                                                        withinTimeInterval:(40 * 60)];
+    if (record) {
+      self.attendanceRecord = record;
+    }
+  }
 }
 
 - (void)setSection:(Section *)section {
