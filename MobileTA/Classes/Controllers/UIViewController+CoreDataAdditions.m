@@ -14,4 +14,11 @@
     return [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
+- (NSError *)saveManagedObjectContext {
+  NSError *error = nil;
+  BOOL successful = [[self managedObjectContext] save:&error];
+  NSAssert(successful, @"Could not save managed object changes");
+  return error;
+}
+
 @end

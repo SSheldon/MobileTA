@@ -14,4 +14,6 @@
 
 -(NSManagedObjectContext *)managedObjectContext;
 
+- (NSError *)saveManagedObjectContext;
+
 @end
