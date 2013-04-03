@@ -47,13 +47,18 @@
   self = [super init];
   if (self) {
     self.section = section;
-    self.records = [NSMutableArray arrayWithArray:[section.attendanceRecords allObjects]];
+    self.records = [section.attendanceRecords allObjects];
   }
   return self;
 }
 
 - (void)setRecords:(NSArray *)records {
-  _records = [records copy];
+  // Sort the records by date
+  NSArray *sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]
+  ];
+  _records = [records sortedArrayUsingDescriptors:sortDescriptors];
+
   if ([self isViewLoaded]) {
     [self.tableView reloadData];
   }
