@@ -34,6 +34,7 @@
 		13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */; };
 		133AE68716E54F97008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
 		133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
+		1346A2FF170D208D0016943A /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */; };
 		134A855016E98AEB0078E521 /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
 		134A855816E98D610078E521 /* TASectionsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 134A855716E98D610078E521 /* TASectionsViewTest.m */; };
 		134A856416E994510078E521 /* TASectionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */; };
@@ -72,6 +73,7 @@
 		13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DE616DB35870084D827 /* TAStudentsViewTest.m */; };
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
+		13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */; };
 		13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
 		13FFBD6316E975C4001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
 		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
@@ -217,6 +219,8 @@
 		13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		133AE68516E54F97008385C2 /* TASectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionViewController.h; sourceTree = "<group>"; };
 		133AE68616E54F97008385C2 /* TASectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionViewController.m; sourceTree = "<group>"; };
+		1346A2FD170D208D0016943A /* NSManagedObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+JSON.h"; sourceTree = "<group>"; };
+		1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+JSON.m"; sourceTree = "<group>"; };
 		134A855716E98D610078E521 /* TASectionsViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASectionsViewTest.m; path = Views/TASectionsViewTest.m; sourceTree = "<group>"; };
 		135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		135116E316CDC36400D7376E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -515,6 +519,8 @@
 				E6EC1E5616C05EDB007E8FCF /* Room.m */,
 				402DAA0216C07F3800D43854 /* parseCSV.h */,
 				402DAA0316C07F3900D43854 /* parseCSV.m */,
+				1346A2FD170D208D0016943A /* NSManagedObject+JSON.h */,
+				1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -789,6 +795,7 @@
 				135F59BB17029FB600734373 /* TANavigationController.m in Sources */,
 				E654DB37170A3C8C00584411 /* UIView+FrameSettingAdditions.m in Sources */,
 				9FB48F34170A420200E73D14 /* TAAssignSeatsViewController.m in Sources */,
+				1346A2FF170D208D0016943A /* NSManagedObject+JSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +841,7 @@
 				13008FE9170A8E8E0045C05A /* TASeatView.m in Sources */,
 				13008FEE170A90EB0045C05A /* TASeatingChartViewTest.m in Sources */,
 				13008FF7170A98C80045C05A /* TAStudentDisplayCellTest.m in Sources */,
+				13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
