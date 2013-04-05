@@ -48,4 +48,26 @@
   GHAssertEqualStrings(firstStudent.lastName, @"Vaill", nil);
 }
 
+- (void)testFullDisplayName {
+  Student *steven = [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext];
+  GHAssertEqualStrings([steven fullDisplayName], @"Steven Sheldon", nil);
+  Student *alex = [Student studentWithFirstName:@"Alex" lastName:@"Hendrix" context:self.managedObjectContext];
+  GHAssertEqualStrings([alex fullDisplayName], @"Alex Hendrix", nil);
+}
+
+- (void)testShortenedDisplayName {
+  Student *steven = [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext];
+  GHAssertEqualStrings([steven shortenedDisplayName], @"Steven S.", nil);
+  Student *alex = [Student studentWithFirstName:@"Alex" lastName:@"Hendrix" context:self.managedObjectContext];
+  GHAssertEqualStrings([alex shortenedDisplayName], @"Alex H.", nil);
+}
+
+- (void)testNicknameOverridesFirstName {
+  Student *scott = [Student studentWithFirstName:@"Scott" lastName:@"Rice" context:self.managedObjectContext];
+  [scott setNickname:@"Fried"];
+  
+  GHAssertEqualStrings([scott fullDisplayName], @"Fried Rice", nil);
+  GHAssertEqualStrings([scott shortenedDisplayName], @"Fried R.", nil);
+}
+
 @end
