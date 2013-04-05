@@ -216,6 +216,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 
 - (void)pan:(UIPanGestureRecognizer *)gestureRecognizer {
   TASeatView *seatView = (TASeatView *)[gestureRecognizer view];
+  [self bringSubviewToFront:seatView];
   // When we start moving a seat, it should stop dancing.
   if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
     [seatView stopDancing];
