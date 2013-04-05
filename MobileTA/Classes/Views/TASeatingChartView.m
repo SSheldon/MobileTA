@@ -318,7 +318,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 # pragma mark UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-  if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+  if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![[gestureRecognizer view] isKindOfClass:[UIScrollView class]]) {
     return [self isEditing];
   }
   if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
