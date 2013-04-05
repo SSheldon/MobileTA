@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1300805A170E3B220087C4BB /* JSONStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13008059170E3B220087C4BB /* JSONStoreTest.m */; };
+		1300805B170E42A80087C4BB /* JSONStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 13008053170DF9980087C4BB /* JSONStore.m */; };
 		13008FDF170A8D830045C05A /* UIView+FrameSettingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E654DB35170A3C8C00584411 /* UIView+FrameSettingAdditions.m */; };
 		13008FE5170A8E560045C05A /* TASeatingChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1D16F244A300BCF71B /* TASeatingChartViewController.m */; };
 		13008FE6170A8E5B0045C05A /* TANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F59BA17029FB600734373 /* TANavigationController.m */; };
@@ -197,6 +199,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13008052170DF9980087C4BB /* JSONStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONStore.h; path = Libraries/JSONStore/JSONStore/JSONStore.h; sourceTree = "<group>"; };
+		13008053170DF9980087C4BB /* JSONStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONStore.m; path = Libraries/JSONStore/JSONStore/JSONStore.m; sourceTree = "<group>"; };
+		13008059170E3B220087C4BB /* JSONStoreTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONStoreTest.m; path = Models/JSONStoreTest.m; sourceTree = "<group>"; };
 		13008FED170A90EB0045C05A /* TASeatingChartViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASeatingChartViewTest.m; path = Views/TASeatingChartViewTest.m; sourceTree = "<group>"; };
 		13008FF6170A98C80045C05A /* TAStudentDisplayCellTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentDisplayCellTest.m; path = Views/TAStudentDisplayCellTest.m; sourceTree = "<group>"; };
 		130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAAttendanceHistoryViewTest.m; path = Views/TAAttendanceHistoryViewTest.m; sourceTree = "<group>"; };
@@ -331,6 +336,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1300804C170DF9710087C4BB /* JSONStore */ = {
+			isa = PBXGroup;
+			children = (
+				13008052170DF9980087C4BB /* JSONStore.h */,
+				13008053170DF9980087C4BB /* JSONStore.m */,
+			);
+			name = JSONStore;
+			sourceTree = "<group>";
+		};
 		1322E27816BA1C2B00C890B4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				13A44DDF16DB244E0084D827 /* StudentTest.m */,
+				13008059170E3B220087C4BB /* JSONStoreTest.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -506,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				1341D73F17109AD0007B2D1D /* CHCSVParser */,
+				1300804C170DF9710087C4BB /* JSONStore */,
 				13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */,
 				135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */,
 			);
@@ -850,6 +866,8 @@
 				13008FF7170A98C80045C05A /* TAStudentDisplayCellTest.m in Sources */,
 				13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */,
 				1341D74817109AEC007B2D1D /* CHCSVParser.m in Sources */,
+				1300805A170E3B220087C4BB /* JSONStoreTest.m in Sources */,
+				1300805B170E42A80087C4BB /* JSONStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
