@@ -8,6 +8,7 @@
 
 #import <GHUnitIOS/GHUnit.h>
 
+#import "Section.h"
 #import "Student.h"
 
 @interface StudentTest : GHTestCase
@@ -31,6 +32,10 @@
   Student *student = [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:self.managedObjectContext];
   GHAssertEqualStrings(student.firstName, @"Steven", nil);
   GHAssertEqualStrings(student.lastName, @"Sheldon", nil);
+  GHAssertFalse([self.managedObjectContext save:nil], @"Save should fail since students require a section.");
+
+  Section *section = [Section sectionWithName:@"CS 428" context:self.managedObjectContext];
+  student.section = section;
   GHAssertTrue([self.managedObjectContext save:nil], @"Could not save managed object changes.");
 
   NSArray *students = [Student fetchStudentsInContext:self.managedObjectContext];
