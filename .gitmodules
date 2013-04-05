@@ -7,3 +7,6 @@
 [submodule "MobileTA/Libraries/CHCSVParser"]
 	path = MobileTA/Libraries/CHCSVParser
 	url = git://github.com/davedelong/CHCSVParser.git
+[submodule "MobileTA/Libraries/JSONStore"]
+	path = MobileTA/Libraries/JSONStore
+	url = git@github.com:SSheldon/JSONStore.git
