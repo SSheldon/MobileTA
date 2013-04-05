@@ -204,6 +204,7 @@
   if (self) {
     // Default pattern should be the TASeatView background image
     [self setPattern:[TASeatView backgroundImage]];
+    [self setBackgroundColor:[UIColor clearColor]];
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - kBottomBarSize)];
     [_nameLabel setBackgroundColor:[UIColor clearColor]];
     [_nameLabel setNumberOfLines:0];
