@@ -60,7 +60,6 @@
 		135F123416D72D0D009C310A /* StudentAttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD816C059EB001D122E /* StudentAttendance.m */; };
 		135F123916D72D56009C310A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6ECA87016BB4CFF00F103D3 /* CoreData.framework */; };
 		135F124116D740F5009C310A /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116DF16CDC11E00D7376E /* libQuickDialog.a */; };
-		135F124216D74104009C310A /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		135F124316D74131009C310A /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
 		135F124416D74139009C310A /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFDB16C05BAE001D122E /* Student.m */; };
 		135F124616D7413E009C310A /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC1E5616C05EDB007E8FCF /* Room.m */; };
@@ -78,7 +77,6 @@
 		13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */; };
 		13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
 		13FFBD6316E975C4001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
-		402DAA0516C0808100D43854 /* parseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 402DAA0316C07F3900D43854 /* parseCSV.m */; };
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
 		408E549F16EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */; };
 		408E54A016EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */; };
@@ -247,8 +245,6 @@
 		13BA038C16D4B8AD0004C698 /* blackboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackboard.jpg; path = Images/blackboard.jpg; sourceTree = "<group>"; };
 		13BA038D16D4B8AD0004C698 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
 		13FFBD5D16E96FEB001BB929 /* roster.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = roster.csv; path = Mocks/roster.csv; sourceTree = "<group>"; };
-		402DAA0216C07F3800D43854 /* parseCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseCSV.h; sourceTree = "<group>"; };
-		402DAA0316C07F3900D43854 /* parseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseCSV.m; sourceTree = "<group>"; };
 		4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWelcomeViewController.h; sourceTree = "<group>"; };
 		4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAWelcomeViewController.m; sourceTree = "<group>"; };
 		408E549D16EEAC0F00DB4F96 /* TAStudentDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentDisplayCell.h; sourceTree = "<group>"; };
@@ -531,8 +527,6 @@
 				E6EC1E5316C05EB3007E8FCF /* Section.m */,
 				E6EC1E5516C05EDB007E8FCF /* Room.h */,
 				E6EC1E5616C05EDB007E8FCF /* Room.m */,
-				402DAA0216C07F3800D43854 /* parseCSV.h */,
-				402DAA0316C07F3900D43854 /* parseCSV.m */,
 				1346A2FD170D208D0016943A /* NSManagedObject+JSON.h */,
 				1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */,
 			);
@@ -782,7 +776,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				402DAA0516C0808100D43854 /* parseCSV.m in Sources */,
 				13345E6416B7736100DD4FF2 /* main.m in Sources */,
 				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
 				E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */,
@@ -826,7 +819,6 @@
 				135F123116D72C18009C310A /* TAStudentEditViewController.m in Sources */,
 				135F123216D72D07009C310A /* AttendanceRecord.m in Sources */,
 				135F123416D72D0D009C310A /* StudentAttendance.m in Sources */,
-				135F124216D74104009C310A /* parseCSV.m in Sources */,
 				135F124316D74131009C310A /* Seat.m in Sources */,
 				135F124416D74139009C310A /* Student.m in Sources */,
 				135F124616D7413E009C310A /* Room.m in Sources */,
