@@ -10,7 +10,7 @@
 #import "Seat.h"
 #import "Section.h"
 #import "StudentAttendance.h"
-#import "parseCSV.h"
+#import "CHCSVParser.h"
 
 @implementation Student
 
@@ -49,16 +49,10 @@
   return students;
 }
 
-+ (NSMutableArray *)parseMyCSVFile{
-  CSVParser *parser = [CSVParser new];
++ (NSArray *)parseMyCSVFile{
   //get the path to the file in your xcode project's resource path
   NSString *csvFilePath = [[NSBundle mainBundle] pathForResource:@"roster" ofType:@"csv"];
-  [parser openFile:csvFilePath];
-    
-  NSMutableArray *csvContent = [parser parseFile];
-  [parser closeFile];
-  
-  return csvContent;
+  return [NSArray arrayWithContentsOfCSVFile:csvFilePath options:CHCSVParserOptionsSanitizesFields];
 }
 
 - (NSString *)fullDisplayName {
