@@ -34,6 +34,8 @@
 		13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */; };
 		133AE68716E54F97008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
 		133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
+		1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1341D74617109AEC007B2D1D /* CHCSVParser.m */; };
+		1341D74817109AEC007B2D1D /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1341D74617109AEC007B2D1D /* CHCSVParser.m */; };
 		1346A2FF170D208D0016943A /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */; };
 		134A855016E98AEB0078E521 /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
 		134A855816E98D610078E521 /* TASectionsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 134A855716E98D610078E521 /* TASectionsViewTest.m */; };
@@ -219,6 +221,8 @@
 		13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		133AE68516E54F97008385C2 /* TASectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionViewController.h; sourceTree = "<group>"; };
 		133AE68616E54F97008385C2 /* TASectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionViewController.m; sourceTree = "<group>"; };
+		1341D74517109AEC007B2D1D /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHCSVParser.h; path = Libraries/CHCSVParser/CHCSVParser/CHCSVParser.h; sourceTree = "<group>"; };
+		1341D74617109AEC007B2D1D /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHCSVParser.m; path = Libraries/CHCSVParser/CHCSVParser/CHCSVParser.m; sourceTree = "<group>"; };
 		1346A2FD170D208D0016943A /* NSManagedObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+JSON.h"; sourceTree = "<group>"; };
 		1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+JSON.m"; sourceTree = "<group>"; };
 		134A855716E98D610078E521 /* TASectionsViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASectionsViewTest.m; path = Views/TASectionsViewTest.m; sourceTree = "<group>"; };
@@ -415,6 +419,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1341D73F17109AD0007B2D1D /* CHCSVParser */ = {
+			isa = PBXGroup;
+			children = (
+				1341D74517109AEC007B2D1D /* CHCSVParser.h */,
+				1341D74617109AEC007B2D1D /* CHCSVParser.m */,
+			);
+			name = CHCSVParser;
+			sourceTree = "<group>";
+		};
 		135116D816CDC11E00D7376E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +509,7 @@
 		E66DB7DF16C9ADB800B4AF30 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1341D73F17109AD0007B2D1D /* CHCSVParser */,
 				13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */,
 				135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */,
 			);
@@ -796,6 +810,7 @@
 				E654DB37170A3C8C00584411 /* UIView+FrameSettingAdditions.m in Sources */,
 				9FB48F34170A420200E73D14 /* TAAssignSeatsViewController.m in Sources */,
 				1346A2FF170D208D0016943A /* NSManagedObject+JSON.m in Sources */,
+				1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,6 +857,7 @@
 				13008FEE170A90EB0045C05A /* TASeatingChartViewTest.m in Sources */,
 				13008FF7170A98C80045C05A /* TAStudentDisplayCellTest.m in Sources */,
 				13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */,
+				1341D74817109AEC007B2D1D /* CHCSVParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
