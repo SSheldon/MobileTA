@@ -4,3 +4,6 @@
 [submodule "MobileTA/Libraries/JTRevealSidebar"]
 	path = MobileTA/Libraries/JTRevealSidebar
 	url = git://github.com/mystcolor/JTRevealSidebarDemo.git
+[submodule "MobileTA/Libraries/CHCSVParser"]
+	path = MobileTA/Libraries/CHCSVParser
+	url = git://github.com/davedelong/CHCSVParser.git
