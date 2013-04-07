@@ -74,6 +74,8 @@
 		13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DE616DB35870084D827 /* TAStudentsViewTest.m */; };
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
+		13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
+		13F287281711716500562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
 		13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */; };
 		13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
 		13FFBD6316E975C4001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
@@ -244,6 +246,8 @@
 		13A44DE616DB35870084D827 /* TAStudentsViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentsViewTest.m; path = Views/TAStudentsViewTest.m; sourceTree = "<group>"; };
 		13BA038C16D4B8AD0004C698 /* blackboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackboard.jpg; path = Images/blackboard.jpg; sourceTree = "<group>"; };
 		13BA038D16D4B8AD0004C698 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
+		13F2871C17114DD800562D5A /* TAStudentsAttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentsAttendanceViewController.h; sourceTree = "<group>"; };
+		13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentsAttendanceViewController.m; sourceTree = "<group>"; };
 		13FFBD5D16E96FEB001BB929 /* roster.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = roster.csv; path = Mocks/roster.csv; sourceTree = "<group>"; };
 		4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWelcomeViewController.h; sourceTree = "<group>"; };
 		4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAWelcomeViewController.m; sourceTree = "<group>"; };
@@ -561,6 +565,8 @@
 				135F59BA17029FB600734373 /* TANavigationController.m */,
 				9FB48F32170A420100E73D14 /* TAAssignSeatsViewController.h */,
 				9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */,
+				13F2871C17114DD800562D5A /* TAStudentsAttendanceViewController.h */,
+				13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -804,6 +810,7 @@
 				9FB48F34170A420200E73D14 /* TAAssignSeatsViewController.m in Sources */,
 				1346A2FF170D208D0016943A /* NSManagedObject+JSON.m in Sources */,
 				1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */,
+				13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,6 +857,7 @@
 				13008FF7170A98C80045C05A /* TAStudentDisplayCellTest.m in Sources */,
 				13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */,
 				1341D74817109AEC007B2D1D /* CHCSVParser.m in Sources */,
+				13F287281711716500562D5A /* TAStudentsAttendanceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
