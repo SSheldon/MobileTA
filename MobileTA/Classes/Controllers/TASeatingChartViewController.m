@@ -18,21 +18,28 @@
 
 @implementation TASeatingChartViewController
 
-- (id)initWithSection:(Section *)section {
-  self = [self initWithNibName:nil bundle:nil];
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nil bundle:nil];
   if (self) {
     // Add the edit button to the bar
     addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                   target:self
                                                                   action:@selector(addSeat)];
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
+  }
+  return self;
+}
+
+- (id)initWithSection:(Section *)section {
+  self = [self initWithNibName:nil bundle:nil];
+  if (self) {
     self.section = section;
   }
   return self;
 }
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
+- (void)loadView {
+  [super loadView];
 
   // Make a scroll view
   _scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];

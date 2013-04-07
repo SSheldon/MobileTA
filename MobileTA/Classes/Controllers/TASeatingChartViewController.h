@@ -14,7 +14,6 @@
 @class AttendanceRecord;
 
 @interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate> {
-  UIScrollView *_scrollView;
   UIBarButtonItem * addButtonItem;
 }
 
@@ -23,5 +22,6 @@
 @property (nonatomic, strong) AttendanceRecord *attendanceRecord;
 @property (nonatomic, strong) Section *section;
 @property(nonatomic,readonly)TASeatingChartView *seatingChart;
+@property (nonatomic, readonly) UIScrollView *scrollView;
 
 @end
