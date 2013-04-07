@@ -21,10 +21,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nil bundle:nil];
   if (self) {
-    // Add the edit button to the bar
-    addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                  target:self
-                                                                  action:@selector(addSeat)];
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
   }
   return self;
@@ -80,12 +76,6 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
   [super setEditing:editing animated:animated];
-  if (editing) {
-    self.navigationItem.rightBarButtonItems = @[self.editButtonItem, addButtonItem];
-  }
-  else {
-    self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
-  }
   [_seatingChart setEditing:editing];
 }
 

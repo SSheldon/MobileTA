@@ -13,9 +13,7 @@
 @class Section;
 @class AttendanceRecord;
 
-@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate> {
-  UIBarButtonItem * addButtonItem;
-}
+@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate>
 
 - (id)initWithSection:(Section *)section;
 
