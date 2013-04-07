@@ -13,9 +13,7 @@
 #import "TASeatingChartViewController.h"
 #import "TANavigationController.h"
 
-@implementation TASectionViewController {
-  AttendanceRecord *_attendanceRecord;
-}
+@implementation TASectionViewController
 
 - (id)init {
   self = [self initWithStyle:UITableViewStylePlain];
@@ -83,15 +81,6 @@
   self.title = section.name;
 }
 
-- (AttendanceRecord *)attendanceRecord {
-  if (!_attendanceRecord && self.section) {
-    _attendanceRecord = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
-    _attendanceRecord.section = self.section;
-    [self saveManagedObjectContext];
-  }
-  return _attendanceRecord;
-}
-
 - (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord {
   _attendanceRecord = attendanceRecord;
   if ([self isViewLoaded]) {
@@ -103,6 +92,11 @@
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
   StudentAttendance *attendance = [self.attendanceRecord studentAttendanceForStudent:student];
   if (!attendance) {
+    // If we don't currently have an attendance record, create one
+    if (!self.attendanceRecord) {
+      _attendanceRecord = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
+      _attendanceRecord.section = self.section;
+    }
     attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
     attendance.attendanceRecord = self.attendanceRecord;
     attendance.student = student;
