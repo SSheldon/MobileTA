@@ -10,7 +10,6 @@
 
 #import "AttendanceRecord.h"
 #import "StudentAttendance.h"
-#import "TASeatingChartViewController.h"
 #import "TANavigationController.h"
 
 typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
@@ -32,20 +31,15 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
-      UIBarButtonItem *attendanceHistoryItem = [[UIBarButtonItem alloc] initWithTitle:@"History"
-                                                                                  style:UIBarButtonItemStylePlain
-                                                                                 target:self
-                                                                                 action:@selector(viewAttendanceHistory)];
       self.navigationItem.rightBarButtonItems = @[
         self.editButtonItem,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                       target:self
                                                       action:@selector(addNewStudent)],
-        attendanceHistoryItem,
-        [[UIBarButtonItem alloc] initWithTitle:@"Test"
+        [[UIBarButtonItem alloc] initWithTitle:@"History"
                                          style:UIBarButtonItemStylePlain
                                         target:self
-                                        action:@selector(viewSeatingChart)]
+                                        action:@selector(viewAttendanceHistory)]
       ];
 
       _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
@@ -183,12 +177,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
       self.scrollView.hidden = NO;
       break;
   }
-}
-
-- (void)viewSeatingChart {
-  TASeatingChartViewController *seatingChart = [[TASeatingChartViewController alloc] initWithSection:self.section];
-  [seatingChart setAttendanceRecord:self.attendanceRecord];
-  [[self navigationController] pushViewController:seatingChart animated:YES];
 }
 
 - (void)viewAttendanceHistory {
