@@ -51,6 +51,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
       _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
       _segmentedControl.selectedSegmentIndex = TASectionSelectedViewTable;
       _segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+      [_segmentedControl addTarget:self action:@selector(segmentedControlDidChange:) forControlEvents:UIControlEventValueChanged];
       self.navigationItem.titleView = _segmentedControl;
 
       _studentsController = [[TAStudentsAttendanceViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -167,6 +168,17 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
     } else {
       [_studentsController reloadStudents];
     }
+  }
+}
+
+- (void)segmentedControlDidChange:(UISegmentedControl *)control {
+  switch (control.selectedSegmentIndex) {
+    case TASectionSelectedViewTable:
+      _studentsController.tableView.hidden = NO;
+      break;
+    case TASectionSelectedViewSeatingChart:
+      _studentsController.tableView.hidden = YES;
+      break;
   }
 }
 
