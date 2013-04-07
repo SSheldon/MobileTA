@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
+#import "TASeatingChartViewController.h"
 #import "TAStudentsAttendanceViewController.h"
 #import "TAStudentEditViewController.h"
 #import "TAAttendanceHistoryViewController.h"
@@ -13,11 +14,6 @@
 @class TAStudentDetailCell;
 @class TAStudentDisplayCell;
 
-@interface TASectionViewController : UIViewController <TAStudentsAttendanceDelegate, TAStudentEditDelegate, TAAttendanceHistoryDelegate>
-
-- (id)initWithSection:(Section *)section;
-
-@property (strong, nonatomic) Section *section;
-@property (strong, nonatomic) AttendanceRecord *attendanceRecord;
+@interface TASectionViewController : TASeatingChartViewController <TAStudentsAttendanceDelegate, TAStudentEditDelegate, TAAttendanceHistoryDelegate>
 
 @end
