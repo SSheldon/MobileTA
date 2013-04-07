@@ -30,7 +30,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-      self.title = NSLocalizedString(@"Roster", nil);
       self.navigationItem.rightBarButtonItems = @[
         self.editButtonItem,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -120,7 +119,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   if ([self isViewLoaded]) {
     [_studentsController.tableView reloadData];
   }
-  self.title = [NSString stringWithFormat:@"%@  (%@)", self.section.name, [self.attendanceRecord getDescriptionShort]];
 }
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
@@ -136,7 +134,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
     attendance.attendanceRecord = self.attendanceRecord;
     attendance.student = student;
     [self saveManagedObjectContext];
-    self.title = [NSString stringWithFormat:@"%@  (%@ *new*)", self.section.name, [self.attendanceRecord getDescriptionShort]];
   }
   return attendance;
 }
