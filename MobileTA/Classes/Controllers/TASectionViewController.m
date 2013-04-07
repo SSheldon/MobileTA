@@ -186,9 +186,7 @@
   if (!cell) {
     cell = [[TAStudentDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDetailCellId];
   }
-  [cell setController:self];
-//  cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
-  
+  cell.delegate = self;
   return cell;
 }
 

@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TASectionViewController.h"
 
-@class TASectionViewController;
+@class TAStudentDetailCell;
+
+@protocol TAStudentDetailDelegate <NSObject>
+- (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell;
+- (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell;
+- (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell;
+- (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell;
+@end
 
 @interface TAStudentDetailCell : UITableViewCell {
   UIButton *plusParticipation;
@@ -18,6 +24,6 @@
   UIButton *tardy;
 }
 
-@property (nonatomic,weak)TASectionViewController *controller;
+@property (nonatomic,weak) id<TAStudentDetailDelegate> delegate;
 
 @end

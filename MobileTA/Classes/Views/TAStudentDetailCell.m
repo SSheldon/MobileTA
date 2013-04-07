@@ -18,8 +18,6 @@
 
 @implementation TAStudentDetailCell
 
-@synthesize controller=_controller;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
@@ -69,19 +67,19 @@
 }
 
 - (void)plusParticipation {
-  [self.controller studentDetailCellDidAddParticipation:self];
+  [self.delegate studentDetailCellDidAddParticipation:self];
 }
 
 - (void)minusParticipation {
-  [self.controller studentDetailCellDidSubtractParticipation:self];
+  [self.delegate studentDetailCellDidSubtractParticipation:self];
 }
 
 - (void)markAbsent {
-  [self.controller studentDetailCellDidMarkAbsent:self];
+  [self.delegate studentDetailCellDidMarkAbsent:self];
 }
 
 - (void)markTardy {
-  [self.controller studentDetailCellDidMarkTardy:self];
+  [self.delegate studentDetailCellDidMarkTardy:self];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -15,7 +15,7 @@
 @class TAStudentDetailCell;
 @class TAStudentDisplayCell;
 
-@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate, TAAttendanceHistoryDelegate>
+@interface TASectionViewController : TAStudentsViewController <TAStudentEditDelegate, TAStudentDetailDelegate, TAAttendanceHistoryDelegate>
 
 - (id)initWithSection:(Section *)section;
 
@@ -23,11 +23,5 @@
 @property (strong, nonatomic) AttendanceRecord *attendanceRecord;
 
 - (UITableViewCell *)createDisplayCellForStudent:(Student *)student;
-
-// TODO(ssheldon): Extract these to a delegate
-- (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell;
-- (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell;
-- (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell;
-- (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell;
 
 @end
