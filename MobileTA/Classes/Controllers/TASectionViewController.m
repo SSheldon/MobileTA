@@ -112,15 +112,6 @@
   return attendance;
 }
 
-- (void)selectStudent:(Student *)student {
-  if(self.tableView.editing) {
-    [self editStudent:student];
-  }
-  else {
-    [self showDetailsForStudent:student];
-  }
-}
-
 - (void)addNewStudent {
   [self editStudent:nil];
 }
@@ -164,31 +155,6 @@
   [self presentViewController:navController animated:YES completion:nil];
 }
 
-- (UITableViewCell *)createDisplayCellForStudent:(Student *)student {
-  static NSString *studentDisplayCellId = @"StudentDisplayCell";
-  TAStudentDisplayCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDisplayCellId];
-  if (!cell) {
-    cell = [[TAStudentDisplayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDisplayCellId];
-  }
-  cell.textLabel.text = student.fullDisplayName;
-  if (_attendanceRecord) {
-    StudentAttendance *attendance = [_attendanceRecord studentAttendanceForStudent:student];
-    [cell setStatus:attendance.status];
-    [cell setParticipation:attendance.participation];
-  }
-  return cell;
-}
-
-- (UITableViewCell *)createDetailCellForStudent:(Student *)student {
-  static NSString *studentDetailCellId = @"StudentDetailCell";
-  TAStudentDetailCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDetailCellId];
-  if (!cell) {
-    cell = [[TAStudentDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDetailCellId];
-  }
-  cell.delegate = self;
-  return cell;
-}
-
 #pragma mark TAStudentEditDelegate
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
@@ -213,70 +179,36 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark TAStudentDetailCellDelegate
+#pragma mark TAStudentsAttendanceViewController
 
-- (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+- (StudentAttendanceStatus)statusForStudent:(Student *)student {
+  return [_attendanceRecord studentAttendanceForStudent:student].status;
+}
+- (int16_t)particpationForStudent:(Student *)student {
+  return [_attendanceRecord studentAttendanceForStudent:student].participation;
+}
+
+- (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  if (attendance.status == StudentAttendanceStatusAbsent) {
+  if (attendance.status == status) {
     attendance.status = StudentAttendanceStatusPresent;
   }
   else {
-    attendance.status = StudentAttendanceStatusAbsent;
-  }
-  UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
-  if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    [displayCell setStatus:attendance.status];
+    attendance.status = status;
   }
   [self saveManagedObjectContext];
+  return attendance.status;
 }
 
-- (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+- (int16_t)changeParticipationBy:(int16_t)value forStudent:(Student *)student {
   StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  if (attendance.status == StudentAttendanceStatusTardy) {
-    attendance.status = StudentAttendanceStatusPresent;
-  }
-  else {
-    attendance.status = StudentAttendanceStatusTardy;
-  }
-  UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
-  if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    [displayCell setStatus:attendance.status];
-  }
+  attendance.participation += value;
   [self saveManagedObjectContext];
+  return attendance.participation;
 }
 
-- (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
-  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  if (attendance.participation >= 2) {
-    return;
-  }
-  attendance.participation++;
-  UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
-  if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    [displayCell setParticipation:attendance.participation];
-  }
-  [self saveManagedObjectContext];
-}
-
-- (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
-  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  if (attendance.participation <= 0) {
-    return;
-  }
-  attendance.participation--;
-  UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:detailedStudentIndex];
-  if([tableViewCell isKindOfClass:[TAStudentDisplayCell class]]) {
-    TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)tableViewCell;
-    [displayCell setParticipation:attendance.participation];
-  }
-  [self saveManagedObjectContext];
+- (void)selectStudentToEdit:(Student *)student {
+  [self editStudent:student];
 }
 
 @end
