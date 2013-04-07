@@ -59,19 +59,18 @@
 }
 
 - (void)setSection:(Section *)section {
-  _section = section;
-
+  // Create a room for this section if it doesn't have one
+  if (section && !section.room) {
+    section.room = [Room roomWithContext:self.managedObjectContext];
 #if DEBUG
-  if (section && !section.room.seats.count) {
-    if (!section.room) {
-      section.room = [Room roomWithContext:self.managedObjectContext];
-    }
     // JUST FOR SHITS AND GIGGLES
     [section.room addSeatsObject:[Seat seatWithX:4 y:4 context:self.managedObjectContext]];
     [section.room addSeatsObject:[Seat seatWithX:10 y:8 context:self.managedObjectContext]];
+#endif
     [self saveManagedObjectContext];
   }
-#endif
+
+  _section = section;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {

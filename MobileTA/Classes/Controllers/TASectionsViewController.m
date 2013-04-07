@@ -8,62 +8,40 @@
 
 #import "TASectionsViewController.h"
 
-@interface TASectionsViewController ()
-
-@end
-
-@implementation TASectionsViewController {
-  NSMutableArray *_tableSections;
-}
-
-@synthesize sections=_sections;
+@implementation TASectionsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
   self = [super initWithStyle:style];
   if (self) {
     self.title = NSLocalizedString(@"Classes", nil);
     self.navigationItem.rightBarButtonItems = @[
-                                                self.editButtonItem,
-                                                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                              target:self
-                                                                                              action:@selector(addNewSection)]
-                                                ];
+      self.editButtonItem,
+      [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                    target:self
+                                                    action:@selector(addNewSection)]
+    ];
     self.tableView.allowsSelectionDuringEditing = YES;
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-//                                                                               target:self
-//                                                                               action:@selector(addNewSection)];
-//    self.navigationItem.rightBarButtonItem  = addButton;
-    
   }
   return self;
 }
 
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
 - (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
   // Load section if they haven't been set
   if (!self.sections.count) {
     NSArray *sections = [Section fetchSectionsInContext:self.managedObjectContext];
+#if DEBUG
     if (!sections.count) {
       // Insert some sections in the the context
       sections = @[
-                   [Section sectionWithName:@"CS 428" context:[self managedObjectContext]],
-                   ];
+        [Section sectionWithName:@"CS 428" context:[self managedObjectContext]],
+      ];
       [self saveManagedObjectContext];
     }
+#endif
     self.sections = sections;
   }
-  
-  [super viewWillAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 - (void)setSections:(NSArray *)sections {
@@ -147,8 +125,6 @@
   else {
     TASectionViewController *listViewController = [[TASectionViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
     [[self navigationController] pushViewController:listViewController animated:YES];
-//    TASeatingChartViewController *seatingChart = [[TASeatingChartViewController alloc] initWithSection:[self sectionAtIndexPath:indexPath]];
-//    [[self navigationController] pushViewController:seatingChart animated:YES];
   }
 }
 

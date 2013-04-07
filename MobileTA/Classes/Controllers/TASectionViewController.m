@@ -72,16 +72,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-#if DEBUG
-  // If this section is empty, populate it from the sample roster.
-  if (!self.section.students.count) {
-    NSArray *sampleStudents = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
-    [self.section addStudents:[NSSet setWithArray:sampleStudents]];
-    [self saveManagedObjectContext];
-    _studentsController.students = sampleStudents;
-  }
-#endif
-
   if (!self.attendanceRecord && self.section) {
     // Find the record nearest now within 40 minutes
     AttendanceRecord *record = [self.section attendanceRecordNearestToDate:[NSDate date]
@@ -109,6 +99,15 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 }
 
 - (void)setSection:(Section *)section {
+#if DEBUG
+  // If this section is empty, populate it from the sample roster.
+  if (!section.students.count) {
+    NSArray *sampleStudents = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
+    [section addStudents:[NSSet setWithArray:sampleStudents]];
+    [self saveManagedObjectContext];
+  }
+#endif
+
   [super setSection:section];
   _studentsController.students = [section.students allObjects];
   self.title = section.name;
