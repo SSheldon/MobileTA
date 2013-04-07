@@ -13,8 +13,14 @@
 #import "TASeatingChartViewController.h"
 #import "TANavigationController.h"
 
+typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
+  TASectionSelectedViewTable,
+  TASectionSelectedViewSeatingChart
+};
+
 @implementation TASectionViewController {
   TAStudentsAttendanceViewController *_studentsController;
+  UISegmentedControl *_segmentedControl;
 }
 
 - (id)init {
@@ -41,6 +47,11 @@
                                         target:self
                                         action:@selector(viewSeatingChart)]
       ];
+
+      _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
+      _segmentedControl.selectedSegmentIndex = TASectionSelectedViewTable;
+      _segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+      self.navigationItem.titleView = _segmentedControl;
 
       _studentsController = [[TAStudentsAttendanceViewController alloc] initWithStyle:UITableViewStylePlain];
       [self addChildViewController:_studentsController];
