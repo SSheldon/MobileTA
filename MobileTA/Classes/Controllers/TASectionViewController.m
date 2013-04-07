@@ -13,15 +13,17 @@
 #import "TASeatingChartViewController.h"
 #import "TANavigationController.h"
 
-@implementation TASectionViewController
+@implementation TASectionViewController {
+  TAStudentsAttendanceViewController *_studentsController;
+}
 
 - (id)init {
-  self = [self initWithStyle:UITableViewStylePlain];
+  self = [self initWithNibName:nil bundle:nil];
   return self;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       self.title = NSLocalizedString(@"Roster", nil);
       UIBarButtonItem *attendanceHistoryItem = [[UIBarButtonItem alloc] initWithTitle:@"History"
@@ -39,17 +41,27 @@
                                         target:self
                                         action:@selector(viewSeatingChart)]
       ];
-      self.tableView.allowsSelectionDuringEditing = YES;
+
+      _studentsController = [[TAStudentsAttendanceViewController alloc] initWithStyle:UITableViewStylePlain];
+      [self addChildViewController:_studentsController];
+      [_studentsController didMoveToParentViewController:self];
+      _studentsController.delegate = self;
+      _studentsController.tableView.allowsSelectionDuringEditing = YES;
     }
     return self;
 }
 
 - (id)initWithSection:(Section *)section {
-  self = [super init];
+  self = [self initWithNibName:nil bundle:nil];
   if (self) {
     self.section = section;
   }
   return self;
+}
+
+- (void)loadView {
+  [super loadView];
+  [self.view addSubview:_studentsController.tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -61,7 +73,7 @@
     NSArray *sampleStudents = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
     [self.section addStudents:[NSSet setWithArray:sampleStudents]];
     [self saveManagedObjectContext];
-    self.students = sampleStudents;
+    _studentsController.students = sampleStudents;
   }
 #endif
 
@@ -75,16 +87,31 @@
   }
 }
 
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  _studentsController.tableView.frame = self.view.frame;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  // Support all orientations
+  return YES;
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+  [super setEditing:editing animated:animated];
+  [_studentsController setEditing:editing animated:animated];
+}
+
 - (void)setSection:(Section *)section {
   _section = section;
-  self.students = [section.students allObjects];
+  _studentsController.students = [section.students allObjects];
   self.title = section.name;
 }
 
 - (void)setAttendanceRecord:(AttendanceRecord *)attendanceRecord {
   _attendanceRecord = attendanceRecord;
   if ([self isViewLoaded]) {
-    [self.tableView reloadData];
+    [_studentsController.tableView reloadData];
   }
   self.title = [NSString stringWithFormat:@"%@  (%@)", self.section.name, [self.attendanceRecord getDescriptionShort]];
 }
@@ -123,11 +150,11 @@
       student.firstName != [oldData objectForKey:@"firstName"]) {
     if (!oldData) {
       // Add the student
-      NSMutableArray *new_students = [NSMutableArray arrayWithArray:self.students];
+      NSMutableArray *new_students = [NSMutableArray arrayWithArray:_studentsController.students];
       [new_students addObject:student];
-      self.students = new_students;
+      _studentsController.students = new_students;
     } else {
-      [self reloadStudents];
+      [_studentsController reloadStudents];
     }
   }
 }
@@ -174,7 +201,7 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark TAStudentsAttendanceViewController
+#pragma mark TAStudentsAttendanceDelegate
 
 - (StudentAttendanceStatus)statusForStudent:(Student *)student {
   return [self.attendanceRecord studentAttendanceForStudent:student].status;
@@ -202,7 +229,7 @@
   return attendance.participation;
 }
 
-- (void)selectStudentToEdit:(Student *)student {
+- (void)viewController:(TAStudentsAttendanceViewController *)controller didSelectStudentToEdit:(Student *)student {
   [self editStudent:student];
 }
 
