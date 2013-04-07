@@ -170,7 +170,6 @@
   if (!cell) {
     cell = [[TAStudentDisplayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDisplayCellId];
   }
-  [cell setController:self];
   cell.textLabel.text = student.fullDisplayName;
   if (_attendanceRecord) {
     StudentAttendance *attendance = [_attendanceRecord studentAttendanceForStudent:student];

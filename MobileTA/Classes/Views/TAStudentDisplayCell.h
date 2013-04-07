@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TASectionViewController.h"
 #import "StudentAttendance.h"
 
 @class TASectionViewController;
@@ -18,7 +17,6 @@
 
 @property(nonatomic,strong)UIView *statusView;
 @property(nonatomic,strong)UILabel *participationLabel;
-@property (nonatomic,weak)TASectionViewController *controller;
 
 - (void)setStatus: (NSInteger)status;
 - (void)setParticipation: (NSInteger)participation;
