@@ -65,7 +65,7 @@
   }
 #endif
 
-  if (!_attendanceRecord && self.section) {
+  if (!self.attendanceRecord && self.section) {
     // Find the record nearest now within 40 minutes
     AttendanceRecord *record = [self.section attendanceRecordNearestToDate:[NSDate date]
                                                         withinTimeInterval:(40 * 60)];
@@ -86,7 +86,7 @@
   if ([self isViewLoaded]) {
     [self.tableView reloadData];
   }
-  self.title = [NSString stringWithFormat:@"%@  (%@)", _section.name, [_attendanceRecord getDescriptionShort]];
+  self.title = [NSString stringWithFormat:@"%@  (%@)", self.section.name, [self.attendanceRecord getDescriptionShort]];
 }
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
@@ -94,14 +94,15 @@
   if (!attendance) {
     // If we don't currently have an attendance record, create one
     if (!self.attendanceRecord) {
-      _attendanceRecord = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
-      _attendanceRecord.section = self.section;
+      AttendanceRecord *record = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
+      record.section = self.section;
+      self.attendanceRecord = record;
     }
     attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
     attendance.attendanceRecord = self.attendanceRecord;
     attendance.student = student;
     [self saveManagedObjectContext];
-    self.title = [NSString stringWithFormat:@"%@  (%@ *new*)", _section.name, [_attendanceRecord getDescriptionShort]];
+    self.title = [NSString stringWithFormat:@"%@  (%@ *new*)", self.section.name, [self.attendanceRecord getDescriptionShort]];
   }
   return attendance;
 }
@@ -133,7 +134,7 @@
 
 - (void)viewSeatingChart {
   TASeatingChartViewController *seatingChart = [[TASeatingChartViewController alloc] initWithSection:self.section];
-  [seatingChart setAttendanceRecord:_attendanceRecord];
+  [seatingChart setAttendanceRecord:self.attendanceRecord];
   [[self navigationController] pushViewController:seatingChart animated:YES];
 }
 
@@ -176,10 +177,10 @@
 #pragma mark TAStudentsAttendanceViewController
 
 - (StudentAttendanceStatus)statusForStudent:(Student *)student {
-  return [_attendanceRecord studentAttendanceForStudent:student].status;
+  return [self.attendanceRecord studentAttendanceForStudent:student].status;
 }
 - (int16_t)particpationForStudent:(Student *)student {
-  return [_attendanceRecord studentAttendanceForStudent:student].participation;
+  return [self.attendanceRecord studentAttendanceForStudent:student].participation;
 }
 
 - (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
