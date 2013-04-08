@@ -206,19 +206,8 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO));
   CGPoint newSeatLocation = CGPointMake(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.x,tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y);
   CGPoint unitLocation = CGPointMake(p2u(newSeatLocation.x), p2u(newSeatLocation.y));
-  Seat *seat;
-  if ([_delegate respondsToSelector:@selector(seatForLocation:)]) {
-    seat = [_delegate seatForLocation:unitLocation];
-  }
-  else {
-    NSManagedObjectContext *managedObjectContext = [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    seat = [Seat seatWithContext:managedObjectContext];
-    [seat setLocation:unitLocation];
-  }
+  Seat *seat = [_delegate seatForLocation:unitLocation];
   [self addSeat: seat];
-  if ([_delegate respondsToSelector:@selector(didAddSeat:)]) {
-    [_delegate didAddSeat:seat];
-  }
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gestureRecognizer {

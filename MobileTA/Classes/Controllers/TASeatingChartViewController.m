@@ -139,12 +139,6 @@
 
 #pragma mark TASeatingChartView
 
-- (void)didAddSeat:(Seat *)seat {
-  [[[self section] room] addSeatsObject:seat];
-  [seat setRoom:self.section.room];
-  [self saveManagedObjectContext];
-}
-
 - (void)didDeleteSeat:(Seat *)seat {
   [self.managedObjectContext deleteObject:seat];
   [self saveManagedObjectContext];
