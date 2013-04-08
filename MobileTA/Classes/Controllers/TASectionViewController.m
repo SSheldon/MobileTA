@@ -121,7 +121,14 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 }
 
 - (void)addNewStudent {
-  [self editStudent:nil];
+  switch (_segmentedControl.selectedSegmentIndex) {
+    case TASectionSelectedViewTable:
+      [self editStudent:nil];
+      break;
+    case TASectionSelectedViewSeatingChart:
+      [self addSeat];
+      break;
+  }
 }
 
 - (void)editStudent:(Student *)student {

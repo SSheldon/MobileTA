@@ -23,5 +23,6 @@
 @property (nonatomic, readonly) UIScrollView *scrollView;
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student;
+- (void)addSeat;
 
 @end
