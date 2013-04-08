@@ -79,6 +79,15 @@
   self = [self initWithFrame:[self frameForGridLocation:[seat location]]];
   if (self) {
     [self setSeat:seat];
+  }
+  return self;
+}
+
+- (id)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (self) {
+    // Initialization code
+    [self setBackgroundColor:[UIColor clearColor]];
     _backgroundView = [[_TASeatViewBackground alloc] initWithFrame:[self bounds]];
     [_backgroundView setCornerRadius:kCornerRadius];
     [self addSubview:_backgroundView];
@@ -89,16 +98,6 @@
     [_deleteButton addTarget:self action:@selector(didPressDelete) forControlEvents:UIControlEventTouchUpInside];
     [_deleteButton setHidden:YES];
     [self addSubview:_deleteButton];
-  }
-  return self;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-  self = [super initWithFrame:frame];
-  if (self) {
-    // Initialization code
-    [self setBackgroundColor:[UIColor clearColor]];
   }
   return self;
 }

@@ -160,9 +160,13 @@
 }
 
 - (Seat *)seatForLocation:(CGPoint)location {
+  if (![self.section.room canAddSeatAtLocation:location]) {
+    return nil;
+  }
+
   Seat *seat = [Seat seatWithContext:self.managedObjectContext];
-  [self.section.room addSeatsObject:seat];
   [seat setLocation:location];
+  [self.section.room addSeatsObject:seat];
   [self saveManagedObjectContext];
   return seat;
 }

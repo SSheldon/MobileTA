@@ -77,11 +77,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 - (void)addSeat:(Seat *)seat {
   // Make a seat view at 0,0.
   TASeatView *seatView = [[TASeatView alloc] initWithSeat:seat];
-  if (![self canMoveSeatView:seatView toPoint:[seatView frame].origin]) {
-    [self addSubview:seatView];
-    [self removeSeatView:seatView];
-    return;
-  }
   [_seatViews addObject:seatView];
   // Add gesture recognizers
   UIGestureRecognizer *move = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
@@ -206,8 +201,17 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   CGPoint extraGridTranslation = CGPointMake(fmodf(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO), fmodf(tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/ 4),UNIT_PIXEL_RATIO));
   CGPoint newSeatLocation = CGPointMake(tapLocation.x - (SEAT_WIDTH_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.x,tapLocation.y - (SEAT_HEIGHT_UNITS * UNIT_PIXEL_RATIO/4) - extraGridTranslation.y);
   CGPoint unitLocation = CGPointMake(p2u(newSeatLocation.x), p2u(newSeatLocation.y));
+
   Seat *seat = [_delegate seatForLocation:unitLocation];
-  [self addSeat: seat];
+  if (seat) {
+    [self addSeat:seat];
+  } else {
+    // Add a seat view and then immediately animate it away
+    CGRect newSeatFrame = CGRectMake(newSeatLocation.x, newSeatLocation.y, u2p(SEAT_WIDTH_UNITS), u2p(SEAT_HEIGHT_UNITS));
+    TASeatView *seatView = [[TASeatView alloc] initWithFrame:newSeatFrame];
+    [self addSubview:seatView];
+    [self removeSeatView:seatView];
+  }
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gestureRecognizer {
@@ -234,7 +238,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   CGPoint unitLocation = CGPointMake(p2u(newLocation.x), p2u(newLocation.y));
   [seatView moveToGridLocation:unitLocation];
   [gestureRecognizer setTranslation:extraGridTranslation inView:self];
-  [seatView setInvalidLocation:![self canMoveSeatView:seatView toPoint:newLocation]];
+  [seatView setInvalidLocation:![_section.room canMoveSeat:seatView.seat toLocation:unitLocation]];
   if ([gestureRecognizer state] == UIGestureRecognizerStateEnded) {
     // If they try to drop it in an invalid location, put the seat back to where
     // it was. Otherwise, move the seat to the correct location and notify the
@@ -257,10 +261,6 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 - (void)seatTap:(UITapGestureRecognizer *)gestureRecognizer {
   TASeatView *seatView = (TASeatView *)[gestureRecognizer view];
   [self.delegate didSelectSeat:[seatView seat]];
-}
-
-- (BOOL)canMoveSeatView:(TASeatView *)seatView toPoint:(CGPoint)point {
-  return [_section.room canMoveSeat:seatView.seat toX:p2u(point.x) y:p2u(point.y)];
 }
 
 - (TASeatView *)seatViewForSeat:(Seat *)seat {
