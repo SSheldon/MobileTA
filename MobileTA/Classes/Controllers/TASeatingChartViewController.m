@@ -10,6 +10,7 @@
 #import "TANavigationController.h"
 #import "TAStudentsViewController.h"
 #import "TAAssignSeatsViewController.h"
+#import "TAGridConstants.h"
 
 #import "Room.h"
 #import "Seat.h"
@@ -82,18 +83,21 @@
 - (void)addSeat {
   Seat *seat = [Seat seatWithContext:self.managedObjectContext];
   Seat *lastSeat = [_seatingChart lastSeat];
-  if (!lastSeat) {
-    seat.x = 0;
-    seat.y = 0;
+  int16_t x = 0;
+  int16_t y = 0;
+  if (lastSeat) {
+    x = lastSeat.x;
+    y = lastSeat.y;
   }
-  else if (lastSeat.x <= 16) {
-    seat.x = lastSeat.x + 4;
-    seat.y = lastSeat.y;
+  while (![_seatingChart canMoveSeat:seat toPoint:CGPointMake(u2p(x), u2p(y))]) {
+    x += 4;
+    if (x > 20) {
+      x = 0;
+      y += 4;
+    }
   }
-  else {
-    seat.x = 0;
-    seat.y = lastSeat.y + 4;
-  }
+  seat.x = x;
+  seat.y = y;
   [self.section.room addSeatsObject:seat];
   [self saveManagedObjectContext];
   [_seatingChart addSeat:seat];

@@ -76,7 +76,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 - (void)addSeat:(Seat *)seat {
   // Make a seat view at 0,0.
   TASeatView *seatView = [[TASeatView alloc] initWithSeat:seat];
-  if (![self canMoveSeat:seatView toPoint:[seatView frame].origin]) {
+  if (![self canMoveSeatView:seatView toPoint:[seatView frame].origin]) {
     [self addSubview:seatView];
     [self removeSeatView:seatView];
     return;
@@ -238,7 +238,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   CGPoint unitLocation = CGPointMake(p2u(newLocation.x), p2u(newLocation.y));
   [seatView moveToGridLocation:unitLocation];
   [gestureRecognizer setTranslation:extraGridTranslation inView:self];
-  [seatView setInvalidLocation:![self canMoveSeat:seatView toPoint:newLocation]];
+  [seatView setInvalidLocation:![self canMoveSeatView:seatView toPoint:newLocation]];
   if ([gestureRecognizer state] == UIGestureRecognizerStateEnded) {
     // If they try to drop it in an invalid location, put the seat back to where
     // it was. Otherwise, move the seat to the correct location and notify the
@@ -263,21 +263,26 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   [self.delegate didSelectSeat:[seatView seat]];
 }
 
-- (BOOL)canMoveSeat:(TASeatView *)seat toPoint:(CGPoint)point {
+- (BOOL)canMoveSeat:(Seat *)seat toPoint:(CGPoint)point {
   CGRect newFrame = CGRectMake(point.x, point.y, u2p(SEAT_WIDTH_UNITS), u2p(SEAT_HEIGHT_UNITS));
   for (NSUInteger i = 0; i < [_seatViews count]; i++) {
-    TASeatView *current = [_seatViews objectAtIndex:i];
+    TASeatView *currentView = [_seatViews objectAtIndex:i];
+    Seat *current = currentView.seat;
     // Clearly the seat intersects with itself, so ignore that
     if (current == seat) {
       continue;
     }
     else {
-      if (TARectIntersectsRect(newFrame,[current frame])) {
+      if (TARectIntersectsRect(newFrame,[currentView frame])) {
         return NO;
       }
     }
   }
   return YES;
+}
+
+- (BOOL)canMoveSeatView:(TASeatView *)seatView toPoint:(CGPoint)point {
+  return [self canMoveSeat:seatView.seat toPoint:point];
 }
 
 - (TASeatView *)seatViewForSeat:(Seat *)seat {
