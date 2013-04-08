@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TASeatingChartView.h"
 #import "TAAssignSeatsViewController.h"
+#import "TAStudentsAttendanceViewController.h"
 
 @class Section;
 @class AttendanceRecord;
 
-@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate>
+@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate, TAStudentsAttendanceDelegate>
 
 - (id)initWithSection:(Section *)section;
 
@@ -22,7 +23,6 @@
 @property(nonatomic,readonly)TASeatingChartView *seatingChart;
 @property (nonatomic, readonly) UIScrollView *scrollView;
 
-- (StudentAttendance *)studentAttendanceForStudent:(Student *)student;
 - (void)addSeat;
 
 @end

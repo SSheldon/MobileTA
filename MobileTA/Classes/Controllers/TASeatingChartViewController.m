@@ -116,8 +116,9 @@
   if (!attendance) {
     // If we don't currently have an attendance record, create one
     if (!self.attendanceRecord) {
-      _attendanceRecord = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
-      _attendanceRecord.section = self.section;
+      AttendanceRecord *record = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
+      record.section = self.section;
+      self.attendanceRecord = record;
     }
     attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
     attendance.attendanceRecord = self.attendanceRecord;
@@ -184,4 +185,45 @@
 - (void)assignSeatsViewControllerDidCancel:(TAAssignSeatsViewController *)controller {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark TAStudentsAttendanceDelegate
+
+- (StudentAttendanceStatus)statusForStudent:(Student *)student {
+  return [self.attendanceRecord studentAttendanceForStudent:student].status;
+}
+- (int16_t)particpationForStudent:(Student *)student {
+  return [self.attendanceRecord studentAttendanceForStudent:student].participation;
+}
+
+- (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  if (attendance.status == status) {
+    attendance.status = StudentAttendanceStatusPresent;
+  }
+  else {
+    attendance.status = status;
+  }
+  [self saveManagedObjectContext];
+
+  // If this student is on the seating chart, reload their view
+  if (student.seat) {
+    [self.seatingChart setStudent:student forSeat:student.seat];
+  }
+
+  return attendance.status;
+}
+
+- (int16_t)changeParticipationBy:(int16_t)value forStudent:(Student *)student {
+  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
+  attendance.participation += value;
+  [self saveManagedObjectContext];
+
+  // If this student is on the seating chart, reload their view
+  if (student.seat) {
+    [self.seatingChart setStudent:student forSeat:student.seat];
+  }
+
+  return attendance.participation;
+}
+
 @end

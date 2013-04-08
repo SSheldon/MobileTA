@@ -7,13 +7,9 @@
 //
 
 #import "TASeatingChartViewController.h"
-#import "TAStudentsAttendanceViewController.h"
 #import "TAStudentEditViewController.h"
 #import "TAAttendanceHistoryViewController.h"
 
-@class TAStudentDetailCell;
-@class TAStudentDisplayCell;
-
-@interface TASectionViewController : TASeatingChartViewController <TAStudentsAttendanceDelegate, TAStudentEditDelegate, TAAttendanceHistoryDelegate>
+@interface TASectionViewController : TASeatingChartViewController <TAStudentEditDelegate, TAAttendanceHistoryDelegate>
 
 @end

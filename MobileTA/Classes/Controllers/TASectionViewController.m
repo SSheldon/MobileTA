@@ -203,32 +203,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 #pragma mark TAStudentsAttendanceDelegate
 
-- (StudentAttendanceStatus)statusForStudent:(Student *)student {
-  return [self.attendanceRecord studentAttendanceForStudent:student].status;
-}
-- (int16_t)particpationForStudent:(Student *)student {
-  return [self.attendanceRecord studentAttendanceForStudent:student].participation;
-}
-
-- (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
-  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  if (attendance.status == status) {
-    attendance.status = StudentAttendanceStatusPresent;
-  }
-  else {
-    attendance.status = status;
-  }
-  [self saveManagedObjectContext];
-  return attendance.status;
-}
-
-- (int16_t)changeParticipationBy:(int16_t)value forStudent:(Student *)student {
-  StudentAttendance *attendance = [self studentAttendanceForStudent:student];
-  attendance.participation += value;
-  [self saveManagedObjectContext];
-  return attendance.participation;
-}
-
 - (void)viewController:(TAStudentsAttendanceViewController *)controller didSelectStudentToEdit:(Student *)student {
   [self editStudent:student];
 }
