@@ -10,6 +10,7 @@
 #import "TAStudentsViewController.h"
 #import "TANavigationController.h"
 
+#import "Room.h"
 #import "Seat.h"
 #import "AttendanceRecord.h"
 #import "StudentAttendance.h"
@@ -270,21 +271,7 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
 }
 
 - (BOOL)canMoveSeat:(Seat *)seat toPoint:(CGPoint)point {
-  CGRect newFrame = CGRectMake(point.x, point.y, u2p(SEAT_WIDTH_UNITS), u2p(SEAT_HEIGHT_UNITS));
-  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
-    TASeatView *currentView = [_seatViews objectAtIndex:i];
-    Seat *current = currentView.seat;
-    // Clearly the seat intersects with itself, so ignore that
-    if (current == seat) {
-      continue;
-    }
-    else {
-      if (TARectIntersectsRect(newFrame,[currentView frame])) {
-        return NO;
-      }
-    }
-  }
-  return YES;
+  return [_section.room canMoveSeat:seat toX:p2u(point.x) y:p2u(point.y)];
 }
 
 - (BOOL)canMoveSeatView:(TASeatView *)seatView toPoint:(CGPoint)point {

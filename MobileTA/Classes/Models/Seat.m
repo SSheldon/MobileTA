@@ -10,7 +10,7 @@
 #import "Room.h"
 #import "Section.h"
 #import "Student.h"
-
+#import "TAGridConstants.h"
 
 @implementation Seat
 
@@ -68,6 +68,18 @@
 - (void)setLocation:(CGPoint)location {
   self.x = location.x;
   self.y = location.y;
+}
+
+- (BOOL)intersectsWithSeatAtX:(int16_t)x y:(int16_t)y {
+  return ABS(self.x - x) < SEAT_WIDTH_UNITS && ABS(self.y - y) < SEAT_HEIGHT_UNITS;
+}
+
+- (BOOL)intersectsWithSeatAtLocation:(CGPoint)location {
+  return [self intersectsWithSeatAtX:location.x y:location.y];
+}
+
+- (BOOL)intersectsWithSeat:(Seat *)other {
+  return !!other && [self intersectsWithSeatAtX:other.x y:other.y];
 }
 
 @end

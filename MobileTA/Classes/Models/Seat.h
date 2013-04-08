@@ -26,6 +26,10 @@
 - (CGPoint)location;
 - (void)setLocation:(CGPoint)location;
 
+- (BOOL)intersectsWithSeatAtX:(int16_t)x y:(int16_t)y;
+- (BOOL)intersectsWithSeatAtLocation:(CGPoint)location;
+- (BOOL)intersectsWithSeat:(Seat *)other;
+
 @end
 
 @interface Seat (CoreDataGeneratedAccessors)

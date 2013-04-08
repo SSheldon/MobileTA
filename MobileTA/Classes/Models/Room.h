@@ -19,6 +19,13 @@
 
 + (Room *)roomWithContext:(NSManagedObjectContext *)context;
 
+- (BOOL)canMoveSeat:(Seat *)seat toX:(int16_t)x y:(int16_t)y;
+- (BOOL)canMoveSeat:(Seat *)seat toLocation:(CGPoint)location;
+
+- (BOOL)canAddSeatAtX:(int16_t)x y:(int16_t)y;
+- (BOOL)canAddSeatAtLocation:(CGPoint)location;
+- (BOOL)canAddSeat:(Seat *)seat;
+
 @end
 
 @interface Room (CoreDataGeneratedAccessors)
