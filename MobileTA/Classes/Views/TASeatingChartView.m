@@ -154,10 +154,12 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
     return;
   }
   _attendanceRecord = attendanceRecord;
-  for (StudentAttendance *studentAttendance in [_attendanceRecord studentAttendances]) {
-    Seat *seat = [[studentAttendance student] seat];
-    TASeatView *seatView = [self seatViewForSeat:seat];
+
+  for (TASeatView *seatView in _seatViews) {
+    Student *student = [seatView.seat studentForSection:_section];
+    StudentAttendance *studentAttendance = [_attendanceRecord studentAttendanceForStudent:student];
     [seatView setStudentAttendance:studentAttendance];
+    [seatView setStudent:student];
   }
 }
 
