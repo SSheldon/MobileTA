@@ -74,6 +74,8 @@
 		13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DE616DB35870084D827 /* TAStudentsViewTest.m */; };
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
+		13E344F617135F0300ECF8AB /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E344F217135F0300ECF8AB /* icon-ipad.png */; };
+		13E344F717135F0300ECF8AB /* icon-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E344F317135F0300ECF8AB /* icon-ipad@2x.png */; };
 		13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
 		13F287281711716500562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
 		13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */; };
@@ -246,6 +248,8 @@
 		13A44DE616DB35870084D827 /* TAStudentsViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentsViewTest.m; path = Views/TAStudentsViewTest.m; sourceTree = "<group>"; };
 		13BA038C16D4B8AD0004C698 /* blackboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackboard.jpg; path = Images/blackboard.jpg; sourceTree = "<group>"; };
 		13BA038D16D4B8AD0004C698 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
+		13E344F217135F0300ECF8AB /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad.png"; path = "Images/icon-ipad.png"; sourceTree = "<group>"; };
+		13E344F317135F0300ECF8AB /* icon-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad@2x.png"; path = "Images/icon-ipad@2x.png"; sourceTree = "<group>"; };
 		13F2871C17114DD800562D5A /* TAStudentsAttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentsAttendanceViewController.h; sourceTree = "<group>"; };
 		13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentsAttendanceViewController.m; sourceTree = "<group>"; };
 		13FFBD5D16E96FEB001BB929 /* roster.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = roster.csv; path = Mocks/roster.csv; sourceTree = "<group>"; };
@@ -352,6 +356,8 @@
 				E654DB32170A37CE00584411 /* delete_button.png */,
 				13BA038C16D4B8AD0004C698 /* blackboard.jpg */,
 				13BA038D16D4B8AD0004C698 /* logo.png */,
+				13E344F217135F0300ECF8AB /* icon-ipad.png */,
+				13E344F317135F0300ECF8AB /* icon-ipad@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -744,6 +750,8 @@
 				13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */,
 				E654DB33170A37CE00584411 /* delete_button.png in Resources */,
 				E654DB42170A5C3200584411 /* seat.jpg in Resources */,
+				13E344F617135F0300ECF8AB /* icon-ipad.png in Resources */,
+				13E344F717135F0300ECF8AB /* icon-ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
