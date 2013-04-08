@@ -81,7 +81,6 @@
 }
 
 - (void)addSeat {
-  Seat *seat = [Seat seatWithContext:self.managedObjectContext];
   Seat *lastSeat = [_seatingChart lastSeat];
   int16_t x = 0;
   int16_t y = 0;
@@ -89,13 +88,14 @@
     x = lastSeat.x;
     y = lastSeat.y;
   }
-  while (![_seatingChart canMoveSeat:seat toPoint:CGPointMake(u2p(x), u2p(y))]) {
+  while (![self.section.room canAddSeatAtX:x y:y]) {
     x += 4;
     if (x > 20) {
       x = 0;
       y += 4;
     }
   }
+  Seat *seat = [Seat seatWithContext:self.managedObjectContext];
   seat.x = x;
   seat.y = y;
   [self.section.room addSeatsObject:seat];

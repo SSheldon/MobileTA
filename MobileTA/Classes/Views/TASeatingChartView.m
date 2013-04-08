@@ -270,12 +270,8 @@ BOOL TARectIntersectsRect(CGRect rect1, CGRect rect2) {
   [self.delegate didSelectSeat:[seatView seat]];
 }
 
-- (BOOL)canMoveSeat:(Seat *)seat toPoint:(CGPoint)point {
-  return [_section.room canMoveSeat:seat toX:p2u(point.x) y:p2u(point.y)];
-}
-
 - (BOOL)canMoveSeatView:(TASeatView *)seatView toPoint:(CGPoint)point {
-  return [self canMoveSeat:seatView.seat toPoint:point];
+  return [_section.room canMoveSeat:seatView.seat toX:p2u(point.x) y:p2u(point.y)];
 }
 
 - (TASeatView *)seatViewForSeat:(Seat *)seat {

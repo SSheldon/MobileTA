@@ -47,9 +47,6 @@
 
 - (id)lastSeat;
 
-- (BOOL)canMoveSeat:(Seat *)seat toPoint:(CGPoint)point;
-- (BOOL)canMoveSeatView:(TASeatView *)seatView toPoint:(CGPoint)point;
-
 @property(nonatomic,getter = isEditing)BOOL editing;
 @property(nonatomic,strong)AttendanceRecord *attendanceRecord;
 @property(nonatomic,weak)id<TASeatingChartViewDelegate> delegate;
