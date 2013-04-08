@@ -22,4 +22,6 @@
 @property(nonatomic,readonly)TASeatingChartView *seatingChart;
 @property (nonatomic, readonly) UIScrollView *scrollView;
 
+- (StudentAttendance *)studentAttendanceForStudent:(Student *)student;
+
 @end

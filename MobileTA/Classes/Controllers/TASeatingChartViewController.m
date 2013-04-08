@@ -14,6 +14,7 @@
 #import "Room.h"
 #import "Seat.h"
 #import "Section.h"
+#import "StudentAttendance.h"
 #import "AttendanceRecord.h"
 
 @implementation TASeatingChartViewController
@@ -104,6 +105,22 @@
   // violating MVC pretty heavily. At some point, I should refactor this to
   // be more MVC friendly.
   [_seatingChart setAttendanceRecord:attendanceRecord];
+}
+
+- (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
+  StudentAttendance *attendance = [self.attendanceRecord studentAttendanceForStudent:student];
+  if (!attendance) {
+    // If we don't currently have an attendance record, create one
+    if (!self.attendanceRecord) {
+      _attendanceRecord = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
+      _attendanceRecord.section = self.section;
+    }
+    attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
+    attendance.attendanceRecord = self.attendanceRecord;
+    attendance.student = student;
+    [self saveManagedObjectContext];
+  }
+  return attendance;
 }
 
 #pragma mark UIScrollViewDelegate

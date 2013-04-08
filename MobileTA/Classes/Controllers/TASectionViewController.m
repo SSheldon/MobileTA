@@ -120,23 +120,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   }
 }
 
-- (StudentAttendance *)studentAttendanceForStudent:(Student *)student {
-  StudentAttendance *attendance = [self.attendanceRecord studentAttendanceForStudent:student];
-  if (!attendance) {
-    // If we don't currently have an attendance record, create one
-    if (!self.attendanceRecord) {
-      AttendanceRecord *record = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
-      record.section = self.section;
-      self.attendanceRecord = record;
-    }
-    attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
-    attendance.attendanceRecord = self.attendanceRecord;
-    attendance.student = student;
-    [self saveManagedObjectContext];
-  }
-  return attendance;
-}
-
 - (void)addNewStudent {
   [self editStudent:nil];
 }
