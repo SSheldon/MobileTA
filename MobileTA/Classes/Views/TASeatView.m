@@ -32,6 +32,8 @@
   StudentAttendanceStatus _status;
 }
 
+- (void)clearBar;
+
 - (void)setStudentName:(NSString *)name;
 - (void)setAttendanceStatus:(StudentAttendanceStatus)status;
 - (void)setParticipationAmount:(int16_t)participation;
@@ -102,13 +104,22 @@
 }
 
 - (void)setStudent:(Student *)student {
-  [_backgroundView setStudentName:[student shortenedDisplayName]];
+  if (student) {
+    [_backgroundView setStudentName:[student shortenedDisplayName]];
+    [_backgroundView setAttendanceStatus:StudentAttendanceStatusPresent];
+  }
 }
 
 - (void)setStudentAttendance:(StudentAttendance *)studentAttendance {
-  [self setStudent:[studentAttendance student]];
-  [_backgroundView setParticipationAmount:[studentAttendance participation]];
-  [_backgroundView setAttendanceStatus:[studentAttendance status]];
+  if (studentAttendance) {
+    [self setStudent:[studentAttendance student]];
+    [_backgroundView setParticipationAmount:[studentAttendance participation]];
+    [_backgroundView setAttendanceStatus:[studentAttendance status]];
+  }
+  else {
+    [self setStudent:nil];
+    [_backgroundView clearBar];
+  }
 }
 
 - (void)moveToGridLocation:(CGPoint)unitPoint {
