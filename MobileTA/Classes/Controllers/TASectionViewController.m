@@ -76,9 +76,9 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [super viewWillAppear:animated];
 
   if (!self.attendanceRecord && self.section) {
-    // Find the record nearest now within 40 minutes
+    // Find the record nearest now within 3 hours
     AttendanceRecord *record = [self.section attendanceRecordNearestToDate:[NSDate date]
-                                                        withinTimeInterval:(40 * 60)];
+                                                        withinTimeInterval:(3 * 60 * 60)];
     if (record) {
       self.attendanceRecord = record;
     }
