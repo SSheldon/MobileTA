@@ -18,6 +18,18 @@ NSString *NSStringFromStudentParticipation(int16_t participation) {
   return [NSString stringWithFormat:(participation > 0 ? @"+%i" : @"%i"), participation];
 }
 
+NSString *NSStringFromStudentAttendanceStatus(StudentAttendanceStatus status) {
+  switch (status) {
+    case StudentAttendanceStatusPresent:
+      return @"Present";
+    case StudentAttendanceStatusAbsent:
+      return @"Absent";
+    case StudentAttendanceStatusTardy:
+      return @"Tardy";
+  }
+  return nil;
+}
+
 @implementation StudentAttendance
 
 @dynamic participation;
