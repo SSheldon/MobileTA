@@ -66,7 +66,10 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)loadView {
   [super loadView];
+  self.scrollView.hidden = (_segmentedControl.selectedSegmentIndex == TASectionSelectedViewSeatingChart);
+
   [self.view addSubview:_studentsController.tableView];
+  _studentsController.tableView.hidden = (_segmentedControl.selectedSegmentIndex == TASectionSelectedViewTable);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,7 +87,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
-  self.scrollView.hidden = YES;
   _studentsController.tableView.frame = self.view.frame;
 }
 
@@ -153,16 +155,8 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 }
 
 - (void)segmentedControlDidChange:(UISegmentedControl *)control {
-  switch (control.selectedSegmentIndex) {
-    case TASectionSelectedViewTable:
-      self.scrollView.hidden = YES;
-      _studentsController.tableView.hidden = NO;
-      break;
-    case TASectionSelectedViewSeatingChart:
-      _studentsController.tableView.hidden = YES;
-      self.scrollView.hidden = NO;
-      break;
-  }
+  self.scrollView.hidden = (control.selectedSegmentIndex == TASectionSelectedViewSeatingChart);
+  _studentsController.tableView.hidden = (control.selectedSegmentIndex == TASectionSelectedViewTable);
 }
 
 - (void)viewAttendanceHistory {
