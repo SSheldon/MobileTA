@@ -41,6 +41,7 @@
 
   // Make a scroll view
   _scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
+  _scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
   [_scrollView setContentSize:[TASeatingChartView roomPixelSize]];
   // The highest they can zoom is double the size
   [_scrollView setMaximumZoomScale:2.0];
