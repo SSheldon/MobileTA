@@ -15,8 +15,7 @@ NSString *NSStringFromStudentParticipation(int16_t participation) {
   if (participation == 0) {
     return @"";
   }
-  NSString *modifier = (participation < 0) ? @"-" : @"+";
-  return [NSString stringWithFormat:@"%@%i",modifier,participation];
+  return [NSString stringWithFormat:(participation > 0 ? @"+%i" : @"%i"), participation];
 }
 
 @implementation StudentAttendance
