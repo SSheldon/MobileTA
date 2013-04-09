@@ -90,14 +90,7 @@
 
 - (void)setStudent:(Student *)student forSeatView:(TASeatView *)seatView {
   StudentAttendance *studentAttendance = [[self attendanceRecord] studentAttendanceForStudent:student];
-  if (studentAttendance) {
-    // Set their full attendance information
-    [seatView setStudentAttendance:studentAttendance];
-  }
-  else {
-    // Otherwise, just show their name
-    [seatView setStudent:student];
-  }
+  [seatView setStudent:student attendance:studentAttendance];
 }
 
 - (id)lastSeat {

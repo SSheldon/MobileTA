@@ -102,23 +102,10 @@
   return self;
 }
 
-- (void)setStudent:(Student *)student {
-  if (student) {
-    [_backgroundView setStudentName:[student shortenedDisplayName]];
-    [_backgroundView setAttendanceStatus:StudentAttendanceStatusPresent];
-  }
-}
-
-- (void)setStudentAttendance:(StudentAttendance *)studentAttendance {
-  if (studentAttendance) {
-    [self setStudent:[studentAttendance student]];
-    [_backgroundView setParticipationAmount:[studentAttendance participation]];
-    [_backgroundView setAttendanceStatus:[studentAttendance status]];
-  }
-  else {
-    [self setStudent:nil];
-    [_backgroundView clearBar];
-  }
+- (void)setStudent:(Student *)student attendance:(StudentAttendance *)studentAttendance {
+  [_backgroundView setStudentName:[student shortenedDisplayName]];
+  [_backgroundView setParticipationAmount:[studentAttendance participation]];
+  [_backgroundView setAttendanceStatus:(!student ? -1 : [studentAttendance status])];
 }
 
 - (void)moveToGridLocation:(CGPoint)unitPoint {
