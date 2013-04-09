@@ -16,6 +16,8 @@
 @optional
 - (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller
               didSelectAttendanceRecord:(AttendanceRecord *)record;
+- (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller
+             willDeleteAttendanceRecord:(AttendanceRecord *)record;
 - (void)attendanceHistoryViewControllerDidCancel:(TAAttendanceHistoryViewController *)controller;
 @end
 

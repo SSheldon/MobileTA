@@ -35,10 +35,12 @@
       [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                     target:self
                                                     action:@selector(cancel)];
-    self.navigationItem.rightBarButtonItem =
+    self.navigationItem.rightBarButtonItems = @[
+      self.editButtonItem,
       [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                     target:self
-                                                    action:@selector(addNewAttendanceRecord)];
+                                                    action:@selector(addNewAttendanceRecord)]
+    ];
   }
   return self;
 }
@@ -50,6 +52,11 @@
     self.records = [section.attendanceRecords allObjects];
   }
   return self;
+}
+
+- (void)loadView {
+  [super loadView];
+  self.tableView.allowsSelectionDuringEditing = YES;
 }
 
 - (void)setRecords:(NSArray *)records {
@@ -75,7 +82,11 @@
 }
 
 - (void)addNewAttendanceRecord {
-  TAAttendanceRecordEditViewController *controller = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:nil];
+  [self editAttendanceRecord:nil];
+}
+
+- (void)editAttendanceRecord:(AttendanceRecord *)record {
+  TAAttendanceRecordEditViewController *controller = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:record];
   controller.delegate = self;
   [self.navigationController pushViewController:controller animated:YES];
 }
@@ -112,11 +123,39 @@
   return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Return NO if you do not want the specified item to be editable.
+  return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if(editingStyle == UITableViewCellEditingStyleDelete) {
+    AttendanceRecord *record = [self attendanceRecordAtIndexPath:indexPath];
+    // Remove record from the Records array
+    NSMutableArray *mutableRecords = [_records mutableCopy];
+    [mutableRecords removeObject:record];
+    _records = [mutableRecords copy];
+    // Remove the corresponding row from the table
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    // Inform the delegate
+    if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:willDeleteAttendanceRecord:)]) {
+      [self.delegate attendanceHistoryViewController:self willDeleteAttendanceRecord:record];
+    }
+    // Remove record from the database
+    [[self managedObjectContext] deleteObject:record];
+    [self saveManagedObjectContext];
+  }
+}
+
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
-    [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:[self attendanceRecordAtIndexPath:indexPath]];
+  if (self.editing) {
+    [self editAttendanceRecord:[self attendanceRecordAtIndexPath:indexPath]];
+  } else {
+    if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
+      [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:[self attendanceRecordAtIndexPath:indexPath]];
+    }
   }
 }
 
@@ -134,6 +173,9 @@
     NSMutableArray *newRecords = [NSMutableArray arrayWithArray:self.records];
     [newRecords addObject:record];
     self.records = newRecords;
+  } else {
+    // Re-sort the table
+    self.records = [self.records copy];
   }
 }
 

@@ -191,6 +191,12 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller willDeleteAttendanceRecord:(AttendanceRecord *)record {
+  if ([record isEqual:self.attendanceRecord]) {
+    self.attendanceRecord = nil;
+  }
+}
+
 - (void)attendanceHistoryViewControllerDidCancel:(TAAttendanceHistoryViewController *)controller {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
