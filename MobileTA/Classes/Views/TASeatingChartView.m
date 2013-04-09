@@ -89,8 +89,15 @@
 }
 
 - (void)setStudent:(Student *)student forSeatView:(TASeatView *)seatView {
-  StudentAttendance *studentAttendance = [[self attendanceRecord] studentAttendanceForStudent:student];
-  [seatView setStudent:student attendance:studentAttendance];
+  if (self.attendanceRecord) {
+    // If there's a current record, show the student's attendance information
+    StudentAttendance *attendance = [self.attendanceRecord studentAttendanceForStudent:student];
+    [seatView setStudent:student attendance:attendance];
+  }
+  else {
+    // Otherwise, just show their name
+    [seatView setStudent:student];
+  }
 }
 
 - (id)lastSeat {

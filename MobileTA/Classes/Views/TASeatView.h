@@ -29,6 +29,7 @@
 
 - (void)moveToGridLocation:(CGPoint)unitPoint;
 
+- (void)setStudent:(Student *)student;
 - (void)setStudent:(Student *)student attendance:(StudentAttendance *)studentAttendance;
 
 // YEAH! PARTY

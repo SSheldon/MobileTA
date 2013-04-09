@@ -97,6 +97,11 @@
   return self;
 }
 
+- (void)setStudent:(Student *)student {
+  [_backgroundView setStudentName:[student shortenedDisplayName]];
+  [_backgroundView setAttendanceStatus:-1 particpation:0];
+}
+
 - (void)setStudent:(Student *)student attendance:(StudentAttendance *)studentAttendance {
   [_backgroundView setStudentName:[student shortenedDisplayName]];
   [_backgroundView setAttendanceStatus:(!student ? -1 : [studentAttendance status])
