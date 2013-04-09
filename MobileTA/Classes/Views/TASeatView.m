@@ -25,18 +25,13 @@
 #pragma mark _TASeatViewBackground Interface
 
 @interface _TASeatViewBackground : UIView {
-  int16_t _participation;
   UILabel *_nameLabel;
   UILabel *_participationLabel;
   UIColor *_attendanceBarColor;
-  StudentAttendanceStatus _status;
 }
 
-- (void)clearBar;
-
 - (void)setStudentName:(NSString *)name;
-- (void)setAttendanceStatus:(StudentAttendanceStatus)status;
-- (void)setParticipationAmount:(int16_t)participation;
+- (void)setAttendanceStatus:(StudentAttendanceStatus)status particpation:(int16_t)participation;
 
 @property(nonatomic,getter = isInvalidLocation)BOOL invalidLocation;
 @property(nonatomic,strong)UIImage *pattern;
@@ -104,8 +99,8 @@
 
 - (void)setStudent:(Student *)student attendance:(StudentAttendance *)studentAttendance {
   [_backgroundView setStudentName:[student shortenedDisplayName]];
-  [_backgroundView setParticipationAmount:[studentAttendance participation]];
-  [_backgroundView setAttendanceStatus:(!student ? -1 : [studentAttendance status])];
+  [_backgroundView setAttendanceStatus:(!student ? -1 : [studentAttendance status])
+                          particpation:[studentAttendance participation]];
 }
 
 - (void)moveToGridLocation:(CGPoint)unitPoint {
@@ -225,22 +220,14 @@
   [_nameLabel setText:name];
 }
 
-- (void)setParticipationAmount:(int16_t)participation {
-  if (_status != StudentAttendanceStatusTardy && _status != StudentAttendanceStatusPresent) {
-    [_participationLabel setText:NSStringFromStudentParticipation(participation)];
-  }
-  _participation = participation;
-}
-
-- (void)setAttendanceStatus:(StudentAttendanceStatus)status {
+- (void)setAttendanceStatus:(StudentAttendanceStatus)status particpation:(int16_t)participation {
   if (status != StudentAttendanceStatusTardy && status != StudentAttendanceStatusPresent) {
-    [_participationLabel setText:@""];
+    [_participationLabel setText:nil];
   }
   else {
-    [_participationLabel setText:NSStringFromStudentParticipation(_participation)];
+    [_participationLabel setText:NSStringFromStudentParticipation(participation)];
   }
   _attendanceBarColor = [_TASeatViewBackground colorForAttendanceStatus:status];
-  _status = status;
   [self setNeedsDisplay];
 }
 
@@ -249,12 +236,6 @@
     _invalidLocation = invalidLocation;
     [self setNeedsDisplay];
   }
-}
-
-- (void)clearBar {
-  _status = -1;
-  _attendanceBarColor = [_TASeatViewBackground colorForAttendanceStatus:_status];
-  [_participationLabel setText:@""];
 }
 
 - (void)drawRect:(CGRect)rect {
