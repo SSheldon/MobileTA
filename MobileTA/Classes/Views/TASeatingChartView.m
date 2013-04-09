@@ -80,15 +80,15 @@
   [seatView setDelegate:self];
   // Set the info for the student in the seat
   Student *student = [seat studentForSection:_section];
-  StudentAttendance *attendance = [self.attendanceRecord studentAttendanceForStudent:student];
-  if (attendance) {
-    [seatView setStudentAttendance:attendance];
-  }
-  [seatView setStudent:student];
+  [self setStudent:student forSeatView:seatView];
 }
 
 - (void)setStudent:(Student *)student forSeat:(Seat *)seat {
   TASeatView *seatView = [self seatViewForSeat:seat];
+  [self setStudent:student forSeatView:seatView];
+}
+
+- (void)setStudent:(Student *)student forSeatView:(TASeatView *)seatView {
   StudentAttendance *studentAttendance = [[self attendanceRecord] studentAttendanceForStudent:student];
   if (studentAttendance) {
     // Set their full attendance information
@@ -140,13 +140,7 @@
 
   for (TASeatView *seatView in _seatViews) {
     Student *student = [seatView.seat studentForSection:_section];
-    StudentAttendance *studentAttendance = [_attendanceRecord studentAttendanceForStudent:student];
-    if (studentAttendance) {
-      [seatView setStudentAttendance:studentAttendance];
-    }
-    else {
-      [seatView setStudent:student];
-    }
+    [self setStudent:student forSeatView:seatView];
   }
 }
 
