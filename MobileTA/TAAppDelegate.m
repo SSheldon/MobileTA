@@ -8,6 +8,7 @@
 
 #import "TAAppDelegate.h"
 
+#import "Student.h"
 #import "TASectionsViewController.h"
 
 @implementation TAAppDelegate
@@ -58,6 +59,16 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
   if ([url isFileURL]) {
+    // Parse the students from the CSV file
+    NSArray *students = [Student studentsFromCSVFile:[url path] context:self.managedObjectContext];
+    // The CSV was copied into our directory, so delete it after parsing
+    [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
+    // Add the students as a section to the sections view controller
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    NSAssert([[navController.viewControllers objectAtIndex:0] isKindOfClass:[TASectionsViewController class]], nil);
+    TASectionsViewController *sectionsController = [navController.viewControllers objectAtIndex:0];
+    [navController popToRootViewControllerAnimated:NO];
+    [sectionsController addSectionWithStudents:students];
     return YES;
   }
   return NO;

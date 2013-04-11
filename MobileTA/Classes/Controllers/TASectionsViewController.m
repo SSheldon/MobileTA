@@ -65,6 +65,16 @@
   [self editSection:nil];
 }
 
+- (void)addSectionWithStudents:(NSArray *)students {
+  // TODO(ssheldon): allow user to name this section
+  Section *section = [Section sectionWithName:@"IMPORTED" context:self.managedObjectContext];
+  [section addStudents:[NSSet setWithArray:students]];
+  [self saveManagedObjectContext];
+  NSMutableArray *sections = [self.sections mutableCopy];
+  [sections addObject:section];
+  self.sections = sections;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
   // Support all orientations
   return YES;

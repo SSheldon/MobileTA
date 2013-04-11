@@ -15,4 +15,6 @@
 
 @property (copy, nonatomic) NSArray *sections;
 
+- (void)addSectionWithStudents:(NSArray *)students;
+
 @end
