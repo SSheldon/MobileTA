@@ -10,11 +10,14 @@
 #import "TASeatingChartView.h"
 #import "TAAssignSeatsViewController.h"
 #import "TAStudentsAttendanceViewController.h"
+#import "TASeatingChartAttendanceViewController.h"
 
 @class Section;
 @class AttendanceRecord;
 
-@interface TASeatingChartViewController : UIViewController <UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate, TAStudentsAttendanceDelegate>
+@interface TASeatingChartViewController : UIViewController <UIPopoverControllerDelegate, UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate,TAStudentsAttendanceDelegate> {
+  UIPopoverController *_attendancePopoverController;
+}
 
 - (id)initWithSection:(Section *)section;
 

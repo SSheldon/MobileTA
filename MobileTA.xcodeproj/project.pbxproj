@@ -115,6 +115,7 @@
 		E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */; };
 		E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
 		E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */; };
+		E6F1A53F171375A200DD781D /* TASeatingChartAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F1A53E171375A200DD781D /* TASeatingChartAttendanceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -308,6 +309,8 @@
 		E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentsViewController.m; sourceTree = "<group>"; };
 		E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = "UIViewController+CoreDataAdditions.h"; sourceTree = "<group>"; };
 		E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CoreDataAdditions.m"; sourceTree = "<group>"; };
+		E6F1A53D171375A200DD781D /* TASeatingChartAttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASeatingChartAttendanceViewController.h; sourceTree = "<group>"; };
+		E6F1A53E171375A200DD781D /* TASeatingChartAttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASeatingChartAttendanceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -585,6 +588,8 @@
 				9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */,
 				13F2871C17114DD800562D5A /* TAStudentsAttendanceViewController.h */,
 				13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */,
+				E6F1A53D171375A200DD781D /* TASeatingChartAttendanceViewController.h */,
+				E6F1A53E171375A200DD781D /* TASeatingChartAttendanceViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -835,6 +840,7 @@
 				1346A2FF170D208D0016943A /* NSManagedObject+JSON.m in Sources */,
 				1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */,
 				13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */,
+				E6F1A53F171375A200DD781D /* TASeatingChartAttendanceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

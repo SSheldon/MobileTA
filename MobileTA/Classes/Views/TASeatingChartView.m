@@ -19,8 +19,6 @@
 
 @interface TASeatingChartView (PrivateMethods)
 
-- (TASeatView *)seatViewForSeat:(Seat *)seat;
-
 @end
 
 @implementation TASeatingChartView
@@ -98,6 +96,16 @@
     // Otherwise, just show their name
     [seatView setStudent:student];
   }
+}
+
+- (TASeatView *)seatViewForSeat:(Seat *)seat {
+  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
+    TASeatView *current = [_seatViews objectAtIndex:i];
+    if ([[current seat] isEqual:seat]) {
+      return current;
+    }
+  }
+  return nil;
 }
 
 - (id)lastSeat {
@@ -244,16 +252,6 @@
   [self.delegate didSelectSeat:[seatView seat]];
 }
 
-- (TASeatView *)seatViewForSeat:(Seat *)seat {
-  for (NSUInteger i = 0; i < [_seatViews count]; i++) {
-    TASeatView *current = [_seatViews objectAtIndex:i];
-    if ([[current seat] isEqual:seat]) {
-      return current;
-    }
-  }
-  return nil;
-}
-
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
   for (UIView *subview in self.subviews) {
     // Check for the delete buttons first, as they are a special case
@@ -287,10 +285,10 @@
     return [self isEditing];
   }
   if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
-    // Don't do a tap gesture unless the view is editing
-    if (![self isEditing]) {
-      return NO;
-    }
+//    // Don't do a tap gesture unless the view is editing
+//    if (![self isEditing]) {
+//      return NO;
+//    }
     // We don't want the gesture recognizer to fire if the user is trying to
     // press the delete button of a seat
     for (NSUInteger i = 0; i < [_seatViews count]; i++) {

@@ -129,6 +129,36 @@
   return attendance;
 }
 
+#pragma mark Private Methods
+
+- (void)showAssignSeatDialogForSeat:(Seat *)seat {
+  TAAssignSeatsViewController *studentsViewController = [[TAAssignSeatsViewController alloc] initWithSection:self.section seat:seat];
+  TANavigationController *navController = [[TANavigationController alloc] initWithRootViewController:studentsViewController];
+  [studentsViewController setDelegate:self];
+  navController.disablesAutomaticKeyboardDismissal = NO;
+  navController.modalPresentationStyle = UIModalPresentationFormSheet;
+  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)showAttendanceInformationPopoverForSeat:(Seat *)seat {
+  Student *student = [seat studentForSection:_section];
+  if (!student) {
+    return;
+  }
+  StudentAttendance *studentAttendance = [_attendanceRecord studentAttendanceForStudent:student];
+  TASeatingChartAttendanceViewController *controller = [[TASeatingChartAttendanceViewController alloc] initWithStudentAttendance:studentAttendance];
+  _attendancePopoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+  TASeatView *attachedSeat = [_seatingChart seatViewForSeat:seat];
+  [_attendancePopoverController presentPopoverFromRect:[attachedSeat frame] inView:[self view] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+#pragma mark UIPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+  [self saveManagedObjectContext];
+}
+
 #pragma mark UIScrollViewDelegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
@@ -152,13 +182,12 @@
 }
 
 - (void)didSelectSeat:(Seat *)seat {
-  TAAssignSeatsViewController *studentsViewController = [[TAAssignSeatsViewController alloc] initWithSection:self.section seat:seat];
-  TANavigationController *navController = [[TANavigationController alloc] initWithRootViewController:studentsViewController];
-  [studentsViewController setDelegate:self];
-  navController.disablesAutomaticKeyboardDismissal = NO;
-  navController.modalPresentationStyle = UIModalPresentationFormSheet;
-  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-  [self presentViewController:navController animated:YES completion:nil];
+  if ([_seatingChart isEditing]) {
+    [self showAssignSeatDialogForSeat:seat];
+  }
+  else {
+    [self showAttendanceInformationPopoverForSeat:seat];
+  }
 }
 
 - (Seat *)seatForLocation:(CGPoint)location {

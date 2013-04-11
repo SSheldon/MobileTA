@@ -47,6 +47,8 @@
 
 - (id)lastSeat;
 
+- (TASeatView *)seatViewForSeat:(Seat *)seat;
+
 @property(nonatomic,getter = isEditing)BOOL editing;
 @property(nonatomic,strong)AttendanceRecord *attendanceRecord;
 @property(nonatomic,weak)id<TASeatingChartViewDelegate> delegate;
