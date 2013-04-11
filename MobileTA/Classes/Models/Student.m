@@ -49,6 +49,11 @@
   return students;
 }
 
++ (NSArray *)studentsFromCSVFile:(NSString *)csvFilePath context:(NSManagedObjectContext *)context {
+  NSArray *csvContent = [NSArray arrayWithContentsOfCSVFile:csvFilePath options:CHCSVParserOptionsSanitizesFields];
+  return [self studentsFromCSV:csvContent context:context];
+}
+
 + (NSArray *)parseMyCSVFile{
   //get the path to the file in your xcode project's resource path
   NSString *csvFilePath = [[NSBundle mainBundle] pathForResource:@"roster" ofType:@"csv"];

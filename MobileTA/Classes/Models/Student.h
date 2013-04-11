@@ -37,6 +37,7 @@
 + (NSArray *)fetchStudentsInContext:(NSManagedObjectContext *)context;
 
 + (NSArray *)studentsFromCSV:(NSArray *)csvContent context:(NSManagedObjectContext *)context;
++ (NSArray *)studentsFromCSVFile:(NSString *)csvFilePath context:(NSManagedObjectContext *)context;
 + (NSArray *)parseMyCSVFile;
 
 - (NSString *)fullDisplayName;
