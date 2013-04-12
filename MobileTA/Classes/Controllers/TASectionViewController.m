@@ -38,7 +38,11 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
         [[UIBarButtonItem alloc] initWithTitle:@"History"
                                          style:UIBarButtonItemStylePlain
                                         target:self
-                                        action:@selector(viewAttendanceHistory)]
+                                        action:@selector(viewAttendanceHistory)],
+        [[UIBarButtonItem alloc] initWithTitle:@"Export"
+                                         style:UIBarButtonItemStylePlain
+                                        target:self
+                                        action:@selector(exportToCSV)],
       ];
 
       _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
@@ -171,6 +175,36 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self presentViewController:navController animated:YES completion:nil];
 }
 
+- (void)exportToCSV {
+  if (![MFMailComposeViewController canSendMail]) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"Please set up email on your iPad."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    return;
+  }
+
+  // Write CSV for attachment
+  NSOutputStream *output = [NSOutputStream outputStreamToMemory];
+  [self.section writeCSVToOutputStream:output withAttendanceRecord:self.attendanceRecord];
+  NSData *csvData = [output propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+
+  NSString *subject = [NSString stringWithFormat:@"MobileTA: %@", [self.section displayName]];
+  if (self.attendanceRecord) {
+    subject = [subject stringByAppendingFormat:@" %@", [self.attendanceRecord getDescriptionShort]];
+  }
+
+  MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+  mailController.mailComposeDelegate = self;
+  [mailController setSubject:subject];
+  [mailController addAttachmentData:csvData mimeType:@"text/csv" fileName:@"roster.csv"];
+  mailController.modalPresentationStyle = UIModalPresentationFormSheet;
+  mailController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  [self presentViewController:mailController animated:YES completion:nil];
+}
+
 #pragma mark TAStudentEditDelegate
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
@@ -205,6 +239,12 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)viewController:(TAStudentsAttendanceViewController *)controller didSelectStudentToEdit:(Student *)student {
   [self editStudent:student];
+}
+
+#pragma mark MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

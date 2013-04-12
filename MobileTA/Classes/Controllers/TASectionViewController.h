@@ -9,7 +9,8 @@
 #import "TASeatingChartViewController.h"
 #import "TAStudentEditViewController.h"
 #import "TAAttendanceHistoryViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface TASectionViewController : TASeatingChartViewController <TAStudentEditDelegate, TAAttendanceHistoryDelegate>
+@interface TASectionViewController : TASeatingChartViewController <TAStudentEditDelegate, TAAttendanceHistoryDelegate, MFMailComposeViewControllerDelegate>
 
 @end

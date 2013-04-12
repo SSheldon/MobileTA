@@ -23,6 +23,7 @@
 		130741DC16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741DB16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m */; };
 		130741DF16EED6C800465D86 /* TAStudentDetailCellTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741DE16EED6C800465D86 /* TAStudentDetailCellTest.m */; };
 		1316C2FB16D9E38900D282B1 /* TAStudentEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */; };
+		1324064917178CFB00F247C0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1324064817178CFB00F247C0 /* MessageUI.framework */; };
 		13345E5816B7736100DD4FF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5716B7736100DD4FF2 /* UIKit.framework */; };
 		13345E5A16B7736100DD4FF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5916B7736100DD4FF2 /* Foundation.framework */; };
 		13345E5C16B7736100DD4FF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13345E5B16B7736100DD4FF2 /* CoreGraphics.framework */; };
@@ -213,6 +214,7 @@
 		130741DB16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAttendanceRecordEditViewTest.m; sourceTree = "<group>"; };
 		130741DE16EED6C800465D86 /* TAStudentDetailCellTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentDetailCellTest.m; sourceTree = "<group>"; };
 		1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentEditViewTest.m; path = Views/TAStudentEditViewTest.m; sourceTree = "<group>"; };
+		1324064817178CFB00F247C0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		13345E5916B7736100DD4FF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -322,6 +324,7 @@
 				13A30EAE16CEEF5D00AE03E5 /* libJTRevealSidebar.a in Frameworks */,
 				13A30EAF16CEEF5D00AE03E5 /* libJTRevealSidebarV2.a in Frameworks */,
 				135116E216CDC24000D7376E /* libQuickDialog.a in Frameworks */,
+				1324064917178CFB00F247C0 /* MessageUI.framework in Frameworks */,
 				135116E616CDC38A00D7376E /* MapKit.framework in Frameworks */,
 				135116E416CDC36400D7376E /* CoreLocation.framework in Frameworks */,
 				E6ECA87216BB4D1900F103D3 /* CoreData.framework in Frameworks */,
@@ -401,6 +404,7 @@
 			children = (
 				135F121416D712DB009C310A /* GHUnitIOS.framework */,
 				135F121616D7137C009C310A /* QuartzCore.framework */,
+				1324064817178CFB00F247C0 /* MessageUI.framework */,
 				135116E516CDC38A00D7376E /* MapKit.framework */,
 				135116E316CDC36400D7376E /* CoreLocation.framework */,
 				E6ECA87016BB4CFF00F103D3 /* CoreData.framework */,
