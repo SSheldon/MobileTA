@@ -149,6 +149,7 @@
   StudentAttendance *studentAttendance = [_attendanceRecord studentAttendanceForStudent:student];
   TASeatingChartAttendanceViewController *controller = [[TASeatingChartAttendanceViewController alloc] initWithStudentAttendance:studentAttendance];
   _attendancePopoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+  [_attendancePopoverController setPopoverContentSize:CGSizeMake(400, 500)];
   TASeatView *attachedSeat = [_seatingChart seatViewForSeat:seat];
   [_attendancePopoverController presentPopoverFromRect:[attachedSeat frame] inView:[self view] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
