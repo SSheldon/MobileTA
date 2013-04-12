@@ -16,6 +16,8 @@
 		13008FEE170A90EB0045C05A /* TASeatingChartViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13008FED170A90EB0045C05A /* TASeatingChartViewTest.m */; };
 		13008FF4170A973B0045C05A /* seat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E654DB41170A5C3200584411 /* seat.jpg */; };
 		13008FF7170A98C80045C05A /* TAStudentDisplayCellTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13008FF6170A98C80045C05A /* TAStudentDisplayCellTest.m */; };
+		1306D4091717D83B00CC3B4D /* TASeatingChartAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F1A53E171375A200DD781D /* TASeatingChartAttendanceViewController.m */; };
+		1306D40F1717D85B00CC3B4D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1324064817178CFB00F247C0 /* MessageUI.framework */; };
 		130741C016EEC8A300465D86 /* TAAttendanceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE67B5D16EE756500F98DCE /* TAAttendanceHistoryViewController.m */; };
 		130741C616EEC8A600465D86 /* TAAttendanceRecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */; };
 		130741C916EEC98C00465D86 /* TAAttendanceHistoryViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */; };
@@ -342,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				135F124116D740F5009C310A /* libQuickDialog.a in Frameworks */,
+				1306D40F1717D85B00CC3B4D /* MessageUI.framework in Frameworks */,
 				135F122716D72131009C310A /* CoreLocation.framework in Frameworks */,
 				135F122616D7212B009C310A /* MapKit.framework in Frameworks */,
 				135F121516D712DB009C310A /* GHUnitIOS.framework in Frameworks */,
@@ -898,6 +901,7 @@
 				13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */,
 				1341D74817109AEC007B2D1D /* CHCSVParser.m in Sources */,
 				13F287281711716500562D5A /* TAStudentsAttendanceViewController.m in Sources */,
+				1306D4091717D83B00CC3B4D /* TASeatingChartAttendanceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
