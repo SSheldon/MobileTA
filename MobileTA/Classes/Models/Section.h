@@ -13,7 +13,7 @@
 
 @interface Section : NSManagedObject
 
-+ (Section *)sectionWithName:(NSString *)name context:(NSManagedObjectContext *)context;
++ (Section *)sectionWithName:(NSString *)name course:(NSString *)course context:(NSManagedObjectContext *)context;
 + (NSArray *)fetchSectionsInContext:(NSManagedObjectContext *)context;
 
 @property (nonatomic, retain) NSString * name;

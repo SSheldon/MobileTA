@@ -20,11 +20,11 @@
 @dynamic room;
 @dynamic students;
 
-+ (Section *)sectionWithName:(NSString *)name context:(NSManagedObjectContext *)context {
++ (Section *)sectionWithName:(NSString *)name course:(NSString *)course context:(NSManagedObjectContext *)context {
   Section *section = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:context];
   
   section.name = name;
-  
+  section.course = course;
   return section;
 }
 

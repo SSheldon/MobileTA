@@ -26,9 +26,12 @@
   }
   
   QSection *mainSection = [[QSection alloc] initWithTitle:@""];
+  QEntryElement *courseName = [[QEntryElement alloc] initWithTitle:@"Course Name" Value:[section course] Placeholder:@""];
   QEntryElement *sectionName = [[QEntryElement alloc] initWithTitle:@"Section Name" Value:[section name] Placeholder:@""];
-  [sectionName setKey:@"name"];
+  [courseName setKey:@"courseName"];
+  [sectionName setKey:@"sectionName"];
   [root addSection:mainSection];
+  [mainSection addElement:courseName];
   [mainSection addElement:sectionName];
   QSection *controlSection = [[QSection alloc] initWithTitle:@""];
   QButtonElement *saveButton = [[QButtonElement alloc] initWithTitle:@"Save"];
@@ -54,11 +57,12 @@
   [self.root fetchValueIntoObject:dict];
   
   if (![self section]) {
-    Section* newSection = [Section sectionWithName:[dict valueForKey:@"name"] context:[self managedObjectContext]];
+    Section* newSection = [Section sectionWithName:[dict valueForKey:@"sectionName"] course:[dict valueForKey:@"courseName"] context:[self managedObjectContext]];
     self.section = newSection;
   }
   else {
-    [[self section] setName:[dict objectForKey:@"name"]];
+    [[self section] setName:[dict objectForKey:@"sectionName"]];
+    [[self section] setCourse:[dict valueForKey:@"courseName"]];
   }
   
   [[self navigationController] popViewControllerAnimated:YES];

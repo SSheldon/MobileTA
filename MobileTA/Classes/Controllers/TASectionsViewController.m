@@ -35,7 +35,7 @@
     if (!sections.count) {
       // Insert some sections in the the context
       sections = @[
-        [Section sectionWithName:@"CS 428" context:[self managedObjectContext]],
+        [Section sectionWithName:@"AD1" course:@"SP13 CS428" context:[self managedObjectContext]],
       ];
       [self saveManagedObjectContext];
     }
@@ -67,7 +67,7 @@
 
 - (void)addSectionWithStudents:(NSArray *)students {
   // TODO(ssheldon): allow user to name this section
-  Section *section = [Section sectionWithName:@"IMPORTED" context:self.managedObjectContext];
+  Section *section = [Section sectionWithName:@"IMPORTED" course:@"IMPORTED" context:self.managedObjectContext];
   [section addStudents:[NSSet setWithArray:students]];
   [self saveManagedObjectContext];
   NSMutableArray *sections = [self.sections mutableCopy];
@@ -102,7 +102,7 @@
   }
   
   Section *section = [self sectionAtIndexPath:indexPath];
-  cell.textLabel.text = section.name;
+  cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", section.course, section.name];
   
   return cell;
 }
