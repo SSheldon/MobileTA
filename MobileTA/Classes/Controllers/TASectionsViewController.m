@@ -13,7 +13,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
   self = [super initWithStyle:style];
   if (self) {
-    self.title = NSLocalizedString(@"Classes", nil);
+    self.title = NSLocalizedString(@"Sections", nil);
     self.navigationItem.rightBarButtonItems = @[
       self.editButtonItem,
       [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -66,13 +66,13 @@
 }
 
 - (void)addSectionWithStudents:(NSArray *)students {
-  // TODO(ssheldon): allow user to name this section
-  Section *section = [Section sectionWithName:@"IMPORTED" course:@"IMPORTED" context:self.managedObjectContext];
+  Section *section = [Section sectionWithName:nil course:@"IMPORTED" context:self.managedObjectContext];
   [section addStudents:[NSSet setWithArray:students]];
   [self saveManagedObjectContext];
   NSMutableArray *sections = [self.sections mutableCopy];
   [sections addObject:section];
   self.sections = sections;
+  [self editSection:section];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
