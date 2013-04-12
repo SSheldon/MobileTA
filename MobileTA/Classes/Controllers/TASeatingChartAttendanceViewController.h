@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StudentAttendance.h"
+#import "TABentoButtons.h"
 
 @interface TASeatingChartAttendanceViewController : UIViewController
 

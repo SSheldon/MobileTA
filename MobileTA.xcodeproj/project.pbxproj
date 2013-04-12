@@ -98,6 +98,7 @@
 		E6064D1616F2445D00BCF71B /* TASeatingChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1416F2445D00BCF71B /* TASeatingChartView.m */; };
 		E6064D1F16F244A300BCF71B /* TASeatingChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1D16F244A300BCF71B /* TASeatingChartViewController.m */; };
 		E6064D2316F2AA7F00BCF71B /* TASeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D2116F2AA7F00BCF71B /* TASeatView.m */; };
+		E624E09C1717997200C2D7A5 /* TABentoButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = E624E09B1717997200C2D7A5 /* TABentoButtons.m */; };
 		E6298DBF17010F5700862316 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F121616D7137C009C310A /* QuartzCore.framework */; };
 		E63B8EBA16DC2812007F3FE9 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
 		E653A91616E96FD30062C7CB /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
@@ -281,6 +282,8 @@
 		E6064D2016F2AA7F00BCF71B /* TASeatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = TASeatView.h; sourceTree = "<group>"; };
 		E6064D2116F2AA7F00BCF71B /* TASeatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASeatView.m; sourceTree = "<group>"; };
 		E6064D2416F2B04F00BCF71B /* TAGridConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.objj; path = TAGridConstants.h; sourceTree = "<group>"; };
+		E624E09A1717997200C2D7A5 /* TABentoButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TABentoButtons.h; sourceTree = "<group>"; };
+		E624E09B1717997200C2D7A5 /* TABentoButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TABentoButtons.m; sourceTree = "<group>"; };
 		E63B8EB816DC2812007F3FE9 /* TASectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionsViewController.h; sourceTree = "<group>"; };
 		E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionsViewController.m; sourceTree = "<group>"; };
 		E653A91416E96FD30062C7CB /* TAStudentDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentDetailCell.h; sourceTree = "<group>"; };
@@ -613,6 +616,8 @@
 				E6064D2016F2AA7F00BCF71B /* TASeatView.h */,
 				E6064D2116F2AA7F00BCF71B /* TASeatView.m */,
 				E6064D2416F2B04F00BCF71B /* TAGridConstants.h */,
+				E624E09A1717997200C2D7A5 /* TABentoButtons.h */,
+				E624E09B1717997200C2D7A5 /* TABentoButtons.m */,
 			);
 			name = Views;
 			path = Classes/Views;
@@ -845,6 +850,7 @@
 				1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */,
 				13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */,
 				E6F1A53F171375A200DD781D /* TASeatingChartAttendanceViewController.m in Sources */,
+				E624E09C1717997200C2D7A5 /* TABentoButtons.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
