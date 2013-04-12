@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSArray *students;
 
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathOfStudent:(Student *)student;
 - (void)selectStudent:(Student *)student;
 - (void)reloadStudents;
 // Student Details Methods

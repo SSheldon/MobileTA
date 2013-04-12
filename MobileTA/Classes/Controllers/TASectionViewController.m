@@ -237,6 +237,20 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 #pragma mark TAStudentsAttendanceDelegate
 
+- (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
+  StudentAttendanceStatus updatedStatus = [super markStatus:status forStudent:student];
+  // Reload the cell for the updated student
+  [_studentsController.tableView reloadRowsAtIndexPaths:@[[_studentsController indexPathOfStudent:student]] withRowAnimation:UITableViewRowAnimationNone];
+  return updatedStatus;
+}
+
+- (int16_t)changeParticipationBy:(int16_t)value forStudent:(Student *)student {
+  int16_t updatedStatus = [super changeParticipationBy:value forStudent:student];
+  // Reload the cell for the updated student
+  [_studentsController.tableView reloadRowsAtIndexPaths:@[[_studentsController indexPathOfStudent:student]] withRowAnimation:UITableViewRowAnimationNone];
+  return updatedStatus;
+}
+
 - (void)viewController:(TAStudentsAttendanceViewController *)controller didSelectStudentToEdit:(Student *)student {
   [self editStudent:student];
 }
