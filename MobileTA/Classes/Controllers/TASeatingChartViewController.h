@@ -15,7 +15,8 @@
 @class Section;
 @class AttendanceRecord;
 
-@interface TASeatingChartViewController : UIViewController <UIPopoverControllerDelegate, UIScrollViewDelegate, TASeatingChartViewDelegate, TAAssignSeatsViewDelegate,TAStudentsAttendanceDelegate> {
+@interface TASeatingChartViewController : UIViewController <UIPopoverControllerDelegate, UIActionSheetDelegate, UIScrollViewDelegate,
+TASeatingChartViewDelegate, TAAssignSeatsViewDelegate, TAStudentsAttendanceDelegate> {
   UIPopoverController *_attendancePopoverController;
 }
 
