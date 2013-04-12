@@ -19,9 +19,6 @@
 - (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance {
   self = [self initWithNibName:nil bundle:nil];
   if (self) {
-    // Do work son
-    UIView *v = [self view];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     // When the view is created, set the student attendance so the right data
     // can be populated
     [self setStudentAttendance:studentAttendance];
@@ -38,10 +35,14 @@
     return self;
 }
 
+- (void)loadView {
+  [self setView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)]];
+  [[self view] setBackgroundColor:[UIColor whiteColor]];
+}
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+  [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
