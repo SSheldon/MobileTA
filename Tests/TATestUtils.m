@@ -38,7 +38,7 @@
   Seat *seat2 = [Seat seatWithX:5 y:5 context:context];
   seat2.room = room;
 
-  Section *section = [Section sectionWithName:@"CS 428" context:context];
+  Section *section = [Section sectionWithName:@"AD1" course:@"SP13 CS428" context:context];
   section.room = room;
 
   Student *student1 = [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:context];

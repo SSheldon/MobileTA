@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class AttendanceRecord, Student;
+
+typedef NS_ENUM(int16_t, StudentAttendanceStatus) {
+  StudentAttendanceStatusPresent,
+  StudentAttendanceStatusAbsent,
+  StudentAttendanceStatusTardy
+};
+
 /*/
  *  Returns a string suitable for displaying to the user from a given participation
  *
@@ -19,13 +27,7 @@
 /*/
 NSString *NSStringFromStudentParticipation(int16_t participation);
 
-@class AttendanceRecord, Student;
-
-typedef NS_ENUM(int16_t, StudentAttendanceStatus) {
-  StudentAttendanceStatusPresent,
-  StudentAttendanceStatusAbsent,
-  StudentAttendanceStatusTardy
-};
+NSString *NSStringFromStudentAttendanceStatus(StudentAttendanceStatus status);
 
 @interface StudentAttendance : NSManagedObject
 

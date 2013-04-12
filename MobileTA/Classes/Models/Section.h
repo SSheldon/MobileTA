@@ -13,7 +13,7 @@
 
 @interface Section : NSManagedObject
 
-+ (Section *)sectionWithName:(NSString *)name context:(NSManagedObjectContext *)context;
++ (Section *)sectionWithName:(NSString *)name course:(NSString *)course context:(NSManagedObjectContext *)context;
 + (NSArray *)fetchSectionsInContext:(NSManagedObjectContext *)context;
 
 @property (nonatomic, retain) NSString * name;
@@ -32,6 +32,10 @@
  * @return the AttendanceRecord of this Section
  */
 - (AttendanceRecord *)attendanceRecordNearestToDate:(NSDate *)date withinTimeInterval:(NSTimeInterval)seconds;
+
+- (NSString *)displayName;
+
+- (void)writeCSVToOutputStream:(NSOutputStream *)stream withAttendanceRecord:(AttendanceRecord *)record;
 
 @end
 

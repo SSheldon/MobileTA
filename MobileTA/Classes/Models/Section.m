@@ -10,7 +10,8 @@
 #import "AttendanceRecord.h"
 #import "Room.h"
 #import "Student.h"
-
+#import "StudentAttendance.h"
+#import "CHCSVParser.h"
 
 @implementation Section
 
@@ -20,11 +21,11 @@
 @dynamic room;
 @dynamic students;
 
-+ (Section *)sectionWithName:(NSString *)name context:(NSManagedObjectContext *)context {
++ (Section *)sectionWithName:(NSString *)name course:(NSString *)course context:(NSManagedObjectContext *)context {
   Section *section = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:context];
   
   section.name = name;
-  
+  section.course = course;
   return section;
 }
 
@@ -55,6 +56,51 @@
   }
 
   return nearest;
+}
+
+- (NSString *)displayName {
+  NSString *display = self.course;
+
+  if (self.name.length) {
+    if (display.length) {
+      display = [display stringByAppendingFormat:@" - %@", self.name];
+    } else {
+      display = self.name;
+    }
+  }
+
+  return display;
+}
+
+- (void)writeCSVToOutputStream:(NSOutputStream *)stream withAttendanceRecord:(AttendanceRecord *)record {
+  CHCSVWriter *writer = [[CHCSVWriter alloc] initWithOutputStream:stream encoding:NSUTF8StringEncoding delimiter:','];
+
+  // Write header
+  NSMutableArray *header = [NSMutableArray arrayWithArray:@[@"Last Name", @"First Name", @"Nickname"]];
+  if (record) {
+    [header addObjectsFromArray:@[@"Attendance", @"Particpation"]];
+  }
+  [writer writeLineOfFields:header];
+
+  // Sort the students
+  NSArray *sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+    [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+  ];
+  NSArray *students = [[self.students allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+
+  // Write each student as a row
+  for (Student *student in students) {
+    [writer writeField:student.lastName];
+    [writer writeField:student.firstName];
+    [writer writeField:student.nickname];
+    if (record) {
+      StudentAttendance *attendance = [record studentAttendanceForStudent:student];
+      [writer writeField:NSStringFromStudentAttendanceStatus(attendance.status)];
+      [writer writeField:[NSString stringWithFormat:@"%d", attendance.participation]];
+    }
+    [writer finishLine];
+  }
 }
 
 @end

@@ -34,7 +34,7 @@
   GHAssertEqualStrings(student.lastName, @"Sheldon", nil);
   GHAssertFalse([self.managedObjectContext save:nil], @"Save should fail since students require a section.");
 
-  Section *section = [Section sectionWithName:@"CS 428" context:self.managedObjectContext];
+  Section *section = [Section sectionWithName:@"AD1" course:@"SP13 CS428" context:self.managedObjectContext];
   student.section = section;
   GHAssertTrue([self.managedObjectContext save:nil], @"Could not save managed object changes.");
 

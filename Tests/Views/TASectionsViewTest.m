@@ -32,8 +32,8 @@
   TASectionsViewController *controller = [[TASectionsViewController alloc] initWithStyle:UITableViewStylePlain];
   [controller view];
   controller.sections = @[
-    [Section sectionWithName:@"CS 427" context:self.managedObjectContext],
-    [Section sectionWithName:@"CS 428" context:self.managedObjectContext],
+    [Section sectionWithName:@"AD1" course:@"SP13 CS428" context:self.managedObjectContext],
+    [Section sectionWithName:@"AD2" course:@"SP13 CS428" context:self.managedObjectContext],
   ];
   GHVerifyView(controller.view);
 }
