@@ -33,7 +33,19 @@
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
   fetch.entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:context];
   // TODO(ssheldon): Handle errors
-  return [context executeFetchRequest:fetch error:nil];
+  NSArray *sections = [context executeFetchRequest:fetch error:nil];
+
+#if DEBUG
+  // If there are no sections, create a sample one
+  if (!sections.count) {
+    sections = @[
+      [Section sectionWithName:@"AD1" course:@"CS 428" context:context],
+    ];
+    [context save:nil];
+  }
+#endif
+
+  return sections;
 }
 
 - (AttendanceRecord *)attendanceRecordNearestToDate:(NSDate *)date withinTimeInterval:(NSTimeInterval)seconds {

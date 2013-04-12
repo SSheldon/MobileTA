@@ -26,16 +26,6 @@
 }
 
 - (void)setSections:(NSArray *)sections {
-#if DEBUG
-  // If there are no sections, create a sample one
-  if (sections && !sections.count) {
-    sections = @[
-      [Section sectionWithName:@"AD1" course:@"CS 428" context:self.managedObjectContext],
-    ];
-    [self saveManagedObjectContext];
-  }
-#endif
-
   _sections = [sections copy];
   if ([self isViewLoaded]) {
     [self.tableView reloadData];
