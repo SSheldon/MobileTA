@@ -35,6 +35,8 @@
 
 - (NSString *)displayName;
 
+- (void)writeCSVToOutputStream:(NSOutputStream *)stream withAttendanceRecord:(AttendanceRecord *)record;
+
 @end
 
 @interface Section (CoreDataGeneratedAccessors)
