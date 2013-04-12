@@ -12,6 +12,20 @@
 #import "StudentAttendance.h"
 #import "CHCSVParser.h"
 
+@interface NSArray (SafeGet)
+
+- (id)safeObjectAtIndex:(NSUInteger)index;
+
+@end
+
+@implementation NSArray (SafeGet)
+
+- (id)safeObjectAtIndex:(NSUInteger)index {
+  return (index >= self.count ? nil : [self objectAtIndex:index]);
+}
+
+@end
+
 @implementation Student
 
 @dynamic firstName;
@@ -39,11 +53,19 @@
 }
 
 + (NSArray *)studentsFromCSV:(NSArray *)csvContent context:(NSManagedObjectContext *)context {
+  NSArray *header = [csvContent safeObjectAtIndex:0];
+  NSUInteger firstNameIndex = [header indexOfObject:@"First Name"];
+  NSUInteger lastNameIndex = [header indexOfObject:@"Last Name"];
+  NSUInteger nicknameIndex = [header indexOfObject:@"Nickname"];
+
   NSMutableArray *students = [NSMutableArray array];
-  for (int i = 0; i < [csvContent count]; i++) {
+  for (NSUInteger i = 1; i < [csvContent count]; i++) {
     NSMutableArray *row = [csvContent objectAtIndex:i];
-    Student *student = [Student studentWithFirstName:[row objectAtIndex:1] lastName:[row objectAtIndex:0] context:context];
-    [students addObject: student];
+    Student *student = [Student studentWithFirstName:[row safeObjectAtIndex:firstNameIndex]
+                                            lastName:[row safeObjectAtIndex:lastNameIndex]
+                                             context:context];
+    student.nickname = [row safeObjectAtIndex:nicknameIndex];
+    [students addObject:student];
   }
   
   return students;
