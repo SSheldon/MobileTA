@@ -25,26 +25,17 @@
   return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-
-  // Load section if they haven't been set
-  if (!self.sections.count) {
-    NSArray *sections = [Section fetchSectionsInContext:self.managedObjectContext];
-#if DEBUG
-    if (!sections.count) {
-      // Insert some sections in the the context
-      sections = @[
-        [Section sectionWithName:@"AD1" course:@"SP13 CS428" context:[self managedObjectContext]],
-      ];
-      [self saveManagedObjectContext];
-    }
-#endif
-    self.sections = sections;
-  }
-}
-
 - (void)setSections:(NSArray *)sections {
+#if DEBUG
+  // If there are no sections, create a sample one
+  if (sections && !sections.count) {
+    sections = @[
+      [Section sectionWithName:@"AD1" course:@"CS 428" context:self.managedObjectContext],
+    ];
+    [self saveManagedObjectContext];
+  }
+#endif
+
   _sections = [sections copy];
   if ([self isViewLoaded]) {
     [self.tableView reloadData];

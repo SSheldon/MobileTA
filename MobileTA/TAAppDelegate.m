@@ -17,6 +17,8 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
   TASectionsViewController *listViewController = [[TASectionsViewController alloc] initWithStyle:UITableViewStylePlain];
+  listViewController.sections = [Section fetchSectionsInContext:self.managedObjectContext];
+
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:listViewController];
   self.window.rootViewController = navController;
   [self.window makeKeyAndVisible];
