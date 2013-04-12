@@ -57,4 +57,18 @@
   return nearest;
 }
 
+- (NSString *)displayName {
+  NSString *display = self.course;
+
+  if (self.name.length) {
+    if (display.length) {
+      display = [display stringByAppendingFormat:@" - %@", self.name];
+    } else {
+      display = self.name;
+    }
+  }
+
+  return display;
+}
+
 @end

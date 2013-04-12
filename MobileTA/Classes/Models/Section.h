@@ -33,6 +33,8 @@
  */
 - (AttendanceRecord *)attendanceRecordNearestToDate:(NSDate *)date withinTimeInterval:(NSTimeInterval)seconds;
 
+- (NSString *)displayName;
+
 @end
 
 @interface Section (CoreDataGeneratedAccessors)

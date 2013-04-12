@@ -102,7 +102,7 @@
   }
   
   Section *section = [self sectionAtIndexPath:indexPath];
-  cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", section.course, section.name];
+  cell.textLabel.text = [section displayName];
   
   return cell;
 }
