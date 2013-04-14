@@ -50,6 +50,7 @@
     
     TABentoButtons *bentoBox = [[TABentoButtons alloc] initWithFrame:CGRectMake(60, 100, 88, 88)];
     [bentoBox setDelegate:self];
+    [bentoBox setValue:studentAttendance.participation];
     [v addSubview:_segmentedControl];
     [v addSubview:bentoBox];
 
