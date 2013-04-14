@@ -18,27 +18,18 @@
 @synthesize student=_student;
 @synthesize delegate=_delegate;
 
-
-+ (UIColor *)colorForAttendanceStatus:(StudentAttendanceStatus)status {
-  switch (status) {
-    case StudentAttendanceStatusAbsent:   return [UIColor redColor];
-    case StudentAttendanceStatusTardy:    return [UIColor yellowColor];
-    case StudentAttendanceStatusPresent:  return [UIColor greenColor];
-    default:                              return [UIColor clearColor];
-  }
-}
 // When the view is created, set the student attendance so the right data
 // can be populated
-- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance student:(Student *)student {
+- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance {
   self = [self initWithNibName:nil bundle:nil];
   if (self) {
     [self setStudentAttendance:studentAttendance];
-    [self setStudent:student];
+    [self setStudent:studentAttendance.student];
     // Do work son
     UIView *v = [self view];
     [v setBackgroundColor:[UIColor clearColor]];
     
-    _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 200, 50)];
+    _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 200, 60)];
     // Set up segments
     NSArray *labels = [[NSArray alloc]initWithObjects:@"P", @"A", @"T", nil];
     for (int i=0; i<labels.count; i++) {
@@ -56,26 +47,18 @@
     [_segmentedControl addTarget:self
                           action:@selector(changeAttendanceStatus)
                 forControlEvents:UIControlEventValueChanged];
-
+    
+    TABentoButtons *bentoBox = [[TABentoButtons alloc] initWithFrame:CGRectMake(60, 100, 88, 88)];
+    [bentoBox setDelegate:self];
     [v addSubview:_segmentedControl];
+    [v addSubview:bentoBox];
 
   }
   return self;
 }
 
 // Changes the color of the button based on which option was selected
-- (void)setSelectedSegmentShadowToColor:(UIColor *)newColor {
-  for (int i=0; i<[_segmentedControl.subviews count]; i++) {
-    [[_segmentedControl.subviews objectAtIndex:i] setTintColor:nil];
-    // If the button is selected,
-    if ([[_segmentedControl.subviews objectAtIndex:i] respondsToSelector:@selector(isSelected)] && [[_segmentedControl.subviews objectAtIndex:i]isSelected])
-    {
-      [[_segmentedControl.subviews objectAtIndex:i] setTintColor:newColor];
-    }
-  }
-}
-
-- (void)selectSelectedSegment {
+- (void)setSelectedSegment {
   StudentAttendanceStatus newStatus = (StudentAttendanceStatus)_segmentedControl.selectedSegmentIndex;
   UIColor *newColor;
   switch (newStatus) {
@@ -91,13 +74,21 @@
     default:
       newColor = [UIColor clearColor];
   }
-  [self setSelectedSegmentShadowToColor:newColor];
+  
+  for (int i=0; i<[_segmentedControl.subviews count]; i++) {
+    [[_segmentedControl.subviews objectAtIndex:i] setTintColor:nil];
+    // If the button is selected,
+    if ([[_segmentedControl.subviews objectAtIndex:i] respondsToSelector:@selector(isSelected)] && [[_segmentedControl.subviews objectAtIndex:i]isSelected])
+    {
+      [[_segmentedControl.subviews objectAtIndex:i] setTintColor:newColor];
+    }
+  }
 }
 
 - (void)changeAttendanceStatus {
   StudentAttendanceStatus newStatus = (StudentAttendanceStatus)_segmentedControl.selectedSegmentIndex;
-  [self.delegate markStatus:newStatus forStudent:self.student];
-  [self selectSelectedSegment];
+  [self.delegate markStatus:newStatus forStudent:self.studentAttendance.student];
+  [self setSelectedSegment];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -121,13 +112,18 @@
 
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self selectSelectedSegment];
+  [self setSelectedSegment];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma TABentoButtonsDelegate
+- (void)bentoButtons:(TABentoButtons *)buttons didUpdateValue:(NSInteger)value by:(NSInteger)change {
+  [self.delegate changeParticipationBy:change forStudent:self.studentAttendance.student];
 }
 
 @end

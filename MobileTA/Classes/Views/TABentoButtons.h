@@ -18,7 +18,7 @@ typedef enum {
 
 @protocol TABentoButtonsDelegate <NSObject>
 
-- (void)bentoButtons:(TABentoButtons *)buttons didUpdateValue:(NSInteger)value;
+- (void)bentoButtons:(TABentoButtons *)buttons didUpdateValue:(NSInteger)value by:(NSInteger)change;
 
 @end
 

@@ -103,20 +103,20 @@
 
 #pragma mark Private Methods
 
-- (void)updateDelegate {
-  if ([_delegate respondsToSelector:@selector(bentoButtons:didUpdateValue:)]) {
-    [_delegate bentoButtons:self didUpdateValue:_value];
+- (void)updateDelegate:(NSInteger)change {
+  if ([_delegate respondsToSelector:@selector(bentoButtons:didUpdateValue:by:)]) {
+    [_delegate bentoButtons:self didUpdateValue:_value by:change];
   }
 }
 
 - (void)up {
   [self setValue:_value + 1];
-  [self updateDelegate];
+  [self updateDelegate:1];
 }
 
 - (void)down {
   [self setValue:_value - 1];
-  [self updateDelegate];
+  [self updateDelegate:-1];
 }
 
 - (UIBezierPath *)lineFromPoint:(CGPoint)start toPoint:(CGPoint)end {

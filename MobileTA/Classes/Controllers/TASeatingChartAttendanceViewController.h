@@ -12,11 +12,11 @@
 #import "TABentoButtons.h"
 #import "TAStudentsAttendanceViewController.h"
 
-@interface TASeatingChartAttendanceViewController : UIViewController {
+@interface TASeatingChartAttendanceViewController : UIViewController <TABentoButtonsDelegate> {
   UISegmentedControl *_segmentedControl;
 }
 
-- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance student:(Student *)student;
+- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance;
 
 @property (nonatomic,strong)StudentAttendance *studentAttendance;
 @property (nonatomic,strong)Student *student;
