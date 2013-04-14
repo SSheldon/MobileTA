@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "StudentAttendance.h"
+#import "Student.h"
 #import "TABentoButtons.h"
+#import "TAStudentsAttendanceViewController.h"
 
-@interface TASeatingChartAttendanceViewController : UIViewController
+@interface TASeatingChartAttendanceViewController : UIViewController {
+  UISegmentedControl *_segmentedControl;
+}
 
-- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance;
+- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance student:(Student *)student;
 
-@property(nonatomic,strong)StudentAttendance *studentAttendance;
+@property (nonatomic,strong)StudentAttendance *studentAttendance;
+@property (nonatomic,strong)Student *student;
+
+@property (weak, nonatomic) id<TAStudentsAttendanceDelegate> delegate;
 
 @end

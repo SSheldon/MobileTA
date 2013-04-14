@@ -130,6 +130,7 @@
     attendance.student = student;
     [self saveManagedObjectContext];
   }
+  NSLog(@"%@", attendance.student);
   return attendance;
 }
 
@@ -153,16 +154,21 @@
   self.selectedStudent = student;
 
   TASeatView *attachedSeat = [_seatingChart seatViewForSeat:seat];
+  /*
   UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil
                                                   otherButtonTitles:@"Mark Absent", @"Mark Tardy", @"+1 Particpation", @"-1 Participation", nil];
   [actionSheet showFromRect:attachedSeat.frame inView:_seatingChart animated:YES];
+   */
 
-/*
+
   StudentAttendance *studentAttendance = [_attendanceRecord studentAttendanceForStudent:student];
-  TASeatingChartAttendanceViewController *controller = [[TASeatingChartAttendanceViewController alloc] initWithStudentAttendance:studentAttendance];
+  TASeatingChartAttendanceViewController *controller = [[TASeatingChartAttendanceViewController alloc] initWithStudentAttendance:studentAttendance student:student];
+  [controller setDelegate:self];
+  
   _attendancePopoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+  [_attendancePopoverController setPopoverContentSize:CGSizeMake(200, 150)];
   [_attendancePopoverController presentPopoverFromRect:[attachedSeat frame] inView:[self view] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-*/
+
 }
 
 #pragma mark UIPopoverControllerDelegate
