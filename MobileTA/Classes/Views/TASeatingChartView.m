@@ -285,10 +285,10 @@
     return [self isEditing];
   }
   if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
-//    // Don't do a tap gesture unless the view is editing
-//    if (![self isEditing]) {
-//      return NO;
-//    }
+    // Don't do a tap gesture unless the view is editing
+    if (![[gestureRecognizer view] isKindOfClass:[TASeatView class]] && ![self isEditing]) {
+      return NO;
+    }
     // We don't want the gesture recognizer to fire if the user is trying to
     // press the delete button of a seat
     for (NSUInteger i = 0; i < [_seatViews count]; i++) {
