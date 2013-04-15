@@ -8,7 +8,12 @@
 
 #import "TASectionsViewController.h"
 
-@implementation TASectionsViewController
+@implementation TASectionsViewController {
+  // array of array of Section object
+  NSMutableArray *_tableSections;
+  // array of NSString that contain the name of each section
+  NSMutableArray *_tableSectionsTitle;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style {
   self = [super initWithStyle:style];
@@ -21,19 +26,33 @@
                                                     action:@selector(addNewSection)]
     ];
     self.tableView.allowsSelectionDuringEditing = YES;
+    _tableSectionsTitle = [[NSMutableArray alloc] init];
+    _tableSections = [[NSMutableArray alloc] init];
   }
   return self;
 }
 
 - (void)setSections:(NSArray *)sections {
   _sections = [sections copy];
+  _sections = [_sections sortedArrayUsingSelector:@selector(compare:)];
+  _tableSectionsTitle = [[NSMutableArray alloc] init];
+  _tableSections = [[NSMutableArray alloc] init];
+  for (Section *section in _sections) {
+    if ([_tableSectionsTitle containsObject:section.course]) {
+      NSInteger index = [_tableSectionsTitle indexOfObject:section.course];
+      [_tableSections[index] addObject:section];
+    } else {
+      [_tableSectionsTitle addObject:section.course];
+      [_tableSections addObject:[NSMutableArray arrayWithObject:section]];
+    }
+  }
   if ([self isViewLoaded]) {
     [self.tableView reloadData];
   }
 }
 
 - (Section *)sectionAtIndexPath:(NSIndexPath *)indexPath {
-  return [[self sections] objectAtIndex:[indexPath row]];
+  return [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 }
 
 - (void)editSection:(Section *)section {
@@ -64,15 +83,19 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+  return _tableSections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [[self sections] count];
+  return [[_tableSections objectAtIndex:section] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  return nil;
+  // Ensure this header isn't shown if we have no rows in the section
+  if (![[_tableSections objectAtIndex:section] count]) {
+    return nil;
+  }
+  return [_tableSectionsTitle objectAtIndex:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -82,7 +105,8 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sectionCellId];
   }
   
-  Section *section = [self sectionAtIndexPath:indexPath];
+  Section *section = [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];  
+  // Section *section = [self sectionAtIndexPath:indexPath];
   cell.textLabel.text = [section displayName];
   
   return cell;

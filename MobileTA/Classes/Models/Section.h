@@ -50,5 +50,6 @@
 - (void)removeStudentsObject:(Student *)value;
 - (void)addStudents:(NSSet *)values;
 - (void)removeStudents:(NSSet *)values;
+- (NSComparisonResult)compare:(Section *)otherObject;
 
 @end

@@ -72,7 +72,7 @@
 
 - (NSString *)displayName {
   NSString *display = self.course;
-
+  
   if (self.name.length) {
     if (display.length) {
       display = [display stringByAppendingFormat:@" - %@", self.name];
@@ -80,7 +80,7 @@
       display = self.name;
     }
   }
-
+  
   return display;
 }
 
@@ -113,6 +113,13 @@
     }
     [writer finishLine];
   }
+}
+
+- (NSComparisonResult)compare:(Section *)otherObject {
+  if ([self.course compare:otherObject.course] == NSOrderedSame) {
+    return [self.name compare:otherObject.name];
+  }
+  return [self.course compare:otherObject.course];
 }
 
 @end
