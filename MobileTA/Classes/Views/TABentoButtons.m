@@ -40,10 +40,20 @@
     [_buttons addSubview:_downButton];
     // Set the default orientation
     [self setOrientation:TABentoButtonsOrientationLeftButtons];
-    [self setBackgroundColor:[UIColor blackColor]];
-    [self setBackgroundColor:[UIColor redColor]];
+    [self setBackgroundColor:[UIColor whiteColor]];
+    [self setPrimaryColor:[UIColor blackColor]];
   }
   return self;
+}
+
+- (UIColor *)primaryColor {
+  return [_label textColor];
+}
+
+- (void)setPrimaryColor:(UIColor *)color {
+  [_label setTextColor:color];
+  [_upButton setTitleColor:color forState:UIControlStateNormal];
+  [_downButton setTitleColor:color forState:UIControlStateNormal];
 }
 
 - (void)setOrientation:(TABentoButtonsOrientation)orientation {
