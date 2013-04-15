@@ -53,7 +53,9 @@
                 forControlEvents:UIControlEventValueChanged];
     
     // Add cute little view that Scott made to keep track of participation
-    _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 80, 200, 60)];
+    _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 90, 200, 60)];
+    _segmentedButtons.segmentedControlStyle = UISegmentedControlStyleBar;
+
     [_segmentedButtons insertSegmentWithTitle:@"-" atIndex:0 animated:NO];
     [_segmentedButtons insertSegmentWithTitle:[self textForValue:[studentAttendance participation]] atIndex:1 animated:NO];
     [_segmentedButtons insertSegmentWithTitle:@"+" atIndex:2 animated:NO];
@@ -65,11 +67,9 @@
     [_segmentedButtons setEnabled:NO forSegmentAtIndex:1];
     // Use this to style the center text
     [_segmentedButtons setTitleTextAttributes:selectedTextAttributes forState:UIControlStateNormal];
+    [selectedTextAttributes setObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
     [_segmentedButtons setTitleTextAttributes:selectedTextAttributes forState:UIControlStateDisabled];
 
-
-
-    [_segmentedButtons sizeToFit];
     [_segmentedButtons addTarget:self action:@selector(points) forControlEvents:UIControlEventTouchUpInside];
         
     [v addSubview:_segmentedControl];
@@ -151,6 +151,7 @@
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self setSelectedSegment];
+  [[_segmentedButtons.subviews objectAtIndex:1] setTintColor:[UIColor orangeColor]];
 }
 
 - (void)didReceiveMemoryWarning
