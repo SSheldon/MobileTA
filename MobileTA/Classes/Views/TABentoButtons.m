@@ -28,10 +28,10 @@
     [_label setBackgroundColor:[UIColor clearColor]];
     [_label setTextAlignment:NSTextAlignmentCenter];
     _upButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_upButton setTitle:@"\u21e7" forState:UIControlStateNormal];
+    [_upButton setTitle:@"\u25b2" forState:UIControlStateNormal];
     [_upButton addTarget:self action:@selector(up) forControlEvents:UIControlEventTouchUpInside];
     _downButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_downButton setTitle:@"\u21e9" forState:UIControlStateNormal];
+    [_downButton setTitle:@"\u25bc" forState:UIControlStateNormal];
     [_downButton addTarget:self action:@selector(down) forControlEvents:UIControlEventTouchUpInside];
     _buttons = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:_label];

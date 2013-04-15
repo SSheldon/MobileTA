@@ -20,11 +20,11 @@
 
 // When the view is created, set the student attendance so the right data
 // can be populated
-- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance {
+- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance student:(Student *)student {
   self = [self initWithNibName:nil bundle:nil];
   if (self) {
     [self setStudentAttendance:studentAttendance];
-    [self setStudent:studentAttendance.student];
+    [self setStudent:student];
     // Do work son
     UIView *v = [self view];
     [v setBackgroundColor:[UIColor clearColor]];
@@ -48,11 +48,15 @@
                           action:@selector(changeAttendanceStatus)
                 forControlEvents:UIControlEventValueChanged];
     
-    TABentoButtons *bentoBox = [[TABentoButtons alloc] initWithFrame:CGRectMake(60, 100, 88, 88)];
+    // Add cute little view that Scott made to keep track of participation
+    
+    TABentoButtons *bentoBox = [[TABentoButtons alloc] initWithFrame:CGRectMake(40, 100, 130, 120)];
     [bentoBox setDelegate:self];
     [bentoBox setValue:studentAttendance.participation];
+    
     [v addSubview:_segmentedControl];
     [v addSubview:bentoBox];
+
 
   }
   return self;
@@ -88,7 +92,7 @@
 
 - (void)changeAttendanceStatus {
   StudentAttendanceStatus newStatus = (StudentAttendanceStatus)_segmentedControl.selectedSegmentIndex;
-  [self.delegate markStatus:newStatus forStudent:self.studentAttendance.student];
+  [self.delegate markStatus:newStatus forStudent:self.student];
   [self setSelectedSegment];
 }
 
@@ -124,7 +128,7 @@
 
 #pragma TABentoButtonsDelegate
 - (void)bentoButtons:(TABentoButtons *)buttons didUpdateValue:(NSInteger)value by:(NSInteger)change {
-  [self.delegate changeParticipationBy:change forStudent:self.studentAttendance.student];
+  [self.delegate changeParticipationBy:change forStudent:self.student];
 }
 
 @end

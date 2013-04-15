@@ -160,12 +160,12 @@
    */
 
   
-  StudentAttendance *studentAttendance = [self studentAttendanceForStudent:student];
-  TASeatingChartAttendanceViewController *controller = [[TASeatingChartAttendanceViewController alloc] initWithStudentAttendance:studentAttendance];
+  StudentAttendance *studentAttendance = [_attendanceRecord studentAttendanceForStudent:student];
+  TASeatingChartAttendanceViewController *controller = [[TASeatingChartAttendanceViewController alloc] initWithStudentAttendance:studentAttendance student:student];
   [controller setDelegate:self];
   
   _attendancePopoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
-  [_attendancePopoverController setPopoverContentSize:CGSizeMake(200, 200)];
+  [_attendancePopoverController setPopoverContentSize:CGSizeMake(200, 240)];
   [_attendancePopoverController presentPopoverFromRect:[attachedSeat frame] inView:[self view] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 
 }

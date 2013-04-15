@@ -16,7 +16,7 @@
   UISegmentedControl *_segmentedControl;
 }
 
-- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance;
+- (id)initWithStudentAttendance:(StudentAttendance *)studentAttendance student:(Student *)student;
 
 @property (nonatomic,strong)StudentAttendance *studentAttendance;
 @property (nonatomic,strong)Student *student;
