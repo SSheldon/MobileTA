@@ -69,8 +69,6 @@
 		135F124716D74151009C310A /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC1E5316C05EB3007E8FCF /* Section.m */; };
 		135F124A16D74286009C310A /* TAWelcomeViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F124916D74286009C310A /* TAWelcomeViewTest.m */; };
 		135F59BB17029FB600734373 /* TANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F59BA17029FB600734373 /* TANavigationController.m */; };
-		13A30EAE16CEEF5D00AE03E5 /* libJTRevealSidebar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30E9F16CEEF4B00AE03E5 /* libJTRevealSidebar.a */; };
-		13A30EAF16CEEF5D00AE03E5 /* libJTRevealSidebarV2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A30EA116CEEF4B00AE03E5 /* libJTRevealSidebarV2.a */; };
 		13A44DE016DB244E0084D827 /* StudentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DDF16DB244E0084D827 /* StudentTest.m */; };
 		13A44DE116DB2E0A0084D827 /* MobileTA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */; };
 		13A44DE416DB33650084D827 /* TATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DE316DB33650084D827 /* TATestUtils.m */; };
@@ -152,62 +150,6 @@
 			remoteGlobalIDString = 2C542392145ADEBD0026A152;
 			remoteInfo = QuickDialog;
 		};
-		13A30E9E16CEEF4B00AE03E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 37E67F37159109C500043822;
-			remoteInfo = JTRevealSidebar;
-		};
-		13A30EA016CEEF4B00AE03E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 37E67F201591080200043822;
-			remoteInfo = JTRevealSidebarV2;
-		};
-		13A30EA216CEEF4B00AE03E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AD4708114446391002EE1B0;
-			remoteInfo = JTRevealSidebarDemo;
-		};
-		13A30EA416CEEF4B00AE03E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1AD470A514446392002EE1B0;
-			remoteInfo = JTRevealSidebarDemoTests;
-		};
-		13A30EA616CEEF4B00AE03E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A617E8B148FC4A6005EC465;
-			remoteInfo = JTRevealSidebarDemoV2;
-		};
-		13A30EA816CEEF4B00AE03E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A617EA1148FC4A7005EC465;
-			remoteInfo = JTRevealSidebarDemoV2Tests;
-		};
-		13A30EAA16CEEF5600AE03E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 37E67F36159109C500043822;
-			remoteInfo = JTRevealSidebar;
-		};
-		13A30EAC16CEEF5600AE03E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 37E67F1F1591080200043822;
-			remoteInfo = JTRevealSidebarV2;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -252,7 +194,6 @@
 		135F124916D74286009C310A /* TAWelcomeViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAWelcomeViewTest.m; path = Views/TAWelcomeViewTest.m; sourceTree = "<group>"; };
 		135F59B917029FB600734373 /* TANavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TANavigationController.h; sourceTree = "<group>"; };
 		135F59BA17029FB600734373 /* TANavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TANavigationController.m; sourceTree = "<group>"; };
-		13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JTRevealSidebarDemo.xcodeproj; path = Libraries/JTRevealSidebar/JTRevealSidebarDemo.xcodeproj; sourceTree = "<group>"; };
 		13A44DDF16DB244E0084D827 /* StudentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudentTest.m; path = Models/StudentTest.m; sourceTree = "<group>"; };
 		13A44DE216DB33650084D827 /* TATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TATestUtils.h; sourceTree = "<group>"; };
 		13A44DE316DB33650084D827 /* TATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TATestUtils.m; sourceTree = "<group>"; };
@@ -329,8 +270,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6298DBF17010F5700862316 /* QuartzCore.framework in Frameworks */,
-				13A30EAE16CEEF5D00AE03E5 /* libJTRevealSidebar.a in Frameworks */,
-				13A30EAF16CEEF5D00AE03E5 /* libJTRevealSidebarV2.a in Frameworks */,
 				135116E216CDC24000D7376E /* libQuickDialog.a in Frameworks */,
 				1324064917178CFB00F247C0 /* MessageUI.framework in Frameworks */,
 				135116E616CDC38A00D7376E /* MapKit.framework in Frameworks */,
@@ -511,19 +450,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		13A30E9616CEEF4B00AE03E5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				13A30E9F16CEEF4B00AE03E5 /* libJTRevealSidebar.a */,
-				13A30EA116CEEF4B00AE03E5 /* libJTRevealSidebarV2.a */,
-				13A30EA316CEEF4B00AE03E5 /* JTRevealSidebarDemo.app */,
-				13A30EA516CEEF4B00AE03E5 /* JTRevealSidebarDemoTests.octest */,
-				13A30EA716CEEF4B00AE03E5 /* JTRevealSidebarDemoV2.app */,
-				13A30EA916CEEF4B00AE03E5 /* JTRevealSidebarDemoV2Tests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		13A44DD816DB242C0084D827 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,8 +571,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				13A30EAB16CEEF5600AE03E5 /* PBXTargetDependency */,
-				13A30EAD16CEEF5600AE03E5 /* PBXTargetDependency */,
 				135116E116CDC22700D7376E /* PBXTargetDependency */,
 			);
 			name = MobileTA;
@@ -695,10 +619,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 13A30E9616CEEF4B00AE03E5 /* Products */;
-					ProjectRef = 13A30E9516CEEF4B00AE03E5 /* JTRevealSidebarDemo.xcodeproj */;
-				},
-				{
 					ProductGroup = 135116D816CDC11E00D7376E /* Products */;
 					ProjectRef = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
 				},
@@ -724,48 +644,6 @@
 			fileType = archive.ar;
 			path = libQuickDialog.a;
 			remoteRef = 135116DE16CDC11E00D7376E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		13A30E9F16CEEF4B00AE03E5 /* libJTRevealSidebar.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libJTRevealSidebar.a;
-			remoteRef = 13A30E9E16CEEF4B00AE03E5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		13A30EA116CEEF4B00AE03E5 /* libJTRevealSidebarV2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libJTRevealSidebarV2.a;
-			remoteRef = 13A30EA016CEEF4B00AE03E5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		13A30EA316CEEF4B00AE03E5 /* JTRevealSidebarDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = JTRevealSidebarDemo.app;
-			remoteRef = 13A30EA216CEEF4B00AE03E5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		13A30EA516CEEF4B00AE03E5 /* JTRevealSidebarDemoTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = JTRevealSidebarDemoTests.octest;
-			remoteRef = 13A30EA416CEEF4B00AE03E5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		13A30EA716CEEF4B00AE03E5 /* JTRevealSidebarDemoV2.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = JTRevealSidebarDemoV2.app;
-			remoteRef = 13A30EA616CEEF4B00AE03E5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		13A30EA916CEEF4B00AE03E5 /* JTRevealSidebarDemoV2Tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = JTRevealSidebarDemoV2Tests.octest;
-			remoteRef = 13A30EA816CEEF4B00AE03E5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -923,16 +801,6 @@
 			isa = PBXTargetDependency;
 			name = QuickDialog;
 			targetProxy = 135F122316D72111009C310A /* PBXContainerItemProxy */;
-		};
-		13A30EAB16CEEF5600AE03E5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JTRevealSidebar;
-			targetProxy = 13A30EAA16CEEF5600AE03E5 /* PBXContainerItemProxy */;
-		};
-		13A30EAD16CEEF5600AE03E5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JTRevealSidebarV2;
-			targetProxy = 13A30EAC16CEEF5600AE03E5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
