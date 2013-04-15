@@ -54,31 +54,24 @@
     
     // Add cute little view that Scott made to keep track of participation
     
-    UISegmentedControl *testSeg = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 80, 200, 60)];
-    [testSeg insertSegmentWithTitle:@"<-" atIndex:0 animated:NO];
-    [testSeg insertSegmentWithTitle:@"0" atIndex:1 animated:NO];
-    [testSeg insertSegmentWithTitle:@"->" atIndex:2 animated:NO];
-    testSeg.momentary = YES;
-    [testSeg setEnabled:NO forSegmentAtIndex:1];
+    _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 80, 200, 60)];
+    [_segmentedButtons insertSegmentWithTitle:@"\u25c2" atIndex:0 animated:NO];
+    [_segmentedButtons insertSegmentWithTitle:@"0" atIndex:1 animated:NO];
+    [_segmentedButtons insertSegmentWithTitle:@"\u25b8" atIndex:2 animated:NO];
+    _segmentedButtons.momentary = YES;
+    [_segmentedButtons setEnabled:NO forSegmentAtIndex:1];
     // Use this to style the center text
-    [_segmentedControl setTitleTextAttributes:selectedTextAttributes forState:UIControlStateDisabled];
+    [_segmentedButtons setTitleTextAttributes:selectedTextAttributes forState:UIControlStateDisabled];
 
 
-    [testSeg sizeToFit];
-    
-    /*
-    TABentoButtons *bentoBox = [[TABentoButtons alloc] initWithFrame:CGRectMake(40, 100, 130, 120)];
-    [bentoBox setDelegate:self];
-    [bentoBox setValue:studentAttendance.participation];
-     */
-    
+    [_segmentedButtons sizeToFit];
+    [_segmentedButtons addTarget:self action:@selector(points) forControlEvents:UIControlEventTouchUpInside];
+        
     [v addSubview:_segmentedControl];
-    [v addSubview:testSeg];
-
+    [v addSubview:_segmentedButtons];
     //[v addSubview:bentoBox];
-
-
   }
+  
   return self;
 }
 
@@ -108,6 +101,10 @@
       [[_segmentedControl.subviews objectAtIndex:i] setTintColor:newColor];
     }
   }
+}
+
+- (void)points {
+  NSLog(@"%d", _segmentedButtons.selectedSegmentIndex);
 }
 
 - (void)changeAttendanceStatus {

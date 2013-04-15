@@ -96,6 +96,7 @@
 		9FB48F34170A420200E73D14 /* TAAssignSeatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */; };
 		9FBF84F116E7F973000077D5 /* TASectionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */; };
 		9FC025B216E0471F00C1CBA6 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
+		9FE0B9D6171CA8AF003CE954 /* TASegmentedButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE0B9D5171CA8AF003CE954 /* TASegmentedButtons.m */; };
 		9FE67B5E16EE756500F98DCE /* TAAttendanceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE67B5D16EE756500F98DCE /* TAAttendanceHistoryViewController.m */; };
 		E6064D1616F2445D00BCF71B /* TASeatingChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1416F2445D00BCF71B /* TASeatingChartView.m */; };
 		E6064D1F16F244A300BCF71B /* TASeatingChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6064D1D16F244A300BCF71B /* TASeatingChartViewController.m */; };
@@ -275,6 +276,8 @@
 		9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAssignSeatsViewController.m; sourceTree = "<group>"; };
 		9FBF84EF16E7F973000077D5 /* TASectionEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionEditViewController.h; sourceTree = "<group>"; };
 		9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionEditViewController.m; sourceTree = "<group>"; };
+		9FE0B9D4171CA8AF003CE954 /* TASegmentedButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASegmentedButtons.h; sourceTree = "<group>"; };
+		9FE0B9D5171CA8AF003CE954 /* TASegmentedButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASegmentedButtons.m; sourceTree = "<group>"; };
 		9FE67B5C16EE756500F98DCE /* TAAttendanceHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAttendanceHistoryViewController.h; sourceTree = "<group>"; };
 		9FE67B5D16EE756500F98DCE /* TAAttendanceHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAttendanceHistoryViewController.m; sourceTree = "<group>"; };
 		E6064D1316F2445D00BCF71B /* TASeatingChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = TASeatingChartView.h; sourceTree = "<group>"; };
@@ -621,6 +624,8 @@
 				E6064D2416F2B04F00BCF71B /* TAGridConstants.h */,
 				E624E09A1717997200C2D7A5 /* TABentoButtons.h */,
 				E624E09B1717997200C2D7A5 /* TABentoButtons.m */,
+				9FE0B9D4171CA8AF003CE954 /* TASegmentedButtons.h */,
+				9FE0B9D5171CA8AF003CE954 /* TASegmentedButtons.m */,
 			);
 			name = Views;
 			path = Classes/Views;
@@ -854,6 +859,7 @@
 				13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */,
 				E6F1A53F171375A200DD781D /* TASeatingChartAttendanceViewController.m in Sources */,
 				E624E09C1717997200C2D7A5 /* TABentoButtons.m in Sources */,
+				9FE0B9D6171CA8AF003CE954 /* TASegmentedButtons.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
