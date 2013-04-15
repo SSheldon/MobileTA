@@ -41,12 +41,11 @@
   return root;
 }
 
-- (id)initWithSection:(Section*)section
-{
-  if([self initWithRoot:[TASectionEditViewController formForSection:section]]) {
+- (id)initWithSection:(Section *)section {
+  self = [self initWithRoot:[TASectionEditViewController formForSection:section]];
+  if (self) {
     [self setSection:section];
   }
-  
   return self;
 }
 

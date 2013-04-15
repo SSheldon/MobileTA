@@ -47,7 +47,8 @@
 }
 
 - (id)initWithStudent:(Student *)student {
-  if([self initWithRoot:[TAStudentEditViewController formForStudent:student]]) {
+  self = [self initWithRoot:[TAStudentEditViewController formForStudent:student]];
+  if (self) {
     // Final initialization
     [self setStudent:student];
   }
