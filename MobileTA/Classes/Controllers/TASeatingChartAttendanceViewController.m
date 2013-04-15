@@ -55,7 +55,7 @@
     // Add cute little view that Scott made to keep track of participation
     _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 80, 200, 60)];
     [_segmentedButtons insertSegmentWithTitle:@"-" atIndex:0 animated:NO];
-    [_segmentedButtons insertSegmentWithTitle:NSStringFromStudentParticipation([studentAttendance participation]) atIndex:1 animated:NO];
+    [_segmentedButtons insertSegmentWithTitle:[self textForValue:[studentAttendance participation]] atIndex:1 animated:NO];
     [_segmentedButtons insertSegmentWithTitle:@"+" atIndex:2 animated:NO];
     [_segmentedButtons setWidth:60.0 forSegmentAtIndex:0];
     [_segmentedButtons setWidth:60.0 forSegmentAtIndex:1];
@@ -119,13 +119,8 @@
     currentValue -= 1;
     [self.delegate changeParticipationBy:-1 forStudent:self.student];
   }
-  
-  NSString *newValue = [NSString stringWithFormat:@"%d", currentValue];
-  if (currentValue > 0) {
-    newValue = [NSString stringWithFormat:@"+%d", currentValue];
-  }
 
-  [_segmentedButtons setTitle:newValue forSegmentAtIndex:1];
+  [_segmentedButtons setTitle:[self textForValue:currentValue] forSegmentAtIndex:1];
 }
 
 - (void)changeAttendanceStatus {
@@ -162,6 +157,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSString *)textForValue:(NSInteger)value {
+  if (value == 0) {
+    return @"+0";
+  }
+  else {
+    return NSStringFromStudentParticipation(value);
+  }
 }
 
 #pragma TABentoButtonsDelegate
