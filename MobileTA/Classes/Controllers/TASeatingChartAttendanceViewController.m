@@ -54,12 +54,28 @@
     
     // Add cute little view that Scott made to keep track of participation
     
+    UISegmentedControl *testSeg = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 80, 200, 60)];
+    [testSeg insertSegmentWithTitle:@"<-" atIndex:0 animated:NO];
+    [testSeg insertSegmentWithTitle:@"0" atIndex:1 animated:NO];
+    [testSeg insertSegmentWithTitle:@"->" atIndex:2 animated:NO];
+    testSeg.momentary = YES;
+    [testSeg setEnabled:NO forSegmentAtIndex:1];
+    // Use this to style the center text
+    [_segmentedControl setTitleTextAttributes:selectedTextAttributes forState:UIControlStateDisabled];
+
+
+    [testSeg sizeToFit];
+    
+    /*
     TABentoButtons *bentoBox = [[TABentoButtons alloc] initWithFrame:CGRectMake(40, 100, 130, 120)];
     [bentoBox setDelegate:self];
     [bentoBox setValue:studentAttendance.participation];
+     */
     
     [v addSubview:_segmentedControl];
-    [v addSubview:bentoBox];
+    [v addSubview:testSeg];
+
+    //[v addSubview:bentoBox];
 
 
   }
