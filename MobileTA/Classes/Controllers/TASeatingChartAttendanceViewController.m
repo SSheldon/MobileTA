@@ -38,10 +38,14 @@
     }
     
     _segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    UIFont *font = [UIFont boldSystemFontOfSize:20.0f];
+
     // Change selected text color to black
-    NSMutableDictionary * textAttributes = [[NSMutableDictionary alloc] init];
-    [textAttributes setObject:[UIColor blackColor] forKey:UITextAttributeTextColor];
-    [_segmentedControl setTitleTextAttributes:textAttributes forState:UIControlStateSelected];
+    NSMutableDictionary * selectedTextAttributes = [[NSMutableDictionary alloc] init];
+    [selectedTextAttributes setObject:[UIColor blackColor] forKey:UITextAttributeTextColor];
+    [selectedTextAttributes setObject:font forKey:UITextAttributeFont];
+
+    [_segmentedControl setTitleTextAttributes:selectedTextAttributes forState:UIControlStateNormal];
     
     [_segmentedControl setSelectedSegmentIndex:[studentAttendance status]];
     [_segmentedControl addTarget:self
