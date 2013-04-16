@@ -169,9 +169,4 @@
   }
 }
 
-#pragma TABentoButtonsDelegate
-- (void)bentoButtons:(TABentoButtons *)buttons didUpdateValue:(NSInteger)value by:(NSInteger)change {
-  [self.delegate changeParticipationBy:change forStudent:self.student];
-}
-
 @end
