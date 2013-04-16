@@ -108,7 +108,8 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 #if DEBUG
   // If this section is empty, populate it from the sample roster.
   if (section && !section.students.count) {
-    NSArray *sampleStudents = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
+    NSString *csvFilePath = [[NSBundle mainBundle] pathForResource:@"roster" ofType:@"csv"];
+    NSArray *sampleStudents = [Student studentsFromCSVFile:csvFilePath context:self.managedObjectContext];
     [section addStudents:[NSSet setWithArray:sampleStudents]];
     [self saveManagedObjectContext];
   }
