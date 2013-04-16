@@ -30,13 +30,26 @@
 + (Student *)studentWithFirstName:(NSString *)firstName lastName:(NSString *)lastName context:(NSManagedObjectContext *)context;
 
 /*!
- * Fetches all Students in a context.
+ * Fetch all Students in a context.
  * @param context the NSManagedContext to fetch Students from
  * @return an NSArray of the fetched Students
  */
 + (NSArray *)fetchStudentsInContext:(NSManagedObjectContext *)context;
 
+/*!
+ * Create Students from CSV content.
+ * @param csvContent NSArray of CSV rows
+ * @param context the NSManagedObjectContext to insert the Students into
+ * @return the created Students
+ */
 + (NSArray *)studentsFromCSV:(NSArray *)csvContent context:(NSManagedObjectContext *)context;
+
+/*!
+ * Create Students from CSV content.
+ * @param csvFilePath path to the CSV file
+ * @param context the NSManagedObjectContext to insert the Students into
+ * @return the created Students
+ */
 + (NSArray *)studentsFromCSVFile:(NSString *)csvFilePath context:(NSManagedObjectContext *)context;
 
 - (NSString *)fullDisplayName;

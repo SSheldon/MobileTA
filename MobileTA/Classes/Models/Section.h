@@ -13,14 +13,22 @@
 
 @interface Section : NSManagedObject
 
-+ (Section *)sectionWithName:(NSString *)name course:(NSString *)course context:(NSManagedObjectContext *)context;
-+ (NSArray *)fetchSectionsInContext:(NSManagedObjectContext *)context;
-
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString *course;
 @property (nonatomic, retain) NSSet *attendanceRecords;
 @property (nonatomic, retain) Room *room;
 @property (nonatomic, retain) NSSet *students;
+
+/*!
+ * Creates a Section.
+ *
+ * @param name the Section's name
+ * @param course the name of the Section's course
+ * @param context the NSManagedObjectContext to insert the Section into
+ */
++ (Section *)sectionWithName:(NSString *)name course:(NSString *)course context:(NSManagedObjectContext *)context;
+
++ (NSArray *)fetchSectionsInContext:(NSManagedObjectContext *)context;
 
 /*!
  * Gets the AttendanceRecord of this Section that is
@@ -33,10 +41,29 @@
  */
 - (AttendanceRecord *)attendanceRecordNearestToDate:(NSDate *)date withinTimeInterval:(NSTimeInterval)seconds;
 
+/*!
+ * Gets a name for this Section meant to be displayed.
+ */
 - (NSString *)displayName;
 
+/*!
+ * Writes this Section and the given AttendanceRecord as
+ * comma separated values to an output stream.
+ *
+ * @param stream the NSOutputStream that CSV should be written to
+ * @param record an AttendanceRecord of this Section
+ */
 - (void)writeCSVToOutputStream:(NSOutputStream *)stream withAttendanceRecord:(AttendanceRecord *)record;
+
+/*!
+ * Gets an NSString CSV representation of
+ * this Section and AttendanceRecord.
+ *
+ * @param record an AttendanceRecord of this Section
+ */
 - (NSString *)CSVStringWithAttendanceRecord:(AttendanceRecord *)record;
+
+- (NSComparisonResult)compare:(Section *)otherObject;
 
 @end
 
@@ -51,6 +78,5 @@
 - (void)removeStudentsObject:(Student *)value;
 - (void)addStudents:(NSSet *)values;
 - (void)removeStudents:(NSSet *)values;
-- (NSComparisonResult)compare:(Section *)otherObject;
 
 @end
