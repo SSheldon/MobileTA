@@ -30,6 +30,15 @@
   self.managedObjectContext = nil;
 }
 
+- (void)testNearestRecord {
+  Section *section = [Section sectionWithName:nil course:@"CS 428" context:self.managedObjectContext];
+  AttendanceRecord *record = [AttendanceRecord attendanceRecordWithDate:[NSDate dateWithTimeIntervalSince1970:1331467200] context:self.managedObjectContext];
+  record.section = section;
+
+  GHAssertNil([section attendanceRecordNearestToDate:[NSDate dateWithTimeIntervalSince1970:1331467300] withinTimeInterval:60], nil);
+  GHAssertEqualObjects([section attendanceRecordNearestToDate:[NSDate dateWithTimeIntervalSince1970:1331467300] withinTimeInterval:300], record, nil);
+}
+
 - (void)testWriteCSV {
   Section *section = [Section sectionWithName:nil course:@"CS 428" context:self.managedObjectContext];
 
