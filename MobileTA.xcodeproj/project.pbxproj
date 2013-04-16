@@ -69,6 +69,7 @@
 		135F124A16D74286009C310A /* TAWelcomeViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F124916D74286009C310A /* TAWelcomeViewTest.m */; };
 		135F59BB17029FB600734373 /* TANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F59BA17029FB600734373 /* TANavigationController.m */; };
 		13943003171CFB1300D4B72E /* TASegmentedButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE0B9D5171CA8AF003CE954 /* TASegmentedButtons.m */; };
+		139ACEE6171BF1E20071CB89 /* TASectionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 139ACEE5171BF1E20071CB89 /* TASectionViewControllerTest.m */; };
 		13A44DE016DB244E0084D827 /* StudentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DDF16DB244E0084D827 /* StudentTest.m */; };
 		13A44DE116DB2E0A0084D827 /* MobileTA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */; };
 		13A44DE416DB33650084D827 /* TATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DE316DB33650084D827 /* TATestUtils.m */; };
@@ -193,6 +194,7 @@
 		135F124916D74286009C310A /* TAWelcomeViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAWelcomeViewTest.m; path = Views/TAWelcomeViewTest.m; sourceTree = "<group>"; };
 		135F59B917029FB600734373 /* TANavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TANavigationController.h; sourceTree = "<group>"; };
 		135F59BA17029FB600734373 /* TANavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TANavigationController.m; sourceTree = "<group>"; };
+		139ACEE5171BF1E20071CB89 /* TASectionViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASectionViewControllerTest.m; path = Controllers/TASectionViewControllerTest.m; sourceTree = "<group>"; };
 		13A44DDF16DB244E0084D827 /* StudentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudentTest.m; path = Models/StudentTest.m; sourceTree = "<group>"; };
 		13A44DE216DB33650084D827 /* TATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TATestUtils.h; sourceTree = "<group>"; };
 		13A44DE316DB33650084D827 /* TATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TATestUtils.m; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				13A44DD816DB242C0084D827 /* Models */,
 				135F124816D74275009C310A /* Views */,
+				139ACEE3171BF1B60071CB89 /* Controllers */,
 				13A44DE216DB33650084D827 /* TATestUtils.h */,
 				13A44DE316DB33650084D827 /* TATestUtils.m */,
 				135F11FB16D7124F009C310A /* Supporting Files */,
@@ -449,6 +452,14 @@
 				13F82A87171CFFAE00A08DA5 /* TASeatingChartAttendanceViewTest.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		139ACEE3171BF1B60071CB89 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				139ACEE5171BF1E20071CB89 /* TASectionViewControllerTest.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		13A44DD816DB242C0084D827 /* Models */ = {
@@ -785,6 +796,7 @@
 				13F82A88171CFFAE00A08DA5 /* TASeatingChartAttendanceViewTest.m in Sources */,
 				13F82A8F171D065700A08DA5 /* SectionTest.m in Sources */,
 				13F82A99171D0CE200A08DA5 /* RoomTest.m in Sources */,
+				139ACEE6171BF1E20071CB89 /* TASectionViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
