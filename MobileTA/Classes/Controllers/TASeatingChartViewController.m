@@ -202,10 +202,6 @@
   return _seatingChart;
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
-  
-}
-
 #pragma mark TASeatingChartView
 
 - (void)didDeleteSeat:(Seat *)seat {

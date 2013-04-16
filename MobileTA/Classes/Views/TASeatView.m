@@ -124,14 +124,6 @@
   }
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-//- (void)drawRect:(CGRect)rect
-//{
-//  // Drawing code
-//  [[TASeatView backgroundImage] drawInRect:[self bounds]];
-//}
-
 - (void)dance {
   // Determine whether to start from the left or the right
   int i = rand() % 2;
