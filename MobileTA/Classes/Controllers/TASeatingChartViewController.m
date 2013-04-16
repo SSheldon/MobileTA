@@ -18,10 +18,6 @@
 #import "StudentAttendance.h"
 #import "AttendanceRecord.h"
 
-@interface TASeatingChartViewController ()
-@property (strong, nonatomic) Student *selectedStudent;
-@end
-
 @implementation TASeatingChartViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -150,50 +146,22 @@
   if (!student) {
     return;
   }
-  self.selectedStudent = student;
 
-  TASeatView *attachedSeat = [_seatingChart seatViewForSeat:seat];
-  /*
-  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil
-                                                  otherButtonTitles:@"Mark Absent", @"Mark Tardy", @"+1 Particpation", @"-1 Participation", nil];
-  [actionSheet showFromRect:attachedSeat.frame inView:_seatingChart animated:YES];
-   */
-
-  
   StudentAttendance *studentAttendance = [_attendanceRecord studentAttendanceForStudent:student];
+  TASeatView *attachedSeat = [_seatingChart seatViewForSeat:seat];
+
   TASeatingChartAttendanceViewController *controller = [[TASeatingChartAttendanceViewController alloc] initWithStudentAttendance:studentAttendance student:student];
   [controller setDelegate:self];
   
   _attendancePopoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
   [_attendancePopoverController setPopoverContentSize:CGSizeMake(200, 160)];
   [_attendancePopoverController presentPopoverFromRect:[attachedSeat frame] inView:[self view] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-
 }
 
 #pragma mark UIPopoverControllerDelegate
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
   [self saveManagedObjectContext];
-}
-
-#pragma mark UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-  switch (buttonIndex) {
-    case 0:
-      [self markStatus:StudentAttendanceStatusAbsent forStudent:self.selectedStudent];
-      break;
-    case 1:
-      [self markStatus:StudentAttendanceStatusTardy forStudent:self.selectedStudent];
-      break;
-    case 2:
-      [self changeParticipationBy:1 forStudent:self.selectedStudent];
-      break;
-    case 3:
-      [self changeParticipationBy:-1 forStudent:self.selectedStudent];
-      break;
-  }
-  self.selectedStudent = nil;
 }
 
 #pragma mark UIScrollViewDelegate
