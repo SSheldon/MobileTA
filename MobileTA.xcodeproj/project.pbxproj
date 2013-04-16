@@ -39,7 +39,6 @@
 		133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
 		1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1341D74617109AEC007B2D1D /* CHCSVParser.m */; };
 		1341D74817109AEC007B2D1D /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1341D74617109AEC007B2D1D /* CHCSVParser.m */; };
-		1346A2FF170D208D0016943A /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */; };
 		134A855016E98AEB0078E521 /* TAStudentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */; };
 		134A855816E98D610078E521 /* TASectionsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 134A855716E98D610078E521 /* TASectionsViewTest.m */; };
 		134A856416E994510078E521 /* TASectionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */; };
@@ -80,7 +79,6 @@
 		13E344F717135F0300ECF8AB /* icon-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E344F317135F0300ECF8AB /* icon-ipad@2x.png */; };
 		13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
 		13F287281711716500562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
-		13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */; };
 		13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
 		13FFBD6316E975C4001BB929 /* roster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 13FFBD5D16E96FEB001BB929 /* roster.csv */; };
 		400FDFF61713851B0072CFDD /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 400FDFF51713851B0072CFDD /* Default-Portrait~ipad.png */; };
@@ -178,8 +176,6 @@
 		133AE68616E54F97008385C2 /* TASectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionViewController.m; sourceTree = "<group>"; };
 		1341D74517109AEC007B2D1D /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHCSVParser.h; path = Libraries/CHCSVParser/CHCSVParser/CHCSVParser.h; sourceTree = "<group>"; };
 		1341D74617109AEC007B2D1D /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHCSVParser.m; path = Libraries/CHCSVParser/CHCSVParser/CHCSVParser.m; sourceTree = "<group>"; };
-		1346A2FD170D208D0016943A /* NSManagedObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+JSON.h"; sourceTree = "<group>"; };
-		1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+JSON.m"; sourceTree = "<group>"; };
 		134A855716E98D610078E521 /* TASectionsViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASectionsViewTest.m; path = Views/TASectionsViewTest.m; sourceTree = "<group>"; };
 		135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		135116E316CDC36400D7376E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -488,8 +484,6 @@
 				E6EC1E5316C05EB3007E8FCF /* Section.m */,
 				E6EC1E5516C05EDB007E8FCF /* Room.h */,
 				E6EC1E5616C05EDB007E8FCF /* Room.m */,
-				1346A2FD170D208D0016943A /* NSManagedObject+JSON.h */,
-				1346A2FE170D208D0016943A /* NSManagedObject+JSON.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -727,7 +721,6 @@
 				135F59BB17029FB600734373 /* TANavigationController.m in Sources */,
 				E654DB37170A3C8C00584411 /* UIView+FrameSettingAdditions.m in Sources */,
 				9FB48F34170A420200E73D14 /* TAAssignSeatsViewController.m in Sources */,
-				1346A2FF170D208D0016943A /* NSManagedObject+JSON.m in Sources */,
 				1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */,
 				13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */,
 				E6F1A53F171375A200DD781D /* TASeatingChartAttendanceViewController.m in Sources */,
@@ -776,7 +769,6 @@
 				13008FE9170A8E8E0045C05A /* TASeatView.m in Sources */,
 				13008FEE170A90EB0045C05A /* TASeatingChartViewTest.m in Sources */,
 				13008FF7170A98C80045C05A /* TAStudentDisplayCellTest.m in Sources */,
-				13F9F7DE170D4BC900689C16 /* NSManagedObject+JSON.m in Sources */,
 				1341D74817109AEC007B2D1D /* CHCSVParser.m in Sources */,
 				13F287281711716500562D5A /* TAStudentsAttendanceViewController.m in Sources */,
 				1306D4091717D83B00CC3B4D /* TASeatingChartAttendanceViewController.m in Sources */,
