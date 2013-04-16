@@ -36,6 +36,7 @@
 - (NSString *)displayName;
 
 - (void)writeCSVToOutputStream:(NSOutputStream *)stream withAttendanceRecord:(AttendanceRecord *)record;
+- (NSString *)CSVStringWithAttendanceRecord:(AttendanceRecord *)record;
 
 @end
 
