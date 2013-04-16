@@ -150,9 +150,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
       student.firstName != [oldData objectForKey:@"firstName"]) {
     if (!oldData) {
       // Add the student
-      NSMutableArray *new_students = [NSMutableArray arrayWithArray:_studentsController.students];
-      [new_students addObject:student];
-      _studentsController.students = new_students;
+      _studentsController.students = [_studentsController.students arrayByAddingObject:student];
     } else {
       [_studentsController reloadStudents];
     }
