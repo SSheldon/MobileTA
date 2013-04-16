@@ -50,4 +50,18 @@
   GHAssertEqualObjects(csvString, expected, nil);
 }
 
+- (void)testDisplayName {
+  Section *section = [Section sectionWithName:nil course:nil context:self.managedObjectContext];
+  GHAssertNil([section displayName], nil);
+
+  section = [Section sectionWithName:nil course:@"CS 428" context:self.managedObjectContext];
+  GHAssertEqualObjects([section displayName], @"CS 428", nil);
+
+  section = [Section sectionWithName:@"AD1" course:@"CS 428" context:self.managedObjectContext];
+  GHAssertEqualObjects([section displayName], @"CS 428 - AD1", nil);
+
+  section = [Section sectionWithName:@"AD1" course:nil context:self.managedObjectContext];
+  GHAssertEqualObjects([section displayName], @"AD1", nil);
+}
+
 @end
