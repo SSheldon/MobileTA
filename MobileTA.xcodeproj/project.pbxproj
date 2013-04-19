@@ -163,6 +163,7 @@
 		130741DE16EED6C800465D86 /* TAStudentDetailCellTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentDetailCellTest.m; sourceTree = "<group>"; };
 		1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentEditViewTest.m; path = Views/TAStudentEditViewTest.m; sourceTree = "<group>"; };
 		1324064817178CFB00F247C0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		132700D81720CF060036FB6C /* MobileTA 1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MobileTA 1.1.xcdatamodel"; sourceTree = "<group>"; };
 		13345E5316B7736100DD4FF2 /* MobileTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13345E5716B7736100DD4FF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		13345E5916B7736100DD4FF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1015,6 +1016,7 @@
 		E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				132700D81720CF060036FB6C /* MobileTA 1.1.xcdatamodel */,
 				E6ECA87516BB4DC000F103D3 /* MobileTA.xcdatamodel */,
 			);
 			currentVersion = E6ECA87516BB4DC000F103D3 /* MobileTA.xcdatamodel */;
