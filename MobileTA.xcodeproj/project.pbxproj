@@ -1025,7 +1025,7 @@
 				132700D81720CF060036FB6C /* MobileTA 1.1.xcdatamodel */,
 				E6ECA87516BB4DC000F103D3 /* MobileTA.xcdatamodel */,
 			);
-			currentVersion = E6ECA87516BB4DC000F103D3 /* MobileTA.xcdatamodel */;
+			currentVersion = 132700D81720CF060036FB6C /* MobileTA 1.1.xcdatamodel */;
 			path = MobileTA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
