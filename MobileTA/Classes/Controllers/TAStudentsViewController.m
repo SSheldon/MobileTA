@@ -150,6 +150,15 @@
     Student *student = [self studentAtIndexPath:indexPath];
     [[self managedObjectContext] deleteObject:student];
     [self saveManagedObjectContext];
+    // If we are removing the student we are detailing, remove the cell
+    if ([detailedStudentIndex isEqual:indexPath]) {
+      detailedStudentIndex = nil;
+    }
+    // If we are removing something under the detailedStudentIndex, shift the
+    // index down by 1
+    if (indexPath.section == detailedStudentIndex.section && detailedStudentIndex.row > indexPath.row) {
+      detailedStudentIndex = [NSIndexPath indexPathForRow:detailedStudentIndex.row-1 inSection:detailedStudentIndex.section];
+    }
     // Remove student from the Students array
     NSMutableArray *mutableStudents = [[self students] mutableCopy];
     [mutableStudents removeObject:student];
