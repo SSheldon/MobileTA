@@ -158,6 +158,7 @@
     // index down by 1
     if (indexPath.section == detailedStudentIndex.section && detailedStudentIndex.row > indexPath.row) {
       detailedStudentIndex = [NSIndexPath indexPathForRow:detailedStudentIndex.row-1 inSection:detailedStudentIndex.section];
+      [[self tableView] scrollToRowAtIndexPath:[self indexPathOfDetailCell] atScrollPosition:UITableViewScrollPositionNone animated:YES];
     }
     // Remove student from the Students array
     NSMutableArray *mutableStudents = [[self students] mutableCopy];
@@ -199,6 +200,7 @@
     detailedStudentIndex = newIndex;
     NSIndexPath *detailCellIndexPath = [self indexPathOfDetailCell];
     [[self tableView] insertRowsAtIndexPaths:@[detailCellIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [[self tableView] scrollToRowAtIndexPath:detailCellIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
   }
 }
 
