@@ -170,9 +170,7 @@
 
   if (!oldData) {
     // Add the new record to the table
-    NSMutableArray *newRecords = [NSMutableArray arrayWithArray:self.records];
-    [newRecords addObject:record];
-    self.records = newRecords;
+    self.records = [self.records arrayByAddingObject:record];
   } else {
     // Re-sort the table
     self.records = [self.records copy];

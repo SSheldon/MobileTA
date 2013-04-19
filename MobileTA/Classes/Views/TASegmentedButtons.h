@@ -7,12 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class TASegmentedButtons;
-
-@protocol TASegmentedButtonsDelegate <NSObject>
-- (void)bentoButtons:(TASegmentedButtons *)buttons didUpdateValue:(NSInteger)value by:(NSInteger)change;
-
-@end
 
 @interface TASegmentedButtons : UISegmentedControl
 

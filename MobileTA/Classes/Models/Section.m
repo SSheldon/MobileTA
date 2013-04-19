@@ -113,6 +113,16 @@
     }
     [writer finishLine];
   }
+
+  [writer closeStream];
+}
+
+- (NSString *)CSVStringWithAttendanceRecord:(AttendanceRecord *)record {
+  NSOutputStream *stream = [NSOutputStream outputStreamToMemory];
+  [self writeCSVToOutputStream:stream withAttendanceRecord:record];
+  NSData *buffer = [stream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+  return [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
+
 }
 
 - (NSComparisonResult)compare:(Section *)otherObject {

@@ -69,9 +69,7 @@
   Section *section = [Section sectionWithName:nil course:@"IMPORTED" context:self.managedObjectContext];
   [section addStudents:[NSSet setWithArray:students]];
   [self saveManagedObjectContext];
-  NSMutableArray *sections = [self.sections mutableCopy];
-  [sections addObject:section];
-  self.sections = sections;
+  self.sections = [self.sections arrayByAddingObject:section];
   [self editSection:section];
 }
 
@@ -148,9 +146,7 @@
   // for us (saved the changes to the edited section). If it is a new section,
   // then we need to add it to our sections array
   if(!oldData) {
-    NSMutableArray *tempSections = [NSMutableArray arrayWithArray:[self sections]];
-    [tempSections addObject:section];
-    [self setSections:[NSArray arrayWithArray:tempSections]];
+    self.sections = [self.sections arrayByAddingObject:section];
   }
   [[self tableView] reloadData];
 }

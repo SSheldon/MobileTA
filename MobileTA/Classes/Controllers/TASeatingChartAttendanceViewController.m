@@ -29,7 +29,7 @@
     UIView *v = [self view];
     [v setBackgroundColor:[UIColor clearColor]];
     
-    _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 200, 60)];
+    _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 180, 60)];
     // Set up segments
     NSArray *labels = [[NSArray alloc]initWithObjects:@"P", @"A", @"T", nil];
     for (int i=0; i<labels.count; i++) {
@@ -53,7 +53,7 @@
                 forControlEvents:UIControlEventValueChanged];
     
     // Add cute little view that Scott made to keep track of participation
-    _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 90, 200, 60)];
+    _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 90, 180, 60)];
     _segmentedButtons.segmentedControlStyle = UISegmentedControlStyleBar;
 
     [_segmentedButtons insertSegmentWithTitle:@"-" atIndex:0 animated:NO];
@@ -129,35 +129,14 @@
   [self setSelectedSegment];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)loadView {
-  [self setView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)]];
-  [[self view] setBackgroundColor:[UIColor whiteColor]];
-}
-
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
+  [self setView:[[UIView alloc]init]];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self setSelectedSegment];
   [[_segmentedButtons.subviews objectAtIndex:1] setTintColor:[UIColor orangeColor]];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSString *)textForValue:(NSInteger)value {
@@ -167,11 +146,6 @@
   else {
     return NSStringFromStudentParticipation(value);
   }
-}
-
-#pragma TABentoButtonsDelegate
-- (void)bentoButtons:(TABentoButtons *)buttons didUpdateValue:(NSInteger)value by:(NSInteger)change {
-  [self.delegate changeParticipationBy:change forStudent:self.student];
 }
 
 @end

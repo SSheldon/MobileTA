@@ -76,12 +76,6 @@
   return [self studentsFromCSV:csvContent context:context];
 }
 
-+ (NSArray *)parseMyCSVFile{
-  //get the path to the file in your xcode project's resource path
-  NSString *csvFilePath = [[NSBundle mainBundle] pathForResource:@"roster" ofType:@"csv"];
-  return [NSArray arrayWithContentsOfCSVFile:csvFilePath options:CHCSVParserOptionsSanitizesFields];
-}
-
 - (NSString *)fullDisplayName {
   NSString *display = nil;
   // Start with the student's nickname or first name

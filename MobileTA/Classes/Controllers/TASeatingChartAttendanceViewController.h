@@ -9,14 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "StudentAttendance.h"
 #import "Student.h"
-#import "TABentoButtons.h"
 #import "TAStudentsAttendanceViewController.h"
 #import "TASegmentedButtons.h"
 
 #define MINUS_ONE 0
 #define PLUS_ONE 2
 
-@interface TASeatingChartAttendanceViewController : UIViewController <TABentoButtonsDelegate> {
+@interface TASeatingChartAttendanceViewController : UIViewController {
   UISegmentedControl *_segmentedControl;
   TASegmentedButtons *_segmentedButtons;
 }

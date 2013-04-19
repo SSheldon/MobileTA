@@ -23,6 +23,7 @@
 + (AttendanceRecord *)attendanceRecordForName:(NSString *)name date:(NSDate *)date context:(NSManagedObjectContext *)context;
 
 - (StudentAttendance *)studentAttendanceForStudent:(Student *)student;
+- (NSString *)getDescriptionShort;
 
 @end
 
@@ -32,6 +33,5 @@
 - (void)removeStudentAttendancesObject:(StudentAttendance *)value;
 - (void)addStudentAttendances:(NSSet *)values;
 - (void)removeStudentAttendances:(NSSet *)values;
-- (NSString *) getDescriptionShort;
 
 @end

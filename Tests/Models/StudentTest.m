@@ -46,7 +46,8 @@
 }
 
 - (void)testStudentsFromCSV {
-  NSArray *students = [Student studentsFromCSV:[Student parseMyCSVFile] context:self.managedObjectContext];
+  NSString *csvFilePath = [[NSBundle mainBundle] pathForResource:@"roster" ofType:@"csv"];
+  NSArray *students = [Student studentsFromCSVFile:csvFilePath context:self.managedObjectContext];
   GHAssertEquals(students.count, 50U, nil);
   Student *firstStudent = [students objectAtIndex:0];
   GHAssertEqualStrings(firstStudent.firstName, @"Essie", nil);

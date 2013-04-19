@@ -11,7 +11,6 @@
 #ifdef __OBJC__
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
-  #import "NSManagedObject+JSON.h"
   #import "UIViewController+CoreDataAdditions.h"
   #import "UIView+FrameSettingAdditions.h"
   #import "TATestUtils.h"
