@@ -35,14 +35,9 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                       target:self
                                                       action:@selector(addNewStudent)],
-        [[UIBarButtonItem alloc] initWithTitle:@"History"
-                                         style:UIBarButtonItemStylePlain
-                                        target:self
-                                        action:@selector(viewAttendanceHistory)],
-        [[UIBarButtonItem alloc] initWithTitle:@"Export"
-                                         style:UIBarButtonItemStylePlain
-                                        target:self
-                                        action:@selector(exportToCSV)],
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                      target:self
+                                                      action:@selector(showActionSheet:)]
       ];
 
       _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
@@ -205,6 +200,15 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self presentViewController:mailController animated:YES completion:nil];
 }
 
+- (void)showActionSheet:(id)sender {
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:@"Manage Meetings",@"Export",nil];
+  [actionSheet showFromBarButtonItem:sender animated:YES];
+}
+
 #pragma mark TAStudentEditDelegate
 
 - (void)viewController:(TAStudentEditViewController *)viewController savedStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
@@ -259,6 +263,22 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  // Unfortunately there is no way for me to have a dictionary provide the titles
+  // for the actionSheet (or I would do a mapping), and I can't store selectors
+  // in arrays, so I am doing it the old fashion way
+  switch (buttonIndex) {
+    case 0: [self viewAttendanceHistory];
+    break;
+    case 1: [self exportToCSV];
+    break;
+    default:
+    break;
+  }
 }
 
 @end
