@@ -91,6 +91,8 @@
 		400FDFFA171385BD0072CFDD /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 400FDFF9171385BD0072CFDD /* Default-Landscape~ipad.png */; };
 		400FDFFC171385DE0072CFDD /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 400FDFFB171385DE0072CFDD /* Default-Landscape@2x~ipad.png */; };
 		4044C2F516D2B36C00130AD6 /* TAWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */; };
+		40800C8E1721021300D935C1 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 40800C8D1721021300D935C1 /* green.png */; };
+		40800C8F1721021300D935C1 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 40800C8D1721021300D935C1 /* green.png */; };
 		408E549F16EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */; };
 		408E54A016EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */; };
 		9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
@@ -219,6 +221,7 @@
 		400FDFFB171385DE0072CFDD /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		4044C2F316D2B36C00130AD6 /* TAWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWelcomeViewController.h; sourceTree = "<group>"; };
 		4044C2F416D2B36C00130AD6 /* TAWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAWelcomeViewController.m; sourceTree = "<group>"; };
+		40800C8D1721021300D935C1 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		408E549D16EEAC0F00DB4F96 /* TAStudentDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentDisplayCell.h; sourceTree = "<group>"; };
 		408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentDisplayCell.m; sourceTree = "<group>"; };
 		9FB48F32170A420100E73D14 /* TAAssignSeatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAssignSeatsViewController.h; sourceTree = "<group>"; };
@@ -320,6 +323,7 @@
 		1322E27C16BA24E500C890B4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				40800C8D1721021300D935C1 /* green.png */,
 				400FDFFB171385DE0072CFDD /* Default-Landscape@2x~ipad.png */,
 				400FDFF9171385BD0072CFDD /* Default-Landscape~ipad.png */,
 				400FDFF71713856C0072CFDD /* Default-Portrait@2x~ipad.png */,
@@ -683,6 +687,7 @@
 				400FDFF81713856C0072CFDD /* Default-Portrait@2x~ipad.png in Resources */,
 				400FDFFA171385BD0072CFDD /* Default-Landscape~ipad.png in Resources */,
 				400FDFFC171385DE0072CFDD /* Default-Landscape@2x~ipad.png in Resources */,
+				40800C8E1721021300D935C1 /* green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +700,7 @@
 				9F4070C716DC06F800CDC59F /* logo.png in Resources */,
 				13FFBD6316E975C4001BB929 /* roster.csv in Resources */,
 				13008FF4170A973B0045C05A /* seat.jpg in Resources */,
+				40800C8F1721021300D935C1 /* green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

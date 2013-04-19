@@ -23,9 +23,10 @@
 
 @interface TAAttendanceHistoryViewController : UITableViewController <TAAttendanceRecordEditDelegate>
 
-- (id)initWithSection:(Section *) section;
+- (id)initWithSection:(Section *)section attendanceRecord:(AttendanceRecord *)record;
 
 @property (copy, nonatomic) NSArray *records;
+@property (retain, nonatomic) AttendanceRecord *currentRecord;
 @property (retain, nonatomic) Section *section;
 @property (weak, nonatomic) id<TAAttendanceHistoryDelegate> delegate;
 
