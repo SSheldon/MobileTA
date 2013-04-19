@@ -14,7 +14,7 @@
     </entity>
     <entity name="Room" representedClassName="Room" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="seats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Seat" inverseName="room" inverseEntity="Seat" syncable="YES"/>
+        <relationship name="seats" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Seat" inverseName="room" inverseEntity="Seat" syncable="YES"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Section" inverseName="room" inverseEntity="Section" syncable="YES"/>
     </entity>
     <entity name="Seat" representedClassName="Seat" syncable="YES">
@@ -28,7 +28,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="attendanceRecords" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AttendanceRecord" inverseName="section" inverseEntity="AttendanceRecord" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Group" inverseName="section" inverseEntity="Group" syncable="YES"/>
-        <relationship name="room" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="sections" inverseEntity="Room" syncable="YES"/>
+        <relationship name="room" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Room" inverseName="sections" inverseEntity="Room" syncable="YES"/>
         <relationship name="students" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Student" inverseName="section" inverseEntity="Student" syncable="YES"/>
     </entity>
     <entity name="Student" representedClassName="Student" syncable="YES">
