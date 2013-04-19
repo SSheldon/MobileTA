@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
                                                       action:@selector(addNewStudent)],
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                       target:self
-                                                      action:@selector(showActionSheet:)]
+                                                      action:@selector(showActionSheet:event:)]
       ];
 
       _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
@@ -199,13 +199,17 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self presentViewController:mailController animated:YES completion:nil];
 }
 
-- (void)showActionSheet:(id)sender {
+- (void)showActionSheet:(id)sender event:(UIEvent *)event {
   UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel"
                                              destructiveButtonTitle:nil
                                                   otherButtonTitles:@"Manage Meetings",@"Export",nil];
-  [actionSheet showFromBarButtonItem:sender animated:YES];
+  UIView *buttonView = [[[event allTouches] anyObject] view];
+  CGRect bf = [buttonView frame];
+  CGFloat statusBar = [UIApplication sharedApplication].statusBarFrame.size.height;
+  CGRect adjusted = CGRectMake(bf.origin.x, bf.origin.y + bf.size.height + statusBar, bf.size.width, 1);
+  [actionSheet showFromRect:adjusted inView:[[[self view] superview] superview] animated:YES];
 }
 
 #pragma mark TAStudentEditDelegate
