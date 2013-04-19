@@ -30,7 +30,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
   self = [super initWithStyle:style];
   if (self) {
-    self.title = NSLocalizedString(@"Attendance History", nil);
+    self.title = NSLocalizedString(@"Meetings", nil);
     self.navigationItem.leftBarButtonItem =
       [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                     target:self
