@@ -7,6 +7,7 @@
 //
 
 #import "Student.h"
+#import "Group.h"
 #import "Seat.h"
 #import "Section.h"
 #import "StudentAttendance.h"
@@ -31,8 +32,11 @@
 @dynamic firstName;
 @dynamic lastName;
 @dynamic nickname;
+@dynamic email;
+@dynamic notes;
 @dynamic section;
 @dynamic attendances;
+@dynamic group;
 @dynamic seat;
 
 + (Student *)studentWithFirstName:(NSString *)firstName lastName:(NSString *)lastName context:(NSManagedObjectContext *)context {

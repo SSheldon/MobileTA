@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class AttendanceRecord, Room, Student;
+@class AttendanceRecord, Group, Room, Student;
 
 @interface Section : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString *course;
 @property (nonatomic, retain) NSSet *attendanceRecords;
+@property (nonatomic, retain) NSSet *groups;
 @property (nonatomic, retain) Room *room;
 @property (nonatomic, retain) NSSet *students;
 
@@ -73,6 +74,11 @@
 - (void)removeAttendanceRecordsObject:(AttendanceRecord *)value;
 - (void)addAttendanceRecords:(NSSet *)values;
 - (void)removeAttendanceRecords:(NSSet *)values;
+
+- (void)addGroupsObject:(Group *)value;
+- (void)removeGroupsObject:(Group *)value;
+- (void)addGroups:(NSSet *)values;
+- (void)removeGroups:(NSSet *)values;
 
 - (void)addStudentsObject:(Student *)value;
 - (void)removeStudentsObject:(Student *)value;
