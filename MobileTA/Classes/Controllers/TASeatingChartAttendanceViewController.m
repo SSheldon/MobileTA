@@ -29,7 +29,7 @@
     UIView *v = [self view];
     [v setBackgroundColor:[UIColor clearColor]];
     
-    _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 200, 60)];
+    _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 180, 60)];
     // Set up segments
     NSArray *labels = [[NSArray alloc]initWithObjects:@"P", @"A", @"T", nil];
     for (int i=0; i<labels.count; i++) {
@@ -53,7 +53,7 @@
                 forControlEvents:UIControlEventValueChanged];
     
     // Add cute little view that Scott made to keep track of participation
-    _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 90, 200, 60)];
+    _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 90, 180, 60)];
     _segmentedButtons.segmentedControlStyle = UISegmentedControlStyleBar;
 
     [_segmentedButtons insertSegmentWithTitle:@"-" atIndex:0 animated:NO];
@@ -130,8 +130,7 @@
 }
 
 - (void)loadView {
-  [self setView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)]];
-  [[self view] setBackgroundColor:[UIColor whiteColor]];
+  [self setView:[[UIView alloc]init]];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
