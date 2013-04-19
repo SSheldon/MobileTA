@@ -45,11 +45,12 @@
   return self;
 }
 
-- (id)initWithSection:(Section *)section {
+- (id)initWithSection:(Section *)section attendanceRecord:(AttendanceRecord *)record {
   self = [super init];
   if (self) {
     self.section = section;
     self.records = [section.attendanceRecords allObjects];
+    self.currentRecord = record;
   }
   return self;
 }
@@ -96,6 +97,18 @@
   return YES;
 }
 
+- (void)updateTableView:(UITableView *)tableView {
+  for (NSIndexPath *indexPath in [tableView indexPathsForVisibleRows]) {
+    AttendanceRecord *record = [self attendanceRecordAtIndexPath:indexPath];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (record==self.currentRecord) {
+      [cell.imageView setHidden:FALSE];
+    } else {
+      [cell.imageView setHidden:TRUE];
+    }
+  }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -119,6 +132,14 @@
   
   AttendanceRecord *attendanceRecord = [self attendanceRecordAtIndexPath:indexPath];
   cell.textLabel.text = [NSString stringWithFormat:@"%@", attendanceRecord];
+  cell.textLabel.backgroundColor = [UIColor clearColor];
+  cell.imageView.image = [UIImage imageNamed:@"green.png"];
+  
+  if (attendanceRecord==self.currentRecord) {
+    [cell.imageView setHidden:FALSE];
+  } else {
+    [cell.imageView setHidden:TRUE];
+  }
   
   return cell;
 }
@@ -155,8 +176,10 @@
   } else {
     if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
       [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:[self attendanceRecordAtIndexPath:indexPath]];
+      [self updateTableView:tableView];
     }
   }
+  [tableView deselectRowAtIndexPath:indexPath animated:nil];
 }
 
 #pragma mark TAAttendanceRecordEditDelegate

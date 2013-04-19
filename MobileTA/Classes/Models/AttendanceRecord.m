@@ -17,6 +17,7 @@
 
 @dynamic date;
 @dynamic name;
+@dynamic notes;
 @dynamic section;
 @dynamic studentAttendances;
 

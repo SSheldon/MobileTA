@@ -158,7 +158,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 }
 
 - (void)viewAttendanceHistory {
-  TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section];
+  TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section attendanceRecord:self.attendanceRecord];
   listViewController.delegate = self;
 
   TANavigationController *navController = [[TANavigationController alloc] initWithRootViewController:listViewController];
@@ -224,8 +224,13 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 #pragma mark TAAttendanceHistoryDelegate
 
 - (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller didSelectAttendanceRecord:(AttendanceRecord *)record {
-  self.attendanceRecord = record;
-  [self dismissViewControllerAnimated:YES completion:nil];
+  if (self.attendanceRecord == record) {
+    self.attendanceRecord = nil;
+  }
+  else {
+    self.attendanceRecord = record;
+  }
+  controller.currentRecord = self.attendanceRecord;
 }
 
 - (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller willDeleteAttendanceRecord:(AttendanceRecord *)record {

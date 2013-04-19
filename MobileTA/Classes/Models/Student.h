@@ -9,15 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Seat, Section, StudentAttendance;
+@class Group, Seat, Section, StudentAttendance;
 
 @interface Student : NSManagedObject
 
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString *nickname;
+@property (nonatomic, retain) NSString *email;
+@property (nonatomic, retain) NSString *notes;
+
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) NSSet *attendances;
+@property (nonatomic, retain) Group *group;
 @property (nonatomic, retain) Seat *seat;
 
 /*!

@@ -8,6 +8,7 @@
 
 #import "Section.h"
 #import "AttendanceRecord.h"
+#import "Group.h"
 #import "Room.h"
 #import "Student.h"
 #import "StudentAttendance.h"
@@ -18,6 +19,7 @@
 @dynamic name;
 @dynamic course;
 @dynamic attendanceRecords;
+@dynamic groups;
 @dynamic room;
 @dynamic students;
 
