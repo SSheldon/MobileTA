@@ -115,7 +115,7 @@
     currentValue += 1;
     [self.delegate changeParticipationBy:1 forStudent:self.student];
   }
-  else {
+  else if (action == MINUS_ONE) {
     currentValue -= 1;
     [self.delegate changeParticipationBy:-1 forStudent:self.student];
   }
