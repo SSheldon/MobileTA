@@ -38,8 +38,7 @@
   _tableSectionsTitle = [[NSMutableArray alloc] init];
   _tableSections = [[NSMutableArray alloc] init];
   for (Section *section in _sections) {
-    if ([_tableSectionsTitle containsObject
-         :section.course]) {
+    if ([_tableSectionsTitle containsObject:section.course]) {
       NSInteger index = [_tableSectionsTitle indexOfObject:section.course];
       [_tableSections[index] addObject:section];
     } else {
