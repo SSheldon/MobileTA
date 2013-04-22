@@ -136,15 +136,20 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  Group *group = [_groups objectAtIndex:indexPath.row];
+  MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+  [mailController setToRecipients:[group emails]];
+  mailController.mailComposeDelegate = self;
+  mailController.modalPresentationStyle = UIModalPresentationFormSheet;
+  mailController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  [self presentViewController:mailController animated:YES completion:nil];
+}
+
+#pragma mark MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
