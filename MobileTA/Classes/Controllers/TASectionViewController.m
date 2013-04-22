@@ -157,6 +157,17 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   _studentsController.tableView.hidden = (control.selectedSegmentIndex != TASectionSelectedViewTable);
 }
 
+- (void)viewGroups {
+  TAGroupsViewController *groupsViewController = [[TAGroupsViewController alloc] initWithSection:self.section];
+  groupsViewController.delegate = self;
+  TANavigationController *navController = [[TANavigationController alloc] initWithRootViewController:groupsViewController];
+  navController.disablesAutomaticKeyboardDismissal = NO;
+  navController.modalPresentationStyle = UIModalPresentationFormSheet;
+  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  
+  [self presentViewController:navController animated:YES completion:nil];
+}
+
 - (void)viewAttendanceHistory {
   TAAttendanceHistoryViewController *listViewController = [[TAAttendanceHistoryViewController alloc] initWithSection:self.section attendanceRecord:self.attendanceRecord];
   listViewController.delegate = self;
@@ -204,7 +215,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel"
                                              destructiveButtonTitle:nil
-                                                  otherButtonTitles:@"Manage Meetings",@"Export",nil];
+                                                  otherButtonTitles:@"Manage Groups",@"Manage Meetings",@"Export",nil];
   UIView *buttonView = [[[event allTouches] anyObject] view];
   CGRect bf = [buttonView frame];
   CGFloat statusBar = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -247,6 +258,12 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark TAGroupsViewControllerDelegate
+
+- (void)groupsViewControllerDidCancel:(TAGroupsViewController *)groupsViewController {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark TAStudentsAttendanceDelegate
 
 - (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
@@ -280,9 +297,11 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   // for the actionSheet (or I would do a mapping), and I can't store selectors
   // in arrays, so I am doing it the old fashion way
   switch (buttonIndex) {
-    case 0: [self viewAttendanceHistory];
+    case 0: [self viewGroups];
     break;
-    case 1: [self exportToCSV];
+    case 1: [self viewAttendanceHistory];
+    break;
+    case 2: [self exportToCSV];
     break;
     default:
     break;
