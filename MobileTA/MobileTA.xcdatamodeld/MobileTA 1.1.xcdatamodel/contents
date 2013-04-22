@@ -8,6 +8,7 @@
         <relationship name="studentAttendances" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StudentAttendance" inverseName="attendanceRecord" inverseEntity="StudentAttendance" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="section" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="groups" inverseEntity="Section" syncable="YES"/>
         <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="group" inverseEntity="Student" syncable="YES"/>
@@ -50,7 +51,7 @@
     </entity>
     <elements>
         <element name="AttendanceRecord" positionX="-191" positionY="-126" width="128" height="120"/>
-        <element name="Group" positionX="153" positionY="36" width="128" height="88"/>
+        <element name="Group" positionX="153" positionY="36" width="128" height="105"/>
         <element name="Room" positionX="295" positionY="-135" width="128" height="90"/>
         <element name="Seat" positionX="315" positionY="95" width="128" height="103"/>
         <element name="Section" positionX="45" positionY="-144" width="128" height="133"/>
