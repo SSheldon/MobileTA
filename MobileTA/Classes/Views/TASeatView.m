@@ -9,6 +9,7 @@
 #import "TASeatView.h"
 
 #import "Seat.h"
+#import "Group.h"
 #import "Student.h"
 #import "StudentAttendance.h"
 
@@ -19,6 +20,9 @@
 #define kDanceAnimationTranslateX 1.0
 #define kDanceAnimationTranslateY 2.0
 
+#define kStrokeSize 5
+#define kStrokeAdjustment 2
+
 #define kCornerRadius 20
 #define kBottomBarSize 40
 
@@ -28,11 +32,13 @@
   UILabel *_nameLabel;
   UILabel *_participationLabel;
   UIColor *_attendanceBarColor;
+  UIColor *_groupColor;
 }
 
 - (void)setStudentName:(NSString *)name;
 - (void)setAttendanceStatus:(StudentAttendanceStatus)status particpation:(int16_t)participation;
 
+@property(nonatomic,strong)UIColor *groupColor;
 @property(nonatomic,getter = isInvalidLocation)BOOL invalidLocation;
 @property(nonatomic,strong)UIImage *pattern;
 @property(nonatomic)CGFloat cornerRadius;
@@ -100,12 +106,14 @@
 - (void)setStudent:(Student *)student {
   [_backgroundView setStudentName:[student shortenedDisplayName]];
   [_backgroundView setAttendanceStatus:-1 particpation:0];
+  [_backgroundView setGroupColor:[[student group] color]];
 }
 
 - (void)setStudent:(Student *)student attendance:(StudentAttendance *)studentAttendance {
   [_backgroundView setStudentName:[student shortenedDisplayName]];
   [_backgroundView setAttendanceStatus:(!student ? -1 : [studentAttendance status])
                           particpation:[studentAttendance participation]];
+  [_backgroundView setGroupColor:[[student group] color]];
 }
 
 - (void)moveToGridLocation:(CGPoint)unitPoint {
@@ -243,6 +251,11 @@
   [[UIColor colorWithPatternImage:_pattern] set];
   UIBezierPath *seat = [self seatPath];
   [seat fill];
+  if (_groupColor) {
+    [_groupColor set];
+    [seat setLineWidth:kStrokeSize];
+    [seat stroke];
+  }
   // If the location is invalid, we should overlay a little red. Otherwise, we
   // should draw the bottom bar
   if (_invalidLocation) {
@@ -257,7 +270,7 @@
 }
 
 - (UIBezierPath *)seatPath {
-  return [UIBezierPath bezierPathWithRoundedRect:[self bounds] cornerRadius:_cornerRadius];
+  return [UIBezierPath bezierPathWithRoundedRect:[self seatRect] cornerRadius:_cornerRadius];
 }
 
 - (UIBezierPath *)bottomBarPath {
@@ -268,9 +281,18 @@
                                      cornerRadii:roundedRectSize];
 }
 
+- (CGRect)seatRect {
+  return CGRectInset([self bounds], kStrokeSize, kStrokeSize);
+}
+
 - (CGRect)bottomBarRect {
-  CGSize frameSize = self.bounds.size;
-  return CGRectMake(0, frameSize.height - kBottomBarSize, frameSize.width, kBottomBarSize);
+  CGRect r = [self seatRect];
+  // If you don't stroke the seat, the bottom bar doesn't need the stroke
+  // adjustment
+  if (_groupColor) {
+    r = CGRectInset(r, kStrokeAdjustment, kStrokeAdjustment-1);
+  }
+  return CGRectMake(r.origin.x, r.origin.y + (r.size.height - kBottomBarSize), r.size.width, kBottomBarSize);
 }
 
 @end
