@@ -32,8 +32,7 @@
   return self;
 }
 
-- (void)setSections:(NSArray *)sections {
-  _sections = [sections copy];
+- (void)updateTableHeaderWithSections {
   _sections = [_sections sortedArrayUsingSelector:@selector(compare:)];
   _tableSectionsTitle = [[NSMutableArray alloc] init];
   _tableSections = [[NSMutableArray alloc] init];
@@ -46,6 +45,11 @@
       [_tableSections addObject:[NSMutableArray arrayWithObject:section]];
     }
   }
+}
+
+- (void)setSections:(NSArray *)sections {
+  _sections = [sections copy];
+  [self updateTableHeaderWithSections];
   if ([self isViewLoaded]) {
     [self.tableView reloadData];
   }
@@ -148,6 +152,7 @@
   if(!oldData) {
     self.sections = [self.sections arrayByAddingObject:section];
   }
+  [self updateTableHeaderWithSections];
   [[self tableView] reloadData];
 }
 
