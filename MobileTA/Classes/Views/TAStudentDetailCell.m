@@ -34,18 +34,36 @@
     // I dunno who Mark is, but we are really hating on him here.
     [tardy setTitle:@"Mark Tardy" forState:UIControlStateNormal];
     [tardy addTarget:self action:@selector(markTardy) forControlEvents:UIControlEventTouchUpInside];
+    email = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [email setTitle:@"Send Email" forState:UIControlStateNormal];
+    [email addTarget:self action:@selector(sendEmail) forControlEvents:UIControlEventTouchUpInside];
+    [email setEnabled:[self.delegate cellCanSendEmail:self]];
     [self addSubview:plusParticipation];
     [self addSubview:minusParticipation];
     [self addSubview:absent];
     [self addSubview:tardy];
+    [self addSubview:email];
   }
   return self;
+}
+
+- (void)setDelegate:(id<TAStudentDetailDelegate>)delegate {
+  _delegate = delegate;
+  [email setEnabled:[self.delegate cellCanSendEmail:self]];
+  UIColor *textColor;
+  if ([email isEnabled]) {
+    textColor = [UIColor colorWithRed:.196 green:0.3098 blue:0.52 alpha:1.0];
+  }
+  else {
+    textColor = [UIColor grayColor];
+  }
+  [email setTitleColor:textColor forState:UIControlStateNormal];
 }
 
 - (void)layoutSubviews {
   CGFloat width = self.bounds.size.width;
   CGFloat height = self.bounds.size.height;
-  NSArray *views = @[absent,tardy,plusParticipation,minusParticipation];
+  NSArray *views = @[absent,tardy,plusParticipation,minusParticipation,email];
   // There are 2 spaces on either side of the cell, and n-1 spaces between cells
   NSInteger numHorizontalSpaces = 2 + ([views count]-1);
   // The width of the buttons is the width of the page, minus all of the area
@@ -80,6 +98,10 @@
 
 - (void)markTardy {
   [self.delegate studentDetailCellDidMarkTardy:self];
+}
+
+- (void)sendEmail {
+  [self.delegate studentDetailCellDidSendEmail:self];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
