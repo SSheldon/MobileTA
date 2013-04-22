@@ -28,16 +28,26 @@
   }
   
   QSection *mainSection = [[QSection alloc] initWithTitle:@""];
-  QEntryElement *firstName = [[QEntryElement alloc] initWithTitle:@"First Name" Value:[student firstName] Placeholder:@""];
+  QEntryElement *firstName = [[QEntryElement alloc] initWithTitle:@"First Name" Value:[student firstName] Placeholder:@"John"];
   [firstName setKey:@"firstName"];
-  QEntryElement *nickname = [[QEntryElement alloc] initWithTitle:@"Nickname" Value:student.nickname Placeholder:@""];
+  QEntryElement *nickname = [[QEntryElement alloc] initWithTitle:@"Nickname" Value:student.nickname Placeholder:@"Jack"];
   nickname.key = @"nickname";
-  QEntryElement *lastName = [[QEntryElement alloc] initWithTitle:@"Last Name" Value:[student lastName] Placeholder:@""];
+  QEntryElement *lastName = [[QEntryElement alloc] initWithTitle:@"Last Name" Value:[student lastName] Placeholder:@"Doe"];
   [lastName setKey:@"lastName"];
-  [root addSection:mainSection];
+  QEntryElement *email = [[QEntryElement alloc] initWithTitle:@"Email" Value:student.email Placeholder:@"address@example.com"];
+  email.key = @"email";
   [mainSection addElement:firstName];
   [mainSection addElement:nickname];
   [mainSection addElement:lastName];
+  [mainSection addElement:email];
+  [root addSection:mainSection];
+
+  QSection *notesSection = [[QSection alloc] initWithTitle:nil];
+  QMultilineElement *notes = [[QMultilineElement alloc] initWithTitle:@"Notes" value:student.notes];
+  notes.key = @"notes";
+  [notesSection addElement:notes];
+  [root addSection:notesSection];
+
   QSection *controlSection = [[QSection alloc] initWithTitle:@""];
   QButtonElement *saveButton = [[QButtonElement alloc] initWithTitle:@"Save"];
   [saveButton setControllerAction:@"save:"];
@@ -59,6 +69,7 @@
   // Make a copy of the old student data and put it in a dictionary
   NSArray *keys = [[[[self student] entity] attributesByName] allKeys];
   NSDictionary *oldStudentData = [[self student] dictionaryWithValuesForKeys:keys];
+
   // Set the student data to the new values
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
   [self.root fetchValueIntoObject:dict];
@@ -70,6 +81,8 @@
     [[self student] setLastName:[dict objectForKey:@"lastName"]];
   }
   self.student.nickname = [dict objectForKey:@"nickname"];
+  self.student.email = [dict objectForKey:@"email"];
+  self.student.notes = [dict objectForKey:@"notes"];
   
   [[self navigationController] popViewControllerAnimated:YES];
 
