@@ -21,14 +21,13 @@
   QRootElement *root = [[QRootElement alloc] init];
   [root setGrouped:YES];
   if(attendancRecord) {
-    root.title = @"Edit Attendance Record";
+    root.title = @"Edit Meeting";
   }
   else {
-    root.title = @"Add Attendance Record";
+    root.title = @"Add Meeting";
   }
   
-  QSection *mainSection = [[QSection alloc] initWithTitle:@""];
-  QEntryElement *name = [[QEntryElement alloc] initWithTitle:@"Name" Value:[attendancRecord name] Placeholder:@""];
+  QEntryElement *name = [[QEntryElement alloc] initWithTitle:@"Name" Value:[attendancRecord name] Placeholder:@"Exam Review"];
   [name setKey:@"name"];
   // If we have a previous date, use it. Otherwise, use the current date/time as a default
   NSDate *dateValue = [attendancRecord date];
@@ -37,14 +36,22 @@
   }
   QDateTimeInlineElement *date = [[QDateTimeInlineElement alloc] initWithTitle:@"Date" date:dateValue];
   [date setKey:@"date"];
-  [root addSection:mainSection];
+  QSection *mainSection = [[QSection alloc] initWithTitle:nil];
   [mainSection addElement:name];
   [mainSection addElement:date];
-  QSection *controlSection = [[QSection alloc] initWithTitle:@""];
+  [root addSection:mainSection];
+
+  QMultilineElement *notes = [[QMultilineElement alloc] initWithTitle:@"Notes" value:attendancRecord.notes];
+  notes.key = @"notes";
+  QSection *notesSection = [[QSection alloc] initWithTitle:nil];
+  [notesSection addElement:notes];
+  [root addSection:notesSection];
+
   QButtonElement *saveButton = [[QButtonElement alloc] initWithTitle:@"Save"];
   [saveButton setControllerAction:@"save:"];
-  [root addSection:controlSection];
+  QSection *controlSection = [[QSection alloc] initWithTitle:nil];
   [controlSection addElement:saveButton];
+  [root addSection:controlSection];
   return root;
 }
 - (id)initWithAttendanceRecord:(AttendanceRecord *)attendanceRecord {
@@ -59,6 +66,7 @@
   // Make a copy of the old student data and put it in a dictionary
   NSArray *keys = [[[[self attendanceRecord] entity] attributesByName] allKeys];
   NSDictionary *oldAttendanceRecordData = [[self attendanceRecord] dictionaryWithValuesForKeys:keys];
+
   // Set the student data to the new values
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
   [self.root fetchValueIntoObject:dict];
@@ -69,6 +77,7 @@
     [[self attendanceRecord] setName:[dict objectForKey:@"name"]];
     [[self attendanceRecord] setDate:[dict objectForKey:@"date"]];
   }
+  self.attendanceRecord.notes = [dict objectForKey:@"notes"];
   
   [self.navigationController popViewControllerAnimated:YES];
   
