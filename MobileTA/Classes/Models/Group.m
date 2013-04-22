@@ -13,7 +13,7 @@
 @implementation Group
 
 @dynamic name;
-@dynamic color;
+@dynamic colorRGBA;
 @dynamic section;
 @dynamic students;
 
