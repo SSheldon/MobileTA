@@ -41,4 +41,8 @@
   self.colorRGB = (red << 16) | (green << 8) | blue;
 }
 
+- (NSArray *)emails {
+  return [[self.students valueForKey:@"email"] allObjects];
+}
+
 @end

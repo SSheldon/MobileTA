@@ -24,6 +24,8 @@
 - (void)setColor:(UIColor *)color;
 - (void)setColorRed:(uint8_t)red green:(uint8_t)green blue:(uint8_t)blue;
 
+- (NSArray *)emails;
+
 @end
 
 @interface Group (CoreDataGeneratedAccessors)
