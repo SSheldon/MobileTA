@@ -14,6 +14,7 @@
 @interface Group : NSManagedObject
 
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic) int32_t colorRGB;
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) NSSet *students;
 
