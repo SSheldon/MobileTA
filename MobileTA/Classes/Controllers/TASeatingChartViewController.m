@@ -155,7 +155,8 @@
   
   _attendancePopoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
   [_attendancePopoverController setPopoverContentSize:CGSizeMake(200, 160)];
-  [_attendancePopoverController presentPopoverFromRect:[attachedSeat frame] inView:[self view] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+  CGRect adjustedFrame = [[self view] convertRect:[attachedSeat frame] fromView:_seatingChart];
+  [_attendancePopoverController presentPopoverFromRect:adjustedFrame inView:[self view] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 #pragma mark UIPopoverControllerDelegate
