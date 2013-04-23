@@ -113,6 +113,7 @@
 		E654DB42170A5C3200584411 /* seat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E654DB41170A5C3200584411 /* seat.jpg */; };
 		E6804DF816CDCD3F000E2007 /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
 		E6BCE01016EE78E100C7B904 /* TAAttendanceRecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */; };
+		E6C500211725EC9B0020BDB9 /* TAGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C500201725EC9B0020BDB9 /* TAGroupsViewController.m */; };
 		E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
 		E6E9EFD316C059CD001D122E /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD216C059CD001D122E /* Seat.m */; };
 		E6E9EFD916C059EB001D122E /* StudentAttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFD816C059EB001D122E /* StudentAttendance.m */; };
@@ -251,6 +252,8 @@
 		E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentEditViewController.m; sourceTree = "<group>"; };
 		E6BCE00D16EE78E100C7B904 /* TAAttendanceRecordEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = TAAttendanceRecordEditViewController.h; sourceTree = "<group>"; };
 		E6BCE00E16EE78E100C7B904 /* TAAttendanceRecordEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAttendanceRecordEditViewController.m; sourceTree = "<group>"; };
+		E6C5001F1725EC9B0020BDB9 /* TAGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGroupsViewController.h; sourceTree = "<group>"; };
+		E6C500201725EC9B0020BDB9 /* TAGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAGroupsViewController.m; sourceTree = "<group>"; };
 		E6E9EFCB16C059A7001D122E /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
 		E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceRecord.m; sourceTree = "<group>"; };
 		E6E9EFD116C059CD001D122E /* Seat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seat.h; sourceTree = "<group>"; };
@@ -550,6 +553,8 @@
 				13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */,
 				E6F1A53D171375A200DD781D /* TASeatingChartAttendanceViewController.h */,
 				E6F1A53E171375A200DD781D /* TASeatingChartAttendanceViewController.m */,
+				E6C5001F1725EC9B0020BDB9 /* TAGroupsViewController.h */,
+				E6C500201725EC9B0020BDB9 /* TAGroupsViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -758,6 +763,7 @@
 				E6F1A53F171375A200DD781D /* TASeatingChartAttendanceViewController.m in Sources */,
 				9FE0B9D6171CA8AF003CE954 /* TASegmentedButtons.m in Sources */,
 				139239B51720D77400AE14EE /* Group.m in Sources */,
+				E6C500211725EC9B0020BDB9 /* TAGroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

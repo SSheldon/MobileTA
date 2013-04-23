@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
+#import <MessageUI/MessageUI.h>
+
 #import "TAStudentsViewController.h"
 #import "TAStudentDetailCell.h"
 #import "StudentAttendance.h"
@@ -25,7 +27,7 @@
 
 @end
 
-@interface TAStudentsAttendanceViewController : TAStudentsViewController <TAStudentDetailDelegate>
+@interface TAStudentsAttendanceViewController : TAStudentsViewController <TAStudentDetailDelegate,MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) id<TAStudentsAttendanceDelegate> delegate;
 

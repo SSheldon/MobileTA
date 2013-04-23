@@ -10,11 +10,7 @@
 
 @implementation TASectionEditViewController
 
-@synthesize section = _section;
-@synthesize delegate = _delegate;
-
-+ (QRootElement *)formForSection:(Section*)section
-{
++ (QRootElement *)formForSection:(Section*)section {
   QRootElement *root = [[QRootElement alloc] init];
   [root setGrouped:YES];
  
@@ -25,19 +21,21 @@
     root.title = @"Add Section";
   }
   
-  QSection *mainSection = [[QSection alloc] initWithTitle:@""];
-  QEntryElement *courseName = [[QEntryElement alloc] initWithTitle:@"Course Name" Value:[section course] Placeholder:@""];
-  QEntryElement *sectionName = [[QEntryElement alloc] initWithTitle:@"Section Name" Value:[section name] Placeholder:@""];
+  QEntryElement *courseName = [[QEntryElement alloc] initWithTitle:@"Course Name" Value:[section course] Placeholder:@"Math 101"];
   [courseName setKey:@"courseName"];
+  QEntryElement *sectionName = [[QEntryElement alloc] initWithTitle:@"Section Name" Value:[section name] Placeholder:@"Discussion 1"];
   [sectionName setKey:@"sectionName"];
-  [root addSection:mainSection];
+
+  QSection *mainSection = [[QSection alloc] initWithTitle:nil];
   [mainSection addElement:courseName];
   [mainSection addElement:sectionName];
-  QSection *controlSection = [[QSection alloc] initWithTitle:@""];
+  [root addSection:mainSection];
+
   QButtonElement *saveButton = [[QButtonElement alloc] initWithTitle:@"Save"];
   [saveButton setControllerAction:@"save:"];
-  [root addSection:controlSection];
+  QSection *controlSection = [[QSection alloc] initWithTitle:nil];
   [controlSection addElement:saveButton];
+  [root addSection:controlSection];
   return root;
 }
 

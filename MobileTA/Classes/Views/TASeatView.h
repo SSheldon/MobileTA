@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @class Seat;
+@class Group;
 @class Student;
 @class StudentAttendance;
 

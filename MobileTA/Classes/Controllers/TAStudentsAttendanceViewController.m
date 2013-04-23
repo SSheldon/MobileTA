@@ -93,4 +93,24 @@
   [displayCell setParticipation:[self changeParticipationBy:-1 forStudent:student]];
 }
 
+- (BOOL)cellCanSendEmail:(TAStudentDetailCell *)cell {
+  return [[self studentAtIndexPath:detailedStudentIndex] email] != nil;
+}
+
+- (void)studentDetailCellDidSendEmail:(TAStudentDetailCell *)cell {
+  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+  [mailController setToRecipients:@[student.email]];
+  mailController.mailComposeDelegate = self;
+  mailController.modalPresentationStyle = UIModalPresentationFormSheet;
+  mailController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  [self presentViewController:mailController animated:YES completion:nil];
+}
+
+#pragma mark MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

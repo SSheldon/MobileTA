@@ -15,6 +15,8 @@
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell;
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell;
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell;
+- (BOOL)cellCanSendEmail:(TAStudentDetailCell *)cell;
+- (void)studentDetailCellDidSendEmail:(TAStudentDetailCell *)cell;
 @end
 
 @interface TAStudentDetailCell : UITableViewCell {
@@ -22,6 +24,7 @@
   UIButton *minusParticipation;
   UIButton *absent;
   UIButton *tardy;
+  UIButton *email;
 }
 
 @property (nonatomic,weak) id<TAStudentDetailDelegate> delegate;
