@@ -119,4 +119,42 @@
   }
 }
 
+- (NSInteger *)totalParticipationInContext:(NSManagedObjectContext*)context {
+  
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:[NSEntityDescription entityForName:@"StudentAttendance" inManagedObjectContext:context]];
+  [request setPredicate:[NSPredicate predicateWithFormat:@"ANY student == %@", self]];
+  
+  [request setResultType:NSDictionaryResultType];
+  
+  // Create an expression for the key path.
+  NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"participation"];
+  
+  // Create an expression to represent the sum value at the key path 'creationDate'
+  NSExpression *sumExpression = [NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:keyPathExpression]];
+  
+  NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+  
+  // The name is the key that will be used in the dictionary for the return value.
+  [expressionDescription setName:@"sumParticipation"];
+  [expressionDescription setExpression:sumExpression];
+  [expressionDescription setExpressionResultType:NSInteger32AttributeType];
+  
+  // Set the request's properties to fetch just the property represented by the expressions.
+  [request setPropertiesToFetch:[NSArray arrayWithObject:expressionDescription]];
+  
+  // Execute the fetch.
+  NSError *error = nil;
+  NSArray *objects = [context executeFetchRequest:request error:&error];
+  if (objects == nil) {
+    // Handle the error.
+  }
+  else {
+    if ([objects count] > 0) {
+    }
+  }
+  return [[[objects objectAtIndex:0] valueForKey:@"sumParticipation"] integerValue];
+}
+
+
 @end

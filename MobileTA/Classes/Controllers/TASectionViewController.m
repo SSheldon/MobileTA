@@ -37,7 +37,10 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
                                                       action:@selector(addNewStudent)],
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                       target:self
-                                                      action:@selector(showActionSheet:event:)]
+                                                      action:@selector(showActionSheet:event:)],
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+                                                      target:self
+                                                      action:@selector(selectRandomStudent)]
       ];
 
       _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
@@ -69,6 +72,29 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
   [self.view addSubview:_studentsController.tableView];
   _studentsController.tableView.hidden = (_segmentedControl.selectedSegmentIndex != TASectionSelectedViewTable);
+}
+
+- (void)selectRandomStudent {
+  NSMutableArray *array = [NSMutableArray arrayWithArray:[self.section.students allObjects]];
+  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+  for (int i=0; i<array.count; i++) {
+    Student *currStudent = [array objectAtIndex:i];
+    NSInteger *totalParticipation = [currStudent totalParticipationInContext:[self managedObjectContext]];
+    NSString *key = [NSString stringWithFormat:@"%@ %@", currStudent.firstName, currStudent.lastName];
+    [dict setValue:[NSNumber numberWithInteger:totalParticipation] forKey:key];
+  }
+  
+  // Sorted ASCENDING
+  NSArray *sortedKeys =  [dict keysSortedByValueUsingSelector:@selector(compare:)];
+  int bottomThird = self.section.students.count / 3;
+  NSUInteger randomIndex = arc4random() % bottomThird;
+  
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"The victim is..."
+                                                  message:[sortedKeys objectAtIndex:randomIndex]
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  [alert show];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
