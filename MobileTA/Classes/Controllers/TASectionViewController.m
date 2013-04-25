@@ -37,10 +37,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
                                                       action:@selector(addNewStudent)],
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                       target:self
-                                                      action:@selector(showActionSheet:event:)],
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-                                                      target:self
-                                                      action:@selector(selectRandomStudent)]
+                                                      action:@selector(showActionSheet:event:)]
       ];
 
       _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
@@ -241,7 +238,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel"
                                              destructiveButtonTitle:nil
-                                                  otherButtonTitles:@"Manage Groups",@"Manage Meetings",@"Export",nil];
+                                                  otherButtonTitles:@"Choose Random Student", @"Manage Groups",@"Manage Meetings",@"Export", nil];
   UIView *buttonView = [[[event allTouches] anyObject] view];
   CGRect bf = [buttonView frame];
   CGFloat statusBar = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -323,11 +320,13 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   // for the actionSheet (or I would do a mapping), and I can't store selectors
   // in arrays, so I am doing it the old fashion way
   switch (buttonIndex) {
-    case 0: [self viewGroups];
+    case 0: [self selectRandomStudent];
     break;
-    case 1: [self viewAttendanceHistory];
+    case 1: [self viewGroups];
     break;
-    case 2: [self exportToCSV];
+    case 2: [self viewAttendanceHistory];
+    break;
+    case 3: [self exportToCSV];
     break;
     default:
     break;
