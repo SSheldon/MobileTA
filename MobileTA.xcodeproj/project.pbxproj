@@ -97,6 +97,7 @@
 		408E54A016EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */; };
 		9F4070C116DC06F500CDC59F /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		9F4070C716DC06F800CDC59F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
+		9F6573F31729F68D0002D737 /* TAGroupsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6573F21729F68D0002D737 /* TAGroupsEditViewController.m */; };
 		9FB48F34170A420200E73D14 /* TAAssignSeatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */; };
 		9FBF84F116E7F973000077D5 /* TASectionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */; };
 		9FC025B216E0471F00C1CBA6 /* TASectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E63B8EB916DC2812007F3FE9 /* TASectionsViewController.m */; };
@@ -225,6 +226,8 @@
 		40800C8D1721021300D935C1 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		408E549D16EEAC0F00DB4F96 /* TAStudentDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentDisplayCell.h; sourceTree = "<group>"; };
 		408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentDisplayCell.m; sourceTree = "<group>"; };
+		9F6573F11729F68D0002D737 /* TAGroupsEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGroupsEditViewController.h; sourceTree = "<group>"; };
+		9F6573F21729F68D0002D737 /* TAGroupsEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAGroupsEditViewController.m; sourceTree = "<group>"; };
 		9FB48F32170A420100E73D14 /* TAAssignSeatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAssignSeatsViewController.h; sourceTree = "<group>"; };
 		9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAssignSeatsViewController.m; sourceTree = "<group>"; };
 		9FBF84EF16E7F973000077D5 /* TASectionEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionEditViewController.h; sourceTree = "<group>"; };
@@ -555,6 +558,8 @@
 				E6F1A53E171375A200DD781D /* TASeatingChartAttendanceViewController.m */,
 				E6C5001F1725EC9B0020BDB9 /* TAGroupsViewController.h */,
 				E6C500201725EC9B0020BDB9 /* TAGroupsViewController.m */,
+				9F6573F11729F68D0002D737 /* TAGroupsEditViewController.h */,
+				9F6573F21729F68D0002D737 /* TAGroupsEditViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -764,6 +769,7 @@
 				9FE0B9D6171CA8AF003CE954 /* TASegmentedButtons.m in Sources */,
 				139239B51720D77400AE14EE /* Group.m in Sources */,
 				E6C500211725EC9B0020BDB9 /* TAGroupsViewController.m in Sources */,
+				9F6573F31729F68D0002D737 /* TAGroupsEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

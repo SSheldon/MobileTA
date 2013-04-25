@@ -16,6 +16,7 @@
 
 @implementation TAGroupsViewController
 
+
 - (id)initWithSection:(Section *)section {
   self = [self initWithStyle:UITableViewStylePlain];
   if (self) {

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Group.h"
 #import <MessageUI/MessageUI.h>
 
 @class Section;
