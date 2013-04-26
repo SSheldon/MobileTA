@@ -22,6 +22,7 @@
   if (self) {
     _section = section;
     _groups = [[section groups] allObjects];
+    [[self tableView] setAllowsSelectionDuringEditing:YES];
   }
   return self;
 }
@@ -68,8 +69,14 @@
   }
 }
 
+- (void)editGroup:(Group *)group {
+  TAGroupsEditViewController *evc = [[TAGroupsEditViewController alloc] initWithGroup:group];
+  [evc setDelegate:self];
+  [[self navigationController] pushViewController:evc animated:YES];
+}
+
 - (void)addNewGroup {
-  NSLog(@"Add New Group");
+  [self editGroup:nil];
 }
 
 #pragma mark - Table view data source
@@ -86,9 +93,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"GroupsCell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (!cell) {
-    
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
   Group *group = [_groups objectAtIndex:indexPath.row];
   [[cell textLabel] setText:[group name]];
@@ -142,12 +149,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   Group *group = [_groups objectAtIndex:indexPath.row];
-  MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
-  [mailController setToRecipients:[group emails]];
-  mailController.mailComposeDelegate = self;
-  mailController.modalPresentationStyle = UIModalPresentationFormSheet;
-  mailController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-  [self presentViewController:mailController animated:YES completion:nil];
+  if (self.editing) {
+    [self editGroup:group];
+  }
+  else {
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+    [mailController setToRecipients:[group emails]];
+    mailController.mailComposeDelegate = self;
+    mailController.modalPresentationStyle = UIModalPresentationFormSheet;
+    mailController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:mailController animated:YES completion:nil];
+  }
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark TAGroupEditDelegate
+
+- (void)viewController:(TAGroupsEditViewController *)viewController savedGroup:(Group *)group withPreviousData:(NSDictionary *)oldData {
+  [group setSection:[self section]];
+  [self saveManagedObjectContext];
+  if(!oldData) {
+    _groups = [_groups arrayByAddingObject:group];
+  }
+  [[self tableView] reloadData];
 }
 
 #pragma mark MFMailComposeViewControllerDelegate

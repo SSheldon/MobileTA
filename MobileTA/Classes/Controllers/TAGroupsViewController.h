@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Group.h"
 #import <MessageUI/MessageUI.h>
+#import "TAGroupsEditViewController.h"
 
 @class Section;
 
@@ -20,7 +21,7 @@
 
 @end
 
-@interface TAGroupsViewController : UITableViewController <MFMailComposeViewControllerDelegate>
+@interface TAGroupsViewController : UITableViewController <TAGroupEditDelegate,MFMailComposeViewControllerDelegate>
 
 - (id)initWithSection:(Section *)section;
 

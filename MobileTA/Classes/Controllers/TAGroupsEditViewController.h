@@ -21,6 +21,7 @@
 @interface TAGroupsEditViewController : QuickDialogController
 
 + (QRootElement *)formForGroup:(Group *)group;
+- (id)initWithGroup:(Group *)group;
 
 @property(nonatomic,strong)Group *group;
 @property(nonatomic,weak)id<TAGroupEditDelegate> delegate;

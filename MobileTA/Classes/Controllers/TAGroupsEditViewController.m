@@ -58,13 +58,11 @@
   if (![self group]) {
     self.group = [Group groupWithContext:self.managedObjectContext];
   }
-  else {
-    [[self group] setName:[dict objectForKey:@"firstName"]];
-  }
+  [[self group] setName:[dict objectForKey:@"name"]];
   
   [[self navigationController] popViewControllerAnimated:YES];
   
-  if([[self delegate] respondsToSelector:@selector(viewController:savedStudent:withPreviousData:)]) {
+  if([[self delegate] respondsToSelector:@selector(viewController:savedGroup:withPreviousData:)]) {
     
     [[self delegate] viewController:self savedGroup:[self group] withPreviousData:oldGroupData];
   }
