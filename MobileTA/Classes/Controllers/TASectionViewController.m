@@ -157,7 +157,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 }
 
 - (void)editStudent:(Student *)student {
-  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:student];
+  TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:student inSection:[self section]];
   editViewController.delegate = self;
   [self.navigationController pushViewController:editViewController animated:YES];
 }

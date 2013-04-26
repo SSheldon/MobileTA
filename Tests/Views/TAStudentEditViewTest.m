@@ -16,7 +16,7 @@
 @implementation TAStudentEditViewTest
 
 - (void)test {
-  TAStudentEditViewController *controller = [[TAStudentEditViewController alloc] initWithStudent:nil];
+  TAStudentEditViewController *controller = [[TAStudentEditViewController alloc] initWithStudent:nil inSection:nil];
   [controller.view setFrame:CGRectMake(0, 0, 768, 960)];
   GHVerifyView(controller.view);
 }

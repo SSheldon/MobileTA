@@ -8,12 +8,15 @@
 
 #import "TAStudentEditViewController.h"
 
+#import "Section.h"
+#import "Group.h"
+
 @implementation TAStudentEditViewController
 
 @synthesize student=_student;
 @synthesize delegate=_delegate;
 
-+ (QRootElement *)formForStudent:(Student *)student {
++ (QRootElement *)formForStudent:(Student *)student withGroupOptions:(NSArray *)groups{
   QRootElement *root = [[QRootElement alloc] init];
   [root setGrouped:YES];
   // The only difference between adding a student and editing a student
@@ -36,10 +39,17 @@
   [lastName setKey:@"lastName"];
   QEntryElement *email = [[QEntryElement alloc] initWithTitle:@"Email" Value:student.email Placeholder:@"address@example.com"];
   email.key = @"email";
+  NSMutableArray *names = [NSMutableArray arrayWithCapacity:[groups count]];
+  for (NSUInteger i = 0 ; i < [groups count] ; i++) {
+    [names addObject:[[groups objectAtIndex:i] name]];
+  }
+  QRadioElement *group = [[QRadioElement alloc] initWithItems:names selected:[groups indexOfObject:[student group]] title:@"Group"];
+  [group setKey:@"group"];
   [mainSection addElement:firstName];
   [mainSection addElement:nickname];
   [mainSection addElement:lastName];
   [mainSection addElement:email];
+  [mainSection addElement:group];
   [root addSection:mainSection];
 
   QSection *notesSection = [[QSection alloc] initWithTitle:nil];
@@ -56,11 +66,14 @@
   return root;
 }
 
-- (id)initWithStudent:(Student *)student {
-  self = [self initWithRoot:[TAStudentEditViewController formForStudent:student]];
+- (id)initWithStudent:(Student *)student inSection:(Section *)section {
+  NSArray *groups = [[section groups] allObjects];
+  self = [self initWithRoot:[TAStudentEditViewController formForStudent:student withGroupOptions:groups]];
   if (self) {
     // Final initialization
     [self setStudent:student];
+    [self setSection:section];
+    _groups = groups;
   }
   return self;
 }
@@ -69,7 +82,7 @@
   // Make a copy of the old student data and put it in a dictionary
   NSArray *keys = [[[[self student] entity] attributesByName] allKeys];
   NSDictionary *oldStudentData = [[self student] dictionaryWithValuesForKeys:keys];
-
+  
   // Set the student data to the new values
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
   [self.root fetchValueIntoObject:dict];
@@ -83,6 +96,7 @@
   self.student.nickname = [dict objectForKey:@"nickname"];
   self.student.email = [dict objectForKey:@"email"];
   self.student.notes = [dict objectForKey:@"notes"];
+  self.student.group = [_groups objectAtIndex:[[dict objectForKey:@"group"] intValue]];
   
   [[self navigationController] popViewControllerAnimated:YES];
 
