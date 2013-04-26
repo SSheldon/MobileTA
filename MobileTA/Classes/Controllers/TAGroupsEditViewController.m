@@ -60,8 +60,15 @@
                      @[@"Color20", UIColorFromRGB(0x00FF99)]
                      ];
   NSUInteger selected = 0;
-  if (group.name && group.color) {
-    selected = [items indexOfObject:@[group.colorName, group.color]];
+  if (group.color) {
+    NSUInteger counter = 0;
+    for (NSArray *item in items) {
+      if (group.color == [item objectAtIndex:1]) {
+        selected = counter;
+        break;
+      }
+      counter++;
+    }
   }
   QColorPickerElement *colorPicker = [[QColorPickerElement alloc] initWithItems:items selected:selected title:@"Color"];
   [colorPicker setKey:@"color"];
