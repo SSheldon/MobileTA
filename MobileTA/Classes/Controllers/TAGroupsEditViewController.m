@@ -37,31 +37,34 @@
   [name setKey:@"name"];
   [mainSection addElement:name];
   
-  QColorPickerElement *colorPicker = [[QColorPickerElement alloc] init];
-  [colorPicker setTitle:@"Color"];
-  [colorPicker setKey:@"color"];
   NSArray *items = @[
-    @[@"Color1", UIColorFromRGB(0xC2C5FF)],
-    @[@"Color2", UIColorFromRGB(0xAA5555)],
-    @[@"Color3", UIColorFromRGB(0xFFBBA8)],
-    @[@"Color4", UIColorFromRGB(0xFFFF7B)],
-    @[@"Color5", UIColorFromRGB(0xFF4258)],
-    @[@"Color6", UIColorFromRGB(0xBF36FF)],
-    @[@"Color7", UIColorFromRGB(0x002E6D)],
-    @[@"Color8", UIColorFromRGB(0x009BDD)],
-    @[@"Color9", UIColorFromRGB(0x006E1A)],
-    @[@"Color10", UIColorFromRGB(0x00A76B)],
-    @[@"Color11", UIColorFromRGB(0xE3DF00)],
-    @[@"Color12", UIColorFromRGB(0xE94A00)],
-    @[@"Color13", UIColorFromRGB(0x00FF11)],
-    @[@"Color14", UIColorFromRGB(0xB86800)],
-    @[@"Color15", UIColorFromRGB(0xFFBD00)],
-    @[@"Color16", UIColorFromRGB(0x4B004F)],
-    @[@"Color17", UIColorFromRGB(0xA200AB)],
-    @[@"Color18", UIColorFromRGB(0xFF0000)],
-    @[@"Color19", UIColorFromRGB(0x547300)],
-    @[@"Color20", UIColorFromRGB(0x00FF99)]
-  ];
+                     @[@"Color1", UIColorFromRGB(0xC2C5FF)],
+                     @[@"Color2", UIColorFromRGB(0xAA5555)],
+                     @[@"Color3", UIColorFromRGB(0xFFBBA8)],
+                     @[@"Color4", UIColorFromRGB(0xFFFF7B)],
+                     @[@"Color5", UIColorFromRGB(0xFF4258)],
+                     @[@"Color6", UIColorFromRGB(0xBF36FF)],
+                     @[@"Color7", UIColorFromRGB(0x002E6D)],
+                     @[@"Color8", UIColorFromRGB(0x009BDD)],
+                     @[@"Color9", UIColorFromRGB(0x006E1A)],
+                     @[@"Color10", UIColorFromRGB(0x00A76B)],
+                     @[@"Color11", UIColorFromRGB(0xE3DF00)],
+                     @[@"Color12", UIColorFromRGB(0xE94A00)],
+                     @[@"Color13", UIColorFromRGB(0x00FF11)],
+                     @[@"Color14", UIColorFromRGB(0xB86800)],
+                     @[@"Color15", UIColorFromRGB(0xFFBD00)],
+                     @[@"Color16", UIColorFromRGB(0x4B004F)],
+                     @[@"Color17", UIColorFromRGB(0xA200AB)],
+                     @[@"Color18", UIColorFromRGB(0xFF0000)],
+                     @[@"Color19", UIColorFromRGB(0x547300)],
+                     @[@"Color20", UIColorFromRGB(0x00FF99)]
+                     ];
+  NSUInteger selected = 0;
+  if (group.name && group.color) {
+    selected = [items indexOfObject:@[group.colorName, group.color]];
+  }
+  QColorPickerElement *colorPicker = [[QColorPickerElement alloc] initWithItems:items selected:selected title:@"Color"];
+  [colorPicker setKey:@"color"];
   [colorPicker setItems:items];
   [mainSection addElement:colorPicker];
   
@@ -88,6 +91,7 @@
     self.group = [Group groupWithContext:self.managedObjectContext];
   }
   [[self group] setName:[dict objectForKey:@"name"]];
+  [[self group] setColor:[[dict objectForKey:@"color"] objectAtIndex:1]];
   
   [[self navigationController] popViewControllerAnimated:YES];
   
