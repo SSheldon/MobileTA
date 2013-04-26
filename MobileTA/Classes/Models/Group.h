@@ -18,6 +18,7 @@
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) NSSet *students;
 
++ (NSArray *)allPossibleColorItems;
 + (Group *)groupWithContext:(NSManagedObjectContext *)context;
 
 - (UIColor *)color;

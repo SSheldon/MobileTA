@@ -7,7 +7,6 @@
 //
 
 #import "TAGroupsEditViewController.h"
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface TAGroupsEditViewController ()
 
@@ -37,33 +36,12 @@
   [name setKey:@"name"];
   [mainSection addElement:name];
   
-  NSArray *items = @[
-                     @[@"Color1", UIColorFromRGB(0xC2C5FF)],
-                     @[@"Color2", UIColorFromRGB(0xAA5555)],
-                     @[@"Color3", UIColorFromRGB(0xFFBBA8)],
-                     @[@"Color4", UIColorFromRGB(0xFFFF7B)],
-                     @[@"Color5", UIColorFromRGB(0xFF4258)],
-                     @[@"Color6", UIColorFromRGB(0xBF36FF)],
-                     @[@"Color7", UIColorFromRGB(0x002E6D)],
-                     @[@"Color8", UIColorFromRGB(0x009BDD)],
-                     @[@"Color9", UIColorFromRGB(0x006E1A)],
-                     @[@"Color10", UIColorFromRGB(0x00A76B)],
-                     @[@"Color11", UIColorFromRGB(0xE3DF00)],
-                     @[@"Color12", UIColorFromRGB(0xE94A00)],
-                     @[@"Color13", UIColorFromRGB(0x00FF11)],
-                     @[@"Color14", UIColorFromRGB(0xB86800)],
-                     @[@"Color15", UIColorFromRGB(0xFFBD00)],
-                     @[@"Color16", UIColorFromRGB(0x4B004F)],
-                     @[@"Color17", UIColorFromRGB(0xA200AB)],
-                     @[@"Color18", UIColorFromRGB(0xFF0000)],
-                     @[@"Color19", UIColorFromRGB(0x547300)],
-                     @[@"Color20", UIColorFromRGB(0x00FF99)]
-                     ];
+  NSArray *items = [Group allPossibleColorItems];
   NSUInteger selected = 0;
   if (group.color) {
     NSUInteger counter = 0;
     for (NSArray *item in items) {
-      if (group.color == [item objectAtIndex:1]) {
+      if ([group.color isEqual:[item objectAtIndex:1]]) {
         selected = counter;
         break;
       }
@@ -98,7 +76,9 @@
     self.group = [Group groupWithContext:self.managedObjectContext];
   }
   [[self group] setName:[dict objectForKey:@"name"]];
-  [[self group] setColor:[[dict objectForKey:@"color"] objectAtIndex:1]];
+  NSArray *items = [Group allPossibleColorItems];
+  NSUInteger colorIndex = [[dict objectForKey:@"color"] intValue];
+  [[self group] setColor:[[items objectAtIndex:colorIndex] objectAtIndex:1]];
   
   [[self navigationController] popViewControllerAnimated:YES];
   
