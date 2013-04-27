@@ -11,14 +11,17 @@
 #import "AttendanceRecord.h"
 #import "StudentAttendance.h"
 #import "TANavigationController.h"
+#import "TAStudentsGroupsViewController.h"
 
 typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   TASectionSelectedViewTable,
+  TASectionSelectedViewGroups,
   TASectionSelectedViewSeatingChart
 };
 
 @implementation TASectionViewController {
   TAStudentsAttendanceViewController *_studentsController;
+  TAStudentsGroupsViewController *_groupsController;
   UISegmentedControl *_segmentedControl;
 }
 
@@ -40,7 +43,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
                                                       action:@selector(showActionSheet:event:)]
       ];
 
-      _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Seating Chart"]];
+      _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Roster", @"Groups", @"Seating Chart"]];
       _segmentedControl.selectedSegmentIndex = TASectionSelectedViewTable;
       _segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
       [_segmentedControl addTarget:self action:@selector(segmentedControlDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -50,7 +53,11 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
       [self addChildViewController:_studentsController];
       [_studentsController didMoveToParentViewController:self];
       _studentsController.delegate = self;
-      _studentsController.tableView.allowsSelectionDuringEditing = YES;
+
+      _groupsController = [[TAStudentsGroupsViewController alloc] initWithStyle:UITableViewStylePlain];
+      [self addChildViewController:_groupsController];
+      [_groupsController didMoveToParentViewController:self];
+      _groupsController.delegate = self;
     }
     return self;
 }
@@ -69,6 +76,11 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
   [self.view addSubview:_studentsController.tableView];
   _studentsController.tableView.hidden = (_segmentedControl.selectedSegmentIndex != TASectionSelectedViewTable);
+  _studentsController.tableView.allowsSelectionDuringEditing = YES;
+
+  [self.view addSubview:_groupsController.tableView];
+  _groupsController.tableView.hidden = (_segmentedControl.selectedSegmentIndex != TASectionSelectedViewGroups);
+  _groupsController.tableView.allowsSelectionDuringEditing = YES;
 }
 
 - (void)selectRandomStudent {
@@ -110,6 +122,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
   _studentsController.tableView.frame = self.view.frame;
+  _groupsController.tableView.frame = self.view.frame;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -119,7 +132,9 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
   [super setEditing:editing animated:animated];
-  [_studentsController setEditing:editing animated:animated];
+  for (UIViewController *controller in self.childViewControllers) {
+    [controller setEditing:editing animated:animated];
+  }
 }
 
 - (void)setSection:(Section *)section {
@@ -135,6 +150,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
   [super setSection:section];
   _studentsController.students = [section.students allObjects];
+  _groupsController.groups = [section.groups allObjects];
   self.title = section.name;
 }
 
@@ -142,17 +158,15 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [super setAttendanceRecord:attendanceRecord];
   if ([self isViewLoaded]) {
     [_studentsController.tableView reloadData];
+    [_groupsController.tableView reloadData];
   }
 }
 
 - (void)addNewStudent {
-  switch (_segmentedControl.selectedSegmentIndex) {
-    case TASectionSelectedViewTable:
-      [self editStudent:nil];
-      break;
-    case TASectionSelectedViewSeatingChart:
-      [self addSeat];
-      break;
+  if (_segmentedControl.selectedSegmentIndex == TASectionSelectedViewSeatingChart) {
+    [self addSeat];
+  } else {
+    [self editStudent:nil];
   }
 }
 
@@ -178,6 +192,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 - (void)segmentedControlDidChange:(UISegmentedControl *)control {
   self.scrollView.hidden = (control.selectedSegmentIndex != TASectionSelectedViewSeatingChart);
   _studentsController.tableView.hidden = (control.selectedSegmentIndex != TASectionSelectedViewTable);
+  _groupsController.tableView.hidden = (control.selectedSegmentIndex != TASectionSelectedViewGroups);
 }
 
 - (void)viewGroups {
