@@ -51,7 +51,10 @@
 }
 
 - (void)removeStudent:(Student *)student {
-  // We don't have a students array, so override this with an empty method
+  // We don't have a students array, so override this to not remove anything
+  if ([self.delegate respondsToSelector:@selector(viewController:didRemoveStudent:)]) {
+    [self.delegate viewController:self didRemoveStudent:student];
+  }
 }
 
 - (NSIndexPath *)indexPathOfStudent:(Student *)student {

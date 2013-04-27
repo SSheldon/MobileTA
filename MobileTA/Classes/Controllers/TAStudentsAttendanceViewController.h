@@ -24,6 +24,7 @@
 
 @optional
 - (void)viewController:(TAStudentsAttendanceViewController *)controller didSelectStudentToEdit:(Student *)student;
+- (void)viewController:(TAStudentsAttendanceViewController *)controller didRemoveStudent:(Student *)student;
 
 @end
 

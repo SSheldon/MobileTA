@@ -324,6 +324,16 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self editStudent:student];
 }
 
+- (void)viewController:(TAStudentsAttendanceViewController *)controller didRemoveStudent:(Student *)student {
+  [super viewController:controller didRemoveStudent:student];
+  if (_studentsController != controller) {
+    [_studentsController reloadStudents];
+  }
+  if (_groupsController != controller) {
+    [_groupsController reloadStudents];
+  }
+}
+
 #pragma mark MFMailComposeViewControllerDelegate
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {

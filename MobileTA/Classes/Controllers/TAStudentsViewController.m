@@ -167,9 +167,6 @@
     // Remove the corresponding row from the table
     [[_tableSections objectAtIndex:indexPath.section] removeObject:student];
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    // Remove the student from the database
-    [[self managedObjectContext] deleteObject:student];
-    [self saveManagedObjectContext];
   }
 }
 

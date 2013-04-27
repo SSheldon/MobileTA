@@ -258,4 +258,14 @@
   return attendance.participation;
 }
 
+- (void)viewController:(TAStudentsAttendanceViewController *)controller didRemoveStudent:(Student *)student {
+  // If this student is on the seating chart, clear their seat
+  if (student.seat) {
+    [self.seatingChart setStudent:nil forSeat:student.seat];
+  }
+  // Remove the student from the database
+  [[self managedObjectContext] deleteObject:student];
+  [self saveManagedObjectContext];
+}
+
 @end

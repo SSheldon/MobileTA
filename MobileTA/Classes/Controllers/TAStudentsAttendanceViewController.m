@@ -36,6 +36,14 @@
 
 #pragma mark TAStudentsViewController
 
+- (void)removeStudent:(Student *)student {
+  [super removeStudent:student];
+  // Notify our delegate
+  if ([self.delegate respondsToSelector:@selector(viewController:didRemoveStudent:)]) {
+    [self.delegate viewController:self didRemoveStudent:student];
+  }
+}
+
 - (void)selectStudent:(Student *)student {
   if (self.editing) {
     [self selectStudentToEdit:student];
