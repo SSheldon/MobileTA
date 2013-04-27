@@ -91,15 +91,20 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if(editingStyle == UITableViewCellEditingStyleDelete) {
-    // Remove the group at that index from the database
     Group *group = [_groups objectAtIndex:indexPath.row];
-    [[self managedObjectContext] deleteObject:group];
-    [self saveManagedObjectContext];
     // Remove group from the Groups array
     NSMutableArray *mutableGroups = [[self groups] mutableCopy];
     [mutableGroups removeObject:group];
     _groups = mutableGroups;
-    [[self tableView] reloadData];
+    // Inform the delegate
+    if ([self.delegate respondsToSelector:@selector(groupsViewController:didRemoveGroup:)]) {
+      [self.delegate groupsViewController:self didRemoveGroup:group];
+    }
+    // Delete the group from the database
+    [[self managedObjectContext] deleteObject:group];
+    [self saveManagedObjectContext];
+    // Remove the corresponding row from the table
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
   }
 }
 
@@ -130,6 +135,10 @@
     _groups = [_groups arrayByAddingObject:group];
   }
   [[self tableView] reloadData];
+  // Inform the delegate
+  if ([self.delegate respondsToSelector:@selector(groupsViewController:didUpdateGroup:)]) {
+    [self.delegate groupsViewController:self didUpdateGroup:group];
+  }
 }
 
 #pragma mark MFMailComposeViewControllerDelegate

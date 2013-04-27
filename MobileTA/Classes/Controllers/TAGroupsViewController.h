@@ -19,6 +19,10 @@
 
 - (void)groupsViewControllerDidCancel:(TAGroupsViewController *)groupsViewController;
 
+@optional
+- (void)groupsViewController:(TAGroupsViewController *)controller didUpdateGroup:(Group *)group;
+- (void)groupsViewController:(TAGroupsViewController *)controller didRemoveGroup:(Group *)group;
+
 @end
 
 @interface TAGroupsViewController : UITableViewController <TAGroupEditDelegate,MFMailComposeViewControllerDelegate>
