@@ -187,6 +187,8 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
       [_studentsController reloadStudents];
     }
   }
+  // TODO(ssheldon): Do something more clever than just reloading the table
+  [_groupsController reloadStudents];
 }
 
 - (void)segmentedControlDidChange:(UISegmentedControl *)control {
