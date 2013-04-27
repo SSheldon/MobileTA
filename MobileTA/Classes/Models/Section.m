@@ -90,7 +90,7 @@
   CHCSVWriter *writer = [[CHCSVWriter alloc] initWithOutputStream:stream encoding:NSUTF8StringEncoding delimiter:','];
 
   // Write header
-  NSMutableArray *header = [NSMutableArray arrayWithArray:@[@"Last Name", @"First Name", @"Nickname"]];
+  NSMutableArray *header = [NSMutableArray arrayWithArray:@[@"Last Name", @"First Name", @"Nickname", @"Email"]];
   if (record) {
     [header addObjectsFromArray:@[@"Attendance", @"Particpation"]];
   }
@@ -108,6 +108,7 @@
     [writer writeField:student.lastName];
     [writer writeField:student.firstName];
     [writer writeField:student.nickname];
+    [writer writeField:student.email];
     if (record) {
       StudentAttendance *attendance = [record studentAttendanceForStudent:student];
       [writer writeField:NSStringFromStudentAttendanceStatus(attendance.status)];
