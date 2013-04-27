@@ -11,9 +11,7 @@
 #import "Student.h"
 #import "StudentAttendance.h"
 
-@implementation TAStudentsViewController {
-  NSMutableArray *_tableSections;
-}
+@implementation TAStudentsViewController
 
 -(id)initWithStudents:(NSArray *)students {
   self = [self initWithStyle:UITableViewStylePlain];
@@ -57,6 +55,13 @@
   if ([self isViewLoaded]) {
     [self.tableView reloadData];
   }
+}
+
+- (void)removeStudent:(Student *)student {
+  // Remove student from the Students array
+  NSMutableArray *mutableStudents = [[self students] mutableCopy];
+  [mutableStudents removeObject:student];
+  _students = [mutableStudents copy];
 }
 
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
@@ -146,13 +151,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   if(editingStyle == UITableViewCellEditingStyleDelete) {
-    // Remove the student at that index from the database
-    Student *student = [self studentAtIndexPath:indexPath];
-    [[self managedObjectContext] deleteObject:student];
-    [self saveManagedObjectContext];
     // If we are removing the student we are detailing, remove the cell
     if ([detailedStudentIndex isEqual:indexPath]) {
-      detailedStudentIndex = nil;
+      [self hideStudentDetails];
     }
     // If we are removing something under the detailedStudentIndex, shift the
     // index down by 1
@@ -160,11 +161,15 @@
       detailedStudentIndex = [NSIndexPath indexPathForRow:detailedStudentIndex.row-1 inSection:detailedStudentIndex.section];
       [[self tableView] scrollToRowAtIndexPath:[self indexPathOfDetailCell] atScrollPosition:UITableViewScrollPositionNone animated:YES];
     }
+    Student *student = [self studentAtIndexPath:indexPath];
     // Remove student from the Students array
-    NSMutableArray *mutableStudents = [[self students] mutableCopy];
-    [mutableStudents removeObject:student];
-    [self setStudents:[NSArray arrayWithArray:mutableStudents]];
-    [self reloadStudents];
+    [self removeStudent:student];
+    // Remove the corresponding row from the table
+    [[_tableSections objectAtIndex:indexPath.section] removeObject:student];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    // Remove the student from the database
+    [[self managedObjectContext] deleteObject:student];
+    [self saveManagedObjectContext];
   }
 }
 

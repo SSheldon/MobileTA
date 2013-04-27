@@ -11,6 +11,7 @@
 #import "TAStudentEditViewController.h"
 
 @interface TAStudentsViewController : UITableViewController {
+  NSMutableArray *_tableSections;
   NSIndexPath *detailedStudentIndex;
 }
 
@@ -22,6 +23,7 @@
 - (NSIndexPath *)indexPathOfStudent:(Student *)student;
 - (void)selectStudent:(Student *)student;
 - (void)reloadStudents;
+- (void)removeStudent:(Student *)student;
 // Student Details Methods
 - (void)showDetailsForStudent:(Student *)student;
 - (void)hideStudentDetails;
