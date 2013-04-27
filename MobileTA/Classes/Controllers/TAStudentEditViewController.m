@@ -13,9 +13,6 @@
 
 @implementation TAStudentEditViewController
 
-@synthesize student=_student;
-@synthesize delegate=_delegate;
-
 + (QRootElement *)formForStudent:(Student *)student withGroupOptions:(NSArray *)groups{
   QRootElement *root = [[QRootElement alloc] init];
   [root setGrouped:YES];
@@ -39,11 +36,9 @@
   [lastName setKey:@"lastName"];
   QEntryElement *email = [[QEntryElement alloc] initWithTitle:@"Email" Value:student.email Placeholder:@"address@example.com"];
   email.key = @"email";
-  NSMutableArray *names = [NSMutableArray arrayWithCapacity:[groups count]];
-  for (NSUInteger i = 0 ; i < [groups count] ; i++) {
-    [names addObject:[[groups objectAtIndex:i] name]];
-  }
-  QRadioElement *group = [[QRadioElement alloc] initWithItems:names selected:[groups indexOfObject:[student group]] title:@"Group"];
+  QRadioElement *group = [[QRadioElement alloc] initWithItems:[groups valueForKey:@"name"] selected:-1 title:@"Group"];
+  group.values = groups;
+  group.selectedValue = student.group;
   [group setKey:@"group"];
   [mainSection addElement:firstName];
   [mainSection addElement:nickname];
@@ -73,7 +68,6 @@
     // Final initialization
     [self setStudent:student];
     [self setSection:section];
-    _groups = groups;
   }
   return self;
 }
@@ -88,6 +82,7 @@
   [self.root fetchValueIntoObject:dict];
   if (![self student]) {
     self.student = [Student studentWithFirstName:[dict objectForKey:@"firstName"] lastName:[dict objectForKey:@"lastName"] context:self.managedObjectContext];
+    self.student.section = self.section;
   }
   else {
     [[self student] setFirstName:[dict objectForKey:@"firstName"]];
@@ -96,7 +91,7 @@
   self.student.nickname = [dict objectForKey:@"nickname"];
   self.student.email = [dict objectForKey:@"email"];
   self.student.notes = [dict objectForKey:@"notes"];
-  self.student.group = [_groups objectAtIndex:[[dict objectForKey:@"group"] intValue]];
+  self.student.group = [dict objectForKey:@"group"];
   
   [[self navigationController] popViewControllerAnimated:YES];
 

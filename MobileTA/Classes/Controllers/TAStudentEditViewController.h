@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <QuickDialog/QuickDialog.h>
 #import "Student.h"
-#import "Section.h"
 
 @class TAStudentEditViewController;
 @class Section;
@@ -21,9 +20,7 @@
 
 @end
 
-@interface TAStudentEditViewController : QuickDialogController {
-  NSArray *_groups;
-}
+@interface TAStudentEditViewController : QuickDialogController
 
 + (QRootElement *)formForStudent:(Student *)student withGroupOptions:(NSArray *)groups;
 - (id)initWithStudent:(Student *)student inSection:(Section *)section;
