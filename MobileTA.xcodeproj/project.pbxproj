@@ -77,6 +77,7 @@
 		13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DE616DB35870084D827 /* TAStudentsViewTest.m */; };
 		13BA038E16D4B8AD0004C698 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038C16D4B8AD0004C698 /* blackboard.jpg */; };
 		13BA038F16D4B8AD0004C698 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA038D16D4B8AD0004C698 /* logo.png */; };
+		13C86DAE172B839F00CFA95D /* TAStudentsGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C86DAD172B839F00CFA95D /* TAStudentsGroupsViewController.m */; };
 		13E344F617135F0300ECF8AB /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E344F217135F0300ECF8AB /* icon-ipad.png */; };
 		13E344F717135F0300ECF8AB /* icon-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E344F317135F0300ECF8AB /* icon-ipad@2x.png */; };
 		13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
@@ -209,6 +210,8 @@
 		13A44DE616DB35870084D827 /* TAStudentsViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentsViewTest.m; path = Views/TAStudentsViewTest.m; sourceTree = "<group>"; };
 		13BA038C16D4B8AD0004C698 /* blackboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackboard.jpg; path = Images/blackboard.jpg; sourceTree = "<group>"; };
 		13BA038D16D4B8AD0004C698 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
+		13C86DAC172B839F00CFA95D /* TAStudentsGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentsGroupsViewController.h; sourceTree = "<group>"; };
+		13C86DAD172B839F00CFA95D /* TAStudentsGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentsGroupsViewController.m; sourceTree = "<group>"; };
 		13E344F217135F0300ECF8AB /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad.png"; path = "Images/icon-ipad.png"; sourceTree = "<group>"; };
 		13E344F317135F0300ECF8AB /* icon-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad@2x.png"; path = "Images/icon-ipad@2x.png"; sourceTree = "<group>"; };
 		13F2871C17114DD800562D5A /* TAStudentsAttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentsAttendanceViewController.h; sourceTree = "<group>"; };
@@ -560,6 +563,8 @@
 				E6C500201725EC9B0020BDB9 /* TAGroupsViewController.m */,
 				9F6573F11729F68D0002D737 /* TAGroupsEditViewController.h */,
 				9F6573F21729F68D0002D737 /* TAGroupsEditViewController.m */,
+				13C86DAC172B839F00CFA95D /* TAStudentsGroupsViewController.h */,
+				13C86DAD172B839F00CFA95D /* TAStudentsGroupsViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -770,6 +775,7 @@
 				139239B51720D77400AE14EE /* Group.m in Sources */,
 				E6C500211725EC9B0020BDB9 /* TAGroupsViewController.m in Sources */,
 				9F6573F31729F68D0002D737 /* TAGroupsEditViewController.m in Sources */,
+				13C86DAE172B839F00CFA95D /* TAStudentsGroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
