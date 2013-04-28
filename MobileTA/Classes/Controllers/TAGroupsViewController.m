@@ -96,13 +96,13 @@
     NSMutableArray *mutableGroups = [[self groups] mutableCopy];
     [mutableGroups removeObject:group];
     _groups = mutableGroups;
+    // Delete the group from the database
+    [[self managedObjectContext] deleteObject:group];
+    [self saveManagedObjectContext];
     // Inform the delegate
     if ([self.delegate respondsToSelector:@selector(groupsViewController:didRemoveGroup:)]) {
       [self.delegate groupsViewController:self didRemoveGroup:group];
     }
-    // Delete the group from the database
-    [[self managedObjectContext] deleteObject:group];
-    [self saveManagedObjectContext];
     // Remove the corresponding row from the table
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
   }
