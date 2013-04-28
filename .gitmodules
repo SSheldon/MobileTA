@@ -4,3 +4,6 @@
 [submodule "MobileTA/Libraries/CHCSVParser"]
 	path = MobileTA/Libraries/CHCSVParser
 	url = git://github.com/davedelong/CHCSVParser.git
+[submodule "MobileTA/Libraries/GHUnit"]
+	path = MobileTA/Libraries/GHUnit
+	url = git://github.com/Yelp/gh-unit.git
