@@ -23,6 +23,7 @@
 - (NSIndexPath *)indexPathOfStudent:(Student *)student;
 - (void)selectStudent:(Student *)student;
 - (void)reloadStudents;
+- (void)reloadStudent:(Student *)student;
 - (void)removeStudent:(Student *)student;
 // Student Details Methods
 - (void)showDetailsForStudent:(Student *)student;

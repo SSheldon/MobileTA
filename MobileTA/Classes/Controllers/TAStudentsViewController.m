@@ -57,6 +57,13 @@
   }
 }
 
+- (void)reloadStudent:(Student *)student {
+  NSIndexPath *path = [self indexPathOfStudent:student];
+  if (path) {
+    [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+  }
+}
+
 - (void)removeStudent:(Student *)student {
   // Remove student from the Students array
   NSMutableArray *mutableStudents = [[self students] mutableCopy];
