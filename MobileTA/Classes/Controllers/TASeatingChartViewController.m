@@ -136,6 +136,19 @@
   }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+  if ([self isEditing]) {
+    // The easiest way to make the seats stop dancing is to set editing to NO
+    [_seatingChart setEditing:NO];
+  }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  if ([self isEditing]) {
+    [_seatingChart setEditing:YES];
+  }
+}
+
 #pragma mark Private Methods
 
 - (void)showAssignSeatDialogForSeat:(Seat *)seat {
