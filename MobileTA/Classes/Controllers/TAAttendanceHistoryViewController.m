@@ -102,9 +102,9 @@
     AttendanceRecord *record = [self attendanceRecordAtIndexPath:indexPath];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (record==self.currentRecord) {
-      [cell.imageView setHidden:FALSE];
+      [cell.imageView setHidden:NO];
     } else {
-      [cell.imageView setHidden:TRUE];
+      [cell.imageView setHidden:YES];
     }
   }
 }
@@ -136,9 +136,9 @@
   cell.imageView.image = [UIImage imageNamed:@"green.png"];
   
   if (attendanceRecord==self.currentRecord) {
-    [cell.imageView setHidden:FALSE];
+    [cell.imageView setHidden:NO];
   } else {
-    [cell.imageView setHidden:TRUE];
+    [cell.imageView setHidden:YES];
   }
   
   return cell;
