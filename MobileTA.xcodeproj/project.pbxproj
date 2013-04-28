@@ -80,6 +80,10 @@
 		13C86DAE172B839F00CFA95D /* TAStudentsGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C86DAD172B839F00CFA95D /* TAStudentsGroupsViewController.m */; };
 		13E344F617135F0300ECF8AB /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E344F217135F0300ECF8AB /* icon-ipad.png */; };
 		13E344F717135F0300ECF8AB /* icon-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E344F317135F0300ECF8AB /* icon-ipad@2x.png */; };
+		13E5BA0A172CBF240017BF86 /* TAGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C500201725EC9B0020BDB9 /* TAGroupsViewController.m */; };
+		13E5BA0C172CBF280017BF86 /* TAStudentsGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C86DAD172B839F00CFA95D /* TAStudentsGroupsViewController.m */; };
+		13E5BA0D172CBF2E0017BF86 /* TAGroupsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6573F21729F68D0002D737 /* TAGroupsEditViewController.m */; };
+		13E5BA0E172CBF3E0017BF86 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 139239B41720D77400AE14EE /* Group.m */; };
 		13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
 		13F287281711716500562D5A /* TAStudentsAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F2871D17114DD800562D5A /* TAStudentsAttendanceViewController.m */; };
 		13F82A88171CFFAE00A08DA5 /* TASeatingChartAttendanceViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F82A87171CFFAE00A08DA5 /* TASeatingChartAttendanceViewTest.m */; };
@@ -828,6 +832,10 @@
 				13F82A8F171D065700A08DA5 /* SectionTest.m in Sources */,
 				13F82A99171D0CE200A08DA5 /* RoomTest.m in Sources */,
 				139ACEE6171BF1E20071CB89 /* TASectionViewControllerTest.m in Sources */,
+				13E5BA0A172CBF240017BF86 /* TAGroupsViewController.m in Sources */,
+				13E5BA0C172CBF280017BF86 /* TAStudentsGroupsViewController.m in Sources */,
+				13E5BA0D172CBF2E0017BF86 /* TAGroupsEditViewController.m in Sources */,
+				13E5BA0E172CBF3E0017BF86 /* Group.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
