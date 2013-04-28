@@ -309,11 +309,13 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 - (void)groupsViewController:(TAGroupsViewController *)controller didUpdateGroup:(Group *)group {
   // Reload the groups
   _groupsController.groups = [self.section.groups allObjects];
+  [self.seatingChart reloadSeats];
 }
 
 - (void)groupsViewController:(TAGroupsViewController *)controller didRemoveGroup:(Group *)group {
   // Reload the groups
   _groupsController.groups = [self.section.groups allObjects];
+  [self.seatingChart reloadSeats];
 }
 
 #pragma mark TAStudentsAttendanceDelegate

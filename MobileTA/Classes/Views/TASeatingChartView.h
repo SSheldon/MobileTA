@@ -44,6 +44,7 @@
 
 - (void)addSeat:(Seat *)seat;
 - (void)setStudent:(Student *)student forSeat:(Seat *)seat;
+- (void)reloadSeats;
 
 - (id)lastSeat;
 

@@ -146,6 +146,10 @@
   }
   _attendanceRecord = attendanceRecord;
 
+  [self reloadSeats];
+}
+
+- (void)reloadSeats {
   for (TASeatView *seatView in _seatViews) {
     Student *student = [seatView.seat studentForSection:_section];
     [self setStudent:student forSeatView:seatView];
