@@ -129,6 +129,13 @@
   return attendance;
 }
 
+- (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  // If this student is on the seating chart, reload their view
+  if (student.seat) {
+    [self.seatingChart setStudent:student forSeat:student.seat];
+  }
+}
+
 #pragma mark Private Methods
 
 - (void)showAssignSeatDialogForSeat:(Seat *)seat {

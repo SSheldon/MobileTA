@@ -177,6 +177,8 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 }
 
 - (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
+  [super updateStudent:student withPreviousData:oldData];
+
   if (student.lastName != [oldData objectForKey:@"lastName"] ||
       student.nickname != [oldData objectForKey:@"nickname"] ||
       student.firstName != [oldData objectForKey:@"firstName"]) {
