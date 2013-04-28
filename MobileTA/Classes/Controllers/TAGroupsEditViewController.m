@@ -58,13 +58,24 @@
 }
 
 - (void)save:(QButtonElement *)saveButton {
+  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+  [self.root fetchValueIntoObject:dict];
+
+  // Validate that required fields have been set
+  if (![[dict objectForKey:@"name"] length]) {
+    [[[UIAlertView alloc] initWithTitle:@"Error"
+                                message:@"A group name is required."
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+    return;
+  }
+
   // Make a copy of the old student data and put it in a dictionary
   NSArray *keys = [[[[self group] entity] attributesByName] allKeys];
   NSDictionary *oldGroupData = [[self group] dictionaryWithValuesForKeys:keys];
   
   // Set the student data to the new values
-  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-  [self.root fetchValueIntoObject:dict];
   if (![self group]) {
     self.group = [Group groupWithContext:self.managedObjectContext];
   }

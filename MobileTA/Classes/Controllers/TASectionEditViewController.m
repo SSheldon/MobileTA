@@ -48,10 +48,21 @@
 }
 
 - (void)save:(QButtonElement *)saveButton {
-  NSArray *keys = [[[[self section] entity] attributesByName] allKeys];
-  NSDictionary *oldSectionData = [[self section] dictionaryWithValuesForKeys:keys];
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
   [self.root fetchValueIntoObject:dict];
+
+  // Validate that required fields have been set
+  if (![[dict objectForKey:@"courseName"] length]) {
+    [[[UIAlertView alloc] initWithTitle:@"Error"
+                                message:@"A course name is required."
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+    return;
+  }
+
+  NSArray *keys = [[[[self section] entity] attributesByName] allKeys];
+  NSDictionary *oldSectionData = [[self section] dictionaryWithValuesForKeys:keys];
   
   if (![self section]) {
     Section* newSection = [Section sectionWithName:[dict valueForKey:@"sectionName"] course:[dict valueForKey:@"courseName"] context:[self managedObjectContext]];

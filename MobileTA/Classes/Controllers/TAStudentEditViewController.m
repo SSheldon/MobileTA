@@ -73,13 +73,24 @@
 }
 
 - (void)save:(QButtonElement *)saveButton {
+  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+  [self.root fetchValueIntoObject:dict];
+
+  // Validate that required fields have been set
+  if (![[dict objectForKey:@"firstName"] length] || ![[dict objectForKey:@"lastName"] length]) {
+    [[[UIAlertView alloc] initWithTitle:@"Error"
+                                message:@"First and last names are required."
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+    return;
+  }
+
   // Make a copy of the old student data and put it in a dictionary
   NSArray *keys = [[[[self student] entity] attributesByName] allKeys];
   NSDictionary *oldStudentData = [[self student] dictionaryWithValuesForKeys:keys];
   
   // Set the student data to the new values
-  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-  [self.root fetchValueIntoObject:dict];
   if (![self student]) {
     self.student = [Student studentWithFirstName:[dict objectForKey:@"firstName"] lastName:[dict objectForKey:@"lastName"] context:self.managedObjectContext];
     self.student.section = self.section;
