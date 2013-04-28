@@ -32,16 +32,16 @@
     items = @[
       @[@"Purple", UIColorFromRGB(0xA020F0)],
       @[@"Cerulean", UIColorFromRGB(0x009BDD)],
-      @[@"Nighttime", UIColorFromRGB(0x002E6D)],
+      @[@"Midnight Blue", UIColorFromRGB(0x002E6D)],
       @[@"Leaf Green", UIColorFromRGB(0x006E1A)],
       @[@"Mint Green", UIColorFromRGB(0x00FF99)],
       @[@"Sand", UIColorFromRGB(0xFFFF7B)],
       @[@"Goldenrod", UIColorFromRGB(0xE3DF00)],
-      @[@"Orange Tang", UIColorFromRGB(0xFFBD00)],
-      @[@"Orangered", UIColorFromRGB(0xFF4258)],
+      @[@"Orange", UIColorFromRGB(0xFFBD00)],
+      @[@"Red", UIColorFromRGB(0xFF4258)],
       @[@"Pink", UIColorFromRGB(0xFF1493)],
-      @[@"Princess Peach", UIColorFromRGB(0xFFBBA8)],
-      @[@"Fried Rice", UIColorFromRGB(0xB86800)],
+      @[@"Peach", UIColorFromRGB(0xFFBBA8)],
+      @[@"Brown", UIColorFromRGB(0xB86800)],
     ];
   }
   return items;
