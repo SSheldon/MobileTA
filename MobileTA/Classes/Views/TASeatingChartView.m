@@ -169,7 +169,7 @@
 
 - (void)drawLineFromPoint:(CGPoint)start toPoint:(CGPoint)end bolded:(BOOL)bold {
   CGFloat lineWidth = 1.0;
-  UIColor *lineColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:(bold ? 0.6 : 0.2)];
+  UIColor *lineColor = [UIColor colorWithWhite:1 alpha:(bold ? 0.6 : 0.2)];
   [lineColor set];
   /* Get the current graphics context */
   CGContextRef currentContext = UIGraphicsGetCurrentContext();

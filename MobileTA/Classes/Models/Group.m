@@ -17,7 +17,10 @@
 @dynamic section;
 @dynamic students;
 
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define UIColorFromRGB(rgb) [UIColor colorWithRed:(((rgb & 0xFF0000) >> 16) / 255.0)\
+                                            green:(((rgb & 0xFF00) >> 8) / 255.0)\
+                                             blue:((rgb & 0xFF) / 255.0)\
+                                            alpha:1]
 
 + (Group *)groupWithContext:(NSManagedObjectContext *)context {
   return [NSEntityDescription insertNewObjectForEntityForName:@"Group" inManagedObjectContext:context];
@@ -54,10 +57,7 @@
 
 - (UIColor *)color {
   int32_t rgb = self.colorRGB;
-  return [UIColor colorWithRed:(((rgb & 0xFF0000) >> 16) / 255.0)
-                         green:(((rgb & 0xFF00) >> 8) / 255.0)
-                          blue:((rgb & 0xFF) / 255.0)
-                         alpha:1.0];
+  return UIColorFromRGB(rgb);
 }
 
 - (void)setColor:(UIColor *)color {

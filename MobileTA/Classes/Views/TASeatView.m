@@ -213,7 +213,7 @@
     [_participationLabel setBackgroundColor:[UIColor clearColor]];
     // This is the color Emelyn used in one of our recent projects, so I say
     // fuck it let's steal her work.
-    [_participationLabel setTextColor:[UIColor colorWithRed:(52.0/225.0) green:(52.0/225.0) blue:(52.0/225.0) alpha:1.0]];
+    [_participationLabel setTextColor:[UIColor colorWithWhite:(52 / 255.0) alpha:1]];
     [_participationLabel setFont:[UIFont boldSystemFontOfSize:25.0]];
     [_participationLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:_participationLabel];
