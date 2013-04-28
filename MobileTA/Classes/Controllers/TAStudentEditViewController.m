@@ -36,29 +36,18 @@
   [lastName setKey:@"lastName"];
   QEntryElement *email = [[QEntryElement alloc] initWithTitle:@"Email" Value:student.email Placeholder:@"address@example.com"];
   email.key = @"email";
-//  QRadioElement *group = [[QRadioElement alloc] initWithItems:[groups valueForKey:@"name"] selected:-1 title:@"Group"];
-//  group.values = groups;
-//  group.selectedValue = student.group;
-//  [group setKey:@"group"];
-  QSelectSection *group = [[QSelectSection alloc] initWithItems:[groups valueForKey:@"name"] selected:[groups indexOfObject:[student group]] title:@"Group"];
-  [group setMultipleAllowed:NO];
-  [group setDeselectAllowed:YES];
-  [group setKey:@"group"];
-//  __weak QSelectSection *blockGroup = group;
-//  [group setOnSelected:^(void){
-//    NSMutableArray *indexes = [blockGroup selectedIndexes];
-//    if ([indexes count] > 1) {
-//      NSMutableArray *onlyLast = [NSMutableArray arrayWithObject:[indexes lastObject]];
-//      [blockGroup setSelectedIndexes:onlyLast];
-//    }
-//  }];
   [mainSection addElement:firstName];
   [mainSection addElement:nickname];
   [mainSection addElement:lastName];
   [mainSection addElement:email];
-//  [mainSection addElement:group];
   [root addSection:mainSection];
-  [root addSection:group];
+  QSelectSection *group = [[QSelectSection alloc] initWithItems:[groups valueForKey:@"name"] selected:[groups indexOfObject:[student group]] title:@"Group"];
+  [group setMultipleAllowed:NO];
+  [group setDeselectAllowed:YES];
+  [group setKey:@"group"];
+  if ([groups count]) {
+    [root addSection:group];
+  }
 
   QSection *notesSection = [[QSection alloc] initWithTitle:@"Notes"];
   QMultilineElement *notes = [[QMultilineElement alloc] initWithTitle:nil value:student.notes];
