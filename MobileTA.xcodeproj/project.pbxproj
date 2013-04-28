@@ -16,6 +16,7 @@
 		13008FEE170A90EB0045C05A /* TASeatingChartViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13008FED170A90EB0045C05A /* TASeatingChartViewTest.m */; };
 		13008FF4170A973B0045C05A /* seat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E654DB41170A5C3200584411 /* seat.jpg */; };
 		13008FF7170A98C80045C05A /* TAStudentDisplayCellTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13008FF6170A98C80045C05A /* TAStudentDisplayCellTest.m */; };
+		1300AB17172D14B4005A4D3F /* libGHUnitIOSSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1300AB0F172D1467005A4D3F /* libGHUnitIOSSimulator.a */; };
 		1306D4091717D83B00CC3B4D /* TASeatingChartAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F1A53E171375A200DD781D /* TASeatingChartAttendanceViewController.m */; };
 		1306D40F1717D85B00CC3B4D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1324064817178CFB00F247C0 /* MessageUI.framework */; };
 		130741C016EEC8A300465D86 /* TAAttendanceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE67B5D16EE756500F98DCE /* TAAttendanceHistoryViewController.m */; };
@@ -153,6 +154,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 0097C4A813BA7FC800D3BEF0;
 			remoteInfo = Tests;
+		};
+		1300AB15172D14A7005A4D3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1300AB07172D1467005A4D3F /* GHUnitIOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0041C5E913BA7B8A0015FC22;
+			remoteInfo = "GHUnitIOS (Simulator)";
 		};
 		135116DC16CDC11E00D7376E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -327,6 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1300AB17172D14B4005A4D3F /* libGHUnitIOSSimulator.a in Frameworks */,
 				135F124116D740F5009C310A /* libQuickDialog.a in Frameworks */,
 				1306D40F1717D85B00CC3B4D /* MessageUI.framework in Frameworks */,
 				135F122716D72131009C310A /* CoreLocation.framework in Frameworks */,
@@ -657,6 +666,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1300AB16172D14A7005A4D3F /* PBXTargetDependency */,
 				135F122416D72111009C310A /* PBXTargetDependency */,
 			);
 			name = Tests;
@@ -896,6 +906,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1300AB16172D14A7005A4D3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GHUnitIOS (Simulator)";
+			targetProxy = 1300AB15172D14A7005A4D3F /* PBXContainerItemProxy */;
+		};
 		135116E116CDC22700D7376E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = QuickDialog;
@@ -1041,7 +1056,10 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/MobileTA/Libraries/QuickDialog\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/MobileTA/Libraries/QuickDialog\"/**",
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
+				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
@@ -1064,7 +1082,10 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/MobileTA/Libraries/QuickDialog\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/MobileTA/Libraries/QuickDialog\"/**",
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
+				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
