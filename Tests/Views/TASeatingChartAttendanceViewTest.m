@@ -31,6 +31,7 @@
 - (void)test {
   Student *student = [Student studentWithFirstName:@"Ted" lastName:@"Kalaw" context:self.managedObjectContext];
   TASeatingChartAttendanceViewController *controller = [[TASeatingChartAttendanceViewController alloc] initWithStudentAttendance:nil student:student];
+  controller.view.frame = CGRectMake(0, 0, 200, 160);
   [controller viewWillAppear:NO];
   [controller viewDidAppear:NO];
   GHVerifyView(controller.view);

@@ -44,6 +44,7 @@
 
   Student *student = [Student studentWithFirstName:@"Scott" lastName:@"Rice" context:self.managedObjectContext];
   student.nickname = @"Fried";
+  student.email = @"address@example.com";
   student.section = section;
 
   AttendanceRecord *record = [AttendanceRecord attendanceRecordWithContext:self.managedObjectContext];
@@ -55,7 +56,7 @@
   GHAssertTrue([self.managedObjectContext save:nil], @"Could not save managed object changes.");
 
   NSString *csvString = [section CSVStringWithAttendanceRecord:record];
-  NSString *expected = @"Last Name,First Name,Nickname,Attendance,Particpation\nRice,Scott,Fried,Tardy,2\n";
+  NSString *expected = @"Last Name,First Name,Nickname,Email,Attendance,Particpation\nRice,Scott,Fried,address@example.com,Tardy,2\n";
   GHAssertEqualObjects(csvString, expected, nil);
 }
 
