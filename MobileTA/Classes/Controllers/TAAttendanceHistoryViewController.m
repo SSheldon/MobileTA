@@ -198,6 +198,11 @@
     // Re-sort the table
     self.records = [self.records copy];
   }
+
+  if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
+    [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:record];
+    [self updateTableView:self.tableView];
+  }
 }
 
 @end
