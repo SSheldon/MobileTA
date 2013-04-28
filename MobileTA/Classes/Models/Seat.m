@@ -75,7 +75,7 @@
 }
 
 - (BOOL)intersectsWithSeatAtLocation:(CGPoint)location {
-  return [self intersectsWithSeatAtX:location.x y:location.y];
+  return [self intersectsWithSeatAtX:(int16_t)location.x y:(int16_t)location.y];
 }
 
 - (BOOL)intersectsWithSeat:(Seat *)other {

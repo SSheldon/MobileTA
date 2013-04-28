@@ -179,7 +179,7 @@
       [self updateTableView:tableView];
     }
   }
-  [tableView deselectRowAtIndexPath:indexPath animated:nil];
+  [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark TAAttendanceRecordEditDelegate

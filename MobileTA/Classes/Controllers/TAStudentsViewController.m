@@ -31,7 +31,7 @@
   UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
 
   // Add an empty student array for each section
-  for (NSInteger i = 0; i < collation.sectionTitles.count; i++) {
+  for (NSUInteger i = 0; i < collation.sectionTitles.count; i++) {
     [_tableSections addObject:[NSMutableArray array]];
   }
 
@@ -80,7 +80,7 @@
 }
 
 - (NSIndexPath *)indexPathOfStudent:(Student *)student {
-  if ([[self students] indexOfObject:student] == -1) {
+  if ([[self students] indexOfObject:student] == NSNotFound) {
     return nil;
   }
   NSInteger studentSection = [[UILocalizedIndexedCollation currentCollation] sectionForObject:student collationStringSelector:@selector(lastName)];

@@ -86,9 +86,9 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 - (void)selectRandomStudent {
   NSMutableArray *array = [NSMutableArray arrayWithArray:[self.section.students allObjects]];
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-  for (int i=0; i<array.count; i++) {
+  for (NSUInteger i = 0; i < array.count; i++) {
     Student *currStudent = [array objectAtIndex:i];
-    NSInteger *totalParticipation = [currStudent totalParticipationInContext:[self managedObjectContext]];
+    NSInteger totalParticipation = [currStudent totalParticipationInContext:[self managedObjectContext]];
     NSString *key = [NSString stringWithFormat:@"%@ %@", currStudent.firstName, currStudent.lastName];
     [dict setValue:[NSNumber numberWithInteger:totalParticipation] forKey:key];
   }

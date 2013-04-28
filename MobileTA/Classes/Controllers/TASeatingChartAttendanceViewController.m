@@ -32,7 +32,7 @@
     _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 180, 60)];
     // Set up segments
     NSArray *labels = [[NSArray alloc]initWithObjects:@"P", @"A", @"T", nil];
-    for (int i=0; i<labels.count; i++) {
+    for (NSUInteger i = 0; i < labels.count; i++) {
       [_segmentedControl insertSegmentWithTitle:labels[i] atIndex:i animated:NO];
       [_segmentedControl setWidth:60.0 forSegmentAtIndex:i];
     }
@@ -98,7 +98,7 @@
       newColor = [UIColor clearColor];
   }
   
-  for (int i=0; i<[_segmentedControl.subviews count]; i++) {
+  for (NSUInteger i = 0; i < [_segmentedControl.subviews count]; i++) {
     [[_segmentedControl.subviews objectAtIndex:i] setTintColor:nil];
     // If the button is selected,
     if ([[_segmentedControl.subviews objectAtIndex:i] respondsToSelector:@selector(isSelected)] && [[_segmentedControl.subviews objectAtIndex:i]isSelected])
@@ -110,17 +110,14 @@
 
 - (void)points {
   NSInteger action = _segmentedButtons.selectedSegmentIndex;
-  NSInteger currentValue = [[_segmentedButtons titleForSegmentAtIndex:1] integerValue];
   if (action == PLUS_ONE) {
-    currentValue += 1;
-    [self.delegate changeParticipationBy:1 forStudent:self.student];
+    int16_t newValue = [self.delegate changeParticipationBy:1 forStudent:self.student];
+    [_segmentedButtons setTitle:[self textForValue:newValue] forSegmentAtIndex:1];
   }
   else if (action == MINUS_ONE) {
-    currentValue -= 1;
-    [self.delegate changeParticipationBy:-1 forStudent:self.student];
+    int16_t newValue = [self.delegate changeParticipationBy:-1 forStudent:self.student];
+    [_segmentedButtons setTitle:[self textForValue:newValue] forSegmentAtIndex:1];
   }
-
-  [_segmentedButtons setTitle:[self textForValue:currentValue] forSegmentAtIndex:1];
 }
 
 - (void)changeAttendanceStatus {
@@ -139,7 +136,7 @@
   [[_segmentedButtons.subviews objectAtIndex:1] setTintColor:[UIColor orangeColor]];
 }
 
-- (NSString *)textForValue:(NSInteger)value {
+- (NSString *)textForValue:(int16_t)value {
   if (value == 0) {
     return @"+0";
   }

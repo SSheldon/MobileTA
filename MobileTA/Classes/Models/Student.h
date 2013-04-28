@@ -58,7 +58,7 @@
 
 - (NSString *)fullDisplayName;
 - (NSString *)shortenedDisplayName;
-- (NSInteger *)totalParticipationInContext:(NSManagedObjectContext*)context;
+- (NSInteger)totalParticipationInContext:(NSManagedObjectContext*)context;
 
 @end
 

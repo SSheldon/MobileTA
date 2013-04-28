@@ -121,7 +121,7 @@
   }
 }
 
-- (NSInteger *)totalParticipationInContext:(NSManagedObjectContext*)context {
+- (NSInteger)totalParticipationInContext:(NSManagedObjectContext*)context {
   
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   [request setEntity:[NSEntityDescription entityForName:@"StudentAttendance" inManagedObjectContext:context]];

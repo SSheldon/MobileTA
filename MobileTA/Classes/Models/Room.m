@@ -31,7 +31,7 @@
 }
 
 - (BOOL)canMoveSeat:(Seat *)seat toLocation:(CGPoint)location {
-  return [self canMoveSeat:seat toX:location.x y:location.y];
+  return [self canMoveSeat:seat toX:(int16_t)location.x y:(int16_t)location.y];
 }
 
 - (BOOL)canAddSeatAtX:(int16_t)x y:(int16_t)y {
@@ -39,7 +39,7 @@
 }
 
 - (BOOL)canAddSeatAtLocation:(CGPoint)location {
-  return [self canAddSeatAtX:location.x y:location.y];
+  return [self canAddSeatAtX:(int16_t)location.x y:(int16_t)location.y];
 }
 
 - (BOOL)canAddSeat:(Seat *)seat {
