@@ -27,7 +27,7 @@
     root.title = @"Add Student";
   }
   
-  QSection *mainSection = [[QSection alloc] initWithTitle:@""];
+  QSection *mainSection = [[QSection alloc] initWithTitle:@"Details"];
   QEntryElement *firstName = [[QEntryElement alloc] initWithTitle:@"First Name" Value:[student firstName] Placeholder:@"John"];
   [firstName setKey:@"firstName"];
   QEntryElement *nickname = [[QEntryElement alloc] initWithTitle:@"Nickname" Value:student.nickname Placeholder:@"Jack"];
@@ -36,19 +36,32 @@
   [lastName setKey:@"lastName"];
   QEntryElement *email = [[QEntryElement alloc] initWithTitle:@"Email" Value:student.email Placeholder:@"address@example.com"];
   email.key = @"email";
-  QRadioElement *group = [[QRadioElement alloc] initWithItems:[groups valueForKey:@"name"] selected:-1 title:@"Group"];
-  group.values = groups;
-  group.selectedValue = student.group;
+//  QRadioElement *group = [[QRadioElement alloc] initWithItems:[groups valueForKey:@"name"] selected:-1 title:@"Group"];
+//  group.values = groups;
+//  group.selectedValue = student.group;
+//  [group setKey:@"group"];
+  QSelectSection *group = [[QSelectSection alloc] initWithItems:[groups valueForKey:@"name"] selected:[groups indexOfObject:[student group]] title:@"Group"];
+  [group setMultipleAllowed:NO];
+  [group setDeselectAllowed:YES];
   [group setKey:@"group"];
+//  __weak QSelectSection *blockGroup = group;
+//  [group setOnSelected:^(void){
+//    NSMutableArray *indexes = [blockGroup selectedIndexes];
+//    if ([indexes count] > 1) {
+//      NSMutableArray *onlyLast = [NSMutableArray arrayWithObject:[indexes lastObject]];
+//      [blockGroup setSelectedIndexes:onlyLast];
+//    }
+//  }];
   [mainSection addElement:firstName];
   [mainSection addElement:nickname];
   [mainSection addElement:lastName];
   [mainSection addElement:email];
-  [mainSection addElement:group];
+//  [mainSection addElement:group];
   [root addSection:mainSection];
+  [root addSection:group];
 
-  QSection *notesSection = [[QSection alloc] initWithTitle:nil];
-  QMultilineElement *notes = [[QMultilineElement alloc] initWithTitle:@"Notes" value:student.notes];
+  QSection *notesSection = [[QSection alloc] initWithTitle:@"Notes"];
+  QMultilineElement *notes = [[QMultilineElement alloc] initWithTitle:nil value:student.notes];
   notes.key = @"notes";
   [notesSection addElement:notes];
   [root addSection:notesSection];
@@ -62,8 +75,8 @@
 }
 
 - (id)initWithStudent:(Student *)student inSection:(Section *)section {
-  NSArray *groups = [[section groups] allObjects];
-  self = [self initWithRoot:[TAStudentEditViewController formForStudent:student withGroupOptions:groups]];
+  _groups = [[section groups] allObjects];
+  self = [self initWithRoot:[TAStudentEditViewController formForStudent:student withGroupOptions:_groups]];
   if (self) {
     // Final initialization
     [self setStudent:student];
@@ -102,7 +115,15 @@
   self.student.nickname = [dict objectForKey:@"nickname"];
   self.student.email = [dict objectForKey:@"email"];
   self.student.notes = [dict objectForKey:@"notes"];
-  self.student.group = [dict objectForKey:@"group"];
+  NSArray *selectedIndicies = [dict objectForKey:@"group"];
+  Group *group;
+  if ([selectedIndicies count]) {
+    group = [_groups objectAtIndex:[[selectedIndicies objectAtIndex:0] intValue]];
+  }
+  else {
+    group = nil;
+  }
+  self.student.group = group;
   
   [[self navigationController] popViewControllerAnimated:YES];
 

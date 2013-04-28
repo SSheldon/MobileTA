@@ -34,7 +34,7 @@
   if(!dateValue) {
     dateValue = [NSDate date];
   }
-  QDateTimeInlineElement *date = [[QDateTimeInlineElement alloc] initWithTitle:@"Date" date:dateValue];
+  QDateTimeInlineElement *date = [[QDateTimeInlineElement alloc] initWithTitle:@"Date" date:dateValue andMode:UIDatePickerModeDateAndTime];
   [date setKey:@"date"];
   QSection *mainSection = [[QSection alloc] initWithTitle:nil];
   [mainSection addElement:name];

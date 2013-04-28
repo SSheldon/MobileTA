@@ -20,7 +20,9 @@
 
 @end
 
-@interface TAStudentEditViewController : QuickDialogController
+@interface TAStudentEditViewController : QuickDialogController {
+  NSArray *_groups;
+}
 
 + (QRootElement *)formForStudent:(Student *)student withGroupOptions:(NSArray *)groups;
 - (id)initWithStudent:(Student *)student inSection:(Section *)section;
