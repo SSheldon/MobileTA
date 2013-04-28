@@ -90,6 +90,9 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
     Student *currStudent = [array objectAtIndex:i];
     NSInteger totalParticipation = [currStudent totalParticipationInContext:[self managedObjectContext]];
     NSString *key = [NSString stringWithFormat:@"%@ %@", currStudent.firstName, currStudent.lastName];
+    if (currStudent.group) {
+      key = [NSString stringWithFormat:@"%@\n%@", key, currStudent.group.name];
+    }
     [dict setValue:[NSNumber numberWithInteger:totalParticipation] forKey:key];
   }
   
