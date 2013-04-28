@@ -1,6 +1,6 @@
 [submodule "MobileTA/Libraries/QuickDialog"]
 	path = MobileTA/Libraries/QuickDialog
-	url = git://github.com/escoz/QuickDialog.git
+	url = git://github.com/SSheldon/QuickDialog.git
 [submodule "MobileTA/Libraries/CHCSVParser"]
 	path = MobileTA/Libraries/CHCSVParser
 	url = git://github.com/davedelong/CHCSVParser.git
