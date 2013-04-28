@@ -10,6 +10,8 @@
 #import "Group.h"
 #import <MessageUI/MessageUI.h>
 #import "TAGroupsEditViewController.h"
+#import "QuickDialogController.h"
+#import <QuickDialog/QuickDialog.h>
 
 @class Section;
 

@@ -82,7 +82,8 @@
   }
   Group *group = [_groups objectAtIndex:indexPath.row];
   [[cell textLabel] setText:[group name]];
-  
+  [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
+  [[cell imageView] setImage:[[group color] imageByDrawingCircleOfColor]];
   return cell;
 }
 
