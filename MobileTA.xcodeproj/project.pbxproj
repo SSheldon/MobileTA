@@ -133,6 +133,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1300AB0E172D1467005A4D3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1300AB07172D1467005A4D3F /* GHUnitIOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0041C5EA13BA7B8A0015FC22;
+			remoteInfo = "GHUnitIOS (Simulator)";
+		};
+		1300AB10172D1467005A4D3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1300AB07172D1467005A4D3F /* GHUnitIOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0041C61313BA7C6C0015FC22;
+			remoteInfo = "GHUnitIOS (Device)";
+		};
+		1300AB12172D1467005A4D3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1300AB07172D1467005A4D3F /* GHUnitIOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0097C4A813BA7FC800D3BEF0;
+			remoteInfo = Tests;
+		};
 		135116DC16CDC11E00D7376E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
@@ -166,6 +187,7 @@
 /* Begin PBXFileReference section */
 		13008FED170A90EB0045C05A /* TASeatingChartViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASeatingChartViewTest.m; path = Views/TASeatingChartViewTest.m; sourceTree = "<group>"; };
 		13008FF6170A98C80045C05A /* TAStudentDisplayCellTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentDisplayCellTest.m; path = Views/TAStudentDisplayCellTest.m; sourceTree = "<group>"; };
+		1300AB07172D1467005A4D3F /* GHUnitIOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GHUnitIOS.xcodeproj; path = "Libraries/GHUnit/Project-iOS/GHUnitIOS.xcodeproj"; sourceTree = "<group>"; };
 		130741C816EEC98C00465D86 /* TAAttendanceHistoryViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAAttendanceHistoryViewTest.m; path = Views/TAAttendanceHistoryViewTest.m; sourceTree = "<group>"; };
 		130741D316EED32E00465D86 /* TASectionEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionEditViewTest.m; sourceTree = "<group>"; };
 		130741DB16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAttendanceRecordEditViewTest.m; sourceTree = "<group>"; };
@@ -320,6 +342,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1300AB08172D1467005A4D3F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1300AB0F172D1467005A4D3F /* libGHUnitIOSSimulator.a */,
+				1300AB11172D1467005A4D3F /* libGHUnitIOSDevice.a */,
+				1300AB13172D1467005A4D3F /* Tests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1322E27816BA1C2B00C890B4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,6 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				1341D73F17109AD0007B2D1D /* CHCSVParser */,
+				1300AB07172D1467005A4D3F /* GHUnitIOS.xcodeproj */,
 				135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */,
 			);
 			name = Libraries;
@@ -653,6 +686,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 1300AB08172D1467005A4D3F /* Products */;
+					ProjectRef = 1300AB07172D1467005A4D3F /* GHUnitIOS.xcodeproj */;
+				},
+				{
 					ProductGroup = 135116D816CDC11E00D7376E /* Products */;
 					ProjectRef = 135116D716CDC11E00D7376E /* QuickDialog.xcodeproj */;
 				},
@@ -666,6 +703,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		1300AB0F172D1467005A4D3F /* libGHUnitIOSSimulator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGHUnitIOSSimulator.a;
+			remoteRef = 1300AB0E172D1467005A4D3F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1300AB11172D1467005A4D3F /* libGHUnitIOSDevice.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGHUnitIOSDevice.a;
+			remoteRef = 1300AB10172D1467005A4D3F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1300AB13172D1467005A4D3F /* Tests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Tests.app;
+			remoteRef = 1300AB12172D1467005A4D3F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		135116DD16CDC11E00D7376E /* QuickDialogExample.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
