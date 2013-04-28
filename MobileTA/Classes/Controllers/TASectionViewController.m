@@ -304,6 +304,16 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)groupsViewController:(TAGroupsViewController *)controller didUpdateGroup:(Group *)group {
+  // Reload the groups
+  _groupsController.groups = [self.section.groups allObjects];
+}
+
+- (void)groupsViewController:(TAGroupsViewController *)controller didRemoveGroup:(Group *)group {
+  // Reload the groups
+  _groupsController.groups = [self.section.groups allObjects];
+}
+
 #pragma mark TAStudentsAttendanceDelegate
 
 - (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
