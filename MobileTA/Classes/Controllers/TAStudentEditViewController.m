@@ -41,14 +41,20 @@
   [mainSection addElement:lastName];
   [mainSection addElement:email];
   [root addSection:mainSection];
-  QSelectSection *group = [[QSelectSection alloc] initWithItems:[groups valueForKey:@"name"] selected:[groups indexOfObject:[student group]] title:@"Group"];
-  [group setMultipleAllowed:NO];
-  [group setDeselectAllowed:YES];
-  [group setKey:@"group"];
+  
   if ([groups count]) {
+    QSelectSection *group = [[QSelectSection alloc] initWithTitle:@"Group"];
+    [group setItems:[groups valueForKey:@"name"]];
+    if ([student group]) {
+      NSUInteger groupIndex = [groups indexOfObject:[student group]];
+      [group setSelectedIndexes:[NSMutableArray arrayWithObject:[NSNumber numberWithUnsignedInt:groupIndex]]];
+    }
+    [group setMultipleAllowed:NO];
+    [group setDeselectAllowed:YES];
+    [group setKey:@"group"];
     [root addSection:group];
   }
-
+  
   QSection *notesSection = [[QSection alloc] initWithTitle:@"Notes"];
   QMultilineElement *notes = [[QMultilineElement alloc] initWithTitle:nil value:student.notes];
   notes.key = @"notes";
@@ -107,7 +113,7 @@
   NSArray *selectedIndicies = [dict objectForKey:@"group"];
   Group *group;
   if ([selectedIndicies count]) {
-    group = [_groups objectAtIndex:[[selectedIndicies objectAtIndex:0] intValue]];
+    group = [_groups objectAtIndex:[[selectedIndicies objectAtIndex:0] unsignedIntegerValue]];
   }
   else {
     group = nil;

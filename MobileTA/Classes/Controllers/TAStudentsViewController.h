@@ -18,6 +18,7 @@
 -(id)initWithStudents:(NSArray *)students;
 
 @property (nonatomic, copy) NSArray *students;
+@property (nonatomic, strong)NSIndexPath *detailedStudentIndex;
 
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath;
 - (NSIndexPath *)indexPathOfStudent:(Student *)student;

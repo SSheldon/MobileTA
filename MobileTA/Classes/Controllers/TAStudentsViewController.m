@@ -13,6 +13,8 @@
 
 @implementation TAStudentsViewController
 
+@synthesize detailedStudentIndex=detailedStudentIndex;
+
 -(id)initWithStudents:(NSArray *)students {
   self = [self initWithStyle:UITableViewStylePlain];
   if (self) {
