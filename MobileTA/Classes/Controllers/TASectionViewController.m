@@ -187,15 +187,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
       student.firstName != [oldData objectForKey:@"firstName"]) {
     if (!oldData) {
       // Add the student
-      NSIndexPath *detailIndex = [_studentsController detailedStudentIndex];
-      if (detailIndex) {
-        Student *detailedStudent = [_studentsController studentAtIndexPath:[_studentsController detailedStudentIndex]];
-        _studentsController.students = [_studentsController.students arrayByAddingObject:student];
-        [_studentsController setDetailedStudentIndex:[_studentsController indexPathOfStudent:detailedStudent]];
-      }
-      else {
-        _studentsController.students = [_studentsController.students arrayByAddingObject:student];
-      }
+      [_studentsController addStudent:student];
     } else {
       [_studentsController reloadStudents];
     }

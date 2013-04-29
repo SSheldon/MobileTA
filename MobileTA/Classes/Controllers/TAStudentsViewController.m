@@ -13,8 +13,6 @@
 
 @implementation TAStudentsViewController
 
-@synthesize detailedStudentIndex=detailedStudentIndex;
-
 -(id)initWithStudents:(NSArray *)students {
   self = [self initWithStyle:UITableViewStylePlain];
   if (self) {
@@ -63,6 +61,17 @@
   NSIndexPath *path = [self indexPathOfStudent:student];
   if (path) {
     [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+  }
+}
+
+- (void)addStudent:(Student *)student {
+  if (detailedStudentIndex) {
+    Student *detailedStudent = [self studentAtIndexPath:detailedStudentIndex];
+    self.students = [self.students arrayByAddingObject:student];
+    detailedStudentIndex = [self indexPathOfStudent:detailedStudent];
+  }
+  else {
+    self.students = [self.students arrayByAddingObject:student];
   }
 }
 

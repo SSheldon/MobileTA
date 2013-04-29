@@ -18,13 +18,13 @@
 -(id)initWithStudents:(NSArray *)students;
 
 @property (nonatomic, copy) NSArray *students;
-@property (nonatomic, strong)NSIndexPath *detailedStudentIndex;
 
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath;
 - (NSIndexPath *)indexPathOfStudent:(Student *)student;
 - (void)selectStudent:(Student *)student;
 - (void)reloadStudents;
 - (void)reloadStudent:(Student *)student;
+- (void)addStudent:(Student *)student;
 - (void)removeStudent:(Student *)student;
 
 - (UITableViewCell *)createDisplayCellForStudent:(Student *)student;
