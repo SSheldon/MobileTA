@@ -69,12 +69,13 @@
 }
 
 - (id)initWithStudent:(Student *)student inSection:(Section *)section {
-  _groups = [section sortedGroups];
-  self = [self initWithRoot:[TAStudentEditViewController formForStudent:student withGroupOptions:_groups]];
+  NSArray *groups = [section sortedGroups];
+  self = [self initWithRoot:[TAStudentEditViewController formForStudent:student withGroupOptions:groups]];
   if (self) {
     // Final initialization
     [self setStudent:student];
     [self setSection:section];
+    _groups = groups;
   }
   return self;
 }
@@ -109,13 +110,11 @@
   self.student.nickname = [dict objectForKey:@"nickname"];
   self.student.email = [dict objectForKey:@"email"];
   self.student.notes = [dict objectForKey:@"notes"];
+
   NSArray *selectedIndicies = [dict objectForKey:@"group"];
-  Group *group;
+  Group *group = nil;
   if ([selectedIndicies count]) {
     group = [_groups objectAtIndex:[[selectedIndicies objectAtIndex:0] unsignedIntegerValue]];
-  }
-  else {
-    group = nil;
   }
   self.student.group = group;
   
