@@ -43,8 +43,7 @@
   [root addSection:mainSection];
   
   if ([groups count]) {
-    QSelectSection *group = [[QSelectSection alloc] initWithTitle:@"Group"];
-    [group setItems:[groups valueForKey:@"name"]];
+    QSelectSection *group = [[QSelectSection alloc] initWithItems:[groups valueForKey:@"name"] selectedIndexes:nil title:@"Group"];
     if ([student group]) {
       NSUInteger groupIndex = [groups indexOfObject:[student group]];
       [group setSelectedIndexes:[NSMutableArray arrayWithObject:[NSNumber numberWithUnsignedInt:groupIndex]]];
