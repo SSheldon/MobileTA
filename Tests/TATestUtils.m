@@ -9,6 +9,7 @@
 #import "TATestUtils.h"
 
 #import "AttendanceRecord.h"
+#import "Group.h"
 #import "Room.h"
 #import "Seat.h"
 #import "Section.h"
@@ -41,14 +42,26 @@
   Section *section = [Section sectionWithName:@"AD1" course:@"SP13 CS428" context:context];
   section.room = room;
 
+  Group *group1 = [Group groupWithContext:context];
+  group1.section = section;
+  group1.name = @"iOS Team";
+  group1.color = [UIColor blueColor];
+
+  Group *group2 = [Group groupWithContext:context];
+  group2.section = section;
+  group2.name = @"Android Team";
+  group2.color = [UIColor purpleColor];
+
   Student *student1 = [Student studentWithFirstName:@"Steven" lastName:@"Sheldon" context:context];
   student1.section = section;
   student1.seat = seat1;
+  student1.group = group1;
 
   Student *student2 = [Student studentWithFirstName:@"Scott" lastName:@"Rice" context:context];
   student2.nickname = @"Fried";
   student2.section = section;
   student2.seat = seat2;
+  student2.group = group2;
 
   NSDate *date = [NSDate dateWithTimeIntervalSince1970:1331467200];
   AttendanceRecord *record = [AttendanceRecord attendanceRecordForName:nil date:date context:context];
