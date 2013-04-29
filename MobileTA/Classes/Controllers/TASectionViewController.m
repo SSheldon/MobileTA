@@ -164,7 +164,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
   [super setSection:section];
   _studentsController.students = [section.students allObjects];
-  _groupsController.groups = [section.groups allObjects];
+  _groupsController.groups = [section sortedGroups];
   self.title = section.name;
 }
 
@@ -332,13 +332,13 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)groupsViewController:(TAGroupsViewController *)controller didUpdateGroup:(Group *)group {
   // Reload the groups
-  _groupsController.groups = [self.section.groups allObjects];
+  _groupsController.groups = [self.section sortedGroups];
   [self.seatingChart reloadSeats];
 }
 
 - (void)groupsViewController:(TAGroupsViewController *)controller didRemoveGroup:(Group *)group {
   // Reload the groups
-  _groupsController.groups = [self.section.groups allObjects];
+  _groupsController.groups = [self.section sortedGroups];
   [self.seatingChart reloadSeats];
 }
 

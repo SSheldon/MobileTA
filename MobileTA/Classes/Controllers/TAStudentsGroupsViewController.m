@@ -13,10 +13,7 @@
 @implementation TAStudentsGroupsViewController
 
 - (void)setGroups:(NSArray *)groups {
-  NSArray *sortDescriptors = @[
-    [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
-  ];
-  _groups = [groups sortedArrayUsingDescriptors:sortDescriptors];
+  _groups = groups;
   [self reloadStudents];
 }
 

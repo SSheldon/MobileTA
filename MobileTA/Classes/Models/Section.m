@@ -86,6 +86,13 @@
   return display;
 }
 
+- (NSArray *)sortedGroups {
+  NSArray *sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+  ];
+  return [[self.groups allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+}
+
 - (void)writeCSVToOutputStream:(NSOutputStream *)stream withAttendanceRecord:(AttendanceRecord *)record {
   CHCSVWriter *writer = [[CHCSVWriter alloc] initWithOutputStream:stream encoding:NSUTF8StringEncoding delimiter:','];
 

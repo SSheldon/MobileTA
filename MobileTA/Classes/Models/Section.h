@@ -47,6 +47,8 @@
  */
 - (NSString *)displayName;
 
+- (NSArray *)sortedGroups;
+
 /*!
  * Writes this Section and the given AttendanceRecord as
  * comma separated values to an output stream.

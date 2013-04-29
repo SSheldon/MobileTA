@@ -21,7 +21,7 @@
   self = [self initWithStyle:UITableViewStylePlain];
   if (self) {
     _section = section;
-    _groups = [[section groups] allObjects];
+    _groups = [section sortedGroups];
     [[self tableView] setAllowsSelectionDuringEditing:YES];
   }
   return self;
@@ -137,9 +137,7 @@
 - (void)viewController:(TAGroupsEditViewController *)viewController savedGroup:(Group *)group withPreviousData:(NSDictionary *)oldData {
   [group setSection:[self section]];
   [self saveManagedObjectContext];
-  if(!oldData) {
-    _groups = [_groups arrayByAddingObject:group];
-  }
+  _groups = [self.section sortedGroups];
   [[self tableView] reloadData];
   // Inform the delegate
   if ([self.delegate respondsToSelector:@selector(groupsViewController:didUpdateGroup:)]) {

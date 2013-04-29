@@ -69,7 +69,7 @@
 }
 
 - (id)initWithStudent:(Student *)student inSection:(Section *)section {
-  _groups = [[section groups] allObjects];
+  _groups = [section sortedGroups];
   self = [self initWithRoot:[TAStudentEditViewController formForStudent:student withGroupOptions:_groups]];
   if (self) {
     // Final initialization
