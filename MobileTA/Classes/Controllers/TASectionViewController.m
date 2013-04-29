@@ -19,6 +19,10 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   TASectionSelectedViewSeatingChart
 };
 
+@interface TASectionViewController ()
+@property (strong, nonatomic) UIActionSheet *actionSheet;
+@end
+
 @implementation TASectionViewController {
   TAStudentsAttendanceViewController *_studentsController;
   TAStudentsGroupsViewController *_groupsController;
@@ -120,6 +124,13 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
       self.attendanceRecord = record;
     }
   }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+
+  [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex animated:animated];
+  self.actionSheet = nil;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -257,17 +268,19 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self presentViewController:mailController animated:YES completion:nil];
 }
 
-- (void)showActionSheet:(id)sender event:(UIEvent *)event {
-  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:@"Choose Random Student", @"Manage Groups",@"Manage Meetings",@"Export", nil];
-  UIView *buttonView = [[[event allTouches] anyObject] view];
-  CGRect bf = [buttonView frame];
-  CGFloat statusBar = [UIApplication sharedApplication].statusBarFrame.size.height;
-  CGRect adjusted = CGRectMake(bf.origin.x, bf.origin.y + bf.size.height + statusBar, bf.size.width, 1);
-  [actionSheet showFromRect:adjusted inView:[[[self view] superview] superview] animated:YES];
+- (void)showActionSheet:(UIBarButtonItem *)sender event:(UIEvent *)event {
+  if (self.actionSheet) {
+    [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex animated:YES];
+    self.actionSheet = nil;
+    return;
+  }
+
+  self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                   destructiveButtonTitle:nil
+                                        otherButtonTitles:@"Choose Random Student", @"Manage Groups", @"Manage Meetings", @"Export", nil];
+  [self.actionSheet showFromBarButtonItem:sender animated:YES];
 }
 
 #pragma mark TAStudentEditDelegate
@@ -379,6 +392,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
     default:
     break;
   }
+  self.actionSheet = nil;
 }
 
 @end
