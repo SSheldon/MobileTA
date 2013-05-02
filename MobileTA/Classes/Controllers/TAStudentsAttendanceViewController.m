@@ -78,39 +78,39 @@
 #pragma mark TAStudentDetailCellDelegate
 
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   StudentAttendanceStatus status = [self markStatus:StudentAttendanceStatusAbsent forStudent:student];
-  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:detailedStudentIndex];
+  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
   [displayCell setStatus:status];
 }
 
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   StudentAttendanceStatus status = [self markStatus:StudentAttendanceStatusTardy forStudent:student];
-  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:detailedStudentIndex];
+  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
   [displayCell setStatus:status];
 }
 
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   int16_t participation = [self changeParticipationBy:1 forStudent:student];
-  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:detailedStudentIndex];
+  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
   [displayCell setParticipation:participation];
 }
 
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   int16_t participation = [self changeParticipationBy:-1 forStudent:student];
-  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:detailedStudentIndex];
+  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
   [displayCell setParticipation:participation];
 }
 
 - (BOOL)cellCanSendEmail:(TAStudentDetailCell *)cell {
-  return [[self studentAtIndexPath:detailedStudentIndex] email] != nil;
+  return [[self studentAtIndexPath:_detailedStudentIndex] email] != nil;
 }
 
 - (void)studentDetailCellDidSendEmail:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
   [mailController setToRecipients:@[student.email]];
   mailController.mailComposeDelegate = self;

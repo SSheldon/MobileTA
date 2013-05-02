@@ -12,7 +12,7 @@
 
 @interface TAStudentsViewController : UITableViewController {
   NSMutableArray *_tableSections;
-  NSIndexPath *detailedStudentIndex;
+  NSIndexPath *_detailedStudentIndex;
 }
 
 -(id)initWithStudents:(NSArray *)students;

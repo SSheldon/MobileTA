@@ -63,7 +63,7 @@
   if (rowIndex == NSNotFound) {
     return nil;
   }
-  if (detailedStudentIndex && detailedStudentIndex.section == sectionIndex && detailedStudentIndex.row < rowIndex) {
+  if (_detailedStudentIndex && _detailedStudentIndex.section == sectionIndex && _detailedStudentIndex.row < rowIndex) {
     rowIndex++;
   }
   return [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];

@@ -65,10 +65,10 @@
 }
 
 - (void)addStudent:(Student *)student {
-  if (detailedStudentIndex) {
-    Student *detailedStudent = [self studentAtIndexPath:detailedStudentIndex];
+  if (_detailedStudentIndex) {
+    Student *detailedStudent = [self studentAtIndexPath:_detailedStudentIndex];
     self.students = [self.students arrayByAddingObject:student];
-    detailedStudentIndex = [self indexPathOfStudent:detailedStudent];
+    _detailedStudentIndex = [self indexPathOfStudent:detailedStudent];
   }
   else {
     self.students = [self.students arrayByAddingObject:student];
@@ -85,13 +85,13 @@
 - (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
   // If there are no student details or if the student details are in a different section,
   // we just proceed normally
-  if (detailedStudentIndex == nil || [indexPath section] != [detailedStudentIndex section]) {
+  if (_detailedStudentIndex == nil || [indexPath section] != [_detailedStudentIndex section]) {
     return [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
   }
   // Otherwise, we need to adjust for the fact that the detail cell is there. To do that,
   // we just check whether the index is above the detailed student index.
   NSInteger adjustedIndex = [indexPath row];
-  if ([detailedStudentIndex row] < [indexPath row]) {
+  if ([_detailedStudentIndex row] < [indexPath row]) {
     adjustedIndex--;
   }
   return [[_tableSections objectAtIndex:indexPath.section] objectAtIndex:adjustedIndex];
@@ -120,7 +120,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   NSInteger adjustment = 0;
-  if (detailedStudentIndex != nil && [detailedStudentIndex section] == section) {
+  if (_detailedStudentIndex != nil && [_detailedStudentIndex section] == section) {
     adjustment++;
   }
   return [[_tableSections objectAtIndex:section] count] + adjustment;
@@ -170,13 +170,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   if(editingStyle == UITableViewCellEditingStyleDelete) {
     // If we are removing the student we are detailing, remove the cell
-    if ([detailedStudentIndex isEqual:indexPath]) {
+    if ([_detailedStudentIndex isEqual:indexPath]) {
       [self hideStudentDetails];
     }
     // If we are removing something under the detailedStudentIndex, shift the
     // index down by 1
-    if (indexPath.section == detailedStudentIndex.section && detailedStudentIndex.row > indexPath.row) {
-      detailedStudentIndex = [NSIndexPath indexPathForRow:detailedStudentIndex.row-1 inSection:detailedStudentIndex.section];
+    if (indexPath.section == _detailedStudentIndex.section && _detailedStudentIndex.row > indexPath.row) {
+      _detailedStudentIndex = [NSIndexPath indexPathForRow:_detailedStudentIndex.row-1 inSection:_detailedStudentIndex.section];
       [[self tableView] scrollToRowAtIndexPath:[self indexPathOfDetailCell] atScrollPosition:UITableViewScrollPositionNone animated:YES];
     }
     Student *student = [self studentAtIndexPath:indexPath];
@@ -199,10 +199,10 @@
 
 - (NSIndexPath *)indexPathOfDetailCell {
   // The detail cell should be the cell below the detailed student
-  if (!detailedStudentIndex) {
+  if (!_detailedStudentIndex) {
     return nil;
   }
-  return [NSIndexPath indexPathForRow:[detailedStudentIndex row]+1 inSection:[detailedStudentIndex section]];
+  return [NSIndexPath indexPathForRow:[_detailedStudentIndex row]+1 inSection:[_detailedStudentIndex section]];
 }
 
 - (UITableViewCell *)createDetailCellForStudent:(Student *)student {
@@ -213,11 +213,11 @@
 }
 
 - (void)showDetailsForStudent:(Student *)student {
-  NSIndexPath *oldIndex = detailedStudentIndex;
+  NSIndexPath *oldIndex = _detailedStudentIndex;
   [self hideStudentDetails];
   NSIndexPath *newIndex = [self indexPathOfStudent:student];
   if (![oldIndex isEqual:newIndex]) {
-    detailedStudentIndex = newIndex;
+    _detailedStudentIndex = newIndex;
     NSIndexPath *detailCellIndexPath = [self indexPathOfDetailCell];
     [[self tableView] insertRowsAtIndexPaths:@[detailCellIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
     [[self tableView] scrollToRowAtIndexPath:detailCellIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
@@ -226,11 +226,11 @@
 
 - (void)hideStudentDetails {
   // If the detail view isn't on,
-  if (!detailedStudentIndex) {
+  if (!_detailedStudentIndex) {
     return;
   }
   NSIndexPath *cache = [self indexPathOfDetailCell];
-  detailedStudentIndex = nil;
+  _detailedStudentIndex = nil;
   [[self tableView] deleteRowsAtIndexPaths:@[cache] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
