@@ -79,26 +79,30 @@
 
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendanceStatus status = [self markStatus:StudentAttendanceStatusAbsent forStudent:student];
   TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:detailedStudentIndex];
-  [displayCell setStatus:[self markStatus:StudentAttendanceStatusAbsent forStudent:student]];
+  [displayCell setStatus:status];
 }
 
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  StudentAttendanceStatus status = [self markStatus:StudentAttendanceStatusTardy forStudent:student];
   TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:detailedStudentIndex];
-  [displayCell setStatus:[self markStatus:StudentAttendanceStatusTardy forStudent:student]];
+  [displayCell setStatus:status];
 }
 
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  int16_t participation = [self changeParticipationBy:1 forStudent:student];
   TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:detailedStudentIndex];
-  [displayCell setParticipation:[self changeParticipationBy:1 forStudent:student]];
+  [displayCell setParticipation:participation];
 }
 
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:detailedStudentIndex];
+  int16_t participation = [self changeParticipationBy:-1 forStudent:student];
   TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:detailedStudentIndex];
-  [displayCell setParticipation:[self changeParticipationBy:-1 forStudent:student]];
+  [displayCell setParticipation:participation];
 }
 
 - (BOOL)cellCanSendEmail:(TAStudentDetailCell *)cell {
