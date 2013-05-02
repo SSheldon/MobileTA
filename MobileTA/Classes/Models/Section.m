@@ -93,6 +93,24 @@
   return [[self.groups allObjects] sortedArrayUsingDescriptors:sortDescriptors];
 }
 
+- (Student *)randomStudent {
+  // Create a mapping from Student object ID to total participation
+  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+  for (Student *student in self.students) {
+    NSInteger totalParticipation = [student totalParticipation];
+    [dict setValue:[NSNumber numberWithInteger:totalParticipation] forKey:student.objectID];
+  }
+
+  // Sorted ASCENDING
+  NSMutableArray *students = [NSMutableArray arrayWithArray:[self.students allObjects]];
+  [students sortUsingComparator:^NSComparisonResult(Student *student1, Student *student2) {
+    return [[dict objectForKey:student1.objectID] compare:[dict objectForKey:student2.objectID]];
+  }];
+  int bottomThird = students.count / 3;
+  NSUInteger randomIndex = arc4random() % bottomThird;
+  return [students objectAtIndex:randomIndex];
+}
+
 - (void)writeCSVToOutputStream:(NSOutputStream *)stream withAttendanceRecord:(AttendanceRecord *)record {
   CHCSVWriter *writer = [[CHCSVWriter alloc] initWithOutputStream:stream encoding:NSUTF8StringEncoding delimiter:','];
 
