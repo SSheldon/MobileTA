@@ -88,25 +88,14 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 }
 
 - (void)selectRandomStudent {
-  NSMutableArray *array = [NSMutableArray arrayWithArray:[self.section.students allObjects]];
-  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-  for (NSUInteger i = 0; i < array.count; i++) {
-    Student *currStudent = [array objectAtIndex:i];
-    NSInteger totalParticipation = [currStudent totalParticipation];
-    NSString *key = [NSString stringWithFormat:@"%@ %@", currStudent.firstName, currStudent.lastName];
-    if (currStudent.group) {
-      key = [NSString stringWithFormat:@"%@\n%@", key, currStudent.group.name];
-    }
-    [dict setValue:[NSNumber numberWithInteger:totalParticipation] forKey:key];
+  Student *student = [self.section randomStudent];
+  NSString *message = [student fullDisplayName];
+  if (student.group) {
+    message = [message stringByAppendingFormat:@"\n%@", student.group.name];
   }
   
-  // Sorted ASCENDING
-  NSArray *sortedKeys =  [dict keysSortedByValueUsingSelector:@selector(compare:)];
-  int bottomThird = self.section.students.count / 3;
-  NSUInteger randomIndex = arc4random() % bottomThird;
-  
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"The victim is..."
-                                                  message:[sortedKeys objectAtIndex:randomIndex]
+                                                  message:message
                                                  delegate:nil
                                         cancelButtonTitle:@"OK"
                                         otherButtonTitles:nil];
