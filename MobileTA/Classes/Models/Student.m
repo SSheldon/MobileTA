@@ -121,10 +121,9 @@
   }
 }
 
-- (NSInteger)totalParticipationInContext:(NSManagedObjectContext*)context {
-  
+- (NSInteger)totalParticipation {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:[NSEntityDescription entityForName:@"StudentAttendance" inManagedObjectContext:context]];
+  [request setEntity:[NSEntityDescription entityForName:@"StudentAttendance" inManagedObjectContext:self.managedObjectContext]];
   [request setPredicate:[NSPredicate predicateWithFormat:@"ANY student == %@", self]];
   
   [request setResultType:NSDictionaryResultType];
@@ -147,7 +146,7 @@
   
   // Execute the fetch.
   NSError *error = nil;
-  NSArray *objects = [context executeFetchRequest:request error:&error];
+  NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
   if (objects == nil) {
     // Handle the error.
   }
