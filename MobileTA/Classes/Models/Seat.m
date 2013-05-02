@@ -57,8 +57,9 @@
   if (oldStudent) {
     [self removeStudentsObject:oldStudent];
   }
-
-  [self addStudentsObject:student];
+  if (student) {
+    [self addStudentsObject:student];
+  }
 }
 
 - (CGPoint)location {
