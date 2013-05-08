@@ -97,18 +97,6 @@
   return YES;
 }
 
-- (void)updateTableView:(UITableView *)tableView {
-  for (NSIndexPath *indexPath in [tableView indexPathsForVisibleRows]) {
-    AttendanceRecord *record = [self attendanceRecordAtIndexPath:indexPath];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (record==self.currentRecord) {
-      [cell.imageView setHidden:NO];
-    } else {
-      [cell.imageView setHidden:YES];
-    }
-  }
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -176,7 +164,7 @@
   } else {
     if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
       [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:[self attendanceRecordAtIndexPath:indexPath]];
-      [self updateTableView:tableView];
+      [self.tableView reloadData];
     }
   }
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -201,7 +189,7 @@
 
   if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
     [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:record];
-    [self updateTableView:self.tableView];
+    [self.tableView reloadData];
   }
 }
 
