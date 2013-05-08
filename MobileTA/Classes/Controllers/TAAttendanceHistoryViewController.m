@@ -12,10 +12,6 @@
 #import "Section.h"
 #import "TAAttendanceRecordEditViewController.h"
 
-@interface TAAttendanceHistoryViewController ()
-
-@end
-
 @implementation TAAttendanceHistoryViewController {
  NSMutableArray *_tableSections;
 }
@@ -76,6 +72,14 @@
   return [[self records] objectAtIndex:[indexPath row]];
 }
 
+- (NSIndexPath *)indexPathOfAttendanceRecord:(AttendanceRecord *)record {
+  NSUInteger index = [self.records indexOfObject:record];
+  if (index == NSNotFound) {
+    return nil;
+  }
+  return [NSIndexPath indexPathForRow:index inSection:0];
+}
+
 - (void)cancel {
   if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewControllerDidCancel:)]) {
     [self.delegate attendanceHistoryViewControllerDidCancel:self];
@@ -90,6 +94,20 @@
   TAAttendanceRecordEditViewController *controller = [[TAAttendanceRecordEditViewController alloc] initWithAttendanceRecord:record];
   controller.delegate = self;
   [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)selectAttendanceRecord:(AttendanceRecord *)record {
+  UITableViewCell *oldCell = [self.tableView cellForRowAtIndexPath:[self indexPathOfAttendanceRecord:self.currentRecord]];
+  oldCell.accessoryType = UITableViewCellAccessoryNone;
+
+  self.currentRecord = ([self.currentRecord isEqual:record] ? nil : record);
+
+  UITableViewCell *newCell = [self.tableView cellForRowAtIndexPath:[self indexPathOfAttendanceRecord:self.currentRecord]];
+  newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+  if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
+    [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:self.currentRecord];
+  }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -152,13 +170,11 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  AttendanceRecord *record = [self attendanceRecordAtIndexPath:indexPath];
   if (self.editing) {
-    [self editAttendanceRecord:[self attendanceRecordAtIndexPath:indexPath]];
+    [self editAttendanceRecord:record];
   } else {
-    if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
-      [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:[self attendanceRecordAtIndexPath:indexPath]];
-      [self.tableView reloadData];
-    }
+    [self selectAttendanceRecord:record];
   }
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
@@ -175,14 +191,11 @@
   if (!oldData) {
     // Add the new record to the table
     self.records = [self.records arrayByAddingObject:record];
+    // Select the new record
+    [self selectAttendanceRecord:record];
   } else {
     // Re-sort the table
     self.records = [self.records copy];
-  }
-
-  if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:didSelectAttendanceRecord:)]) {
-    [self.delegate attendanceHistoryViewController:self didSelectAttendanceRecord:record];
-    [self.tableView reloadData];
   }
 }
 

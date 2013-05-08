@@ -294,13 +294,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 #pragma mark TAAttendanceHistoryDelegate
 
 - (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller didSelectAttendanceRecord:(AttendanceRecord *)record {
-  if (self.attendanceRecord == record) {
-    self.attendanceRecord = nil;
-  }
-  else {
-    self.attendanceRecord = record;
-  }
-  controller.currentRecord = self.attendanceRecord;
+  self.attendanceRecord = record;
 }
 
 - (void)attendanceHistoryViewController:(TAAttendanceHistoryViewController *)controller willDeleteAttendanceRecord:(AttendanceRecord *)record {
