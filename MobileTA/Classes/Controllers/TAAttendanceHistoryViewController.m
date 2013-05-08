@@ -118,16 +118,9 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:attendanceRecordCellId];
   }
   
-  AttendanceRecord *attendanceRecord = [self attendanceRecordAtIndexPath:indexPath];
-  cell.textLabel.text = [NSString stringWithFormat:@"%@", attendanceRecord];
-  cell.textLabel.backgroundColor = [UIColor clearColor];
-  cell.imageView.image = [UIImage imageNamed:@"green.png"];
-  
-  if (attendanceRecord==self.currentRecord) {
-    [cell.imageView setHidden:NO];
-  } else {
-    [cell.imageView setHidden:YES];
-  }
+  AttendanceRecord *record = [self attendanceRecordAtIndexPath:indexPath];
+  cell.textLabel.text = [record description];
+  cell.accessoryType = ([self.currentRecord isEqual:record] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
   
   return cell;
 }
