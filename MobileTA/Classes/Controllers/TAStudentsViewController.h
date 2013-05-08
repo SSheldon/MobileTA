@@ -26,6 +26,10 @@
 - (void)reloadStudents;
 - (void)reloadStudent:(Student *)student;
 - (void)removeStudent:(Student *)student;
+
+- (UITableViewCell *)createDisplayCellForStudent:(Student *)student;
+- (UITableViewCell *)createDetailCellForStudent:(Student *)student;
+
 // Student Details Methods
 - (void)showDetailsForStudent:(Student *)student;
 - (void)hideStudentDetails;

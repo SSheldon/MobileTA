@@ -41,14 +41,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-
-  [self.tableView selectRowAtIndexPath:[self indexPathOfStudent:_selectedStudent]
-                              animated:NO
-                        scrollPosition:UITableViewScrollPositionNone];
-}
-
 - (void)setStudents:(NSArray *)students {
   NSMutableArray *seatlessStudents = [NSMutableArray array];
   for (Student *student in students) {
@@ -62,9 +54,19 @@
 }
 
 - (void)selectStudent:(Student *)student {
-  _selectedStudent = student;
+  // Uncheck the cell for the old selected student
+  UITableViewCell *oldCell = [self.tableView cellForRowAtIndexPath:[self indexPathOfStudent:_selectedStudent]];
+  oldCell.accessoryType = UITableViewCellAccessoryNone;
+
+  // If we're selecting the same student, instead unselect them
+  _selectedStudent = ([_selectedStudent isEqual:student] ? nil : student);
+
+  // Check the cell for the new selected student
+  UITableViewCell *newCell = [self.tableView cellForRowAtIndexPath:[self indexPathOfStudent:_selectedStudent]];
+  newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+
   if ([self.delegate respondsToSelector:@selector(assignSeatsViewController:didSelectStudent:forSeat:)]) {
-    [self.delegate assignSeatsViewController:self didSelectStudent:student forSeat:self.seat];
+    [self.delegate assignSeatsViewController:self didSelectStudent:_selectedStudent forSeat:self.seat];
   }
 }
 
@@ -74,14 +76,10 @@
   }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  Student *student = [self studentAtIndexPath:indexPath];
-  if ([_selectedStudent isEqual:student]) {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    [self selectStudent:nil];
-  } else {
-    [self selectStudent:student];
-  }
+- (UITableViewCell *)createDisplayCellForStudent:(Student *)student {
+  UITableViewCell *cell = [super createDisplayCellForStudent:student];
+  cell.accessoryType = ([_selectedStudent isEqual:student] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+  return cell;
 }
 
 @end
