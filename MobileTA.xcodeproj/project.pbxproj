@@ -34,9 +34,6 @@
 		13345E6216B7736100DD4FF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6016B7736100DD4FF2 /* InfoPlist.strings */; };
 		13345E6416B7736100DD4FF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E6316B7736100DD4FF2 /* main.m */; };
 		13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13345E6716B7736100DD4FF2 /* TAAppDelegate.m */; };
-		13345E6A16B7736100DD4FF2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6916B7736100DD4FF2 /* Default.png */; };
-		13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6B16B7736100DD4FF2 /* Default@2x.png */; };
-		13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */; };
 		133AE68716E54F97008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
 		133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133AE68616E54F97008385C2 /* TASectionViewController.m */; };
 		1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1341D74617109AEC007B2D1D /* CHCSVParser.m */; };
@@ -207,9 +204,6 @@
 		13345E6516B7736100DD4FF2 /* MobileTA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileTA-Prefix.pch"; sourceTree = "<group>"; };
 		13345E6616B7736100DD4FF2 /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
 		13345E6716B7736100DD4FF2 /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
-		13345E6916B7736100DD4FF2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		13345E6B16B7736100DD4FF2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		133AE68516E54F97008385C2 /* TASectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASectionViewController.h; sourceTree = "<group>"; };
 		133AE68616E54F97008385C2 /* TASectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionViewController.m; sourceTree = "<group>"; };
 		1341D74517109AEC007B2D1D /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHCSVParser.h; path = Libraries/CHCSVParser/CHCSVParser/CHCSVParser.h; sourceTree = "<group>"; };
@@ -430,9 +424,6 @@
 				13345E6016B7736100DD4FF2 /* InfoPlist.strings */,
 				13345E6316B7736100DD4FF2 /* main.m */,
 				13345E6516B7736100DD4FF2 /* MobileTA-Prefix.pch */,
-				13345E6916B7736100DD4FF2 /* Default.png */,
-				13345E6B16B7736100DD4FF2 /* Default@2x.png */,
-				13345E6D16B7736100DD4FF2 /* Default-568h@2x.png */,
 				E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */,
 			);
 			name = "Supporting Files";
@@ -741,9 +732,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13345E6216B7736100DD4FF2 /* InfoPlist.strings in Resources */,
-				13345E6A16B7736100DD4FF2 /* Default.png in Resources */,
-				13345E6C16B7736100DD4FF2 /* Default@2x.png in Resources */,
-				13345E6E16B7736100DD4FF2 /* Default-568h@2x.png in Resources */,
 				13FFBD5E16E96FEB001BB929 /* roster.csv in Resources */,
 				E654DB33170A37CE00584411 /* delete_button.png in Resources */,
 				E654DB42170A5C3200584411 /* seat.jpg in Resources */,
