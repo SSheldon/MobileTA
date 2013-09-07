@@ -85,6 +85,29 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [self.view addSubview:_groupsController.tableView];
   _groupsController.tableView.hidden = (_segmentedControl.selectedSegmentIndex != TASectionSelectedViewGroups);
   _groupsController.tableView.allowsSelectionDuringEditing = YES;
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+  // In iOS7 our views lay out under the nav bar, so the insets of our scroll views need to be updated.
+  // The seating chart scroll view is covered by automaticallyAdjustsScrollViewInsets, but apparently
+  // our table views aren't, so we must manually inset them.
+  if ([self respondsToSelector:@selector(edgesForExtendedLayout)] &&
+      (self.edgesForExtendedLayout & UIRectEdgeTop) == UIRectEdgeTop) {
+    CGFloat navBarBottom = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+
+    [self _updateScrollView:_studentsController.tableView withTopInset:navBarBottom];
+    [self _updateScrollView:_groupsController.tableView withTopInset:navBarBottom];
+  }
+#endif
+}
+
+- (void)_updateScrollView:(UIScrollView *)scrollView withTopInset:(CGFloat)topInset {
+  UIEdgeInsets inset = scrollView.contentInset;
+  inset.top += topInset;
+  scrollView.contentInset = inset;
+
+  CGPoint offset = scrollView.contentOffset;
+  offset.y -= topInset;
+  scrollView.contentOffset = offset;
 }
 
 - (void)selectRandomStudent {
@@ -124,8 +147,9 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
-  _studentsController.tableView.frame = self.view.frame;
-  _groupsController.tableView.frame = self.view.frame;
+
+  _studentsController.tableView.frame = self.view.bounds;
+  _groupsController.tableView.frame = self.view.bounds;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
