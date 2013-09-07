@@ -189,9 +189,9 @@
 
 + (UIColor *)colorForAttendanceStatus:(StudentAttendanceStatus)status {
   switch (status) {
-    case StudentAttendanceStatusAbsent:   return [UIColor redColor];
-    case StudentAttendanceStatusTardy:    return [UIColor yellowColor];
-    case StudentAttendanceStatusPresent:  return [UIColor greenColor];
+    case StudentAttendanceStatusAbsent:   return ABSENT_COLOR;
+    case StudentAttendanceStatusTardy:    return TARDY_COLOR;
+    case StudentAttendanceStatusPresent:  return PRESENT_COLOR;
     default:                              return [UIColor clearColor];
   }
 }

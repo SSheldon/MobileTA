@@ -22,4 +22,9 @@
 #define u2p(units) (units) * UNIT_PIXEL_RATIO
 #define p2u(pixels) (pixels) / UNIT_PIXEL_RATIO
 
+#define PRESENT_COLOR [UIColor greenColor]
+#define TARDY_COLOR [UIColor yellowColor]
+#define ABSENT_COLOR [UIColor redColor]
+#define PARTICIPATION_COLOR [UIColor orangeColor]
+
 #endif

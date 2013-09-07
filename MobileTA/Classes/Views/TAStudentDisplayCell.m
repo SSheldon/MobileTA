@@ -8,6 +8,8 @@
 
 #import "TAStudentDisplayCell.h"
 
+#import "TAGridConstants.h"
+
 @implementation TAStudentDisplayCell
 
 @synthesize statusView =_statusView;
@@ -27,7 +29,7 @@
     _participationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_participationLabel setTextAlignment:NSTextAlignmentCenter];
     [_participationLabel setTextColor:[UIColor whiteColor]];
-    [_participationLabel setBackgroundColor:[UIColor orangeColor]];
+    [_participationLabel setBackgroundColor:PARTICIPATION_COLOR];
     [_participationLabel setHidden:YES];
     [self addSubview:_participationLabel];
 
@@ -50,10 +52,10 @@
 - (void)setStatus: (NSInteger)status {
   UIColor *color;
   if(status == StudentAttendanceStatusAbsent) {
-    color = [UIColor redColor];
+    color = ABSENT_COLOR;
   }
   else if(status == StudentAttendanceStatusTardy) {
-    color = [UIColor yellowColor];
+    color = TARDY_COLOR;
   }
   else {
     color = [UIColor clearColor];

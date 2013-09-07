@@ -8,6 +8,8 @@
 
 #import "TASeatingChartAttendanceViewController.h"
 
+#import "TAGridConstants.h"
+
 @interface TASeatingChartAttendanceViewController ()
 
 @end
@@ -86,13 +88,13 @@
   UIColor *newColor;
   switch (newStatus) {
     case StudentAttendanceStatusAbsent:
-      newColor = [UIColor redColor];
+      newColor = ABSENT_COLOR;
       break;
     case StudentAttendanceStatusTardy:
-      newColor = [UIColor yellowColor];
+      newColor = TARDY_COLOR;
       break;
     case StudentAttendanceStatusPresent:
-      newColor = [UIColor greenColor];
+      newColor = PRESENT_COLOR;
       break;
     default:
       newColor = [UIColor clearColor];
@@ -133,7 +135,7 @@
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self setSelectedSegment];
-  [[_segmentedButtons.subviews objectAtIndex:1] setTintColor:[UIColor orangeColor]];
+  [[_segmentedButtons.subviews objectAtIndex:1] setTintColor:PARTICIPATION_COLOR];
 }
 
 - (NSString *)textForValue:(int16_t)value {
