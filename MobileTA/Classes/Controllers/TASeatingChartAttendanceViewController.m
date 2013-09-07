@@ -10,10 +10,6 @@
 
 #import "TAGridConstants.h"
 
-@interface TASeatingChartAttendanceViewController ()
-
-@end
-
 @implementation TASeatingChartAttendanceViewController
 
 @synthesize studentAttendance=_studentAttendance;
@@ -27,86 +23,87 @@
   if (self) {
     [self setStudentAttendance:studentAttendance];
     [self setStudent:student];
-    // Do work son
-    UIView *v = [self view];
-    [v setBackgroundColor:[UIColor clearColor]];
-    
-    _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 180, 60)];
-    // Set up segments
-    NSArray *labels = [[NSArray alloc]initWithObjects:@"P", @"A", @"T", nil];
-    for (NSUInteger i = 0; i < labels.count; i++) {
-      [_segmentedControl insertSegmentWithTitle:labels[i] atIndex:i animated:NO];
-      [_segmentedControl setWidth:60.0 forSegmentAtIndex:i];
-    }
-    
-    _segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    UIFont *font = [UIFont boldSystemFontOfSize:20.0f];
-
-    // Change selected text color to black
-    NSMutableDictionary * selectedTextAttributes = [[NSMutableDictionary alloc] init];
-    [selectedTextAttributes setObject:[UIColor blackColor] forKey:UITextAttributeTextColor];
-    [selectedTextAttributes setObject:font forKey:UITextAttributeFont];
-
-    [_segmentedControl setTitleTextAttributes:selectedTextAttributes forState:UIControlStateNormal];
-    
-    [_segmentedControl setSelectedSegmentIndex:[studentAttendance status]];
-    [_segmentedControl addTarget:self
-                          action:@selector(changeAttendanceStatus)
-                forControlEvents:UIControlEventValueChanged];
-    
-    // Add cute little view that Scott made to keep track of participation
-    _segmentedButtons = [[TASegmentedButtons alloc] initWithFrame:CGRectMake(10, 90, 180, 60)];
-    _segmentedButtons.segmentedControlStyle = UISegmentedControlStyleBar;
-
-    [_segmentedButtons insertSegmentWithTitle:@"-" atIndex:0 animated:NO];
-    [_segmentedButtons insertSegmentWithTitle:[self textForValue:[studentAttendance participation]] atIndex:1 animated:NO];
-    [_segmentedButtons insertSegmentWithTitle:@"+" atIndex:2 animated:NO];
-    [_segmentedButtons setWidth:60.0 forSegmentAtIndex:0];
-    [_segmentedButtons setWidth:60.0 forSegmentAtIndex:1];
-    [_segmentedButtons setWidth:60.0 forSegmentAtIndex:2];
-
-    _segmentedButtons.momentary = YES;
-    [_segmentedButtons setEnabled:NO forSegmentAtIndex:1];
-    // Use this to style the center text
-    [_segmentedButtons setTitleTextAttributes:selectedTextAttributes forState:UIControlStateNormal];
-    [selectedTextAttributes setObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
-    [_segmentedButtons setTitleTextAttributes:selectedTextAttributes forState:UIControlStateDisabled];
-
-    [_segmentedButtons addTarget:self action:@selector(points) forControlEvents:UIControlEventTouchUpInside];
-        
-    [v addSubview:_segmentedControl];
-    [v addSubview:_segmentedButtons];
-    //[v addSubview:bentoBox];
   }
-  
   return self;
 }
 
-// Changes the color of the button based on which option was selected
-- (void)setSelectedSegment {
-  StudentAttendanceStatus newStatus = (StudentAttendanceStatus)_segmentedControl.selectedSegmentIndex;
-  UIColor *newColor;
-  switch (newStatus) {
-    case StudentAttendanceStatusAbsent:
-      newColor = ABSENT_COLOR;
-      break;
-    case StudentAttendanceStatusTardy:
-      newColor = TARDY_COLOR;
-      break;
-    case StudentAttendanceStatusPresent:
-      newColor = PRESENT_COLOR;
-      break;
-    default:
-      newColor = [UIColor clearColor];
+- (void)loadView {
+  [super loadView];
+  self.view.backgroundColor = [UIColor clearColor];
+
+  _segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, 180, 60)];
+  _segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+
+  [_segmentedControl setTitleTextAttributes:@{
+    UITextAttributeFont: [UIFont boldSystemFontOfSize:20.0f],
+  } forState:UIControlStateNormal];
+
+  [_segmentedControl setTitleTextAttributes:@{
+    UITextAttributeTextColor: [UIColor blackColor],
+  } forState:UIControlStateSelected];
+
+  // Set up segments
+  NSArray *labels = @[@"P", @"A", @"T"];
+  for (NSUInteger i = 0; i < labels.count; i++) {
+    [_segmentedControl insertSegmentWithTitle:labels[i] atIndex:i animated:NO];
+    [_segmentedControl setWidth:60.0 forSegmentAtIndex:i];
   }
-  
-  for (NSUInteger i = 0; i < [_segmentedControl.subviews count]; i++) {
-    [[_segmentedControl.subviews objectAtIndex:i] setTintColor:nil];
-    // If the button is selected,
-    if ([[_segmentedControl.subviews objectAtIndex:i] respondsToSelector:@selector(isSelected)] && [[_segmentedControl.subviews objectAtIndex:i]isSelected])
-    {
-      [[_segmentedControl.subviews objectAtIndex:i] setTintColor:newColor];
-    }
+  _segmentedControl.selectedSegmentIndex = self.studentAttendance.status;
+  [self _setSelectedSegmentColor:[self _colorForAttendanceStatus:self.studentAttendance.status]
+             forSegmentedControl:_segmentedControl];
+
+  [_segmentedControl addTarget:self
+                        action:@selector(changeAttendanceStatus)
+              forControlEvents:UIControlEventValueChanged];
+
+  [self.view addSubview:_segmentedControl];
+
+  _segmentedButtons = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 90, 180, 60)];
+  _segmentedButtons.segmentedControlStyle = UISegmentedControlStyleBar;
+
+  [_segmentedButtons setTitleTextAttributes:@{
+    UITextAttributeFont: [UIFont boldSystemFontOfSize:20.0f],
+  } forState:UIControlStateNormal];
+
+  [_segmentedButtons setTitleTextAttributes:@{
+     UITextAttributeTextColor: [UIColor blackColor],
+  } forState:UIControlStateSelected];
+
+  NSArray *buttons = @[@"-", [self textForValue:[self.studentAttendance participation]], @"+"];
+  for (NSUInteger i = 0; i < buttons.count; i++) {
+    [_segmentedButtons insertSegmentWithTitle:buttons[i] atIndex:i animated:NO];
+    [_segmentedButtons setWidth:60.0 forSegmentAtIndex:i];
+  }
+  _segmentedButtons.selectedSegmentIndex = 1;
+  [self _setSelectedSegmentColor:PARTICIPATION_COLOR forSegmentedControl:_segmentedButtons];
+
+  [_segmentedButtons addTarget:self action:@selector(points) forControlEvents:UIControlEventValueChanged];
+
+  [self.view addSubview:_segmentedButtons];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+  // For some reason these won't take on iOS6 if we set them before viewDidAppear;
+  // c'mon Apple, make your undocumented API easier to use.
+  [self _setSelectedSegmentColor:[self _colorForAttendanceStatus:self.studentAttendance.status]
+             forSegmentedControl:_segmentedControl];
+  [self _setSelectedSegmentColor:PARTICIPATION_COLOR forSegmentedControl:_segmentedButtons];
+}
+
+- (UIColor *)_colorForAttendanceStatus:(StudentAttendanceStatus)status {
+  switch (status) {
+    case StudentAttendanceStatusAbsent:   return ABSENT_COLOR;
+    case StudentAttendanceStatusTardy:    return TARDY_COLOR;
+    case StudentAttendanceStatusPresent:  return PRESENT_COLOR;
+    default:                              return nil;
+  }
+}
+
+- (void)_setSelectedSegmentColor:(UIColor *)color forSegmentedControl:(UISegmentedControl *)segmentedControl {
+  for (UIButton *segment in segmentedControl.subviews) {
+    segment.tintColor = (segment.selected ? color : nil);
   }
 }
 
@@ -120,22 +117,15 @@
     int16_t newValue = [self.delegate changeParticipationBy:-1 forStudent:self.student];
     [_segmentedButtons setTitle:[self textForValue:newValue] forSegmentAtIndex:1];
   }
+  // Reset selection so the participation segment stays highlighted
+  _segmentedButtons.selectedSegmentIndex = 1;
 }
 
 - (void)changeAttendanceStatus {
   StudentAttendanceStatus newStatus = (StudentAttendanceStatus)_segmentedControl.selectedSegmentIndex;
   [self.delegate markStatus:newStatus forStudent:self.student];
-  [self setSelectedSegment];
-}
-
-- (void)loadView {
-  [self setView:[[UIView alloc]init]];
-}
-
--(void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  [self setSelectedSegment];
-  [[_segmentedButtons.subviews objectAtIndex:1] setTintColor:PARTICIPATION_COLOR];
+  [self _setSelectedSegmentColor:[self _colorForAttendanceStatus:newStatus]
+             forSegmentedControl:_segmentedControl];
 }
 
 - (NSString *)textForValue:(int16_t)value {
