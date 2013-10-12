@@ -6,14 +6,10 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import "Section.h"
-#import "TASectionViewController.h"
+#import "TAFetchedResultsTableViewController.h"
 #import "TASectionEditViewController.h"
-#import "TASeatingChartViewController.h"
 
-@interface TASectionsViewController : UITableViewController <TASectionEditDelegate>
-
-@property (copy, nonatomic) NSArray *sections;
+@interface TASectionsViewController : TAFetchedResultsTableViewController <TASectionEditDelegate>
 
 - (void)addSectionWithStudents:(NSArray *)students;
 
