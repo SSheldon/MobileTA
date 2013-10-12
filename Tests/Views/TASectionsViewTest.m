@@ -8,33 +8,32 @@
 
 #import <GHUnitIOS/GHUnit.h>
 
+#import "GHTestCase+TAUtils.h"
 #import "TASectionsViewController.h"
 #import "Section.h"
 
 @interface TASectionsViewTest : GHViewTestCase
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation TASectionsViewTest
 
 - (void)setUp {
-  self.managedObjectContext = [TATestUtils managedObjectContextForModelsInBundle:[NSBundle mainBundle]];
-  if (!self.managedObjectContext) {
-    GHFail(@"Could not create in-memory store.");
-  }
+  [super setUp];
+  [self setUpManagedObjectContext];
 }
 
 - (void)tearDown {
   self.managedObjectContext = nil;
+  [super tearDown];
 }
 
 - (void)test {
+  [Section sectionWithName:@"AD1" course:@"SP13 CS428" context:self.managedObjectContext];
+  [Section sectionWithName:@"AD2" course:@"SP13 CS428" context:self.managedObjectContext];
+  [self saveManagedObjectContext];
+
   TASectionsViewController *controller = [[TASectionsViewController alloc] initWithStyle:UITableViewStylePlain];
-  [controller view];
-  controller.sections = @[
-    [Section sectionWithName:@"AD1" course:@"SP13 CS428" context:self.managedObjectContext],
-    [Section sectionWithName:@"AD2" course:@"SP13 CS428" context:self.managedObjectContext],
-  ];
+  [controller.tableView reloadData];
   GHVerifyView(controller.view);
 }
 
