@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TATestAppDelegate.h"
 
 int main(int argc, char *argv[]) {
   @autoreleasepool {
-    return UIApplicationMain(argc, argv, nil, @"GHUnitIOSAppDelegate");
+    return UIApplicationMain(argc, argv, nil, NSStringFromClass([TATestAppDelegate class]));
   }
 }
