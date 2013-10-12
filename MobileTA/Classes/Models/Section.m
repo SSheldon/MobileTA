@@ -98,7 +98,7 @@
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
   for (Student *student in self.students) {
     NSInteger totalParticipation = [student totalParticipation];
-    [dict setValue:[NSNumber numberWithInteger:totalParticipation] forKey:student.objectID];
+    [dict setObject:[NSNumber numberWithInteger:totalParticipation] forKey:student.objectID];
   }
 
   // Sorted ASCENDING
