@@ -11,7 +11,7 @@
 @implementation UIViewController (CoreDataAdditions)
 
 -(NSManagedObjectContext *)managedObjectContext {
-    return [(TAAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    return [(id<TAAppDelegate>)[[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
 - (NSError *)saveManagedObjectContext {

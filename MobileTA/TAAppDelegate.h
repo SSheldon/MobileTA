@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface TAAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate> {
+@protocol TAAppDelegate <UIApplicationDelegate>
+- (NSManagedObjectContext *)managedObjectContext;
+@end
+
+@interface TAAppDelegate : UIResponder <TAAppDelegate, UITabBarControllerDelegate> {
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
