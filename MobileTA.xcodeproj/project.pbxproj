@@ -25,6 +25,8 @@
 		130741D416EED32E00465D86 /* TASectionEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741D316EED32E00465D86 /* TASectionEditViewTest.m */; };
 		130741DC16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741DB16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m */; };
 		130741DF16EED6C800465D86 /* TAStudentDetailCellTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 130741DE16EED6C800465D86 /* TAStudentDetailCellTest.m */; };
+		130785461809DE9300E7EF00 /* TAFetchedResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 130785451809DE9300E7EF00 /* TAFetchedResultsTableViewController.m */; };
+		130785471809DE9300E7EF00 /* TAFetchedResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 130785451809DE9300E7EF00 /* TAFetchedResultsTableViewController.m */; };
 		1316C2FB16D9E38900D282B1 /* TAStudentEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */; };
 		1324064917178CFB00F247C0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1324064817178CFB00F247C0 /* MessageUI.framework */; };
 		132779A9172E2FC4003C1382 /* TAGroupsEditViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 132779A8172E2FC4003C1382 /* TAGroupsEditViewTest.m */; };
@@ -188,6 +190,8 @@
 		130741D316EED32E00465D86 /* TASectionEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TASectionEditViewTest.m; sourceTree = "<group>"; };
 		130741DB16EED47A00465D86 /* TAAttendanceRecordEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAttendanceRecordEditViewTest.m; sourceTree = "<group>"; };
 		130741DE16EED6C800465D86 /* TAStudentDetailCellTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentDetailCellTest.m; sourceTree = "<group>"; };
+		130785441809DE9300E7EF00 /* TAFetchedResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAFetchedResultsTableViewController.h; sourceTree = "<group>"; };
+		130785451809DE9300E7EF00 /* TAFetchedResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAFetchedResultsTableViewController.m; sourceTree = "<group>"; };
 		1316C2FA16D9E38900D282B1 /* TAStudentEditViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAStudentEditViewTest.m; path = Views/TAStudentEditViewTest.m; sourceTree = "<group>"; };
 		1324064817178CFB00F247C0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		132700D81720CF060036FB6C /* MobileTA 1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MobileTA 1.1.xcdatamodel"; sourceTree = "<group>"; };
@@ -579,6 +583,8 @@
 				9F6573F21729F68D0002D737 /* TAGroupsEditViewController.m */,
 				13C86DAC172B839F00CFA95D /* TAStudentsGroupsViewController.h */,
 				13C86DAD172B839F00CFA95D /* TAStudentsGroupsViewController.m */,
+				130785441809DE9300E7EF00 /* TAFetchedResultsTableViewController.h */,
+				130785451809DE9300E7EF00 /* TAFetchedResultsTableViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -799,6 +805,7 @@
 				1341D74717109AEC007B2D1D /* CHCSVParser.m in Sources */,
 				13F2871E17114DD800562D5A /* TAStudentsAttendanceViewController.m in Sources */,
 				E6F1A53F171375A200DD781D /* TASeatingChartAttendanceViewController.m in Sources */,
+				130785461809DE9300E7EF00 /* TAFetchedResultsTableViewController.m in Sources */,
 				139239B51720D77400AE14EE /* Group.m in Sources */,
 				E6C500211725EC9B0020BDB9 /* TAGroupsViewController.m in Sources */,
 				9F6573F31729F68D0002D737 /* TAGroupsEditViewController.m in Sources */,
@@ -827,6 +834,7 @@
 				13A44DE416DB33650084D827 /* TATestUtils.m in Sources */,
 				13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */,
 				133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */,
+				130785471809DE9300E7EF00 /* TAFetchedResultsTableViewController.m in Sources */,
 				134A855016E98AEB0078E521 /* TAStudentDetailCell.m in Sources */,
 				134A855816E98D610078E521 /* TASectionsViewTest.m in Sources */,
 				134A856416E994510078E521 /* TASectionEditViewController.m in Sources */,
