@@ -177,7 +177,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
   [super setSection:section];
   _studentsController.students = [section.students allObjects];
-  _groupsController.groups = [section sortedGroups];
+  _groupsController.section = section;
   self.title = section.name;
 }
 
@@ -216,8 +216,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
       [_studentsController reloadStudents];
     }
   }
-  // TODO(ssheldon): Do something more clever than just reloading the table
-  [_groupsController reloadStudents];
 }
 
 - (void)segmentedControlDidChange:(UISegmentedControl *)control {
@@ -331,13 +329,11 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)groupsViewController:(TAGroupsViewController *)controller didUpdateGroup:(Group *)group {
   // Reload the groups
-  _groupsController.groups = [self.section sortedGroups];
   [self.seatingChart reloadSeats];
 }
 
 - (void)groupsViewController:(TAGroupsViewController *)controller didRemoveGroup:(Group *)group {
   // Reload the groups
-  _groupsController.groups = [self.section sortedGroups];
   [self.seatingChart reloadSeats];
 }
 
@@ -347,7 +343,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   StudentAttendanceStatus updatedStatus = [super markStatus:status forStudent:student];
   // Reload the cell for the updated student
   [_studentsController reloadStudent:student];
-  [_groupsController reloadStudent:student];
   return updatedStatus;
 }
 
@@ -355,7 +350,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   int16_t updatedStatus = [super changeParticipationBy:value forStudent:student];
   // Reload the cell for the updated student
   [_studentsController reloadStudent:student];
-  [_groupsController reloadStudent:student];
   return updatedStatus;
 }
 
@@ -367,9 +361,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   [super viewController:controller didRemoveStudent:student];
   if (_studentsController != controller) {
     [_studentsController reloadStudents];
-  }
-  if (_groupsController != controller) {
-    [_groupsController reloadStudents];
   }
 }
 

@@ -6,10 +6,14 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import "TAStudentsAttendanceViewController.h"
+#import "TAFetchedResultsTableViewController.h"
 
-@interface TAStudentsGroupsViewController : TAStudentsAttendanceViewController
+@class Section;
+@protocol TAStudentsAttendanceDelegate;
 
-@property (strong, nonatomic) NSArray *groups;
+@interface TAStudentsGroupsViewController : TAFetchedResultsTableViewController
+
+@property (strong, nonatomic) Section *section;
+@property (weak, nonatomic) id<TAStudentsAttendanceDelegate> delegate;
 
 @end

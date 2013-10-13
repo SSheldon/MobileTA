@@ -9,75 +9,57 @@
 #import "TAStudentsGroupsViewController.h"
 
 #import "Group.h"
+#import "Student.h"
+#import "TAStudentsAttendanceViewController.h"
 
 @implementation TAStudentsGroupsViewController
 
-- (void)setGroups:(NSArray *)groups {
-  _groups = groups;
-  [self reloadStudents];
-}
+#pragma mark TAFetchedResultsTableViewController
 
-#pragma mark TAStudentsViewController
-
-- (NSArray *)students {
-  [self doesNotRecognizeSelector:_cmd];
-  return nil;
-}
-
-- (void)setStudents:(NSArray *)students {
-  [self doesNotRecognizeSelector:_cmd];
-}
-
-- (void)reloadStudents {
-  _tableSections = [[NSMutableArray alloc] init];
-
-  // Add the sorted students for each section
-  NSArray *sortDescriptors = @[
+- (NSFetchRequest *)fetchRequest {
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  fetch.entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:self.managedObjectContext];
+  fetch.predicate = [NSPredicate predicateWithFormat:@"group.section = %@", self.section];
+  fetch.sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"group.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
     [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
     [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
   ];
-  for (Group *group in self.groups) {
-    NSMutableArray *students = [NSMutableArray arrayWithArray:[group.students allObjects]];
-    [students sortUsingDescriptors:sortDescriptors];
-    [_tableSections addObject:students];
-  }
-
-  if ([self isViewLoaded]) {
-    [self.tableView reloadData];
-  }
+  return fetch;
 }
 
-- (void)removeStudent:(Student *)student {
-  // We don't have a students array, so override this to not remove anything
-  if ([self.delegate respondsToSelector:@selector(viewController:didRemoveStudent:)]) {
-    [self.delegate viewController:self didRemoveStudent:student];
-  }
-}
-
-- (NSIndexPath *)indexPathOfStudent:(Student *)student {
-  NSInteger sectionIndex = [self.groups indexOfObject:student.group];
-  if (sectionIndex == NSNotFound) {
-    return nil;
-  }
-  NSInteger rowIndex = [[_tableSections objectAtIndex:sectionIndex] indexOfObject:student];
-  if (rowIndex == NSNotFound) {
-    return nil;
-  }
-  if (_detailedStudentIndex && _detailedStudentIndex.section == sectionIndex && _detailedStudentIndex.row < rowIndex) {
-    rowIndex++;
-  }
-  return [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
+- (NSString *)sectionNameKeyPath {
+  return @"group.name";
 }
 
 #pragma mark UITableViewDataSource
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  return [[self.groups objectAtIndex:section] name];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  static NSString *studentCellId = @"StudentCell";
+  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:studentCellId];
+  if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
+  }
+  Student *student = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  cell.textLabel.text = student.fullDisplayName;
+  return cell;
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-  // Disable the index
-  return nil;
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Return NO if you do not want the specified item to be editable.
+  return YES;
+}
+
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  Student *student = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  if (self.isEditing) {
+    if ([self.delegate respondsToSelector:@selector(viewController:didSelectStudentToEdit:)]) {
+      [self.delegate viewController:nil didSelectStudentToEdit:student];
+    }
+  }
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
