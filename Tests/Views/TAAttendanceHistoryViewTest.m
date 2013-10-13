@@ -8,37 +8,41 @@
 
 #import <GHUnitIOS/GHUnit.h>
 
+#import "GHTestCase+TAUtils.h"
 #import "AttendanceRecord.h"
+#import "Section.h"
 #import "TAAttendanceHistoryViewController.h"
 
 @interface TAAttendanceHistoryViewTest : GHViewTestCase
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation TAAttendanceHistoryViewTest
 
 - (void)setUp {
-  self.managedObjectContext = [TATestUtils managedObjectContextForModelsInBundle:[NSBundle mainBundle]];
-  if (!self.managedObjectContext) {
-    GHFail(@"Could not create in-memory store.");
-  }
+  [super setUp];
+  [self setUpManagedObjectContext];
 }
 
 - (void)tearDown {
   self.managedObjectContext = nil;
+  [super tearDown];
 }
 
 - (void)test {
-  TAAttendanceHistoryViewController *controller = [[TAAttendanceHistoryViewController alloc] init];
-  [controller view];
-  controller.records = @[
+  Section *section = [Section sectionWithName:nil course:@"CS 428" context:self.managedObjectContext];
+  [section addAttendanceRecordsObject:
     [AttendanceRecord attendanceRecordForName:@"Discussion Section"
                                          date:[NSDate dateWithTimeIntervalSince1970:1331467200]
-                                      context:self.managedObjectContext],
+                                      context:self.managedObjectContext]];
+  [section addAttendanceRecordsObject:
     [AttendanceRecord attendanceRecordForName:@"Exam Review"
                                          date:[NSDate dateWithTimeIntervalSince1970:1331294400]
-                                      context:self.managedObjectContext]
-  ];
+                                      context:self.managedObjectContext]];
+  [self saveManagedObjectContext];
+
+  TAAttendanceHistoryViewController *controller =
+    [[TAAttendanceHistoryViewController alloc] initWithSection:section attendanceRecord:nil];
+  [controller.tableView reloadData];
   GHVerifyView(controller.view);
 }
 

@@ -8,27 +8,28 @@
 
 #import <GHUnitIOS/GHUnit.h>
 
+#import "GHTestCase+TAUtils.h"
 #import "TAGroupsViewController.h"
 
 @interface TAGroupsViewTest : GHViewTestCase
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation TAGroupsViewTest
 
 - (void)setUp {
-  self.managedObjectContext = [TATestUtils managedObjectContextForModelsInBundle:[NSBundle mainBundle]];
-  if (!self.managedObjectContext) {
-    GHFail(@"Could not create in-memory store.");
-  }
+  [super setUp];
+  [self setUpManagedObjectContext];
 }
 
 - (void)tearDown {
   self.managedObjectContext = nil;
+  [super tearDown];
 }
 
 - (void)test {
   Section *section = [TATestUtils sampleSectionWithContext:self.managedObjectContext];
+  [self saveManagedObjectContext];
+
   TAGroupsViewController *controller = [[TAGroupsViewController alloc] initWithSection:section];
   [controller.tableView reloadData];
   GHVerifyView(controller.view);
