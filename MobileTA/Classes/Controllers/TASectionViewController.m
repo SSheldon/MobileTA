@@ -176,7 +176,7 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 #endif
 
   [super setSection:section];
-  _studentsController.students = [section.students allObjects];
+  _studentsController.section = section;
   _groupsController.section = section;
   self.title = section.name;
 }
@@ -201,21 +201,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   TAStudentEditViewController *editViewController = [[TAStudentEditViewController alloc] initWithStudent:student inSection:[self section]];
   editViewController.delegate = self;
   [self.navigationController pushViewController:editViewController animated:YES];
-}
-
-- (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
-  [super updateStudent:student withPreviousData:oldData];
-
-  if (student.lastName != [oldData objectForKey:@"lastName"] ||
-      student.nickname != [oldData objectForKey:@"nickname"] ||
-      student.firstName != [oldData objectForKey:@"firstName"]) {
-    if (!oldData) {
-      // Add the student
-      [_studentsController addStudent:student];
-    } else {
-      [_studentsController reloadStudents];
-    }
-  }
 }
 
 - (void)segmentedControlDidChange:(UISegmentedControl *)control {
@@ -339,29 +324,8 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 #pragma mark TAStudentsAttendanceDelegate
 
-- (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
-  StudentAttendanceStatus updatedStatus = [super markStatus:status forStudent:student];
-  // Reload the cell for the updated student
-  [_studentsController reloadStudent:student];
-  return updatedStatus;
-}
-
-- (int16_t)changeParticipationBy:(int16_t)value forStudent:(Student *)student {
-  int16_t updatedStatus = [super changeParticipationBy:value forStudent:student];
-  // Reload the cell for the updated student
-  [_studentsController reloadStudent:student];
-  return updatedStatus;
-}
-
 - (void)viewController:(TAStudentsAttendanceViewController *)controller didSelectStudentToEdit:(Student *)student {
   [self editStudent:student];
-}
-
-- (void)viewController:(TAStudentsAttendanceViewController *)controller didRemoveStudent:(Student *)student {
-  [super viewController:controller didRemoveStudent:student];
-  if (_studentsController != controller) {
-    [_studentsController reloadStudents];
-  }
 }
 
 #pragma mark MFMailComposeViewControllerDelegate

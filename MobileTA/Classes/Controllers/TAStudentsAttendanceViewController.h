@@ -8,9 +8,11 @@
 
 #import <MessageUI/MessageUI.h>
 
-#import "TAStudentsViewController.h"
+#import "TAFetchedResultsTableViewController.h"
 #import "TAStudentDetailCell.h"
 #import "StudentAttendance.h"
+
+@class Section;
 
 @class TAStudentsAttendanceViewController;
 
@@ -28,8 +30,9 @@
 
 @end
 
-@interface TAStudentsAttendanceViewController : TAStudentsViewController <TAStudentDetailDelegate,MFMailComposeViewControllerDelegate>
+@interface TAStudentsAttendanceViewController : TAFetchedResultsTableViewController <TAStudentDetailDelegate, MFMailComposeViewControllerDelegate>
 
+@property (strong, nonatomic) Section *section;
 @property (weak, nonatomic) id<TAStudentsAttendanceDelegate> delegate;
 
 // Override these methods in subclasses instead of setting a delegate

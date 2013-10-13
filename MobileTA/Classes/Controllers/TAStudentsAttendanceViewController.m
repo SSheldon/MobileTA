@@ -8,9 +8,13 @@
 
 #import "TAStudentsAttendanceViewController.h"
 
+#import "Section.h"
+#import "Student.h"
 #import "TAStudentDisplayCell.h"
 
-@implementation TAStudentsAttendanceViewController
+@implementation TAStudentsAttendanceViewController {
+  NSIndexPath *_detailedStudentIndex;
+}
 
 - (StudentAttendanceStatus)statusForStudent:(Student *)student {
   return [self.delegate statusForStudent:student];
@@ -36,43 +40,71 @@
 
 #pragma mark TAStudentsViewController
 
-- (void)removeStudent:(Student *)student {
-  [super removeStudent:student];
-  // Notify our delegate
-  if ([self.delegate respondsToSelector:@selector(viewController:didRemoveStudent:)]) {
-    [self.delegate viewController:self didRemoveStudent:student];
-  }
+- (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
+  return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 - (void)selectStudent:(Student *)student {
   if (self.editing) {
     [self selectStudentToEdit:student];
   }
-  else {
-    [self showDetailsForStudent:student];
+}
+
+#pragma mark TAFetchedResultsTableViewController
+
+- (NSFetchRequest *)fetchRequest {
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  fetch.entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:self.managedObjectContext];
+  fetch.predicate = [NSPredicate predicateWithFormat:@"section = %@", self.section];
+  fetch.sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+    [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+  ];
+  return fetch;
+}
+
+- (NSString *)sectionNameKeyPath {
+  return @"lastNameIndexTitle";
+}
+
+- (void)deleteObjectAtIndexPath:(NSIndexPath *)indexPath {
+  Student *student = [self studentAtIndexPath:indexPath];
+  [super deleteObjectAtIndexPath:indexPath];
+  // Notify our delegate
+  if ([self.delegate respondsToSelector:@selector(viewController:didRemoveStudent:)]) {
+    [self.delegate viewController:self didRemoveStudent:student];
   }
 }
 
-- (UITableViewCell *)createDisplayCellForStudent:(Student *)student {
+#pragma mark UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *studentDisplayCellId = @"StudentDisplayCell";
   TAStudentDisplayCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDisplayCellId];
   if (!cell) {
     cell = [[TAStudentDisplayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDisplayCellId];
   }
+  Student *student = [self studentAtIndexPath:indexPath];
   cell.textLabel.text = student.fullDisplayName;
   [cell setStatus:[self statusForStudent:student]];
   [cell setParticipation:[self particpationForStudent:student]];
   return cell;
 }
 
-- (UITableViewCell *)createDetailCellForStudent:(Student *)student {
-  static NSString *studentDetailCellId = @"StudentDetailCell";
-  TAStudentDetailCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDetailCellId];
-  if (!cell) {
-    cell = [[TAStudentDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDetailCellId];
-  }
-  cell.delegate = self;
-  return cell;
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+  return [Student lastNameIndexTitles];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Return NO if you do not want the specified item to be editable.
+  return YES;
+}
+
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [self selectStudent:[self studentAtIndexPath:indexPath]];
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark TAStudentDetailCellDelegate
