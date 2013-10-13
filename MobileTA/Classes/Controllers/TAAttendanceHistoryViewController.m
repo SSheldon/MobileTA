@@ -12,11 +12,7 @@
 #import "Section.h"
 #import "TAAttendanceRecordEditViewController.h"
 
-@implementation TAAttendanceHistoryViewController {
- NSMutableArray *_tableSections;
-}
-
-@synthesize records = _records;
+@implementation TAAttendanceHistoryViewController
 
 - (id)init {
   self = [self initWithStyle:UITableViewStylePlain];
@@ -42,42 +38,25 @@
 }
 
 - (id)initWithSection:(Section *)section attendanceRecord:(AttendanceRecord *)record {
-  self = [super init];
+  self = [self initWithStyle:UITableViewStylePlain];
   if (self) {
     self.section = section;
-    self.records = [section.attendanceRecords allObjects];
     self.currentRecord = record;
   }
   return self;
 }
 
-- (void)loadView {
-  [super loadView];
+- (void)viewDidLoad {
+  [super viewDidLoad];
   self.tableView.allowsSelectionDuringEditing = YES;
 }
 
-- (void)setRecords:(NSArray *)records {
-  // Sort the records by date
-  NSArray *sortDescriptors = @[
-    [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]
-  ];
-  _records = [records sortedArrayUsingDescriptors:sortDescriptors];
-
-  if ([self isViewLoaded]) {
-    [self.tableView reloadData];
-  }
-}
-
 - (AttendanceRecord *)attendanceRecordAtIndexPath:(NSIndexPath *)indexPath {
-  return [[self records] objectAtIndex:[indexPath row]];
+  return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 - (NSIndexPath *)indexPathOfAttendanceRecord:(AttendanceRecord *)record {
-  NSUInteger index = [self.records indexOfObject:record];
-  if (index == NSNotFound) {
-    return nil;
-  }
-  return [NSIndexPath indexPathForRow:index inSection:0];
+  return [self.fetchedResultsController indexPathForObject:record];
 }
 
 - (void)cancel {
@@ -115,19 +94,27 @@
   return YES;
 }
 
-#pragma mark - Table view data source
+#pragma mark TAFetchedResultsTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
+- (NSFetchRequest *)fetchRequest {
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  fetch.entity = [NSEntityDescription entityForName:@"AttendanceRecord" inManagedObjectContext:self.managedObjectContext];
+  fetch.predicate = [NSPredicate predicateWithFormat:@"section = %@", self.section];
+  fetch.sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO],
+  ];
+  return fetch;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-  // Return the number of rows in the section.
-  return [[self records] count];
+- (void)deleteObjectAtIndexPath:(NSIndexPath *)indexPath {
+  AttendanceRecord *record = [self attendanceRecordAtIndexPath:indexPath];
+  if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:willDeleteAttendanceRecord:)]) {
+    [self.delegate attendanceHistoryViewController:self willDeleteAttendanceRecord:record];
+  }
+  [super deleteObjectAtIndexPath:indexPath];
 }
+
+#pragma mark UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *attendanceRecordCellId = @"AttendanceRecordCell";
@@ -146,25 +133,6 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
   // Return NO if you do not want the specified item to be editable.
   return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-  if(editingStyle == UITableViewCellEditingStyleDelete) {
-    AttendanceRecord *record = [self attendanceRecordAtIndexPath:indexPath];
-    // Remove record from the Records array
-    NSMutableArray *mutableRecords = [_records mutableCopy];
-    [mutableRecords removeObject:record];
-    _records = [mutableRecords copy];
-    // Remove the corresponding row from the table
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    // Inform the delegate
-    if ([self.delegate respondsToSelector:@selector(attendanceHistoryViewController:willDeleteAttendanceRecord:)]) {
-      [self.delegate attendanceHistoryViewController:self willDeleteAttendanceRecord:record];
-    }
-    // Remove record from the database
-    [[self managedObjectContext] deleteObject:record];
-    [self saveManagedObjectContext];
-  }
 }
 
 #pragma mark UITableViewDelegate
@@ -187,16 +155,6 @@
   }
   // Save changes to the record
   [self saveManagedObjectContext];
-
-  if (!oldData) {
-    // Add the new record to the table
-    self.records = [self.records arrayByAddingObject:record];
-    // Select the new record
-    [self selectAttendanceRecord:record];
-  } else {
-    // Re-sort the table
-    self.records = [self.records copy];
-  }
 }
 
 @end

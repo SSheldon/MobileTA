@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
+#import "TAFetchedResultsTableViewController.h"
 #import "TAAttendanceRecordEditViewController.h"
 
 @class AttendanceRecord, Section;
@@ -21,11 +22,11 @@
 - (void)attendanceHistoryViewControllerDidCancel:(TAAttendanceHistoryViewController *)controller;
 @end
 
-@interface TAAttendanceHistoryViewController : UITableViewController <TAAttendanceRecordEditDelegate>
+@interface TAAttendanceHistoryViewController : TAFetchedResultsTableViewController <TAAttendanceRecordEditDelegate>
 
 - (id)initWithSection:(Section *)section attendanceRecord:(AttendanceRecord *)record;
 
-@property (copy, nonatomic) NSArray *records;
+//@property (copy, nonatomic) NSArray *records;
 @property (retain, nonatomic) AttendanceRecord *currentRecord;
 @property (retain, nonatomic) Section *section;
 @property (weak, nonatomic) id<TAAttendanceHistoryDelegate> delegate;
