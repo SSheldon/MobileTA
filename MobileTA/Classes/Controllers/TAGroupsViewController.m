@@ -7,28 +7,21 @@
 //
 
 #import "TAGroupsViewController.h"
+
 #import "Section.h"
 #import "Group.h"
 
-@interface TAGroupsViewController ()
-
-@end
-
 @implementation TAGroupsViewController
-
 
 - (id)initWithSection:(Section *)section {
   self = [self initWithStyle:UITableViewStylePlain];
   if (self) {
     _section = section;
-    _groups = [section sortedGroups];
-    [[self tableView] setAllowsSelectionDuringEditing:YES];
   }
   return self;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
       self.title = NSLocalizedString(@"Groups", nil);
@@ -44,6 +37,11 @@
       ];
     }
     return self;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  self.tableView.allowsSelectionDuringEditing = YES;
 }
 
 - (void)cancel {
@@ -67,17 +65,27 @@
   return YES;
 }
 
-#pragma mark - Table view data source
+#pragma mark TAFetchedResultsTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
-  return 1;
+- (NSFetchRequest *)fetchRequest {
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  fetch.entity = [NSEntityDescription entityForName:@"Group" inManagedObjectContext:self.managedObjectContext];
+  fetch.predicate = [NSPredicate predicateWithFormat:@"section = %@", self.section];
+  fetch.sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+  ];
+  return fetch;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [_groups count];
+- (void)deleteObjectAtIndexPath:(NSIndexPath *)indexPath {
+  Group *group = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  [super deleteObjectAtIndexPath:indexPath];
+  if ([self.delegate respondsToSelector:@selector(groupsViewController:didRemoveGroup:)]) {
+    [self.delegate groupsViewController:self didRemoveGroup:group];
+  }
 }
+
+#pragma mark UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"GroupsCell";
@@ -85,39 +93,17 @@
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
-  Group *group = [_groups objectAtIndex:indexPath.row];
+  Group *group = [self.fetchedResultsController objectAtIndexPath:indexPath];
   [[cell textLabel] setText:[group name]];
   [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
   [[cell imageView] setImage:[[group color] imageByDrawingCircleOfColor]];
   return cell;
 }
 
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if(editingStyle == UITableViewCellEditingStyleDelete) {
-    Group *group = [_groups objectAtIndex:indexPath.row];
-    // Remove group from the Groups array
-    NSMutableArray *mutableGroups = [[self groups] mutableCopy];
-    [mutableGroups removeObject:group];
-    _groups = mutableGroups;
-    // Delete the group from the database
-    [[self managedObjectContext] deleteObject:group];
-    [self saveManagedObjectContext];
-    // Inform the delegate
-    if ([self.delegate respondsToSelector:@selector(groupsViewController:didRemoveGroup:)]) {
-      [self.delegate groupsViewController:self didRemoveGroup:group];
-    }
-    // Remove the corresponding row from the table
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-  }
-}
-
-#pragma mark - Table view delegate
+#pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  Group *group = [_groups objectAtIndex:indexPath.row];
+  Group *group = [self.fetchedResultsController objectAtIndexPath:indexPath];
   if (self.editing) {
     [self editGroup:group];
   }
@@ -137,8 +123,6 @@
 - (void)viewController:(TAGroupsEditViewController *)viewController savedGroup:(Group *)group withPreviousData:(NSDictionary *)oldData {
   [group setSection:[self section]];
   [self saveManagedObjectContext];
-  _groups = [self.section sortedGroups];
-  [[self tableView] reloadData];
   // Inform the delegate
   if ([self.delegate respondsToSelector:@selector(groupsViewController:didUpdateGroup:)]) {
     [self.delegate groupsViewController:self didUpdateGroup:group];

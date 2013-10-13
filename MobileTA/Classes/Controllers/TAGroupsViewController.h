@@ -6,12 +6,9 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Group.h"
 #import <MessageUI/MessageUI.h>
+#import "TAFetchedResultsTableViewController.h"
 #import "TAGroupsEditViewController.h"
-#import "QuickDialogController.h"
-#import <QuickDialog/QuickDialog.h>
 
 @class Section;
 
@@ -27,12 +24,11 @@
 
 @end
 
-@interface TAGroupsViewController : UITableViewController <TAGroupEditDelegate,MFMailComposeViewControllerDelegate>
+@interface TAGroupsViewController : TAFetchedResultsTableViewController <TAGroupEditDelegate, MFMailComposeViewControllerDelegate>
 
 - (id)initWithSection:(Section *)section;
 
-@property(nonatomic,readonly)NSArray *groups;
-@property(nonatomic,readonly)Section *section;
-@property(nonatomic,weak)id<TAGroupsViewControllerDelegate> delegate;
+@property (readonly, nonatomic) Section *section;
+@property (weak, nonatomic) id<TAGroupsViewControllerDelegate> delegate;
 
 @end
