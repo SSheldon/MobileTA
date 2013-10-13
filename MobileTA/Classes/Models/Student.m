@@ -82,6 +82,19 @@
   return [self studentsFromCSV:csvContent context:context];
 }
 
++ (NSArray *)lastNameIndexTitles {
+  UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
+  // We need the titles in sorted order to use with fetched results controllers
+  // (by default '#' is the last title but it should be first in sorted order)
+  return [collation.sectionIndexTitles sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+}
+
+- (NSString *)lastNameIndexTitle {
+  UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
+  NSInteger indexSection = [collation sectionForObject:self collationStringSelector:@selector(lastName)];
+  return collation.sectionIndexTitles[indexSection];
+}
+
 - (NSString *)fullDisplayName {
   NSString *display = nil;
   // Start with the student's nickname or first name

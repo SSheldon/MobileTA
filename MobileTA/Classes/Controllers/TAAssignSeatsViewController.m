@@ -9,6 +9,8 @@
 #import "TAAssignSeatsViewController.h"
 
 #import "Seat.h"
+#import "Section.h"
+#import "Student.h"
 
 @implementation TAAssignSeatsViewController {
   Student *_selectedStudent;
@@ -32,25 +34,21 @@
 }
 
 - (id)initWithSection:(Section *)section seat:(Seat *)seat {
-    self = [self init];
-    if (self) {
-      _selectedStudent = [seat studentForSection:section];
-      self.seat = seat;
-      self.students = [section.students allObjects];
-    }
-    return self;
+  self = [self initWithStyle:UITableViewStylePlain];
+  if (self) {
+    _selectedStudent = [seat studentForSection:section];
+    self.seat = seat;
+    self.section = section;
+  }
+  return self;
 }
 
-- (void)setStudents:(NSArray *)students {
-  NSMutableArray *seatlessStudents = [NSMutableArray array];
-  for (Student *student in students) {
-    // We don't want students that have already been assigned a seat to appear
-    if (!student.seat || [_selectedStudent isEqual:student]) {
-      [seatlessStudents addObject:student];
-    }
-  }
+- (Student *)studentAtIndexPath:(NSIndexPath *)indexPath {
+  return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
 
-  [super setStudents:seatlessStudents];
+- (NSIndexPath *)indexPathOfStudent:(Student *)student {
+  return [self.fetchedResultsController indexPathForObject:student];
 }
 
 - (void)selectStudent:(Student *)student {
@@ -76,10 +74,46 @@
   }
 }
 
-- (UITableViewCell *)createDisplayCellForStudent:(Student *)student {
-  UITableViewCell *cell = [super createDisplayCellForStudent:student];
+#pragma mark TAFetchedResultsTableView
+
+- (NSFetchRequest *)fetchRequest {
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  fetch.entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:self.managedObjectContext];
+  fetch.predicate = [NSPredicate predicateWithFormat:@"section = %@ AND (seat = NIL OR SELF = %@)", self.section, _selectedStudent];
+  fetch.sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+    [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)],
+  ];
+  return fetch;
+}
+
+- (NSString *)sectionNameKeyPath {
+  return @"lastNameIndexTitle";
+}
+
+#pragma mark UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  static NSString *studentCellId = @"StudentCell";
+  UITableViewCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentCellId];
+  if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
+  }
+  Student *student = [self studentAtIndexPath:indexPath];
+  cell.textLabel.text = student.fullDisplayName;
   cell.accessoryType = ([_selectedStudent isEqual:student] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
   return cell;
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+  return [Student lastNameIndexTitles];
+}
+
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [self selectStudent:[self studentAtIndexPath:indexPath]];
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

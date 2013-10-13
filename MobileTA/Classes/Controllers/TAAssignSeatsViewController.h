@@ -6,7 +6,12 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import "TAStudentsViewController.h"
+#import "TAFetchedResultsTableViewController.h"
+
+@class Seat;
+@class Section;
+@class Student;
+
 @class TAAssignSeatsViewController;
 
 @protocol TAAssignSeatsViewDelegate <NSObject>
@@ -15,11 +20,12 @@
 - (void)assignSeatsViewControllerDidCancel:(TAAssignSeatsViewController *)controller;
 @end
 
-@interface TAAssignSeatsViewController : TAStudentsViewController
+@interface TAAssignSeatsViewController : TAFetchedResultsTableViewController
 
 -(id)initWithSection:(Section *)section seat:(Seat *)seat;
 
-@property(nonatomic,weak)id<TAAssignSeatsViewDelegate> delegate;
-@property (strong, nonatomic) Seat* seat;
+@property (weak, nonatomic) id<TAAssignSeatsViewDelegate> delegate;
+@property (strong, nonatomic) Seat *seat;
+@property (strong, nonatomic) Section *section;
 
 @end

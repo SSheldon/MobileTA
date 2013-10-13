@@ -63,6 +63,28 @@
   return info.name;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title
+               atIndex:(NSInteger)index {
+  // Although NSFetchedResultsController provides sectionForSectionIndexTitle:atIndex:,
+  // it does not support having index entries without any corresponding sections,
+  // so we must roll our own implementation to support this.
+  // If there is a section with the given index title, we'll return it;
+  // if not, we'll return the last section before the index title.
+  NSInteger section = 0;
+  for (id<NSFetchedResultsSectionInfo> sectionInfo in self.fetchedResultsController.sections) {
+    NSComparisonResult comparison = [title localizedCaseInsensitiveCompare:sectionInfo.indexTitle];
+    if (comparison == NSOrderedSame) {
+      return section;
+    } else if (comparison == NSOrderedAscending) {
+      // We passed our section without finding it
+      break;
+    }
+    section++;
+  }
+  // If we didn't find the section, return the previous one
+  return (section > 0 ? section - 1 : 0);
+}
+
 -  (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
  forRowAtIndexPath:(NSIndexPath *)indexPath {

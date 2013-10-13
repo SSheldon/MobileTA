@@ -56,6 +56,9 @@
  */
 + (NSArray *)studentsFromCSVFile:(NSString *)csvFilePath context:(NSManagedObjectContext *)context;
 
++ (NSArray *)lastNameIndexTitles;
+- (NSString *)lastNameIndexTitle;
+
 - (NSString *)fullDisplayName;
 - (NSString *)shortenedDisplayName;
 - (NSInteger)totalParticipation;
