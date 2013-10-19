@@ -6,14 +6,8 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import "TAFetchedResultsTableViewController.h"
+#import "TAStudentsAttendanceViewController.h"
 
-@class Section;
-@protocol TAStudentsAttendanceDelegate;
-
-@interface TAStudentsGroupsViewController : TAFetchedResultsTableViewController
-
-@property (strong, nonatomic) Section *section;
-@property (weak, nonatomic) id<TAStudentsAttendanceDelegate> delegate;
+@interface TAStudentsGroupsViewController : TAStudentsAttendanceViewController
 
 @end

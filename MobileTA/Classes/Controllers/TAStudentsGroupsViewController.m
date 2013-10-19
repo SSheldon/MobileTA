@@ -8,10 +8,6 @@
 
 #import "TAStudentsGroupsViewController.h"
 
-#import "Group.h"
-#import "Student.h"
-#import "TAStudentsAttendanceViewController.h"
-
 @implementation TAStudentsGroupsViewController
 
 #pragma mark TAFetchedResultsTableViewController
@@ -34,32 +30,9 @@
 
 #pragma mark UITableViewDataSource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *studentCellId = @"StudentCell";
-  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:studentCellId];
-  if (!cell) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellId];
-  }
-  Student *student = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  cell.textLabel.text = student.fullDisplayName;
-  return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-  // Return NO if you do not want the specified item to be editable.
-  return YES;
-}
-
-#pragma mark UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  Student *student = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  if (self.isEditing) {
-    if ([self.delegate respondsToSelector:@selector(viewController:didSelectStudentToEdit:)]) {
-      [self.delegate viewController:nil didSelectStudentToEdit:student];
-    }
-  }
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+  // Disable the index
+  return nil;
 }
 
 @end
