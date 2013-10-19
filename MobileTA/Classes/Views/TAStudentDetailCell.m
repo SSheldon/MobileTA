@@ -70,11 +70,6 @@
   return [self.buttons lastObject];
 }
 
-- (void)setDelegate:(id<TAStudentDetailDelegate>)delegate {
-  _delegate = delegate;
-  self.emailButton.enabled = [self.delegate cellCanSendEmail:self];
-}
-
 - (void)setStatus:(StudentAttendanceStatus)status {
   UIColor *color;
   if (status == StudentAttendanceStatusAbsent) {

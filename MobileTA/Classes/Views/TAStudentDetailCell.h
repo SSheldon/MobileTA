@@ -15,13 +15,13 @@
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell;
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell;
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell;
-- (BOOL)cellCanSendEmail:(TAStudentDetailCell *)cell;
 - (void)studentDetailCellDidSendEmail:(TAStudentDetailCell *)cell;
 @end
 
 @interface TAStudentDetailCell : UITableViewCell
 
 @property (weak, nonatomic) id<TAStudentDetailDelegate> delegate;
+@property (readonly, nonatomic) UIButton *emailButton;
 
 - (void)setStatus:(StudentAttendanceStatus)status;
 - (void)setParticipation:(int16_t)participation;

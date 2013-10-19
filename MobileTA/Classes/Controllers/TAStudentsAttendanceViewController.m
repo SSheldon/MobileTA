@@ -44,12 +44,6 @@
   return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
-- (void)selectStudent:(Student *)student {
-  if (self.editing) {
-    [self selectStudentToEdit:student];
-  }
-}
-
 #pragma mark TAFetchedResultsTableViewController
 
 - (NSFetchRequest *)fetchRequest {
@@ -83,11 +77,13 @@
   TAStudentDetailCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDisplayCellId];
   if (!cell) {
     cell = [[TAStudentDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDisplayCellId];
+    cell.delegate = self;
   }
   Student *student = [self studentAtIndexPath:indexPath];
   cell.textLabel.text = student.fullDisplayName;
   [cell setStatus:[self statusForStudent:student]];
   [cell setParticipation:[self particpationForStudent:student]];
+  cell.emailButton.enabled = !!student.email;
   return cell;
 }
 
@@ -103,46 +99,52 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [self selectStudent:[self studentAtIndexPath:indexPath]];
+  if (self.isEditing) {
+    [self selectStudentToEdit:[self studentAtIndexPath:indexPath]];
+  } else {
+    _detailedStudentIndex = indexPath;
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+  }
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  CGFloat rowHeight = tableView.rowHeight;
+  if ([indexPath isEqual:_detailedStudentIndex]) {
+    return 2 * rowHeight;
+  }
+  return rowHeight;
 }
 
 #pragma mark TAStudentDetailCellDelegate
 
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:[self.tableView indexPathForCell:cell]];
   StudentAttendanceStatus status = [self markStatus:StudentAttendanceStatusAbsent forStudent:student];
-  TAStudentDetailCell *displayCell = (TAStudentDetailCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
-  [displayCell setStatus:status];
+  [cell setStatus:status];
 }
 
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:[self.tableView indexPathForCell:cell]];
   StudentAttendanceStatus status = [self markStatus:StudentAttendanceStatusTardy forStudent:student];
-  TAStudentDetailCell *displayCell = (TAStudentDetailCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
-  [displayCell setStatus:status];
+  [cell setStatus:status];
 }
 
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:[self.tableView indexPathForCell:cell]];
   int16_t participation = [self changeParticipationBy:1 forStudent:student];
-  TAStudentDetailCell *displayCell = (TAStudentDetailCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
-  [displayCell setParticipation:participation];
+  [cell setParticipation:participation];
 }
 
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:[self.tableView indexPathForCell:cell]];
   int16_t participation = [self changeParticipationBy:-1 forStudent:student];
-  TAStudentDetailCell *displayCell = (TAStudentDetailCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
-  [displayCell setParticipation:participation];
-}
-
-- (BOOL)cellCanSendEmail:(TAStudentDetailCell *)cell {
-  return [[self studentAtIndexPath:_detailedStudentIndex] email] != nil;
+  [cell setParticipation:participation];
 }
 
 - (void)studentDetailCellDidSendEmail:(TAStudentDetailCell *)cell {
-  Student *student = [self studentAtIndexPath:_detailedStudentIndex];
+  Student *student = [self studentAtIndexPath:[self.tableView indexPathForCell:cell]];
   MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
   [mailController setToRecipients:@[student.email]];
   mailController.mailComposeDelegate = self;

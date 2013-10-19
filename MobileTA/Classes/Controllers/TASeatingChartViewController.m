@@ -124,7 +124,6 @@
     attendance = [StudentAttendance studentAttendanceWithContext:self.managedObjectContext];
     attendance.attendanceRecord = self.attendanceRecord;
     attendance.student = student;
-    [self saveManagedObjectContext];
   }
   return attendance;
 }
