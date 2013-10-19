@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Steven Sheldon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "StudentAttendance.h"
 
 @class TAStudentDetailCell;
 
@@ -19,20 +19,11 @@
 - (void)studentDetailCellDidSendEmail:(TAStudentDetailCell *)cell;
 @end
 
-@interface TAStudentDetailCell : UITableViewCell {
-  UIButton *plusParticipation;
-  UIButton *minusParticipation;
-  UIButton *absent;
-  UIButton *tardy;
-  UIButton *email;
-}
+@interface TAStudentDetailCell : UITableViewCell
 
-@property (nonatomic,weak) id<TAStudentDetailDelegate> delegate;
+@property (weak, nonatomic) id<TAStudentDetailDelegate> delegate;
 
-@property(nonatomic,strong)UIView *statusView;
-@property(nonatomic,strong)UILabel *participationLabel;
-
-- (void)setStatus: (NSInteger)status;
-- (void)setParticipation: (NSInteger)participation;
+- (void)setStatus:(StudentAttendanceStatus)status;
+- (void)setParticipation:(int16_t)participation;
 
 @end

@@ -11,93 +11,88 @@
 #import "StudentAttendance.h"
 #import "TAGridConstants.h"
 
-// 10px between elements
-#define HORIZONTAL_SPACING 10
-// We want much less space verticaly, as we are already constrained
-#define VERTICAL_SPACING 4
-// Padding on the right hand side to make sure that the button doesn't get
-// covered by the index
-#define RIGHT_PADDING 20
+@interface TAStudentDetailCell ()
+@property (strong, nonatomic) UIView *statusView;
+@property (strong, nonatomic) UILabel *participationLabel;
+@property (retain, nonatomic) NSArray *buttons;
+@end
 
 @implementation TAStudentDetailCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [UIColor clearColor];
+    self.clipsToBounds = YES;
+
     // Makes a view with an origin at the top left corner of the view, with a width of 6px, and whose height
     // is the height of the cell
     _statusView = [[UIView alloc] initWithFrame:CGRectZero];
-    [_statusView setBackgroundColor:[UIColor clearColor]];
+    _statusView.backgroundColor = [UIColor clearColor];
     [self addSubview:_statusView];
 
     _participationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    [_participationLabel setTextAlignment:NSTextAlignmentCenter];
-    [_participationLabel setTextColor:[UIColor whiteColor]];
-    [_participationLabel setBackgroundColor:PARTICIPATION_COLOR];
-    [_participationLabel setHidden:YES];
+    _participationLabel.textAlignment = NSTextAlignmentCenter;
+    _participationLabel.textColor = [UIColor whiteColor];
+    _participationLabel.backgroundColor = PARTICIPATION_COLOR;
+    _participationLabel.hidden = YES;
     [self addSubview:_participationLabel];
 
-    plusParticipation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *plusParticipation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [plusParticipation setTitle:@"+1 Participation" forState:UIControlStateNormal];
     [plusParticipation addTarget:self action:@selector(plusParticipation) forControlEvents:UIControlEventTouchUpInside];
-    minusParticipation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
+    UIButton *minusParticipation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [minusParticipation setTitle:@"-1 Participation" forState:UIControlStateNormal];
     [minusParticipation addTarget:self action:@selector(minusParticipation) forControlEvents:UIControlEventTouchUpInside];
-    absent = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
+    UIButton *absent = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [absent setTitle:@"Mark Absent" forState:UIControlStateNormal];
     [absent addTarget:self action:@selector(markAbsent) forControlEvents:UIControlEventTouchUpInside];
-    tardy = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
+    UIButton *tardy = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     // I dunno who Mark is, but we are really hating on him here.
     [tardy setTitle:@"Mark Tardy" forState:UIControlStateNormal];
     [tardy addTarget:self action:@selector(markTardy) forControlEvents:UIControlEventTouchUpInside];
-    email = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
+    UIButton *email = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [email setTitle:@"Send Email" forState:UIControlStateNormal];
     [email addTarget:self action:@selector(sendEmail) forControlEvents:UIControlEventTouchUpInside];
-    [email setEnabled:[self.delegate cellCanSendEmail:self]];
-    [self addSubview:plusParticipation];
-    [self addSubview:minusParticipation];
-    [self addSubview:absent];
-    [self addSubview:tardy];
-    [self addSubview:email];
+
+    _buttons = @[plusParticipation, minusParticipation, absent, tardy, email];
+    for (UIButton *button in _buttons) {
+      [self addSubview:button];
+    }
   }
   return self;
 }
 
+- (UIButton *)emailButton {
+  return [self.buttons lastObject];
+}
+
 - (void)setDelegate:(id<TAStudentDetailDelegate>)delegate {
   _delegate = delegate;
-  [email setEnabled:[self.delegate cellCanSendEmail:self]];
-  UIColor *textColor;
-  if ([email isEnabled]) {
-    textColor = [UIColor colorWithRed:.196 green:0.3098 blue:0.52 alpha:1.0];
-  }
-  else {
-    textColor = [UIColor grayColor];
-  }
-  [email setTitleColor:textColor forState:UIControlStateNormal];
+  self.emailButton.enabled = [self.delegate cellCanSendEmail:self];
 }
 
-- (void)setStatus: (NSInteger)status {
+- (void)setStatus:(StudentAttendanceStatus)status {
   UIColor *color;
-  if(status == StudentAttendanceStatusAbsent) {
+  if (status == StudentAttendanceStatusAbsent) {
     color = ABSENT_COLOR;
-  }
-  else if(status == StudentAttendanceStatusTardy) {
+  } else if (status == StudentAttendanceStatusTardy) {
     color = TARDY_COLOR;
-  }
-  else {
+  } else {
     color = [UIColor clearColor];
   }
-  [_statusView setBackgroundColor:color];
+  _statusView.backgroundColor = color;
 }
 
-- (void)setParticipation: (NSInteger)participation {
+- (void)setParticipation:(int16_t)participation {
   if (participation != 0) {
-    [_participationLabel setHidden:NO];
-    [_participationLabel setText:[NSString stringWithFormat:@"%d", participation]];
-  }
-  else {
-    [_participationLabel setHidden:YES];
+    _participationLabel.hidden = NO;
+    _participationLabel.text = [NSString stringWithFormat:@"%d", participation];
+  } else {
+    _participationLabel.hidden = YES;
   }
 }
 
@@ -109,29 +104,39 @@
 
   [self.textLabel setFrameOrigin:CGPointMake(15, 10)];
   [self.textLabel sizeToFit];
-  [_statusView setFrame:CGRectMake(0,0,10,height)];
+
+  _statusView.frame = CGRectMake(0, 0, 10, height);
   [_statusView setNeedsDisplay];
-  [_participationLabel setFrame:CGRectMake(width-60,0,20,44)];
+
+  static const CGFloat halfHeight = 44;
+  _participationLabel.frame = CGRectMake(width - 60, 0, 20, halfHeight);
   [_participationLabel setNeedsDisplay];
 
-  NSArray *views = @[absent,tardy,plusParticipation,minusParticipation,email];
-  // There are 2 spaces on either side of the cell, and n-1 spaces between cells
-  NSInteger numHorizontalSpaces = 2 + ([views count]-1);
+  // 10px between elements
+  static const CGFloat horizontalSpacing = 10;
+  // We want much less space verticaly, as we are already constrained
+  static const CGFloat verticalSpacing = 4;
+  // Padding on the right hand side to make sure that the button doesn't get
+  // covered by the index
+  static const CGFloat rightPadding = 20;
+  // The height of the buttons is just the height of the bottom half,
+  // minus the spacing on either side
+  static const CGFloat buttonHeight = halfHeight - (verticalSpacing * 2);
+
+  // There are 2 spaces on either side of the cell, and n-1 spaces between buttons
+  NSInteger numHorizontalSpaces = 2 + (self.buttons.count - 1);
   // The width of the buttons is the width of the page, minus all of the area
   // taken up by spacing, evenly distributed between the buttons
-  CGFloat buttonWidth = (width - RIGHT_PADDING - (HORIZONTAL_SPACING * numHorizontalSpaces)) / [views count];
-  // The height of the buttons is just the height of the cell, minus the spacing
-  // on either side
-  CGFloat buttonHeight = (44 - (VERTICAL_SPACING * 2));
+  CGFloat buttonWidth = (width - rightPadding - (horizontalSpacing * numHorizontalSpaces)) / self.buttons.count;
   // We start with x as the length of the horizontal spacing
-  CGFloat x = HORIZONTAL_SPACING;
+  CGFloat x = horizontalSpacing;
   // Always stays here
-  CGFloat y = 44 + VERTICAL_SPACING;
-  for (NSUInteger i = 0; i < [views count]; i++) {
-    UIView *current = [views objectAtIndex:i];
-    [current setFrame:CGRectMake(x,y,buttonWidth,buttonHeight)];
-    x = x + buttonWidth + HORIZONTAL_SPACING;
-    [current setNeedsDisplay];
+  CGFloat y = halfHeight + verticalSpacing;
+
+  for (UIButton *button in self.buttons) {
+    button.frame = CGRectMake(x, y, buttonWidth, buttonHeight);
+    [button setNeedsDisplay];
+    x += buttonWidth + horizontalSpacing;
   }
 }
 
@@ -153,11 +158,6 @@
 
 - (void)sendEmail {
   [self.delegate studentDetailCellDidSendEmail:self];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-  [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
 }
 
 @end
