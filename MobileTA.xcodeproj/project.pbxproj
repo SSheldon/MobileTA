@@ -56,7 +56,6 @@
 		135F121716D7137C009C310A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F121616D7137C009C310A /* QuartzCore.framework */; };
 		135F122616D7212B009C310A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E516CDC38A00D7376E /* MapKit.framework */; };
 		135F122716D72131009C310A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135116E316CDC36400D7376E /* CoreLocation.framework */; };
-		135F122F16D72BC0009C310A /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
 		135F123016D72C12009C310A /* UIViewController+CoreDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */; };
 		135F123116D72C18009C310A /* TAStudentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6804DF716CDCD3F000E2007 /* TAStudentEditViewController.m */; };
 		135F123216D72D07009C310A /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9EFCC16C059A7001D122E /* AttendanceRecord.m */; };
@@ -118,7 +117,6 @@
 		E6EC1E5716C05EDB007E8FCF /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC1E5616C05EDB007E8FCF /* Room.m */; };
 		E6ECA87216BB4D1900F103D3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6ECA87016BB4CFF00F103D3 /* CoreData.framework */; };
 		E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */; };
-		E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */; };
 		E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */; };
 		E6F1A53F171375A200DD781D /* TASeatingChartAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F1A53E171375A200DD781D /* TASeatingChartAttendanceViewController.m */; };
 /* End PBXBuildFile section */
@@ -291,8 +289,6 @@
 		E6EC1E5616C05EDB007E8FCF /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		E6ECA87016BB4CFF00F103D3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E6ECA87516BB4DC000F103D3 /* MobileTA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobileTA.xcdatamodel; sourceTree = "<group>"; };
-		E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = TAStudentsViewController.h; sourceTree = "<group>"; };
-		E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentsViewController.m; sourceTree = "<group>"; };
 		E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj; path = "UIViewController+CoreDataAdditions.h"; sourceTree = "<group>"; };
 		E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CoreDataAdditions.m"; sourceTree = "<group>"; };
 		E6F1A53D171375A200DD781D /* TASeatingChartAttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TASeatingChartAttendanceViewController.h; sourceTree = "<group>"; };
@@ -557,8 +553,6 @@
 		E6ECA87916BB562600F103D3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E6ECA87B16BB566A00F103D3 /* TAStudentsViewController.h */,
-				E6ECA87C16BB566A00F103D3 /* TAStudentsViewController.m */,
 				E6ECA88916BB5A3600F103D3 /* UIViewController+CoreDataAdditions.h */,
 				E6ECA88A16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m */,
 				E6804DF616CDCD3F000E2007 /* TAStudentEditViewController.h */,
@@ -784,7 +778,6 @@
 				13345E6416B7736100DD4FF2 /* main.m in Sources */,
 				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
 				E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */,
-				E6ECA87E16BB566A00F103D3 /* TAStudentsViewController.m in Sources */,
 				E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */,
 				E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */,
 				E6E9EFD316C059CD001D122E /* Seat.m in Sources */,
@@ -822,7 +815,6 @@
 			files = (
 				9FC025B216E0471F00C1CBA6 /* TASectionsViewController.m in Sources */,
 				135F120116D7124F009C310A /* main.m in Sources */,
-				135F122F16D72BC0009C310A /* TAStudentsViewController.m in Sources */,
 				135F123016D72C12009C310A /* UIViewController+CoreDataAdditions.m in Sources */,
 				135F123116D72C18009C310A /* TAStudentEditViewController.m in Sources */,
 				135F123216D72D07009C310A /* AttendanceRecord.m in Sources */,

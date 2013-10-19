@@ -7,7 +7,6 @@
 //
 
 #import "TASeatingChartView.h"
-#import "TAStudentsViewController.h"
 #import "TANavigationController.h"
 
 #import "Room.h"

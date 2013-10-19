@@ -8,7 +8,6 @@
 
 #import "TASeatingChartViewController.h"
 #import "TANavigationController.h"
-#import "TAStudentsViewController.h"
 #import "TAAssignSeatsViewController.h"
 #import "TAGridConstants.h"
 
