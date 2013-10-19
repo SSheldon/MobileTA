@@ -93,8 +93,6 @@
 		400FDFF81713856C0072CFDD /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 400FDFF71713856C0072CFDD /* Default-Portrait@2x~ipad.png */; };
 		400FDFFA171385BD0072CFDD /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 400FDFF9171385BD0072CFDD /* Default-Landscape~ipad.png */; };
 		400FDFFC171385DE0072CFDD /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 400FDFFB171385DE0072CFDD /* Default-Landscape@2x~ipad.png */; };
-		408E549F16EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */; };
-		408E54A016EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */; };
 		9F6573F31729F68D0002D737 /* TAGroupsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6573F21729F68D0002D737 /* TAGroupsEditViewController.m */; };
 		9FB48F34170A420200E73D14 /* TAAssignSeatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB48F33170A420100E73D14 /* TAAssignSeatsViewController.m */; };
 		9FBF84F116E7F973000077D5 /* TASectionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF84F016E7F973000077D5 /* TASectionEditViewController.m */; };
@@ -250,8 +248,6 @@
 		400FDFF71713856C0072CFDD /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "Images/Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		400FDFF9171385BD0072CFDD /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Images/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		400FDFFB171385DE0072CFDD /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "Images/Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
-		408E549D16EEAC0F00DB4F96 /* TAStudentDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStudentDisplayCell.h; sourceTree = "<group>"; };
-		408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAStudentDisplayCell.m; sourceTree = "<group>"; };
 		9F6573F11729F68D0002D737 /* TAGroupsEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGroupsEditViewController.h; sourceTree = "<group>"; };
 		9F6573F21729F68D0002D737 /* TAGroupsEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAGroupsEditViewController.m; sourceTree = "<group>"; };
 		9FB48F32170A420100E73D14 /* TAAssignSeatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAssignSeatsViewController.h; sourceTree = "<group>"; };
@@ -607,8 +603,6 @@
 				E654DB35170A3C8C00584411 /* UIView+FrameSettingAdditions.m */,
 				E653A91416E96FD30062C7CB /* TAStudentDetailCell.h */,
 				E653A91516E96FD30062C7CB /* TAStudentDetailCell.m */,
-				408E549D16EEAC0F00DB4F96 /* TAStudentDisplayCell.h */,
-				408E549E16EEAC0F00DB4F96 /* TAStudentDisplayCell.m */,
 				E6064D1316F2445D00BCF71B /* TASeatingChartView.h */,
 				E6064D1416F2445D00BCF71B /* TASeatingChartView.m */,
 				E6064D2016F2AA7F00BCF71B /* TASeatView.h */,
@@ -805,7 +799,6 @@
 				9FBF84F116E7F973000077D5 /* TASectionEditViewController.m in Sources */,
 				9FE67B5E16EE756500F98DCE /* TAAttendanceHistoryViewController.m in Sources */,
 				E6BCE01016EE78E100C7B904 /* TAAttendanceRecordEditViewController.m in Sources */,
-				408E549F16EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */,
 				E6064D1616F2445D00BCF71B /* TASeatingChartView.m in Sources */,
 				E6064D1F16F244A300BCF71B /* TASeatingChartViewController.m in Sources */,
 				E6064D2316F2AA7F00BCF71B /* TASeatView.m in Sources */,
@@ -848,7 +841,6 @@
 				134A855016E98AEB0078E521 /* TAStudentDetailCell.m in Sources */,
 				134A855816E98D610078E521 /* TASectionsViewTest.m in Sources */,
 				134A856416E994510078E521 /* TASectionEditViewController.m in Sources */,
-				408E54A016EEAC0F00DB4F96 /* TAStudentDisplayCell.m in Sources */,
 				130741C016EEC8A300465D86 /* TAAttendanceHistoryViewController.m in Sources */,
 				130741C616EEC8A600465D86 /* TAAttendanceRecordEditViewController.m in Sources */,
 				130741C916EEC98C00465D86 /* TAAttendanceHistoryViewTest.m in Sources */,

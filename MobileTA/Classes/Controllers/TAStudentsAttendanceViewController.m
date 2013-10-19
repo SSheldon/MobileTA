@@ -10,7 +10,7 @@
 
 #import "Section.h"
 #import "Student.h"
-#import "TAStudentDisplayCell.h"
+#import "TAStudentDetailCell.h"
 
 @implementation TAStudentsAttendanceViewController {
   NSIndexPath *_detailedStudentIndex;
@@ -80,9 +80,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *studentDisplayCellId = @"StudentDisplayCell";
-  TAStudentDisplayCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDisplayCellId];
+  TAStudentDetailCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:studentDisplayCellId];
   if (!cell) {
-    cell = [[TAStudentDisplayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDisplayCellId];
+    cell = [[TAStudentDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentDisplayCellId];
   }
   Student *student = [self studentAtIndexPath:indexPath];
   cell.textLabel.text = student.fullDisplayName;
@@ -112,28 +112,28 @@
 - (void)studentDetailCellDidMarkAbsent:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   StudentAttendanceStatus status = [self markStatus:StudentAttendanceStatusAbsent forStudent:student];
-  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
+  TAStudentDetailCell *displayCell = (TAStudentDetailCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
   [displayCell setStatus:status];
 }
 
 - (void)studentDetailCellDidMarkTardy:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   StudentAttendanceStatus status = [self markStatus:StudentAttendanceStatusTardy forStudent:student];
-  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
+  TAStudentDetailCell *displayCell = (TAStudentDetailCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
   [displayCell setStatus:status];
 }
 
 - (void)studentDetailCellDidAddParticipation:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   int16_t participation = [self changeParticipationBy:1 forStudent:student];
-  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
+  TAStudentDetailCell *displayCell = (TAStudentDetailCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
   [displayCell setParticipation:participation];
 }
 
 - (void)studentDetailCellDidSubtractParticipation:(TAStudentDetailCell *)cell {
   Student *student = [self studentAtIndexPath:_detailedStudentIndex];
   int16_t participation = [self changeParticipationBy:-1 forStudent:student];
-  TAStudentDisplayCell *displayCell = (TAStudentDisplayCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
+  TAStudentDetailCell *displayCell = (TAStudentDetailCell *)[self.tableView cellForRowAtIndexPath:_detailedStudentIndex];
   [displayCell setParticipation:participation];
 }
 

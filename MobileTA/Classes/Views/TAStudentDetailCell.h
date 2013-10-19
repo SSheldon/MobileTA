@@ -29,4 +29,10 @@
 
 @property (nonatomic,weak) id<TAStudentDetailDelegate> delegate;
 
+@property(nonatomic,strong)UIView *statusView;
+@property(nonatomic,strong)UILabel *participationLabel;
+
+- (void)setStatus: (NSInteger)status;
+- (void)setParticipation: (NSInteger)participation;
+
 @end
