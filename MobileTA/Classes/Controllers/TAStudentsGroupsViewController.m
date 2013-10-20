@@ -19,11 +19,15 @@
                                           entity:[NSEntityDescription entityForName:@"Group" inManagedObjectContext:self.managedObjectContext]
                                        predicate:[NSPredicate predicateWithFormat:@"section = %@ AND students.@count > 0", self.section]
                                        withBlock:^(Group *group) {
-      // TODO(ssheldon): This reloads the entire table whenever a student is
-      // added to/removed from a group, but we only need that to happen when a group is renamed.
       if (self.isViewLoaded) {
-        [self.fetchedResultsController performFetch:NULL];
-        [self.tableView reloadData];
+        // The fetched results controller won't reload when a section name changes,
+        // so we must manually fetch again and reload the table if a section's name changes.
+        NSInteger groupSection = [self.fetchedResultsController indexPathForObject:[group.students anyObject]].section;
+        id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[groupSection];
+        if (![sectionInfo.name isEqualToString:group.name]) {
+          [self.fetchedResultsController performFetch:NULL];
+          [self.tableView reloadData];
+        }
       }
     }],
     [TAManagedObjectChangeAction actionForChange:TAManagedObjectChangeAll
