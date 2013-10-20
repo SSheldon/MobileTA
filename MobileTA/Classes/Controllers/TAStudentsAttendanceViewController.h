@@ -33,6 +33,7 @@
 @interface TAStudentsAttendanceViewController : TAFetchedResultsTableViewController <TAStudentDetailDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) Section *section;
+@property (strong, nonatomic) AttendanceRecord *attendanceRecord;
 @property (weak, nonatomic) id<TAStudentsAttendanceDelegate> delegate;
 
 - (void)reloadStudent:(Student *)student;

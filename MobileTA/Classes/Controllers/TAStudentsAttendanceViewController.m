@@ -10,11 +10,39 @@
 
 #import "Section.h"
 #import "Student.h"
+#import "TAManagedObjectChangeObserver.h"
 #import "TAStudentDetailCell.h"
 
 @implementation TAStudentsAttendanceViewController {
   NSIndexPath *_detailedStudentIndex;
 }
+
+- (id)initWithStyle:(UITableViewStyle)style {
+  self = [super initWithStyle:style];
+  if (self) {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_contextDidSave:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:self.managedObjectContext];
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)_contextDidSave:(NSNotification *)notification {
+  [TAManagedObjectChangeObserver performActions:@[
+    [TAManagedObjectChangeAction actionForChange:TAManagedObjectChangeAll
+                                          entity:[NSEntityDescription entityForName:@"StudentAttendance" inManagedObjectContext:self.managedObjectContext]
+                                       predicate:[NSPredicate predicateWithFormat:@"attendanceRecord = %@", self.attendanceRecord]
+                                       withBlock:^(StudentAttendance *attendance) {
+      [self reloadStudent:attendance.student];
+    }],
+  ] forChangeNotification:notification];
+}
+
 
 - (void)reloadStudent:(Student *)student {
   NSIndexPath *path = [self.fetchedResultsController indexPathForObject:student];
