@@ -68,6 +68,8 @@
 		135F124716D74151009C310A /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC1E5316C05EB3007E8FCF /* Section.m */; };
 		135F59BB17029FB600734373 /* TANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F59BA17029FB600734373 /* TANavigationController.m */; };
 		139239B51720D77400AE14EE /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 139239B41720D77400AE14EE /* Group.m */; };
+		13943EA718139EFC007F4209 /* TAManagedObjectChangeObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 13943EA618139EFC007F4209 /* TAManagedObjectChangeObserver.m */; };
+		13943EA818139EFC007F4209 /* TAManagedObjectChangeObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 13943EA618139EFC007F4209 /* TAManagedObjectChangeObserver.m */; };
 		139ACEE6171BF1E20071CB89 /* TASectionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 139ACEE5171BF1E20071CB89 /* TASectionViewControllerTest.m */; };
 		13A44DE016DB244E0084D827 /* StudentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A44DDF16DB244E0084D827 /* StudentTest.m */; };
 		13A44DE116DB2E0A0084D827 /* MobileTA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6ECA87416BB4DC000F103D3 /* MobileTA.xcdatamodeld */; };
@@ -226,6 +228,8 @@
 		135F59BA17029FB600734373 /* TANavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TANavigationController.m; sourceTree = "<group>"; };
 		139239B31720D77400AE14EE /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		139239B41720D77400AE14EE /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		13943EA518139EFC007F4209 /* TAManagedObjectChangeObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAManagedObjectChangeObserver.h; path = Classes/TAManagedObjectChangeObserver.h; sourceTree = "<group>"; };
+		13943EA618139EFC007F4209 /* TAManagedObjectChangeObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TAManagedObjectChangeObserver.m; path = Classes/TAManagedObjectChangeObserver.m; sourceTree = "<group>"; };
 		139ACEE5171BF1E20071CB89 /* TASectionViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASectionViewControllerTest.m; path = Controllers/TASectionViewControllerTest.m; sourceTree = "<group>"; };
 		13A44DDF16DB244E0084D827 /* StudentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudentTest.m; path = Models/StudentTest.m; sourceTree = "<group>"; };
 		13A44DE216DB33650084D827 /* TATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TATestUtils.h; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 				E6ECA87A16BB563800F103D3 /* Views */,
 				E6ECA87916BB562600F103D3 /* Controllers */,
 				E6ECA87816BB55F400F103D3 /* Models */,
+				13943EA518139EFC007F4209 /* TAManagedObjectChangeObserver.h */,
+				13943EA618139EFC007F4209 /* TAManagedObjectChangeObserver.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -777,6 +783,7 @@
 			files = (
 				13345E6416B7736100DD4FF2 /* main.m in Sources */,
 				13345E6816B7736100DD4FF2 /* TAAppDelegate.m in Sources */,
+				13943EA718139EFC007F4209 /* TAManagedObjectChangeObserver.m in Sources */,
 				E6ECA87616BB4DC000F103D3 /* MobileTA.xcdatamodeld in Sources */,
 				E6ECA88C16BB5A3600F103D3 /* UIViewController+CoreDataAdditions.m in Sources */,
 				E6E9EFCD16C059A7001D122E /* AttendanceRecord.m in Sources */,
@@ -827,6 +834,7 @@
 				13A44DE016DB244E0084D827 /* StudentTest.m in Sources */,
 				13A44DE116DB2E0A0084D827 /* MobileTA.xcdatamodeld in Sources */,
 				13A44DE416DB33650084D827 /* TATestUtils.m in Sources */,
+				13943EA818139EFC007F4209 /* TAManagedObjectChangeObserver.m in Sources */,
 				13A44DE716DB35870084D827 /* TAStudentsViewTest.m in Sources */,
 				133AE69116E561AB008385C2 /* TASectionViewController.m in Sources */,
 				130785471809DE9300E7EF00 /* TAFetchedResultsTableViewController.m in Sources */,
