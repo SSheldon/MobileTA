@@ -35,4 +35,6 @@
 @property (strong, nonatomic) Section *section;
 @property (weak, nonatomic) id<TAStudentsAttendanceDelegate> delegate;
 
+- (void)reloadStudent:(Student *)student;
+
 @end

@@ -314,15 +314,39 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)groupsViewController:(TAGroupsViewController *)controller didUpdateGroup:(Group *)group {
   // Reload the groups
+  if (_groupsController.isViewLoaded) {
+    [_groupsController.fetchedResultsController performFetch:NULL];
+    [_groupsController.tableView reloadData];
+  }
   [self.seatingChart reloadSeats];
 }
 
 - (void)groupsViewController:(TAGroupsViewController *)controller didRemoveGroup:(Group *)group {
   // Reload the groups
+  if (_groupsController.isViewLoaded) {
+    [_groupsController.fetchedResultsController performFetch:NULL];
+    [_groupsController.tableView reloadData];
+  }
   [self.seatingChart reloadSeats];
 }
 
 #pragma mark TAStudentsAttendanceDelegate
+
+- (StudentAttendanceStatus)markStatus:(StudentAttendanceStatus)status forStudent:(Student *)student {
+  StudentAttendanceStatus updatedStatus = [super markStatus:status forStudent:student];
+  // Reload the cell for the updated student
+  [_studentsController reloadStudent:student];
+  [_groupsController reloadStudent:student];
+  return updatedStatus;
+}
+
+- (int16_t)changeParticipationBy:(int16_t)value forStudent:(Student *)student {
+  int16_t updatedStatus = [super changeParticipationBy:value forStudent:student];
+  // Reload the cell for the updated student
+  [_studentsController reloadStudent:student];
+  [_groupsController reloadStudent:student];
+  return updatedStatus;
+}
 
 - (void)viewController:(TAStudentsAttendanceViewController *)controller didSelectStudentToEdit:(Student *)student {
   [self editStudent:student];

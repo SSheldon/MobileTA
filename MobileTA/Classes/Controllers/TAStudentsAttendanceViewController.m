@@ -16,6 +16,13 @@
   NSIndexPath *_detailedStudentIndex;
 }
 
+- (void)reloadStudent:(Student *)student {
+  NSIndexPath *path = [self.fetchedResultsController indexPathForObject:student];
+  if (path && self.isViewLoaded) {
+    [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+  }
+}
+
 - (StudentAttendanceStatus)statusForStudent:(Student *)student {
   return [self.delegate statusForStudent:student];
 }
