@@ -28,6 +28,5 @@ TASeatingChartViewDelegate, TAAssignSeatsViewDelegate, TAStudentsAttendanceDeleg
 @property (nonatomic, readonly) UIScrollView *scrollView;
 
 - (void)addSeat;
-- (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData;
 
 @end

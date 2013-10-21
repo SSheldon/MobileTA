@@ -10,6 +10,7 @@
 #import "TANavigationController.h"
 #import "TAAssignSeatsViewController.h"
 #import "TAGridConstants.h"
+#import "TAManagedObjectChangeObserver.h"
 
 #import "Room.h"
 #import "Seat.h"
@@ -23,6 +24,10 @@
   self = [super initWithNibName:nil bundle:nil];
   if (self) {
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_contextDidSave:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:self.managedObjectContext];
   }
   return self;
 }
@@ -33,6 +38,10 @@
     self.section = section;
   }
   return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)loadView {
@@ -58,6 +67,39 @@
 
   [_scrollView addSubview:_seatingChart];
   [[self view] addSubview:_scrollView];
+}
+
+- (void)_contextDidSave:(NSNotification *)notification {
+  [TAManagedObjectChangeObserver performActions:@[
+    [TAManagedObjectChangeAction actionForChange:TAManagedObjectChangeUpdate
+                                          entity:[NSEntityDescription entityForName:@"Seat" inManagedObjectContext:self.managedObjectContext]
+                                       predicate:[NSPredicate predicateWithFormat:@"room = %@", self.section.room]
+                                       withBlock:^(Seat *seat) {
+                                         // Extra: reloads when a seat is moved
+                                         [self.seatingChart setStudent:[seat studentForSection:self.section] forSeat:seat];
+                                       }],
+    [TAManagedObjectChangeAction actionForChange:TAManagedObjectChangeUpdate
+                                          entity:[NSEntityDescription entityForName:@"Student" inManagedObjectContext:self.managedObjectContext]
+                                       predicate:[NSPredicate predicateWithFormat:@"section = %@ AND seat != NIL", self.section]
+                                       withBlock:^(Student *student) {
+                                         // Dup: reloads when a student is added to/removed from a seat
+                                         // Dup: reloads when attendance is created for a student
+                                         [self.seatingChart setStudent:student forSeat:student.seat];
+                                       }],
+    [TAManagedObjectChangeAction actionForChange:TAManagedObjectChangeAll
+                                          entity:[NSEntityDescription entityForName:@"Group" inManagedObjectContext:self.managedObjectContext]
+                                       predicate:[NSPredicate predicateWithFormat:@"section = %@", self.section]
+                                       withBlock:^(Group *group) {
+                                         // Dup: reloads (entire chart) when a student is added to/removed from a group
+                                         [self.seatingChart reloadSeats];
+                                       }],
+    [TAManagedObjectChangeAction actionForChange:TAManagedObjectChangeAll
+                                          entity:[NSEntityDescription entityForName:@"StudentAttendance" inManagedObjectContext:self.managedObjectContext]
+                                       predicate:[NSPredicate predicateWithFormat:@"attendanceRecord = %@ AND student.seat != NIL", self.attendanceRecord]
+                                       withBlock:^(StudentAttendance *attendance) {
+                                         [self.seatingChart setStudent:attendance.student forSeat:attendance.student.seat];
+                                       }],
+  ] forChangeNotification:notification];
 }
 
 - (void)setSection:(Section *)section {
@@ -125,13 +167,6 @@
     attendance.student = student;
   }
   return attendance;
-}
-
-- (void)updateStudent:(Student *)student withPreviousData:(NSDictionary *)oldData {
-  // If this student is on the seating chart, reload their view
-  if (student.seat) {
-    [self.seatingChart setStudent:student forSeat:student.seat];
-  }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -226,9 +261,8 @@
 - (void)assignSeatsViewController:(TAAssignSeatsViewController*)controller didSelectStudent:(Student *)student forSeat:(Seat *)seat {
   // assign student to seat view
   [seat setStudent:student forSection:self.section];
-
   [self saveManagedObjectContext];
-  [_seatingChart setStudent:student forSeat:seat];
+
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -255,11 +289,6 @@
   }
   [self saveManagedObjectContext];
 
-  // If this student is on the seating chart, reload their view
-  if (student.seat) {
-    [self.seatingChart setStudent:student forSeat:student.seat];
-  }
-
   return attendance.status;
 }
 
@@ -268,19 +297,10 @@
   attendance.participation += value;
   [self saveManagedObjectContext];
 
-  // If this student is on the seating chart, reload their view
-  if (student.seat) {
-    [self.seatingChart setStudent:student forSeat:student.seat];
-  }
-
   return attendance.participation;
 }
 
 - (void)viewController:(TAStudentsAttendanceViewController *)controller didRemoveStudent:(Student *)student {
-  // If this student is on the seating chart, clear their seat
-  if (student.seat) {
-    [self.seatingChart setStudent:nil forSeat:student.seat];
-  }
   // Remove the student from the database
   [[self managedObjectContext] deleteObject:student];
   [self saveManagedObjectContext];

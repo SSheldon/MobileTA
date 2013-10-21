@@ -288,8 +288,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
   }
   // Save changes to the student
   [self saveManagedObjectContext];
-  // Update the table based on these changes
-  [self updateStudent:student withPreviousData:oldData];
 }
 
 #pragma mark TAAttendanceHistoryDelegate
@@ -312,16 +310,6 @@ typedef NS_ENUM(NSInteger, TASectionSelectedViewType) {
 
 - (void)groupsViewControllerDidCancel:(TAGroupsViewController *)groupsViewController {
   [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)groupsViewController:(TAGroupsViewController *)controller didUpdateGroup:(Group *)group {
-  // Reload the groups
-  [self.seatingChart reloadSeats];
-}
-
-- (void)groupsViewController:(TAGroupsViewController *)controller didRemoveGroup:(Group *)group {
-  // Reload the groups
-  [self.seatingChart reloadSeats];
 }
 
 #pragma mark TAStudentsAttendanceDelegate
