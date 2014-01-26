@@ -17,10 +17,12 @@
 @dynamic section;
 @dynamic students;
 
-#define UIColorFromRGB(rgb) [UIColor colorWithRed:(((rgb & 0xFF0000) >> 16) / 255.0)\
-                                            green:(((rgb & 0xFF00) >> 8) / 255.0)\
-                                             blue:((rgb & 0xFF) / 255.0)\
-                                            alpha:1]
+static inline UIColor *UIColorFromRGB(int32_t rgb) {
+  return [UIColor colorWithRed:(((rgb & 0xFF0000) >> 16) / 255.0)
+                         green:(((rgb & 0xFF00) >> 8) / 255.0)
+                          blue:((rgb & 0xFF) / 255.0)
+                         alpha:1];
+}
 
 + (Group *)groupWithContext:(NSManagedObjectContext *)context {
   return [NSEntityDescription insertNewObjectForEntityForName:@"Group" inManagedObjectContext:context];
