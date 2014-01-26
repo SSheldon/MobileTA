@@ -62,6 +62,7 @@
   NSUInteger lastNameIndex = [header indexOfObject:@"Last Name"];
   NSUInteger nicknameIndex = [header indexOfObject:@"Nickname"];
   NSUInteger emailIndex = [header indexOfObject:@"Email"];
+  NSUInteger notesIndex = [header indexOfObject:@"Notes"];
 
   NSMutableArray *students = [NSMutableArray array];
   for (NSUInteger i = 1; i < [csvContent count]; i++) {
@@ -71,6 +72,7 @@
                                              context:context];
     student.nickname = [row safeObjectAtIndex:nicknameIndex];
     student.email = [row safeObjectAtIndex:emailIndex];
+    student.notes = [row safeObjectAtIndex:notesIndex];
     [students addObject:student];
   }
   

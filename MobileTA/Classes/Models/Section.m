@@ -119,6 +119,7 @@
   if (record) {
     [header addObjectsFromArray:@[@"Attendance", @"Particpation"]];
   }
+  [header addObject:@"Notes"];
   [writer writeLineOfFields:header];
 
   // Sort the students
@@ -139,6 +140,7 @@
       [writer writeField:NSStringFromStudentAttendanceStatus(attendance.status)];
       [writer writeField:[NSString stringWithFormat:@"%d", attendance.participation]];
     }
+    [writer writeField:student.notes];
     [writer finishLine];
   }
 
